@@ -1,12 +1,10 @@
 <CORSConfiguration>
- <CORSRule>
-   <AllowedOrigin>*</AllowedOrigin>
-
-   <AllowedMethod>PUT</AllowedMethod>
-   <AllowedMethod>POST</AllowedMethod>
-   <AllowedMethod>DELETE</AllowedMethod>
-   <AllowedMethod>GET</AllowedMethod>
-
-   <AllowedHeader>*</AllowedHeader>
- </CORSRule>
+  <CORSRule>
+    <AllowedOrigin>http://localhost:3000</AllowedOrigin> <!-- Specify the allowed origin explicitly -->
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+    <AllowedMethod>DELETE</AllowedMethod>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedHeader>*</AllowedHeader>
+  </CORSRule>
 </CORSConfiguration>

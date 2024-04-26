@@ -9,7 +9,7 @@ const SidebarWrapper = styled.div`
         font-size: 20px;
         z-index: 5
         cursor: pointer;
-        color: ${props =>
+        color: ${(props) =>
           props.themeSetting.sidebarTransParentValue === "on"
             ? "white"
             : props.sidebarTheme.textColor} !important;
@@ -24,7 +24,7 @@ const SidebarWrapper = styled.div`
         background-color: rgba(0, 0, 0, 0.2);
         height: 206px;
         transform: translateY(0px);
-        background-color: ${props =>
+        background-color: ${(props) =>
           props.themeSetting.sidebarTransParentValue === "on"
             ? "white"
             : props.sidebarTheme.textColor} !important;
@@ -38,7 +38,7 @@ const SidebarWrapper = styled.div`
         width: 100%;
         padding: .5rem 1rem;
         margin: 5px 10px 0;
-        color: ${props =>
+        color: ${(props) =>
           props.themeSetting.sidebarTransParentValue === "on"
             ? "white"
             : props.sidebarTheme.textColor} !important;
@@ -66,9 +66,9 @@ const SidebarWrapper = styled.div`
     .sideBack{
         background: ${palette("primary", 1)};
         overflow: hidden;
-        margin-bottom: ${props =>
+        margin-bottom: ${(props) =>
           props.themeSetting.footerAlignValue === "above" ? "50px" : "0px"};
-        margin-top: ${props =>
+        margin-top: ${(props) =>
           props.themeSetting.toolbarAlignValue === "above" ? "65px" : "0px"};
         box-shadow: 0 4px 7px 0 rgba(0, 0, 0, .2);
     }
@@ -76,7 +76,7 @@ const SidebarWrapper = styled.div`
     .sidebar-wrapper{
     
         .nav-link {
-            color: ${props =>
+            color: ${(props) =>
               props.themeSetting.sidebarTransParentValue === "on"
                 ? "white"
                 : props.sidebarTheme.textColor} !important;
@@ -86,7 +86,7 @@ const SidebarWrapper = styled.div`
         }
 
         .arrow-sidebar {
-            color: ${props =>
+            color: ${(props) =>
               props.themeSetting.sidebarTransParentValue === "on"
                 ? "white"
                 : props.sidebarTheme.textColor + "!important"}
@@ -131,7 +131,7 @@ const SidebarWrapper = styled.div`
         }
 
         .active-sidebar-type-class {
-            border-left: 3px solid ${props =>
+            border-left: 3px solid ${(props) =>
               props.themeSetting.sidebarTransParentValue === "on"
                 ? props.themeSetting.sidebarTransParentActiveColor
                 : props.sidebarTheme.style4VarientActiveTextColor} !important;
@@ -141,12 +141,12 @@ const SidebarWrapper = styled.div`
         }
 
         .active-arrows {
-            color: ${props =>
+            color: ${(props) =>
               props.sidebarTheme.activeRouteTextColor} !important;
         }
     
         .active {
-            color: ${props =>
+            color: ${(props) =>
               props.themeSetting.activeLinkStyle !== "style1" ||
               props.themeSetting.activeLinkStyle !== "style3"
                 ? props.themeSetting.sidebarTransParentValue === "on" &&
@@ -155,13 +155,13 @@ const SidebarWrapper = styled.div`
                     "!important"
                   : props.sidebarTheme.activeRouteTextColor + "!important"
                 : ""};
-            padding-left: ${props =>
+            padding-left: ${(props) =>
               (props.themeSetting.activeLinkStyle === "style2" ||
                 props.themeSetting.activeLinkStyle === "style3") &&
               "1.6rem"};
 
             // style1
-            background: ${props =>
+            background: ${(props) =>
               props.themeSetting.activeLinkStyle === "style1" ||
               props.themeSetting.activeLinkStyle === "style3" ||
               props.themeSetting.activeLinkStyle === "style2"
@@ -170,13 +170,13 @@ const SidebarWrapper = styled.div`
             font-weight: 600;
 
             //  Style 2
-            margin: ${props =>
+            margin: ${(props) =>
               props.themeSetting.activeLinkStyle === "style2"
                 ? "5px 0px 0 !important"
                 : props.themeSetting.activeLinkStyle === "style3"
                 ? "5px 10px 0 0 !important"
                 : "5px 10px 0"};
-            border-radius: ${props =>
+            border-radius: ${(props) =>
               props.themeSetting.activeLinkStyle === "style2"
                 ? "0 !important"
                 : props.themeSetting.activeLinkStyle === "style3"
@@ -184,7 +184,7 @@ const SidebarWrapper = styled.div`
                 : "4px"};
 
             // style4
-            color: ${props =>
+            color: ${(props) =>
               props.themeSetting.activeLinkStyle === "style4"
                 ? props.sidebarTheme.style4VarientActiveTextColor + "!important"
                 : ""};
@@ -203,7 +203,7 @@ const SidebarWrapper = styled.div`
         z-index: 4;
         padding: 8px 0.7rem;
         border-bottom: 1px solid rgba(0,0,0,0.06);
-        background-color: ${props =>
+        background-color: ${(props) =>
           props.themeSetting.sidebarTransParentValue !== "on" &&
           props.sidebarTheme.header &&
           props.sidebarTheme.header};
@@ -234,7 +234,7 @@ const SidebarWrapper = styled.div`
             opacity: 1;
             transform: translateZ(0px);
             padding: 9px 0px 8px;
-            color: ${props =>
+            color: ${(props) =>
               props.themeSetting.sidebarTransParentValue === "on"
                 ? "white"
                 : props.sidebarTheme.textColor} !important;
@@ -243,7 +243,7 @@ const SidebarWrapper = styled.div`
     }
 
     .sidebar-whole-list {
-        background: ${props => props.sidebarTheme.sideOpenListBackground} 
+        background: ${(props) => props.sidebarTheme.sideOpenListBackground} 
     }
 
     .new-update-tag {
@@ -253,11 +253,11 @@ const SidebarWrapper = styled.div`
         padding: 0px 10px;
         border-radius: 10px;
         letter-spacing: 1px;
-        color: ${props =>
+        color: ${(props) =>
           props.themeSetting.sidebarTransParentValue === "on"
             ? "black"
             : props.sidebarTheme.activeRouteTextColor} !important;
-        background: ${props =>
+        background: ${(props) =>
           props.themeSetting.sidebarTransParentValue === "on"
             ? "white"
             : props.sidebarTheme.activeRouteBackColor} !important;

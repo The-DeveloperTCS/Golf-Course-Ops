@@ -3,7 +3,7 @@ import ReactTableWrapper from "./reacttbl.style";
 import Pagination from "components/common/PaginationWitAPI";
 import { Table } from "reactstrap";
 import moment from "moment";
-import { getCouriersList } from "redux/orders/service";
+// import { getCouriersList } from "redux/orders/service";
 import { paymentProvidersGet } from "redux/users/service";
 import { CSVLink } from "react-csv";
 import { batchDataFetch } from "redux/payment/service";
@@ -23,9 +23,9 @@ export default function StickyHeadTable(props) {
     paymentProvidersGet().then((res) => {
       setBanks(res.data);
     });
-    getCouriersList().then((res) => {
-      setCouriers(res.data);
-    });
+    // getCouriersList().then((res) => {
+    //   setCouriers(res.data);
+    // });
   }, []);
 
   const getBankName = (bId) => {

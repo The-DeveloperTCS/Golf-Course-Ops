@@ -1,16 +1,11 @@
-export const BaseUrl = "http://traveling-partner.com/api/";
+export const BaseUrl = "https://api.traveling-partner.com/api/";
 
-export const SENTRY_DSN = process.env.SENTRY_DSN;
+// export const SENTRY_DSN = process.env.SENTRY_DSN;
 
-export const LoginUrl = BaseUrl + "ops-login";
+export const LoginUrl = BaseUrl + "login";
+export const LoginOTPUrl = BaseUrl + "loginVerify";
+
 export const PermissionsUrl = BaseUrl + "authz/permission";
-
-
-
-
-
-
-
 
 export const CreateOrderUrl = BaseUrl + "order/full";
 export const OrderByIdUrl = (id) => BaseUrl + `order/${id}`;

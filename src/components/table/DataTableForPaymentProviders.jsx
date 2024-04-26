@@ -5,7 +5,7 @@ import Pagination from "components/common/Pagination";
 import ReactTableWrapper from "./reacttbl.style";
 import { Badge } from "reactstrap";
 import { history } from "redux/store";
-import { getCouriersList } from "redux/orders/service";
+// import { getCouriersList } from "redux/orders/service";
 
 const HeaderComponent = (props) => {
   let classes = {

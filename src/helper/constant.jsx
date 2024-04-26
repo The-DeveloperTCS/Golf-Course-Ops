@@ -1,4 +1,4 @@
-export const AppName = "Zarya OPS";
+export const AppName = "NFC Golf";
 export const drawerWidth = "260px";
 export const miniDrawerWidth = "80px";
 export const themeSettingDrawerWidth = "300px";

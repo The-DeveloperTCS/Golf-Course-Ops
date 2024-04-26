@@ -1,14 +1,17 @@
 import axios from "axios";
 import { axiosClient } from "redux/store";
-import { LoginUrl, PermissionsUrl } from "Constants";
+import { LoginUrl, PermissionsUrl, LoginOTPUrl } from "Constants";
 
 export const SendOtp = async (phoneNumber) => {
-  const res = await axios.post(LoginUrl, { phoneNumber: phoneNumber });
-  return res.status === 204;
+  const res = await axios.post(LoginUrl, { mobile_number: phoneNumber });
+  return res.status === 200;
 };
 
 export const login = (phoneNumber, otpCode) => {
-  return axios.post(LoginUrl, { phoneNumber: phoneNumber, otpCode: otpCode });
+  return axios.post(LoginOTPUrl, {
+    mobile_number: phoneNumber,
+    otp: otpCode,
+  });
 };
 
 export const permissions = () => {

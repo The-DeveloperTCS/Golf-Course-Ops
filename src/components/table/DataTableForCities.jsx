@@ -4,7 +4,7 @@ import classnames from "classnames";
 import Pagination from "components/common/Pagination";
 import ReactTableWrapper from "./reacttbl.style";
 import { Badge } from "reactstrap";
-import { getCouriersList } from "redux/orders/service";
+// import { getCouriersList } from "redux/orders/service";
 import { history } from "redux/store";
 
 const HeaderComponent = (props) => {
@@ -20,9 +20,9 @@ const HeaderComponent = (props) => {
 const DataTable = (props) => {
   const [couriers, setCouriers] = useState([]);
 
-  useEffect(() => {
-    getCouriersList().then((res) => setCouriers(res.data));
-  }, []);
+  // useEffect(() => {
+  //   getCouriersList().then((res) => setCouriers(res.data));
+  // }, []);
 
   const sortBy = useMemo(() => {
     return props.sortBy || [];

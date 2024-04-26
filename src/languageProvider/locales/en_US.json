@@ -1,6 +1,7 @@
 {
   "sidebar.demo": "Demo",
   "sidebar.intro": "Dashboard",
+  "sidebar.employee": "Employee",
   "sidebar.orders": "Orders",
   "sidebar.merchants": "Merchants",
   "sidebar.catalog": "Catalog",
