@@ -5,7 +5,7 @@ import { Login, Error400, Error500 } from "./../views/pages/index";
 // import SalesInvoice from "./../views/pages/invoices/SaleTaxInvoice";
 // import CreditNotes from "./../views/pages/invoices/CreditNotes";
 
-import BulkPackingList from "./../views/pages/print/BulkPackingList";
+// import BulkPackingList from "./../views/pages/print/BulkPackingList";
 
 const indexRoutes = [
   { path: "/login", component: Login },

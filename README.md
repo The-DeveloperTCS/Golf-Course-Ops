@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start` 
+### `npm start`
 
 Runs the app in the development modes.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -47,7 +47,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-### For Making Sidebar 
+### For Making Sidebar
+
 ### For Vertical sidebar
 
     <!-- Basics -->
@@ -94,8 +95,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
                 }
             ]
         }
+
 ### For Horizontal sidebar
-  
+
     <!-- Basics -->
         {
             name: "sidebar.single",

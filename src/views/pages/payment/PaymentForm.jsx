@@ -11,14 +11,14 @@ import OrderPaymentsLedger from "./OrderPaymentsLedger";
 import React, { useEffect, useState, useCallback } from "react";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { merchantGet, paymentProvidersGet } from "redux/users/service";
-import {
-  orderById,
-  PaymentUpdate,
-  BulkPaymentUpload,
-  fetchOrderPayments,
-  getCouriersList,
-  orderBalancepaymentFetch,
-} from "redux/orders/service";
+// import {
+//   orderById,
+//   PaymentUpdate,
+//   BulkPaymentUpload,
+//   fetchOrderPayments,
+//   getCouriersList,
+//   orderBalancepaymentFetch,
+// } from "redux/orders/service";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { TextField } from "@mui/material";
 import ListSelect from "components/forms/ListSelect";
@@ -67,9 +67,9 @@ const PaymentForm = (props) => {
     });
   }, []);
 
-  useEffect(() => {
-    getCouriersList().then((res) => setCouriers(res.data));
-  }, []);
+  // useEffect(() => {
+  //   getCouriersList().then((res) => setCouriers(res.data));
+  // }, []);
 
   useEffect(() => {
     let paymentRecived = 0;
@@ -102,35 +102,35 @@ const PaymentForm = (props) => {
 
   const onFetch = async (updatePayment) => {
     setHideBulkPayment(true);
-    orderById(updatePayment.orderId)
-      .then((res) => {
-        setOrderUpdated(res.data);
-        merchantGet(res.data?.merchantId).then((response) => {
-          if (response.data[0].salesAgentId) {
-            merchantGet(response.data[0]?.salesAgentId).then((resp) => {
-              setShowSaleAgent(resp.data[0]?.title);
-            });
-          }
-        });
-        onFetchPaymentLedger(updatePayment);
-        setFetching(false);
-      })
-      .catch((e) => {
-        props.failureWithTimeout(e.response.data.message);
-        setOrderUpdated(null);
-      })
-      .finally(() => setFetching(false));
+    // orderById(updatePayment.orderId)
+    //   .then((res) => {
+    //     setOrderUpdated(res.data);
+    //     merchantGet(res.data?.merchantId).then((response) => {
+    //       if (response.data[0].salesAgentId) {
+    //         merchantGet(response.data[0]?.salesAgentId).then((resp) => {
+    //           setShowSaleAgent(resp.data[0]?.title);
+    //         });
+    //       }
+    //     });
+    //     onFetchPaymentLedger(updatePayment);
+    //     setFetching(false);
+    //   })
+    //   .catch((e) => {
+    //     props.failureWithTimeout(e.response.data.message);
+    //     setOrderUpdated(null);
+    //   })
+    //   .finally(() => setFetching(false));
   };
 
-  const onFetchPaymentLedger = async (updatePayment) => {
-    fetchOrderPayments(updatePayment.orderId)
-      .then((res) => {
-        setPaymentLedger(res.data);
-      })
-      .catch((err) => {
-        setPaymentLedger([]);
-      });
-  };
+  // const onFetchPaymentLedger = async (updatePayment) => {
+  //   fetchOrderPayments(updatePayment.orderId)
+  //     .then((res) => {
+  //       setPaymentLedger(res.data);
+  //     })
+  //     .catch((err) => {
+  //       setPaymentLedger([]);
+  //     });
+  // };
 
   const onSave = async () => {
     setSaving(true);
@@ -167,36 +167,36 @@ const PaymentForm = (props) => {
       });
     });
 
-    BulkPaymentUpload({
-      receivedDate: updatePayment.receivedDate,
-      bankReferenceNumber: updatePayment.bankReferenceNumber,
-      paymentProviderId: updatePayment.paymentProviderId,
-      courierId: updatePayment.courierId,
-      courierInvoiceNumber: updatePayment.courierInvoiceNumber,
-      payments: processed,
-      paymentType: "COD",
-    })
-      .then((res) => {
-        successWithTimeout("Payment added successfully!");
-        setSaving(false);
-        setUpdatePayment({
-          orderId: null,
-          amount: 0,
-          courierCharges: 0,
-          receivedDate: new Date(),
-        });
-        ref.current.value = "";
-        setHideBulkPayment(false);
-        setSinglePayment(false);
-        setBulkPaymentFile("");
-        setHideFetch(false);
-      })
-      .catch((err) => {
-        if (err?.response.data.message) {
-          setAdditionalPayment(true);
-        }
-        setSaving(false);
-      });
+    // BulkPaymentUpload({
+    //   receivedDate: updatePayment.receivedDate,
+    //   bankReferenceNumber: updatePayment.bankReferenceNumber,
+    //   paymentProviderId: updatePayment.paymentProviderId,
+    //   courierId: updatePayment.courierId,
+    //   courierInvoiceNumber: updatePayment.courierInvoiceNumber,
+    //   payments: processed,
+    //   paymentType: "COD",
+    // })
+    //   .then((res) => {
+    //     successWithTimeout("Payment added successfully!");
+    //     setSaving(false);
+    //     setUpdatePayment({
+    //       orderId: null,
+    //       amount: 0,
+    //       courierCharges: 0,
+    //       receivedDate: new Date(),
+    //     });
+    //     ref.current.value = "";
+    //     setHideBulkPayment(false);
+    //     setSinglePayment(false);
+    //     setBulkPaymentFile("");
+    //     setHideFetch(false);
+    //   })
+    //   .catch((err) => {
+    //     if (err?.response.data.message) {
+    //       setAdditionalPayment(true);
+    //     }
+    //     setSaving(false);
+    //   });
   };
 
   const parseFile = async (file) => {
@@ -235,80 +235,80 @@ const PaymentForm = (props) => {
     setShowConfirm(false);
     setRefundPayment(false);
     setAdditionalPayment(false);
-    PaymentUpdate({
-      ...updatePayment,
-      description: description,
-    })
-      .then((res) => {
-        successWithTimeout("Payment added successfully!");
-        setSaving(false);
-        setOrderUpdated(res.data);
-        setUpdatePayment({
-          orderId: updatePayment.orderId,
-          amount: 0,
-          courierCharges: 0,
-          receivedDate: new Date(),
-        });
-        onFetchPaymentLedger(updatePayment);
-      })
-      .catch((err) => {
-        /**
-         * disabling the popup of server error
-         */
-        // failureWithTimeout(err.response.data.message);
-        if (err.response.data.message) {
-          setAdditionalPayment(true);
-        }
-      })
-      .finally(() => setShowConfirm(false), setSaving(false));
+    // PaymentUpdate({
+    //   ...updatePayment,
+    //   description: description,
+    // })
+    //   .then((res) => {
+    //     successWithTimeout("Payment added successfully!");
+    //     setSaving(false);
+    //     setOrderUpdated(res.data);
+    //     setUpdatePayment({
+    //       orderId: updatePayment.orderId,
+    //       amount: 0,
+    //       courierCharges: 0,
+    //       receivedDate: new Date(),
+    //     });
+    //     onFetchPaymentLedger(updatePayment);
+    //   })
+    //   .catch((err) => {
+    //     /**
+    //      * disabling the popup of server error
+    //      */
+    //     // failureWithTimeout(err.response.data.message);
+    //     if (err.response.data.message) {
+    //       setAdditionalPayment(true);
+    //     }
+    //   })
+    //   .finally(() => setShowConfirm(false), setSaving(false));
   };
 
   const onUpdateWithAdditionalPayment = () => {
     setAdditionalPayment(false);
-    PaymentUpdate({
-      ...updatePayment,
-      receiveExtraPayment: true,
-    })
-      .then((res) => {
-        successWithTimeout("Payment added successfully!");
-        setSaving(false);
-        setOrderUpdated(res.data);
-        setUpdatePayment({
-          orderId: updatePayment.orderId,
-          amount: 0,
-          courierCharges: 0,
-          receivedDate: new Date(),
-        });
-        onFetchPaymentLedger(updatePayment);
-      })
-      .catch((err) => {
-        failureWithTimeout(err.response.data.message);
-      })
-      .finally(() => setShowConfirm(false), setSaving(false));
+    // PaymentUpdate({
+    //   ...updatePayment,
+    //   receiveExtraPayment: true,
+    // })
+    //   .then((res) => {
+    //     successWithTimeout("Payment added successfully!");
+    //     setSaving(false);
+    //     setOrderUpdated(res.data);
+    //     setUpdatePayment({
+    //       orderId: updatePayment.orderId,
+    //       amount: 0,
+    //       courierCharges: 0,
+    //       receivedDate: new Date(),
+    //     });
+    //     onFetchPaymentLedger(updatePayment);
+    //   })
+    //   .catch((err) => {
+    //     failureWithTimeout(err.response.data.message);
+    //   })
+    //   .finally(() => setShowConfirm(false), setSaving(false));
   };
 
   const onUpdateWithRefundPayment = () => {
     setRefundPayment(false);
-    PaymentUpdate({
-      ...updatePayment,
-      refund: true,
-    })
-      .then((res) => {
-        successWithTimeout("Payment added successfully!");
-        setSaving(false);
-        setOrderUpdated(res.data);
-        setUpdatePayment({
-          orderId: updatePayment.orderId,
-          amount: 0,
-          courierCharges: 0,
-          receivedDate: new Date(),
-        });
-        onFetchPaymentLedger(updatePayment);
-      })
-      .catch((err) => {
-        failureWithTimeout(err.response.data.message);
-      })
-      .finally(() => setSaving(false));
+    // PaymentUpdate({
+    //   ...updatePayment,
+    //   refund: true,
+    // })
+    //   .then((res) => {
+    //     successWithTimeout("Payment added successfully!");
+    //     setSaving(false);
+    //     setOrderUpdated(res.data);
+    //     setUpdatePayment({
+    //       orderId: updatePayment.orderId,
+    //       amount: 0,
+    //       courierCharges: 0,
+    //       receivedDate: new Date(),
+    //     });
+    //     onFetchPaymentLedger(updatePayment);
+    //   })
+    //   .catch((err) => {
+    //     failureWithTimeout(err.response.data.message);
+    //   })
+    //   .finally(() => setSaving(false));
   };
 
   const onPreview = async () => {
@@ -340,21 +340,21 @@ const PaymentForm = (props) => {
 
     setData(processed);
     setOrderIds(orderIds);
-    fetchBalancePayment(orderIds);
+    // fetchBalancePayment(orderIds);
   };
 
-  const fetchBalancePayment = useCallback(
-    (orderId) => {
-      orderBalancepaymentFetch({ ids: orderId })
-        .then((res) => {
-          setOrderBalancePayments(res.data);
-        })
-        .catch((err) => {
-          console.log(err, "err");
-        });
-    },
-    [orderIds]
-  );
+  // const fetchBalancePayment = useCallback(
+  //   (orderId) => {
+  //     orderBalancepaymentFetch({ ids: orderId })
+  //       .then((res) => {
+  //         setOrderBalancePayments(res.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err, "err");
+  //       });
+  //   },
+  //   [orderIds]
+  // );
 
   const updateData = ({ row, index }) => {
     setData((prev) => {

@@ -11,11 +11,11 @@ import Button from "components/button/Button";
 import notificationActions from "redux/notifications/actions";
 import { bindActionCreators } from "redux";
 
-const Login = props => {
+const Login = (props) => {
   const [loading, setLoading] = useState(false);
   const [showOtpField, setShowOtpField] = useState(false);
 
-  const handleLogin = e => {
+  const handleLogin = (e) => {
     e.preventDefault();
     let { values, handleSubmit } = props;
 
@@ -49,7 +49,7 @@ const Login = props => {
     handleBlur,
     errors,
     touched,
-    submitCount
+    submitCount,
   } = props;
 
   const loginContainer = {
@@ -59,10 +59,10 @@ const Login = props => {
     position: "fixed",
     overflow: "auto",
     top: 0,
-    bottom: 0
+    bottom: 0,
   };
 
-  const Error = props => {
+  const Error = (props) => {
     const field1 = props.field;
     if ((errors[field1] && touched[field1]) || submitCount > 0) {
       return (
@@ -138,10 +138,10 @@ const Login = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(AuthActions, dispatch)
+    ...bindActionCreators(AuthActions, dispatch),
   };
 };
 

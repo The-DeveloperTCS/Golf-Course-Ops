@@ -13,7 +13,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { TextField } from "@mui/material";
 import { paymentProvidersGet } from "redux/users/service";
-import { BulkPaymentUpload } from "redux/orders/service";
+// import { BulkPaymentUpload } from "redux/orders/service";
 const options = [
   { value: "Move to processing", label: "Move to processing" },
   { value: "Hold order", label: "Hold order" },
@@ -52,29 +52,29 @@ const PaymentForm = (props) => {
 
   const onSave = async () => {
     setSaving(true);
-    BulkPaymentUpload(updatePaymentRequest)
-      .then((res) => {
-        successWithTimeout("Payment request save successfully.");
-        setUpdatePaymentRequest({
-          payments: [
-            {
-              orderId: null,
-              amount: 0,
-              description: "",
-            },
-          ],
-          paymentProviderId: "",
-          receivedDate: new Date(),
-          attachment: "",
-          action: "",
-          paymentType: "ADVANCE",
-        });
-        setSaving(false);
-      })
-      .catch((err) => {
-        failureWithTimeout(err.response.data.message);
-        setSaving(false);
-      });
+    // BulkPaymentUpload(updatePaymentRequest)
+    //   .then((res) => {
+    //     successWithTimeout("Payment request save successfully.");
+    //     setUpdatePaymentRequest({
+    //       payments: [
+    //         {
+    //           orderId: null,
+    //           amount: 0,
+    //           description: "",
+    //         },
+    //       ],
+    //       paymentProviderId: "",
+    //       receivedDate: new Date(),
+    //       attachment: "",
+    //       action: "",
+    //       paymentType: "ADVANCE",
+    //     });
+    //     setSaving(false);
+    //   })
+    //   .catch((err) => {
+    //     failureWithTimeout(err.response.data.message);
+    //     setSaving(false);
+    //   });
   };
 
   const onImageUpload = (url) => {

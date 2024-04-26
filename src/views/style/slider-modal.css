@@ -1,0 +1,13 @@
+.modal.right .modal-dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 0;
+  width: 50vw; /* Adjust the width as needed */
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal.right.show .modal-dialog {
+  transform: translateX(0);
+}

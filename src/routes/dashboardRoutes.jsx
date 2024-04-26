@@ -2,9 +2,14 @@ import Intro from "views/Intro";
 import BulkPayment from "views/pages/payment/BulkPayment";
 import NotFound from "views/pages/NotFound";
 import AccessManagement from "views/pages/authentication/AccessManagement";
+import Employee from "views/pages/employees/Employees";
+import Locations from "views/pages/location/Locations";
 
 const dashboardRoutes = [
   { path: "/intro", component: Intro, resource: "" },
+  { path: "/employee", component: Employee, resource: "" },
+  { path: "/location", component: Locations, resource: "" },
+
   {
     path: "/pending-payments",
     component: BulkPayment,

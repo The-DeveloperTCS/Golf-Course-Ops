@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PageTitle from "components/common/PageTitle";
 import { StockInfo } from "components/widgets/analyticsdashboard";
-import { fetchFreeDelivery } from "redux/catalog/service";
+// import { fetchFreeDelivery } from "redux/freeDelivery/service";
 import { StockSectionWrapper } from "components/widgets/analyticsdashboard/stockInfo/StockInfo.style";
 
 class Intro extends Component {
@@ -11,14 +11,14 @@ class Intro extends Component {
     minimumOrderValue: 0,
   };
 
-  async componentDidMount() {
-    const res = await fetchFreeDelivery();
-    const data = res.data;
-    this.setState({
-      applyFreeDelivery: data.freeDelivery,
-      minimumOrderValue: data.minOrderValue,
-    });
-  }
+  // async componentDidMount() {
+  //   const res = await fetchFreeDelivery();
+  //   const data = res.data;
+  //   this.setState({
+  //     applyFreeDelivery: data.freeDelivery,
+  //     minimumOrderValue: data.minOrderValue,
+  //   });
+  // }
 
   render() {
     const { applyFreeDelivery, minimumOrderValue } = this.state;

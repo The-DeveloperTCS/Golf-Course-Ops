@@ -6,6 +6,19 @@ export const sidebarData = [
     resource: "",
   },
   {
+    name: "sidebar.employee",
+    routepath: "/employee",
+    iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+  {
+    name: "location",
+    routepath: "/location",
+    iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+
+  {
     name: "sidebar.payment",
     routepath: "/payment",
     iconClass: "fas fa-cogs",
@@ -58,6 +71,7 @@ export const HorizontalSidebarData = [
     iconClass: "fas fa-chalkboard",
     resource: "",
   },
+
   {
     name: "sidebar.access_management",
     routepath: "/access-management",
