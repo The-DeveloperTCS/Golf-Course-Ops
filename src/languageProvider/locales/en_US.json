@@ -1,7 +1,10 @@
 {
   "sidebar.demo": "Demo",
-  "sidebar.intro": "Dashboard",
   "sidebar.employee": "Employee",
+  "sidebar.AdminTeeSheet": "AdminTeeSheet",
+  "sidebar.AdminTeeSheetSetting": "adminTeeSheetSetting",
+  "sidebar.AdminDashboardItems": "adminDashboardItems",
+  "sidebar.Inventory": "inventory",
   "sidebar.orders": "Orders",
   "sidebar.merchants": "Merchants",
   "sidebar.catalog": "Catalog",

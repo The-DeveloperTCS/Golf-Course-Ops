@@ -245,15 +245,16 @@ const DashboardLayout = (props) => {
 
           <div
             className="route-height flex-1 overflow-auto"
-            style={
-              themeSetting.toolbarDisplayValue === "show"
-                ? {
-                    background: layoutTheme.backgroundColor,
-                  }
-                : {
-                    background: layoutTheme.backgroundColor,
-                  }
-            }
+            style={{ backgroundColor: "#EEF0F6" }}
+            // style={
+            //   themeSetting.toolbarDisplayValue === "show"
+            //     ? {
+            //         background: layoutTheme.backgroundColor,
+            //       }
+            //     : {
+            //         background: layoutTheme.backgroundColor,
+            //       }
+            // }
           >
             <Switch>
               <ProtectedRoute {...props}>

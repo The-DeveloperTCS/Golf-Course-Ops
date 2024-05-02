@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import IntlMessages from "util/intlMessages";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "redux/auth/actions";
+import logoimg from "../../assets/images/golfer-golf-player-man-illustration-abstract-style_691560-6542.avif";
 
 const Sidebar = (props) => {
   let listNameStyle;
@@ -113,7 +114,7 @@ const Sidebar = (props) => {
       {!mini && <div className="sidebar-overlay" onClick={closeDrawer()}></div>}
       <div
         id="sidebar"
-        className="sidebar sideBack"
+        className="sidebar "
         style={sidebar}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -121,7 +122,7 @@ const Sidebar = (props) => {
         <div className="sidebar-header">
           <NavLink to={"/"} className="simple-text logo-mini">
             <div className="logo-img">
-              <img src={logo} alt="react-logo" />
+              <img src={logoimg} alt="react-logo" />
             </div>
           </NavLink>
           <div className="logo-text simple-text fs-20 bold-text">{AppName}</div>
@@ -157,6 +158,17 @@ const Sidebar = (props) => {
           )}
         >
           <div className="sidebar-wrapper">
+            <div
+              className=""
+              style={{ display: "flex", padding: "24px 30px 0px 29px" }}
+            >
+              <p
+                style={{ color: "black", fontSize: "22px", fontWeight: "600" }}
+              >
+                General
+              </p>
+            </div>
+
             <ul className="nav">
               {sidebarData
                 .filter((l) => {

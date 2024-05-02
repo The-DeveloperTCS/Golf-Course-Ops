@@ -161,12 +161,7 @@ const SidebarWrapper = styled.div`
               "1.6rem"};
 
             // style1
-            background: ${(props) =>
-              props.themeSetting.activeLinkStyle === "style1" ||
-              props.themeSetting.activeLinkStyle === "style3" ||
-              props.themeSetting.activeLinkStyle === "style2"
-                ? props.sidebarTheme.activeRouteBackColor
-                : ""};
+            background:#EEF0F6;
             font-weight: 600;
 
             //  Style 2
@@ -202,7 +197,7 @@ const SidebarWrapper = styled.div`
         position: relative;
         z-index: 4;
         padding: 8px 0.7rem;
-        border-bottom: 1px solid rgba(0,0,0,0.06);
+        // border-bottom: 1px solid rgba(0,0,0,0.06);
         background-color: ${(props) =>
           props.themeSetting.sidebarTransParentValue !== "on" &&
           props.sidebarTheme.header &&
@@ -225,8 +220,9 @@ const SidebarWrapper = styled.div`
             margin-right: 12px;
             padding: 6px 0px 8px;
             img {
-                width: 34px;
-                height: 34px;
+                width: 50px;
+                height: 40px;
+                border-radius:50%;
             }
         }
         .logo-text {
