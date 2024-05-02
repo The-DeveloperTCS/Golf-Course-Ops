@@ -3,6 +3,7 @@ export const BaseUrl = "https://api.traveling-partner.com/api/";
 // export const SENTRY_DSN = process.env.SENTRY_DSN;
 
 export const LoginUrl = BaseUrl + "login";
+
 export const LoginOTPUrl = BaseUrl + "loginVerify";
 
 export const PermissionsUrl = BaseUrl + "authz/permission";
