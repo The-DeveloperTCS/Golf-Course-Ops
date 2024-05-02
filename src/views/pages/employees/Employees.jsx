@@ -12,7 +12,7 @@ import { pascalCase } from "pascal-case";
 import Spinner from "react-bootstrap/Spinner";
 import moment from "moment";
 import cities from "../../data/cities.json";
-import StandardTable from "../../common/Table";
+import StandardTable from "../tee-slot/Table";
 import "../../style/slider-modal.css";
 import HttpService from "../services/http-service";
 import { connect } from "react-redux";

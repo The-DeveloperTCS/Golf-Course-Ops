@@ -1,0 +1,358 @@
+.Dashboard-Items-main {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 20px;
+}
+
+.Dashboard-Items-left {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* .========Dashboard-Items-left2 ================*/
+.Dashboard-Items-left2 {
+  width: 100%;
+  margin-top: 40px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  background-color: #eef0f6;
+}
+
+.search-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  gap: 60px;
+}
+
+.search-item p {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px 0px 0px 0px;
+  color: #ffffff;
+}
+
+.search-item svg {
+  position: absolute;
+  /* width: 130px; */
+  font-size: 30px;
+  left: 110px;
+  color: white;
+}
+
+.search-item input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 15px 40px;
+  color: #ffffff;
+}
+
+.search-item ::placeholder {
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.Items-left2-buttons-main {
+  display: flex;
+  align-items: center;
+}
+
+.Items-left2-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4365cf;
+  padding: 20px 20px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.Items-left2-buttons-main button {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 15px;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  font-size: 14px;
+  width: 140px;
+  background-color: #718bda;
+  outline: none;
+  border: none;
+  color: white;
+  text-transform: capitalize;
+}
+
+.Items-left2-line1 {
+  background-color: #e8edff;
+}
+
+.Items-left2-line1 p {
+  text-align: start;
+  padding: 15px 20px;
+  text-transform: capitalize;
+  background-color: #e8edff;
+  margin: 0px;
+}
+
+.Items-left2-line21 p {
+  text-align: start;
+  padding: 15px 20px;
+  text-transform: capitalize;
+  font-family: "Poppins", sans-serif;
+  margin: 0px;
+  background-color: #ffffff;
+}
+
+.Items-left2-line3 p {
+  text-align: start;
+  padding: 15px 20px;
+  margin: 0px;
+  display: flex;
+  text-transform: capitalize;
+  background-color: #e8edff;
+  font-family: "Poppins", sans-serif;
+}
+
+.Items-left2-line4 {
+  display: flex;
+  justify-content: flex-end;
+  padding: 27px 20px;
+  background-color: #ffffff;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.Items-left2-line4 p {
+  /* text-align: right; */
+  text-transform: capitalize;
+  margin-top: 2px;
+  padding-right: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.Items-left2-line4 h4 {
+  text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/* .==============Dashboard-Items-right=================  */
+.Dashboard-Items-right {
+  width: 50%;
+  background-color: white;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.Dashboard-Items-left-main {
+  width: 90%;
+}
+
+.item-sale-return-btn {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px;
+  background-color: #4365cf;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  align-items: center;
+}
+
+.for-sale-item-btn button {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 15px;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  font-size: 14px;
+  width: 140px;
+  background-color: #718bda;
+  outline: none;
+  border: none;
+  color: white;
+  text-transform: capitalize;
+}
+
+.item-sale-return-btn p {
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* =========.item-table============== */
+
+.item-table {
+  width: 100%;
+  overflow-x: auto;
+  font-family: "Poppins", sans-serif;
+}
+
+.item-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.item-table th,
+.item-table td {
+  padding: 15px 20px;
+}
+
+.item-table th {
+  background-color: #ffffff;
+}
+
+.item-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 100%;
+  margin: auto;
+  background-color: white;
+  padding: 15px 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.item-table tr:nth-child(1) {
+  background-color: #e8edff;
+  text-align: start;
+}
+
+.item-table tr:nth-child(2) {
+  background-color: #ffffff;
+  text-align: start;
+}
+
+.item-table tr:nth-child(3) {
+  background-color: #e8edff;
+  text-align: start;
+}
+
+.sub-total-item h1 {
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.sub-total-item span {
+  color: #a8a8a9;
+  display: flex;
+  justify-content: right;
+}
+
+.recent-transactions-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px dotted #dde1eb;
+}
+
+.recent-transactions-main h4 {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.right-item-top-text {
+  padding: 34px 20px;
+  background-color: #0cd374;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  text-align: left;
+}
+
+.right-item-top-text h2 {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #ffffff;
+}
+
+.transaction {
+  color: #4365cf;
+}
+
+.customer {
+  color: #d0d1d2;
+}
+
+@media only screen and (min-width: 340px) and (max-width: 1024px) {
+  .Dashboard-Items-main {
+    flex-direction: column;
+  }
+
+  .Dashboard-Items-right {
+    width: 100%;
+  }
+
+  .Dashboard-Items-left,
+  .Dashboard-Items-left2 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .search-item {
+    gap: 20px;
+  }
+
+  .search-item svg {
+    left: 70px;
+  }
+
+  .Items-left2-buttons-main button {
+    width: auto;
+  }
+
+  .item-table th,
+  .item-table td {
+    padding: 10px 15px;
+  }
+
+  .item-table th {
+    font-size: 14px;
+  }
+
+  .item-table td {
+    font-size: 13px;
+  }
+
+  .recent-transactions-main {
+    align-items: flex-start;
+  }
+
+  .recent-transactions-main h4 {
+    margin-bottom: 5px;
+  }
+
+  .Items-left2-buttons {
+    flex-wrap: wrap;
+  }
+
+  .Dashboard-Items-left-main {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1300px) {
+  /* .Dashboard-Items-main {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    } */
+
+  .Dashboard-Items-left-main {
+    width: 100%;
+  }
+
+  .Dashboard-Items-right {
+    width: 60%;
+  }
+
+  .Items-left2-buttons-main {
+    display: block;
+  }
+}

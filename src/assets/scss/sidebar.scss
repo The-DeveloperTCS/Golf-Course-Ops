@@ -3,7 +3,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  width: 260px;
+  width: 290px;
   display: block;
   z-index: 9;
   color: #fff;
@@ -80,7 +80,7 @@ body > .navbar-collapse {
   background: rgba(203, 203, 210, 0.15);
   position: relative;
   float: right;
-  width: calc(100% - 260px);
+  width: calc(100% - 290px);
   height: 100vh;
   @media (max-width: 991.98px) {
     width: 100% !important;

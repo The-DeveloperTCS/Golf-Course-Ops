@@ -6,7 +6,7 @@ const Footer = (props) => {
     <FooterWrapper {...props}>
       <div className="footerBack flex-x align-center">
         <div className="flex-1 fs-13 bold-text footer-text">
-          © {new Date().getFullYear()} Zarya, All rights reserved.
+          © {new Date().getFullYear()} NFC, All rights reserved.
         </div>
       </div>
     </FooterWrapper>

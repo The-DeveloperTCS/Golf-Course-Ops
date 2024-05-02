@@ -7,7 +7,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { Form, Modal } from "react-bootstrap";
 // import { ToastContainer, toast } from "react-toastify"
 import moment from "moment";
-import StandardTable from "../../common/Table";
+import StandardTable from "../tee-slot/Table";
 import HttpService from "../services/http-service";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";

@@ -2,9 +2,16 @@ import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
   .headerBack {
-    background: ${props => props.topbarTheme.backgroundColor};
+    background-color: white
     padding: 15px 10px;
-    margin-left: -${props => (props.themeSetting.toolbarAlignValue === "above" && !props.mini ? props.drawerWidth : props.themeSetting.toolbarAlignValue === "above" && props.mini ? (props.miniDrawerWidth === props.drawerWidth ? "80px" : props.miniDrawerWidth) : "0px")};
+    margin-left: -${(props) =>
+      props.themeSetting.toolbarAlignValue === "above" && !props.mini
+        ? props.drawerWidth
+        : props.themeSetting.toolbarAlignValue === "above" && props.mini
+        ? props.miniDrawerWidth === props.drawerWidth
+          ? "80px"
+          : props.miniDrawerWidth
+        : "0px"};
     @media only screen and (max-width: 991.98px) {
       margin-left: 0px !important;
     }
@@ -20,7 +27,7 @@ const HeaderWrapper = styled.div`
       justify-content: center;
       cursor: pointer;
       display: none;
-      color: ${props => props.topbarTheme.textColor};
+      color: ${(props) => props.topbarTheme.textColor};
       @media only screen and (max-width: 991.98px) {
         display: block;
       }
