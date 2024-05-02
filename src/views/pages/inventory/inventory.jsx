@@ -2,8 +2,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import StandardTable from "./common/table";
-import { ToastContainer, toast } from "react-toastify";
+import StandardTable from "../tee-slot/Table";
+// import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Form, Modal } from "react-bootstrap";
 import HttpService from "../services/http-service";
@@ -70,7 +70,7 @@ function Inventory() {
       }));
       setCategoriesOptions(options);
     } catch (err) {
-      toast.error(err.data?.message);
+      //   toast.error(err.data?.message);
     }
   };
 
@@ -86,7 +86,7 @@ function Inventory() {
       }));
       setSubCategoriesOptions(options);
     } catch (err) {
-      toast.error(err.data?.message);
+      //   toast.error(err.data?.message);
     }
   };
 
@@ -103,7 +103,7 @@ function Inventory() {
       }));
       setSubCategories(options);
     } catch (err) {
-      toast.error(err.data?.message);
+      //   toast.error(err.data?.message);
     }
   };
 
@@ -119,7 +119,7 @@ function Inventory() {
       }));
       setDepartmentsOptions(options);
     } catch (err) {
-      toast.error(err.data?.message);
+      //   toast.error(err.data?.message);
     }
   };
 
@@ -134,7 +134,7 @@ function Inventory() {
 
       setInventory(inventory);
     } catch (err) {
-      toast.error(err.data?.message);
+      //   toast.error(err.data?.message);
     } finally {
       setIsLoading(false);
     }
@@ -151,10 +151,10 @@ function Inventory() {
 
       getInventoryList();
 
-      toast.success(message);
+      //   toast.success(message);
     } catch (err) {
       setIsLoading(false);
-      toast.error(err.data?.message);
+      //   toast.error(err.data?.message);
     }
   };
 
@@ -188,10 +188,10 @@ function Inventory() {
 
       getInventoryList();
 
-      toast.success(message);
+      //   toast.success(message);
     } catch (err) {
       setIsLoading(false);
-      toast.error(err.data?.error);
+      //   toast.error(err.data?.error);
     } finally {
       setIsShowModal(false);
     }
@@ -208,10 +208,10 @@ function Inventory() {
 
       getInventoryList();
 
-      toast.success(message);
+      //   toast.success(message);
     } catch (err) {
       setIsLoading(false);
-      toast.error(err.data?.error);
+      //   toast.error(err.data?.error);
     } finally {
       setIsShowModal(false);
     }
@@ -223,7 +223,7 @@ function Inventory() {
 
   return (
     <Container fluid>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <Modal
         className="right"
         show={isShowModal}
