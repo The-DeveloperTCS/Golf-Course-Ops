@@ -1,5 +1,6 @@
 import Layout from "layouts/DashboardLayout.jsx";
 import { Login, Error400, Error500 } from "./../views/pages/index";
+import SignIn from "../views/pages/SignIn/SignIn";
 // import PackingList from "./../views/pages/print/PackingList";
 // import PackingListProcces from "./../views/pages/print/PackingListProcces";
 // import SalesInvoice from "./../views/pages/invoices/SaleTaxInvoice";
@@ -9,6 +10,8 @@ import { Login, Error400, Error500 } from "./../views/pages/index";
 
 const indexRoutes = [
   { path: "/login", component: Login },
+  { path: "/SignIn", component: SignIn },
+
   // { path: "/print/packing-list", component: PackingList },
   // { path: "/print/procces-packing-list", component: PackingListProcces },
   // { path: "/print/bulk-packing-list/:location", component: BulkPackingList },

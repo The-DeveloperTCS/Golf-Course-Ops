@@ -21,7 +21,7 @@ const authActions = {
       login(data.phoneNumber, data.otpCode)
         .then((res) => {
           dispatch(authActions.login(res.data));
-          history.push("/intro");
+          history.push("/employee");
         })
         .catch((err) => {
           dispatch({ type: authActions.LOGIN_FAILURE, message: err.message });
