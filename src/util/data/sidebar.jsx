@@ -20,6 +20,13 @@ export const sidebarData = [
     resource: "",
   },
   {
+    name: "Assign Slot",
+    routepath: "/adminTeeSheet2",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+
+  {
     name: "location",
     routepath: "/location",
     // iconClass: "fas fa-chalkboard",

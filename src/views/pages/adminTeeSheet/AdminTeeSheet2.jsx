@@ -350,7 +350,7 @@ function AdminTeeSheet() {
     <Container fluid>
       <Row style={{ padding: 0 }}>
         <Col
-          md={9}
+          md={12}
           style={{
             backgroundColor: "white",
             borderRadius: 20,
@@ -484,14 +484,14 @@ function AdminTeeSheet() {
             paddingLeft: 20,
           }}
         >
-          <Col
+          {/* <Col
             style={{
               backgroundColor: "white",
-              maxHeight: "calc(60% - 10px)",
+              maxHeight: "calc(50% - 10px)",
               minHeight: 270,
               borderRadius: 20,
               alignItems: "center",
-              position: "relative",
+              position: "relative"
             }}
           >
             <div className="px-2" style={{ height: "100%", maxWidth: "100%" }}>
@@ -501,7 +501,7 @@ function AdminTeeSheet() {
                 locale={enGB}
               />
             </div>
-          </Col>
+          </Col> */}
           {/* <Col
             style={{
               backgroundColor: "white",
