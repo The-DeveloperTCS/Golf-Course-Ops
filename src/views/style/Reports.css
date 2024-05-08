@@ -1,0 +1,212 @@
+.Reports-main {
+  display: flex;
+  gap: 20px;
+}
+
+.reports-content {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  background-color: white;
+  width: 100%;
+}
+
+.main-text-support {
+  background-color: #4365cf;
+  padding: 40px 10px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.main-text-support p {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.Sales-input-main {
+  display: flex;
+  align-items: center;
+  /* Center align items horizontally */
+  padding: 20px 20px;
+  gap: 30px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.input-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-1 input {
+  width: 150px;
+  /* height: 50px; */
+  /* Set a fixed height */
+  margin-top: 8px;
+  padding: 13px 10px;
+  background-color: rgb(255, 255, 255);
+  outline: none;
+}
+
+.input-2 input {
+  width: 150px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  outline: none;
+  border-radius: 15px;
+  margin-left: 10px;
+}
+
+input,
+select {
+  width: 150px;
+  /* Make width responsive */
+  /* height: 40px; */
+  /* Set a fixed height */
+  padding: 13px 10px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 8px;
+  outline: none;
+  border-radius: 15px;
+}
+
+.Run-sale-btn button {
+  width: 150px;
+  /* Make width responsive */
+  /* height: 40px; */
+  /* Set a fixed height */
+  padding: 13px 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  margin-top: 8px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  background: #f8ad15;
+  color: white;
+}
+
+/* .======================sidebar-content ======================= */
+
+#accordian {
+  background: #ffffff;
+  width: 300px;
+  float: left;
+  /* height: 100vh; */
+  overflow-x: hidden;
+  position: relative;
+  padding-right: 0px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+.main-navbar {
+  position: relative;
+  margin-top: 15px;
+}
+#accordian ul {
+  padding-left: 15px;
+}
+#accordian li {
+  list-style-type: none;
+}
+
+#accordian ul li a {
+  color: #161819;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 45px;
+  display: block;
+  /* padding: 0px 20px; */
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+}
+
+#accordian > ul > li.active > a {
+  color: #ffffff;
+  background-color: transparent;
+  transition: all 0.7s;
+}
+
+#accordian a:not(:only-child):after {
+  content: "\f105";
+  position: absolute;
+  right: 20px;
+  top: 10%;
+  font-size: 14px;
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
+  transition: 0.5s;
+}
+
+#accordian .active > a:not(:only-child):after {
+  transform: rotate(90deg);
+}
+.selector-active {
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  height: 42px;
+  top: 0px;
+  left: 0px;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background-color: #4365cf;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+.selector-active .top,
+.selector-active .bottom {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #4365cf;
+  right: 0;
+}
+.selector-active .top {
+  top: -25px;
+}
+.selector-active .bottom {
+  bottom: -25px;
+}
+.selector-active .top:before,
+.selector-active .bottom:before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+.selector-active .top:before {
+  left: -25px;
+  top: -25px;
+}
+.selector-active .bottom:before {
+  bottom: -25px;
+  left: -25px;
+}
+
+.grerrn-screen-acr {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #f8ad15;
+  padding: 40px 0px;
+  color: #ffffff;
+  z-index: 99;
+  position: relative;
+}
+
+.grerrn-screen-acr p {
+  font-size: 18px;
+  font-weight: 600;
+}
+.grerrn-screen-acr span {
+  font-size: 18px;
+  font-weight: 600;
+}

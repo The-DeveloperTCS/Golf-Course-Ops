@@ -1,0 +1,97 @@
+.css-1as232s-MuiStack-root > .MuiTextField-root {
+  width: 150px !important;
+  min-width: 150px !important;
+}
+.css-1as232s-MuiStack-root {
+  margin-top: 0px !important;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0px !important;
+}
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 15px !important
+    ;
+}
+
+.css-16sxbi8-MuiTableCell-root {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5rem;
+  /* letter-spacing: 0.01071em; */
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 15px 5px !important;
+  color: #161819 !important    ;
+  background-color: #fff;
+}
+.css-1ex1afd-MuiTableCell-root {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 15px 5px !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+.HelpSupport-main {
+  width: 100%;
+  /* padding: 10px ; */
+  background-color: white;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.HelpSupport-main p {
+  color: #272b2e;
+}
+
+.HelpSupport-main span {
+  color: #272b2e;
+  font-size: 14px;
+  line-height: 14px;
+  color: #7c8387;
+}
+
+.main-text-support {
+  background-color: #4365cf;
+  padding: 40px 10px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.phone-nbr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0px;
+}
+
+.HelpSupport-main-inner {
+  padding: 40px 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.devic-hardware-info-main {
+  display: flex;
+  gap: 50px;
+}
+
+.software-main {
+  padding: 40px 70px;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
