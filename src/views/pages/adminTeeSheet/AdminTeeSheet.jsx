@@ -7,6 +7,7 @@ import { enGB } from "date-fns/locale";
 import "react-nice-dates/build/style.css";
 import StandardTable from "../tee-slot/Table";
 import TeeSlot from "../tee-slot/tee-slot";
+import Weather from "./Weather";
 // import TeeSlot from "./common/tee-slot"
 
 function AdminTeeSheet() {
@@ -500,6 +501,39 @@ function AdminTeeSheet() {
                 onDateChange={setDate}
                 locale={enGB}
               />
+            </div>
+          </Col>
+          {/* <Col
+            style={{
+              backgroundColor: "white",
+              height: "calc(50% - 10px)",
+              marginTop: 20,
+              borderRadius: 20,
+            }}
+          >
+            b
+          </Col> */}
+        </Col>
+
+        <Col
+          md={3}
+          style={{
+            padding: 0,
+            paddingLeft: 20,
+          }}
+        >
+          <Col
+            style={{
+              backgroundColor: "white",
+              maxHeight: "calc(60% - 10px)",
+              minHeight: 270,
+              borderRadius: 20,
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
+            <div className="px-2" style={{ height: "100%", maxWidth: "100%" }}>
+              <Weather />
             </div>
           </Col>
           {/* <Col

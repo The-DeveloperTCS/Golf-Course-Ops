@@ -38,6 +38,24 @@ export const sidebarData = [
     // iconClass: "fas fa-chalkboard",
     resource: "",
   },
+  {
+    name: "ClockIn",
+    routepath: "/clockIn",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+  {
+    name: "Help & Support",
+    routepath: "/helpSupport",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+  {
+    name: "Reports",
+    routepath: "/reports",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
 
   // {
   //   name: "adminTeeSheetSetting",
