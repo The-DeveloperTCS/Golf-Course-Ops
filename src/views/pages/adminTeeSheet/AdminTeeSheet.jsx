@@ -485,67 +485,51 @@ function AdminTeeSheet() {
             paddingLeft: 20,
           }}
         >
-          <Col
-            style={{
-              backgroundColor: "white",
-              maxHeight: "calc(60% - 10px)",
-              minHeight: 270,
-              borderRadius: 20,
-              alignItems: "center",
-              position: "relative",
-            }}
-          >
-            <div className="px-2" style={{ height: "100%", maxWidth: "100%" }}>
-              <DatePickerCalendar
-                date={date}
-                onDateChange={setDate}
-                locale={enGB}
-              />
-            </div>
-          </Col>
-          {/* <Col
-            style={{
-              backgroundColor: "white",
-              height: "calc(50% - 10px)",
-              marginTop: 20,
-              borderRadius: 20,
-            }}
-          >
-            b
-          </Col> */}
-        </Col>
-
-        <Col
-          md={3}
-          style={{
-            padding: 0,
-            paddingLeft: 20,
-          }}
-        >
-          <Col
-            style={{
-              backgroundColor: "white",
-              maxHeight: "calc(60% - 10px)",
-              minHeight: 270,
-              borderRadius: 20,
-              alignItems: "center",
-              position: "relative",
-            }}
-          >
-            <div className="px-2" style={{ height: "100%", maxWidth: "100%" }}>
-              <Weather />
-            </div>
-          </Col>
-          {/* <Col
-            style={{
-              backgroundColor: "white",
-              height: "calc(50% - 10px)",
-              marginTop: 20,
-              borderRadius: 20,
-            }}
-          >
-            b
-          </Col> */}
+          <Row>
+            <Col
+              style={{
+                backgroundColor: "white",
+                maxHeight: "calc(60% - 10px)",
+                minHeight: 270,
+                borderRadius: 20,
+                alignItems: "center",
+                position: "relative",
+              }}
+            >
+              <div
+                className="px-2"
+                style={{ height: "100%", maxWidth: "100%" }}
+              >
+                <DatePickerCalendar
+                  date={date}
+                  onDateChange={setDate}
+                  locale={enGB}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col
+              style={{
+                // backgroundColor: "white",
+                maxHeight: "calc(60% - 10px)",
+                // minHeight: 270,
+                width: "100%",
+                // borderRadius: 20,
+                // alignItems: "center",
+                // position: "relative",
+                marginTop: 20,
+              }}
+            >
+              <div className="px-2" style={{ height: "100%", Width: "100%" }}>
+                <Weather
+                // date={date}
+                // onDateChange={setDate}
+                // locale={enGB}
+                />
+              </div>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>

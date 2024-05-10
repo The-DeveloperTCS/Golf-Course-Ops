@@ -1,0 +1,30 @@
+.image-upload {
+  background-color: #e9ecf3;
+  height: 300px;
+  width: 100%;
+  border-radius: 15px;
+}
+.uploaded-image-main {
+  width: 100%;
+  position: relative;
+}
+.uploaded-image-main img {
+  width: 10%;
+  height: auto;
+  margin: auto;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  bottom: -150px;
+}
+
+.image-input {
+  /* position: absolute; */
+  /* top: 290px;
+    left: 34px; */
+  width: 100%;
+  height: 97%;
+  opacity: 0;
+  cursor: pointer;
+}

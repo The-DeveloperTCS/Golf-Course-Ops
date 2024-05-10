@@ -11,11 +11,17 @@ import {
 
 export default function Weather() {
   return (
-    <section className="vh-100" style={{ backgroundColor: "#4B515D" }}>
-      <MDBContainer className="h-100">
-        <MDBRow className="justify-content-center align-items-center h-100">
-          <MDBCol md="8" lg="6" xl="4">
-            <MDBCard style={{ color: "#4B515D", borderRadius: "35px" }}>
+    <section>
+      <MDBContainer style={{ padding: "0px" }}>
+        <MDBRow className="justify-content-center align-items-center">
+          <MDBCol md="8" lg="6" xl="12" style={{ padding: "0px" }}>
+            <MDBCard
+              style={{
+                color: "White",
+                borderRadius: "15px",
+                backgroundColor: "#2F60FA",
+              }}
+            >
               <MDBCardBody className="p-4">
                 <div className="d-flex">
                   <MDBTypography tag="h6" className="flex-grow-1">
@@ -33,7 +39,7 @@ export default function Weather() {
                     {" "}
                     13°C{" "}
                   </MDBTypography>
-                  <span className="small" style={{ color: "#868B94" }}>
+                  <span className="small" style={{ color: "White" }}>
                     Stormy
                   </span>
                 </div>
@@ -52,7 +58,7 @@ export default function Weather() {
                       <MDBIcon
                         fas
                         icon="tint fa-fw"
-                        style={{ color: "#868B94" }}
+                        style={{ color: "Blue" }}
                       />{" "}
                       <span className="ms-1"> 84% </span>
                     </div>
@@ -60,7 +66,7 @@ export default function Weather() {
                       <MDBIcon
                         fas
                         icon="sun fa-fw"
-                        style={{ color: "#868B94" }}
+                        style={{ color: "Yelloe" }}
                       />{" "}
                       <span className="ms-1"> 0.2h </span>
                     </div>
