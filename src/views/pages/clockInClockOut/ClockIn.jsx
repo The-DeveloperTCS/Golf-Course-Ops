@@ -92,7 +92,7 @@ function ClockIn() {
     },
   ];
 
-  const columnsA = [
+  const columnsdata = [
     {
       width: 200,
       label: "Terminal",
@@ -163,7 +163,7 @@ function ClockIn() {
           </span>
         </div>
         <div className="">
-          <ClockInTabel data={dataForComponentB} columns={columnsA} />
+          <ClockInTabel data={dataForComponentB} columns={columnsdata} />
         </div>
       </div>
     </div>

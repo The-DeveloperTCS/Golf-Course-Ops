@@ -13,6 +13,7 @@ import Inventory from "views/pages/inventory/inventory";
 import ClockIn from "views/pages/clockInClockOut/ClockIn";
 import HelpSupport from "views/pages/helpSupport/HelpSupport";
 import Reports from "views/pages/Reports/Reports";
+import InventoryForm from "views/pages/inventoryform/InventoryForm";
 const dashboardRoutes = [
   // { path: "/intro", component: Intro, resource: "" },
   { path: "/employee", component: Employee, resource: "" },
@@ -33,7 +34,7 @@ const dashboardRoutes = [
   { path: "/inventory", component: Inventory, resource: "" },
   { path: "/helpSupport", component: HelpSupport, resource: "" },
   { path: "/reports", component: Reports, resource: "" },
-
+  { path: "/inventoryForm", component: InventoryForm, resource: "" },
   {
     path: "/pending-payments",
     component: BulkPayment,

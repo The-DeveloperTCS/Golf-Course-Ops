@@ -56,6 +56,12 @@ export const sidebarData = [
     // iconClass: "fas fa-chalkboard",
     resource: "",
   },
+  {
+    name: "InventoryForm",
+    routepath: "/inventoryForm",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
 
   // {
   //   name: "adminTeeSheetSetting",
