@@ -1,9 +1,3 @@
-.image-upload {
-  background-color: #e9ecf3;
-  height: 300px;
-  width: 100%;
-  border-radius: 15px;
-}
 .uploaded-image-main {
   width: 100%;
   position: relative;
@@ -27,4 +21,56 @@
   height: 97%;
   opacity: 0;
   cursor: pointer;
+}
+
+.border-table {
+  border: 10px solid red;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* .table th {
+  background-color: #f2f2f2;
+} */
+.table-container input {
+  width: 100%;
+  border: 2px solid;
+  height: 350px;
+  background-color: #ae2424;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.table-container {
+  background-color: #e9ecf3;
+  border-radius: 15px;
+}
+
+.red-row {
+  background-color: red;
+}
+
+.blue-row {
+  background-color: blue;
 }

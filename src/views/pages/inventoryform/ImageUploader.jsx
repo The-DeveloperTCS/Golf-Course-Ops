@@ -1,86 +1,84 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import "../../style/ImageUploader.css";
 import uploadlogo from "../../../assets/images/Group 1000002746.png";
-
-// const ImageUpload = ({ image, setImage }) => {
-//     const handleImageChange = (e) => {
-//         setImage(URL.createObjectURL(e.target.files[0]));
-//     };
-
-//     const handleFileChange = (e) => {
-//         const file = e.target.files[0];
-//         // Perform additional handling for CSV file if needed
-//         console.log("Selected file:", file);
-//     };
-
-//     return (
-//         <label htmlFor="fileInput" className="image-upload">
-//             <div className="uploaded-image-main"><img src={uploadlogo} alt="" /></div>
-//             <input
-//                 type="file"
-//                 id="fileInput"
-//                 accept=".csv, application/vnd.ms-excel, text/csv"
-//                 onChange={handleFileChange}
-//                 className="image-input"
-//             />
-//         </label>
-//     );
-// };
-
-// export default ImageUpload;
-// import React from 'react'
+import React, { useState } from "react";
 import * as XLSX from "xlsx";
-import { MdWorkOutline } from "react-icons/md";
-import { setDate } from "date-fns";
-import { object } from "prop-types";
-import { th } from "date-fns/locale";
+import ReactVirtualizedTable from "../clockInClockOut/ClockInTabel";
 
 function ImageUploader() {
-  const [data, setData] = useState([]);
+  const [data, setData] = React.useState([]);
+  const [columns, setColumns] = React.useState([]);
 
-  const handelFileUpload = (e) => {
+  const handleFileUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
         const data = e.target.result;
-        const workbook = XLSX.read(data, { type: "array" }); // Use 'array' type
-        const sheetName = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[sheetName];
-        const parseData = XLSX.utils.sheet_to_json(sheet);
-        setData(parseData);
+        let parsedData;
+        if (file.name.endsWith(".csv")) {
+          parsedData = parseCSV(data);
+        } else {
+          parsedData = parseExcel(data);
+        }
+        setData(parsedData);
+
+        if (parsedData.length > 0) {
+          const keys = Object.keys(parsedData[0]);
+          const columnsData = keys.map((key) => ({
+            dataKey: key,
+            label: key,
+            numeric: false,
+            width: 150,
+          }));
+          setColumns(columnsData);
+        }
       } catch (error) {
-        console.error("Error parsing Excel file:", error);
+        console.error("Error parsing file:", error);
       }
     };
-    reader.readAsArrayBuffer(file); // Read as ArrayBuffer
+    if (file) {
+      reader.readAsBinaryString(file);
+    }
   };
+
+  const parseCSV = (data) => {
+    const parsedData = [];
+    const rows = data.split(/\r?\n/);
+    const headers = rows[0].split(",");
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i].split(",");
+      if (row.length === headers.length) {
+        const rowData = {};
+        for (let j = 0; j < headers.length; j++) {
+          rowData[headers[j]] = row[j];
+        }
+        parsedData.push(rowData);
+      }
+    }
+    return parsedData;
+  };
+
+  const parseExcel = (data) => {
+    const workbook = XLSX.read(data, { type: "binary" });
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    return XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  };
+
   return (
-    <div>
+    <div className="table-container">
+      <div className="uploaded-image-main">
+        <img src={uploadlogo} alt="" />
+      </div>
+
       <input
         type="file"
-        accept=".xlsx, .xls , csv"
-        onChange={handelFileUpload}
+        accept=".xlsx, .xls , .csv"
+        onChange={handleFileUpload}
       />
       {data.length > 0 && (
-        <table className="table">
-          <thead>
-            <tr>
-              {Object.keys(data[0]).map((key) => (
-                <th key={key}>{key}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row, index) => (
-              <tr key={index}>
-                {Object.values(row).map((value, index) => (
-                  <td key={index}>{value}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <ReactVirtualizedTable data={data} columns={columns} />
       )}
     </div>
   );

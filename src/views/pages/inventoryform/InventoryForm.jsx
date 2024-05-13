@@ -26,7 +26,7 @@ function InventoryForm() {
         <MdCancel />
       </div>
 
-      <div className="container-invent">
+      {/* <div className="container-invent">
         <div className="image-invent-container">
           <img
             src={invent1}
@@ -78,7 +78,7 @@ function InventoryForm() {
           />
           <p className="image-text">Import</p>
         </div>
-      </div>
+      </div> */}
 
       <div className="Select-Inventory-form">
         <p>Select Inventory Category For Import</p>
@@ -94,7 +94,7 @@ function InventoryForm() {
         <FileUploader />
       </div>
       <div className="invent-form-checkbox-btn">
-        <p>Settings</p>
+        {/* <p>Settings</p>
         <div className="invent-check-box">
           <input type="checkbox" />
           <label htmlFor="first-row">First row contains column headers</label>
@@ -102,9 +102,9 @@ function InventoryForm() {
         <div className="invent-check-box">
           <input type="checkbox" />
           <label htmlFor="update-records">Update existing records</label>
-        </div>
+        </div> */}
         <div className="Inventory-btn">
-          <button>Next</button>
+          <button>Save</button>
         </div>
       </div>
     </div>

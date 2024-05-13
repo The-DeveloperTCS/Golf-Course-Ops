@@ -56,7 +56,7 @@
   margin-left: 10px;
 }
 
-input,
+.form-container input,
 select {
   width: 150px;
   /* Make width responsive */
