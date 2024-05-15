@@ -4,9 +4,41 @@ import "../../style/Reports.css";
 import BasicDatePicker from "../Reports/BasicDatePicker";
 import { Clock } from "@mui/x-date-pickers/TimeClock/Clock";
 import ClockInTabel from "../clockInClockOut/ClockInTabel";
+import { ImCancelCircle } from "react-icons/im";
 
 function Reports() {
+  //====================popup
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleRunButtonClick = () => {
+    setShowPopup(true);
+  };
+
+  const handlePopupClose = () => {
+    setShowPopup(false);
+  };
+
   const [activeItem, setActiveItem] = useState(null);
+  const handleClick = (index) => {
+    setActiveItem(index);
+  };
+  //====================popup
+  // button bg
+  const [selectedGroup1, setSelectedGroup1] = useState(null);
+  const [selectedGroup2, setSelectedGroup2] = useState(null);
+  const [selectedGroup3, setSelectedGroup3] = useState(null); // Adding selectedGroup3
+
+  const handleColorClick = (value, group) => {
+    if (group === 1) {
+      setSelectedGroup1(selectedGroup1 === value ? null : value);
+    } else if (group === 2) {
+      setSelectedGroup2(selectedGroup2 === value ? null : value);
+    } else if (group === 3) {
+      // Handling selectedGroup3
+      setSelectedGroup3(selectedGroup3 === value ? null : value);
+    }
+  };
+  // button bg
   const items = [
     { label: "Employee Z out" },
     { label: "sales" },
@@ -67,10 +99,6 @@ function Reports() {
       numeric: false,
     },
   ];
-
-  const handleClick = (index) => {
-    setActiveItem(index);
-  };
 
   const dataForComponentB = [
     {
@@ -305,9 +333,117 @@ function Reports() {
               <option value="course3">terminal 3</option>
             </select>
           </div>
+          {/* =================popup ==============*/}
           <div className="Run-sale-btn">
-            <button>Run</button>
+            <button onClick={handleRunButtonClick}>Run</button>
+            <div className={`popup ${showPopup ? "show" : ""}`}>
+              <div className="popup-content">
+                <div className="Book-time-pop-up">
+                  <p>Book Time</p>
+                  <span className="close" onClick={handlePopupClose}>
+                    {/* &times; */}
+                    <ImCancelCircle />
+                  </span>
+                </div>
+                <div className="popup-content-text">
+                  <p>
+                    Your time, 4:30pm, will be held for 5 minutes. You have 4:33
+                    remaining. Please complete the reservation process.
+                  </p>
+                  <h3>Jester Park Golf Course - JESTER</h3>
+                </div>
+                <div className="pop-up-input">
+                  <div className="form-group">
+                    <label htmlFor="date-input">Date</label>
+                    <input type="date" id="date-input" />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="time-input">Time</label>
+                    <input type="time" id="time-input" />
+                  </div>
+                </div>
+                <div className="popup-click-btn">
+                  <div className="two-btn-popup">
+                    <button
+                      style={
+                        selectedGroup1 === 9
+                          ? { backgroundColor: "#4365CF", color: "white" }
+                          : {}
+                      }
+                      onClick={() => handleColorClick(9, 1)}
+                    >
+                      9
+                    </button>
+                    <button
+                      style={
+                        selectedGroup1 === 18
+                          ? { backgroundColor: "#4365CF", color: "white" }
+                          : {}
+                      }
+                      onClick={() => handleColorClick(18, 1)}
+                    >
+                      18
+                    </button>
+                  </div>
+                  <div className="three-btn-popup">
+                    <button
+                      style={
+                        selectedGroup2 === 2
+                          ? { backgroundColor: "#4365CF", color: "white" }
+                          : {}
+                      }
+                      onClick={() => handleColorClick(2, 2)}
+                    >
+                      2
+                    </button>
+                    <button
+                      style={
+                        selectedGroup2 === 3
+                          ? { backgroundColor: "#4365CF", color: "white" }
+                          : {}
+                      }
+                      onClick={() => handleColorClick(3, 2)}
+                    >
+                      3
+                    </button>
+                    <button
+                      style={
+                        selectedGroup2 === 4
+                          ? { backgroundColor: "#4365CF", color: "white" }
+                          : {}
+                      }
+                      onClick={() => handleColorClick(4, 2)}
+                    >
+                      4
+                    </button>
+                  </div>
+                </div>
+                <div className=" popup-click-btn3" style={{}}>
+                  <button
+                    style={
+                      selectedGroup3 === 5 ? { backgroundColor: "red" } : {}
+                    }
+                    onClick={() => handleColorClick(5, 3)}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    style={
+                      selectedGroup3 === 6 ? { backgroundColor: "red" } : {}
+                    }
+                    onClick={() => handleColorClick(6, 3)}
+                  >
+                    No
+                  </button>
+                </div>
+
+                <div className="pop-up-btns-save">
+                  <button>Save</button>
+                </div>
+              </div>
+            </div>
           </div>
+          {/* =================popup ==============*/}
         </div>
         <ClockInTabel data={dataForComponentB} columns={columnsA} />
       </div>

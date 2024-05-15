@@ -62,6 +62,12 @@ export const sidebarData = [
     // iconClass: "fas fa-chalkboard",
     resource: "",
   },
+  {
+    name: "JesterPark",
+    routepath: "/jesterPark",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
 
   // {
   //   name: "adminTeeSheetSetting",

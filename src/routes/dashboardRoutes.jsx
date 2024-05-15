@@ -6,7 +6,6 @@ import Employee from "views/pages/employees/Employees";
 import Locations from "views/pages/location/Locations";
 import AdminTeeSheet from "views/pages/adminTeeSheet/AdminTeeSheet";
 import AdminTeeSheet2 from "views/pages/adminTeeSheet/AdminTeeSheet2";
-
 import AdminTeeSheetSetting from "views/pages/adminTeeSheet/AdminTeeSheetSetting";
 import AdminDashboardItems from "views/pages/tee-slot/AdminDashboardItems";
 import Inventory from "views/pages/inventory/inventory";
@@ -14,6 +13,7 @@ import ClockIn from "views/pages/clockInClockOut/ClockIn";
 import HelpSupport from "views/pages/helpSupport/HelpSupport";
 import Reports from "views/pages/Reports/Reports";
 import InventoryForm from "views/pages/inventoryform/InventoryForm";
+import JesterPark from "views/pages/JesterPark/JesterPark";
 const dashboardRoutes = [
   // { path: "/intro", component: Intro, resource: "" },
   { path: "/employee", component: Employee, resource: "" },
@@ -35,6 +35,7 @@ const dashboardRoutes = [
   { path: "/helpSupport", component: HelpSupport, resource: "" },
   { path: "/reports", component: Reports, resource: "" },
   { path: "/inventoryForm", component: InventoryForm, resource: "" },
+  { path: "/jesterPark", component: JesterPark, resource: "" },
   {
     path: "/pending-payments",
     component: BulkPayment,
