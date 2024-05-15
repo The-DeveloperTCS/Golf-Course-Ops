@@ -45,6 +45,8 @@
   padding: 13px 10px;
   background-color: rgb(255, 255, 255);
   outline: none;
+  border-radius: 15px;
+  border: 1px solid #ccc;
 }
 
 .input-2 input {
@@ -100,13 +102,16 @@ select {
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
 }
+
 .main-navbar {
   position: relative;
   margin-top: 15px;
 }
+
 #accordian ul {
   padding-left: 15px;
 }
+
 #accordian li {
   list-style-type: none;
 }
@@ -124,7 +129,7 @@ select {
 }
 
 #accordian > ul > li.active > a {
-  color: #ffffff;
+  color: #cb2020;
   background-color: transparent;
   transition: all 0.7s;
 }
@@ -146,6 +151,7 @@ select {
 #accordian .active > a:not(:only-child):after {
   transform: rotate(90deg);
 }
+
 .selector-active {
   width: 100%;
   display: inline-block;
@@ -159,6 +165,7 @@ select {
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
 }
+
 .selector-active .top,
 .selector-active .bottom {
   position: absolute;
@@ -167,12 +174,15 @@ select {
   background-color: #4365cf;
   right: 0;
 }
+
 .selector-active .top {
   top: -25px;
 }
+
 .selector-active .bottom {
   bottom: -25px;
 }
+
 .selector-active .top:before,
 .selector-active .bottom:before {
   content: "";
@@ -182,10 +192,12 @@ select {
   border-radius: 50%;
   background-color: #ffffff;
 }
+
 .selector-active .top:before {
   left: -25px;
   top: -25px;
 }
+
 .selector-active .bottom:before {
   bottom: -25px;
   left: -25px;
@@ -206,7 +218,147 @@ select {
   font-size: 18px;
   font-weight: 600;
 }
+
 .grerrn-screen-acr span {
   font-size: 18px;
   font-weight: 600;
+}
+
+/* .============================popup================================== */
+.popup {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  /* Initially hidden off screen */
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  transition: right 0.3s ease;
+  /* Transition effect */
+  z-index: 999;
+}
+
+.popup.show {
+  right: 0;
+  /* Show the popup by bringing it onto the screen */
+}
+
+.popup-content {
+  padding: 20px;
+}
+
+/* .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+} */
+.close svg {
+  background-color: red;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.Book-time-pop-up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px 30px 0px;
+}
+
+.Book-time-pop-up p {
+  font-size: 16px;
+  font-family: "Poppins";
+  color: #1f1f2b;
+  width: 80%;
+}
+
+.popup-content-text p {
+  font-size: 16px;
+  font-family: "Poppins";
+  color: #959ba1;
+  width: 80%;
+}
+
+.popup-content-text h3 {
+  font-size: 18px;
+  font-family: "Poppins";
+  font-weight: 600;
+  color: #4365cf;
+  padding: 10px 0px;
+}
+
+.pop-up-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px 50px;
+}
+
+.pop-up-input {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding: 20px 0px 50px 0px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #959ba1;
+  font-size: 14px;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 350px;
+  outline: none;
+  border-radius: 15px;
+}
+
+.popup-click-btn {
+  display: flex;
+  justify-content: space-between;
+}
+.popup-click-btn3 button {
+  border: 1px solid #c3c0cb;
+  background-color: white;
+  color: #161819;
+  padding: 8px;
+  width: 120px;
+  border-radius: 0%;
+}
+
+.popup-click-btn button {
+  border: 1px solid #c3c0cb;
+  background-color: white;
+  color: #161819;
+  padding: 8px;
+  width: 100px;
+  border-radius: 0%;
+}
+
+.two-btn-popup {
+  display: flex;
+}
+.red-bg {
+  background-color: red;
+}
+
+.popup-btn-red {
+  background-color: #4365cf;
+}
+
+.pop-up-btns-save {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 100px;
 }

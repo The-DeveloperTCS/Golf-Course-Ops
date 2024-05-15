@@ -1,0 +1,54 @@
+.adminSidebar1 {
+  background-color: #fcfcfc;
+  height: 100%;
+  overflow-y: auto;
+  padding-top: 20px;
+  padding: 20px 10px 20px 10px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.page-selector {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  color: #161819;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  font-family: "Poppins";
+}
+
+button.active {
+  background-color: #4365cf;
+  color: white;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.sub-menu {
+  margin-top: 10px;
+}
+
+.sub-menu button {
+  display: block;
+  padding: 8px 20px;
+  color: #666666;
+  font-size: 14px;
+  font-weight: 400;
+  transition: background-color 0.3s ease;
+}
+
+.sub-menu button:hover {
+  background-color: #0cd374;
+  color: white;
+  width: 100%;
+  border-radius: 10px;
+}

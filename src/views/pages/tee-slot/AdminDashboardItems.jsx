@@ -1,49 +1,14 @@
 import React from "react";
 import "../../style/AdminDashboardItems.css";
 import { IoIosSearch } from "react-icons/io";
+import { useState } from "react";
+import AdminSidebar1 from "./AdminSidebar1";
+import { GiCancel } from "react-icons/gi";
 
 const dummyData = [
   { name: "Green Fees", price: "$34", qty: 2, discount: "-" },
   { name: "Balls - dozen", price: "$34", qty: 2, discount: "-" },
   { name: "tees / h2", price: "$34", qty: 2, discount: "-" },
-];
-const recentTransactionsData = [
-  {
-    time: "10:13 AM",
-    customer: "No customer",
-    id: "#456546",
-    amount: "$24.89",
-  },
-  {
-    time: "10:13 AM",
-    customer: "No customer",
-    id: "#456546",
-    amount: "$24.89",
-  },
-  {
-    time: "10:13 AM",
-    customer: "No customer",
-    id: "#456546",
-    amount: "$24.89",
-  },
-  {
-    time: "10:13 AM",
-    customer: "No customer",
-    id: "#456546",
-    amount: "$24.89",
-  },
-  {
-    time: "10:13 AM",
-    customer: "No customer",
-    id: "#456546",
-    amount: "$24.89",
-  },
-  {
-    time: "10:13 AM",
-    customer: "No customer",
-    id: "#456546",
-    amount: "$24.89",
-  },
 ];
 
 export default function AdminDashboardItems() {
@@ -66,6 +31,10 @@ export default function AdminDashboardItems() {
               <table>
                 <thead>
                   <tr>
+                    <th className="th-cross-btn">
+                      <GiCancel />
+                      <input type="checkbox" />
+                    </th>
                     <th>#Items</th>
                     <th>Price</th>
                     <th>QTY</th>
@@ -75,6 +44,9 @@ export default function AdminDashboardItems() {
                 <tbody>
                   {dummyData.map((item, index) => (
                     <tr key={index}>
+                      <td>
+                        <GiCancel />
+                      </td>
                       <td>{item.name}</td>
                       <td>{item.price}</td>
                       <td>{item.qty}</td>
@@ -92,7 +64,7 @@ export default function AdminDashboardItems() {
               </div>
             </div>
           </div>
-          <div className="Dashboard-Items-left2">
+          {/* <div className="Dashboard-Items-left2">
             <div className="Items-left2-buttons">
               <div className="search-item">
                 <p>Items</p>
@@ -121,25 +93,10 @@ export default function AdminDashboardItems() {
             <div className="Items-left2-line4">
               <p>total due:</p> <h4>$00.00</h4>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="Dashboard-Items-right">
-          <div className="right-item-top-text">
-            {" "}
-            <h2>recent transactions</h2>
-          </div>
-          {recentTransactionsData.map((transaction, index) => (
-            <div key={index} className="recent-transactions-main">
-              <div className="for-time">
-                <h4>{transaction.time}</h4>
-                <p className="customer">{transaction.customer}</p>
-              </div>
-              <div className="for-pymet-id">
-                <p className="transaction">{transaction.id}</p>
-                <h4>{transaction.amount}</h4>
-              </div>
-            </div>
-          ))}
+          <AdminSidebar1 />
         </div>
       </div>
     </div>

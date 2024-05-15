@@ -1,0 +1,56 @@
+.Reservations {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 30px;
+}
+
+.JesterPark-bg {
+  background-color: white;
+  border-radius: 15px;
+}
+
+.Reservations button {
+  border: none;
+  font-size: 14px;
+  color: #161819;
+  font-family: "Poppins";
+}
+
+.Reservations button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+  border-bottom: 2px solid transparent;
+}
+
+.Reservations button.active {
+  color: #4365cf;
+  border-bottom-color: #4365cf;
+}
+
+.booking-class-btn {
+  flex-direction: column;
+}
+
+.ReservationButtons2 button {
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.ReservationButtons2 h1 {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Poppins";
+  text-align: center;
+}
+
+.ReservationButtons2 p {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Poppins";
+  text-align: center;
+  padding-bottom: 30px;
+}
