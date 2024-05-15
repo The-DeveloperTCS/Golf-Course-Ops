@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../style/AdminDashboardItems.css";
 import { IoIosSearch } from "react-icons/io";
-import { useState } from "react";
 import AdminSidebar1 from "./AdminSidebar1";
-import { GiCancel } from "react-icons/gi";
+import { MdCancel } from "react-icons/md";
 
 const dummyData = [
   { name: "Green Fees", price: "$34", qty: 2, discount: "-" },
@@ -12,6 +11,13 @@ const dummyData = [
 ];
 
 export default function AdminDashboardItems() {
+  const [data, setData] = useState(dummyData);
+
+  const handleDelete = (index) => {
+    const newData = data.filter((item, i) => i !== index);
+    setData(newData);
+  };
+
   return (
     <div
       className="adminDashboardItems"
@@ -32,8 +38,9 @@ export default function AdminDashboardItems() {
                 <thead>
                   <tr>
                     <th className="th-cross-btn">
-                      <GiCancel />
-                      <input type="checkbox" />
+                      <MdCancel onClick={() => handleDelete(0)} />
+                      <input type="checkbox" id="chk" />
+                      <label for="chk"></label>
                     </th>
                     <th>#Items</th>
                     <th>Price</th>
@@ -42,10 +49,12 @@ export default function AdminDashboardItems() {
                   </tr>
                 </thead>
                 <tbody>
-                  {dummyData.map((item, index) => (
+                  {data.map((item, index) => (
                     <tr key={index}>
-                      <td>
-                        <GiCancel />
+                      <td className="th-cross-btn">
+                        <MdCancel onClick={() => handleDelete(index)} />
+                        <input type="checkbox" id="chk" />
+                        <label for="chk"></label>
                       </td>
                       <td>{item.name}</td>
                       <td>{item.price}</td>
@@ -64,36 +73,6 @@ export default function AdminDashboardItems() {
               </div>
             </div>
           </div>
-          {/* <div className="Dashboard-Items-left2">
-            <div className="Items-left2-buttons">
-              <div className="search-item">
-                <p>Items</p>
-                <input type="search" placeholder="search" />
-                <IoIosSearch />
-              </div>
-              <div className="Items-left2-buttons-main">
-                <button>Pay now</button>
-                <button>credit card</button>
-                <button style={{ backgroundColor: "#E92A2A" }}>cash</button>
-              </div>
-            </div>
-            <div
-              className=""
-              style={{ padding: "25px ", backgroundColor: "white" }}
-            ></div>
-            <div className="Items-left2-line1">
-              <p>Green Fees</p>
-            </div>
-            <div className="Items-left2-line21">
-              <p>Balls - dozen</p>
-            </div>
-            <div className="Items-left2-line3">
-              <p>tees / h2</p>
-            </div>
-            <div className="Items-left2-line4">
-              <p>total due:</p> <h4>$00.00</h4>
-            </div>
-          </div> */}
         </div>
         <div className="Dashboard-Items-right">
           <AdminSidebar1 />

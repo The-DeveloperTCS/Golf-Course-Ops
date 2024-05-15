@@ -444,6 +444,21 @@
 
 .th-cross-btn {
   align-items: center;
+  display: flex;
+  height: 54px;
+}
+.th-cross-btn svg {
+  color: rgb(254, 3, 3);
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  border: none;
+}
+input[type="checkbox"] {
+  margin: 0 10px;
+}
+
+label {
+  margin: 0 10px;
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1300px) {
