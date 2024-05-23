@@ -16,11 +16,12 @@ const authActions = {
     };
   },
 
-  loginRequest: (data) => {
+  loginRequest: (email, password) => {
     return (dispatch) => {
-      login(data.phoneNumber, data.otpCode)
+      login(email, password)
         .then((res) => {
-          dispatch(authActions.login(res.data));
+          console.log(res, "response");
+          dispatch(authActions.login(res.token));
           history.push("/employee");
         })
         .catch((err) => {
@@ -30,11 +31,12 @@ const authActions = {
   },
 
   login: (data) => {
+    console.log(data, "data");
     return {
       type: authActions.LOGIN_SUCCESS,
       isLogin: true,
-      accessToken: data.token,
-      refreshToken: data.refreshToken,
+      accessToken: data,
+      refreshToken: data,
     };
   },
 
@@ -48,6 +50,7 @@ const authActions = {
   },
 
   permissionsUpdated: (data) => {
+    console.log(data, "data permissions");
     return {
       type: authActions.PERMISSIONS_UPDATED,
       permissions: data,

@@ -1,12 +1,17 @@
 export const BaseUrl = "https://api.traveling-partner.com/api/";
 
+//export const BaseUrl = "https://http://localhost:3000/";
+
 // export const SENTRY_DSN = process.env.SENTRY_DSN;
 
-export const LoginUrl = BaseUrl + "login";
+//export const LoginUrl = BaseUrl + "user/login";
+
+export const LoginUrl = "http://localhost:3000/user/login";
+export const PermissionsUrl = "http://localhost:3000/permission/byRole";
 
 export const LoginOTPUrl = BaseUrl + "loginVerify";
 
-export const PermissionsUrl = BaseUrl + "authz/permission";
+//export const PermissionsUrl = BaseUrl + "authz/permission";
 
 export const CreateOrderUrl = BaseUrl + "order/full";
 export const OrderByIdUrl = (id) => BaseUrl + `order/${id}`;

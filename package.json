@@ -87,7 +87,7 @@
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": " react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build  && cp build/index.html build/404.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

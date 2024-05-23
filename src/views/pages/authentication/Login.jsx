@@ -1,37 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { logo } from "helper/constant";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import AuthActions from "redux/auth/actions";
-import { SendOtp } from "redux/auth/service";
 import enhancer from "./enhancer/LoginFormEnhancer";
-import { useState } from "react";
 import Button from "components/button/Button";
 import notificationActions from "redux/notifications/actions";
 import { bindActionCreators } from "redux";
 
 const Login = (props) => {
   const [loading, setLoading] = useState(false);
-  const [showOtpField, setShowOtpField] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     let { values, handleSubmit } = props;
 
-    if (values.phoneNumber !== "" && values.otpCode !== "") {
-      props.loginRequest(values);
-    }
-    handleSubmit();
-  };
-
-  const handleNext = async () => {
     setLoading(true);
     try {
-      const result = await SendOtp(values.phoneNumber);
-
-      if (result) {
-        setShowOtpField(true);
+      if (values.email !== "" && values.password !== "") {
+        await props.loginRequest(values.email, values.password); // Pass email and password
       }
     } catch (e) {
       console.log(e);
@@ -41,6 +29,8 @@ const Login = (props) => {
     } finally {
       setLoading(false);
     }
+
+    handleSubmit();
   };
 
   const {
@@ -63,34 +53,16 @@ const Login = (props) => {
   };
 
   const Error = (props) => {
-    const field1 = props.field;
-    if ((errors[field1] && touched[field1]) || submitCount > 0) {
+    const field = props.field;
+    if ((errors[field] && touched[field]) || submitCount > 0) {
       return (
         <span className={props.class ? props.class : "error-msg"}>
-          {errors[field1]}
+          {errors[field]}
         </span>
       );
     } else {
       return <span />;
     }
-  };
-
-  const otpField = () => {
-    return (
-      <div className="form-group">
-        <label>OTP Code</label>
-        <input
-          type="password"
-          className="form-control react-form-input"
-          id="otpCode"
-          value={values.otpCode}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          placeholder="OTP Code"
-        />
-        <Error field="otpCode" />
-      </div>
-    );
   };
 
   return (
@@ -102,36 +74,39 @@ const Login = (props) => {
         <div className="login-title">Sign in to your account</div>
         <form className="pa-24" onSubmit={handleLogin}>
           <div className="form-group">
-            <label>Phone Number</label>
+            <label>Email</label>
             <input
-              readOnly={showOtpField}
-              type="tel"
+              type="email"
               className="form-control react-form-input"
-              id="phoneNumber"
+              id="email"
               onChange={handleChange}
-              value={values.phoneNumber}
+              value={values.email}
               onBlur={handleBlur}
-              placeholder="03xxxxxxxxx"
+              placeholder="Email"
             />
-            <Error field="phoneNumber" />
+            <Error field="email" />
           </div>
-          {showOtpField ? otpField() : null}
-
-          {!showOtpField ? (
-            <Button
-              type="button"
-              className="c-btn ma-5 form-button"
-              dataStyle="expand-left"
-              onClick={handleNext}
-              loading={loading}
-            >
-              Next
-            </Button>
-          ) : (
-            <button type="submit" className="btn form-button">
-              Login
-            </button>
-          )}
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control react-form-input"
+              id="password"
+              onChange={handleChange}
+              value={values.password}
+              onBlur={handleBlur}
+              placeholder="Password"
+            />
+            <Error field="password" />
+          </div>
+          <Button
+            type="submit"
+            className="c-btn ma-5 form-button"
+            dataStyle="expand-left"
+            loading={loading}
+          >
+            Login
+          </Button>
         </form>
       </div>
     </div>
