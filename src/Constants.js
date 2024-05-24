@@ -1,4 +1,6 @@
-export const BaseUrl = "https://api.traveling-partner.com/api/";
+import axios from "axios";
+
+//export const BaseUrl = "https://api.traveling-partner.com/api/";
 
 //export const BaseUrl = "https://http://localhost:3000/";
 
@@ -6,12 +8,205 @@ export const BaseUrl = "https://api.traveling-partner.com/api/";
 
 //export const LoginUrl = BaseUrl + "user/login";
 
-export const LoginUrl = "http://localhost:3000/user/login";
-export const PermissionsUrl = "http://localhost:3000/permission/byRole";
+//export const LoginUrl = "http://localhost:3000/user/login";
+//export const PermissionsUrl = "http://localhost:3000/permission/byRole";
 
+//export const LoginOTPUrl = BaseUrl + "loginVerify";
+
+export const BaseUrl = "http://localhost:3000/";
+
+export const LoginUrl = BaseUrl + "user/login";
+export const PermissionsUrl = BaseUrl + "permission/byRole";
 export const LoginOTPUrl = BaseUrl + "loginVerify";
 
+//export const PermissionsUrl = "http://localhost:3000/permission/byRole";
+
 //export const PermissionsUrl = BaseUrl + "authz/permission";
+
+//Employee Endpoints
+
+const createEmployee = (data) => axios.post(`${BaseUrl}/employee/add`, data);
+const updateEmployee = (id, data) =>
+  axios.put(`${BaseUrl}/employee/update/${id}`, data);
+const deleteEmployee = (id) => axios.delete(`${BaseUrl}/employee/delete/${id}`);
+const getEmployeesList = (params) =>
+  axios.get(`${BaseUrl}/employee/getAll`, { params });
+const getSpecificEmployee = (id, data) =>
+  axios.get(`${BaseUrl}/employee/specificId/${id}`, data);
+const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Location Endpoints
+
+const createLocation = (data) => axios.post(`${BaseUrl}/location/add`, data);
+const updateLocation = (id, data) =>
+  axios.put(`${BaseUrl}/location/update/${id}`, data);
+const deleteLocation = (id) => axios.delete(`${BaseUrl}/location/delete/${id}`);
+const getLocationList = (params) =>
+  axios.get(`${BaseUrl}/location/getAll`, { params });
+const getSpecificLocation = (id, data) =>
+  axios.get(`${BaseUrl}/location/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Inventory Endpoints
+
+const createInventory = (data) => axios.post(`${BaseUrl}/inventory/add`, data);
+const updateInventory = (id, data) =>
+  axios.put(`${BaseUrl}/inventory/update/${id}`, data);
+const deleteInventory = (id) =>
+  axios.delete(`${BaseUrl}/inventory/delete/${id}`);
+const getInventoryList = (params) =>
+  axios.get(`${BaseUrl}/inventory/getAll`, { params });
+const getSpecificInventory = (id, data) =>
+  axios.get(`${BaseUrl}/inventory/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Cart Endpoints
+
+const createCart = (data) => axios.post(`${BaseUrl}/cart/add`, data);
+const updateCart = (id, data) =>
+  axios.put(`${BaseUrl}/cart/update/${id}`, data);
+const deleteCart = (id) => axios.delete(`${BaseUrl}/cart/delete/${id}`);
+const getCartList = (params) => axios.get(`${BaseUrl}/cart/getAll`, { params });
+const getSpecificCart = (id, data) =>
+  axios.get(`${BaseUrl}/cart/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Department Endpoints
+
+const createDepartment = (data) =>
+  axios.post(`${BaseUrl}/department/add`, data);
+const updateDepartment = (id, data) =>
+  axios.put(`${BaseUrl}/department/update/${id}`, data);
+const deleteDepartment = (id) =>
+  axios.delete(`${BaseUrl}/department/delete/${id}`);
+const getDepartmentList = (params) =>
+  axios.get(`${BaseUrl}/department/getAll`, { params });
+const getSpecificDepartment = (id, data) =>
+  axios.get(`${BaseUrl}/department/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//GiftCard Endpoints
+
+const createGiftCard = (data) => axios.post(`${BaseUrl}/gift-card/add`, data);
+const updateGiftCard = (id, data) =>
+  axios.put(`${BaseUrl}/gift-card/update/${id}`, data);
+const deleteGiftCard = (id) =>
+  axios.delete(`${BaseUrl}/gift-card/delete/${id}`);
+const getGiftCardList = (params) =>
+  axios.get(`${BaseUrl}/gift-card/getAll`, { params });
+const getSpecificGiftCard = (id, data) =>
+  axios.get(`${BaseUrl}/gift-card/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Customer Endpoints
+
+const createCustomer = (data) => axios.post(`${BaseUrl}/customer/add`, data);
+const updateCustomer = (id, data) =>
+  axios.put(`${BaseUrl}/customer/update/${id}`, data);
+const deleteCustomer = (id) => axios.delete(`${BaseUrl}/customer/delete/${id}`);
+const getCustomerList = (params) =>
+  axios.get(`${BaseUrl}/customer/getAll`, { params });
+const getSpecificCustomer = (id, data) =>
+  axios.get(`${BaseUrl}/customer/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Terminal Endpoints
+
+const createTerminal = (data) => axios.post(`${BaseUrl}/terminal/add`, data);
+const updateTerminal = (id, data) =>
+  axios.put(`${BaseUrl}/terminal/update/${id}`, data);
+const deleteTerminal = (id) => axios.delete(`${BaseUrl}/terminal/delete/${id}`);
+const getTerminalList = (params) =>
+  axios.get(`${BaseUrl}/terminal/getAll`, { params });
+const getSpecificTerminal = (id, data) =>
+  axios.get(`${BaseUrl}/terminal/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Group Endpoints
+
+const createGroup = (data) => axios.post(`${BaseUrl}/group/add`, data);
+const updateGroup = (id, data) =>
+  axios.put(`${BaseUrl}/group/update/${id}`, data);
+const deleteGroup = (id) => axios.delete(`${BaseUrl}/group/delete/${id}`);
+const getGroupList = (params) =>
+  axios.get(`${BaseUrl}/group/getAll`, { params });
+const getSpecificGroup = (id, data) =>
+  axios.get(`${BaseUrl}/group/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//User Endpoints
+
+const createUser = (data) => axios.post(`${BaseUrl}/user/add`, data);
+const updateUser = (id, data) =>
+  axios.put(`${BaseUrl}/user/update/${id}`, data);
+const deleteUser = (id) => axios.delete(`${BaseUrl}/user/delete/${id}`);
+const getUserList = (params) => axios.get(`${BaseUrl}/user/getAll`, { params });
+const getSpecificUser = (id, data) =>
+  axios.get(`${BaseUrl}/user/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Category Endpoints
+
+const createCategory = (data) => axios.post(`${BaseUrl}/category/add`, data);
+const updateCategory = (id, data) =>
+  axios.put(`${BaseUrl}/category/update/${id}`, data);
+const deleteCategory = (id) => axios.delete(`${BaseUrl}/category/delete/${id}`);
+const getCategoryList = (params) =>
+  axios.get(`${BaseUrl}/category/getAll`, { params });
+const getSpecificCategory = (id, data) =>
+  axios.get(`${BaseUrl}/category/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//SubCategory Endpoints
+
+const createSubCategory = (data) =>
+  axios.post(`${BaseUrl}/sub-category/add`, data);
+const updateSubCategory = (id, data) =>
+  axios.put(`${BaseUrl}/sub-category/update/${id}`, data);
+const deleteSubCategory = (id) =>
+  axios.delete(`${BaseUrl}/sub-category/delete/${id}`);
+const getSubCategoryList = (params) =>
+  axios.get(`${BaseUrl}/sub-category/getAll`, { params });
+const getSpecificSubCategory = (id, data) =>
+  axios.get(`${BaseUrl}/sub-category/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Permission Endpoints
+
+const createPermission = (data) =>
+  axios.post(`${BaseUrl}/permission/add`, data);
+const updatePermission = (id, data) =>
+  axios.put(`${BaseUrl}/permission/update/${id}`, data);
+const deletePermission = (id) =>
+  axios.delete(`${BaseUrl}/permission/delete/${id}`);
+const getPermissionList = (params) =>
+  axios.get(`${BaseUrl}/permission/getAll`, { params });
+const getSpecificPermission = (id, data) =>
+  axios.get(`${BaseUrl}/permission/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Role Endpoints
+
+const createRole = (data) => axios.post(`${BaseUrl}/role/add`, data);
+const updateRole = (id, data) =>
+  axios.put(`${BaseUrl}/role/update/${id}`, data);
+const deleteRole = (id) => axios.delete(`${BaseUrl}/role/delete/${id}`);
+const getRoleList = (params) => axios.get(`${BaseUrl}/role/getAll`, { params });
+const getSpecificRole = (id, data) =>
+  axios.get(`${BaseUrl}/role/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
+//Supplier Endpoints
+
+const createSupplier = (data) => axios.post(`${BaseUrl}/supplier/add`, data);
+const updateSupplier = (id, data) =>
+  axios.put(`${BaseUrl}/supplier/update/${id}`, data);
+const deleteSupplier = (id) => axios.delete(`${BaseUrl}/supplier/delete/${id}`);
+const getRoleSupplier = (params) =>
+  axios.get(`${BaseUrl}/supplier/getAll`, { params });
+const getSpecificSupplier = (id, data) =>
+  axios.get(`${BaseUrl}/supplier/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
 
 export const CreateOrderUrl = BaseUrl + "order/full";
 export const OrderByIdUrl = (id) => BaseUrl + `order/${id}`;
@@ -385,3 +580,22 @@ export const updateFraudRules = (id) =>
 export const paymentProvidersUrl = BaseUrl + "payment-providers";
 export const updatePaymentProviderUrl = (id) =>
   BaseUrl + `payment-providers/${id}`;
+
+export default {
+  createEmployee: createEmployee,
+  updateEmployee: updateEmployee,
+  deleteEmployee: deleteEmployee,
+  getEmployeesList: getEmployeesList,
+  getSpecificEmployee: getSpecificEmployee,
+  loginUser: loginUser,
+  createLocation: createLocation,
+  updateLocation: updateLocation,
+  deleteLocation: deleteLocation,
+  getLocationList: getLocationList,
+  getSpecificLocation: getSpecificLocation,
+  createInventory: createInventory,
+  updateInventory: updateInventory,
+  deleteInventory: deleteInventory,
+  getInventoryList: getInventoryList,
+  getSpecificInventory: getSpecificInventory,
+};

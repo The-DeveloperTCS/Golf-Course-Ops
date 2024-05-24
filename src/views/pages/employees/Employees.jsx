@@ -16,6 +16,15 @@ import StandardTable from "../tee-slot/Table";
 import "../../style/slider-modal.css";
 import HttpService from "../services/http-service";
 import { connect } from "react-redux";
+import {
+  createEmployee,
+  updateEmployee,
+  deleteEmployee,
+  getEmployeesList,
+  getSpecificEmployee,
+  loginUser,
+} from "../../../Constants";
+
 function Employees() {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +33,28 @@ function Employees() {
   const [isEmployeeFocused, setIsEmployeeFocused] = useState(false);
   const [terminalsOptions, setTerminalsOptions] = useState([]);
   const [stateCities, setStateCities] = useState([]);
+
+  const [employee, setEmployee] = useState({
+    first_name: "",
+    last_name: "",
+    phone_number: "",
+    cell_number: "",
+    job_title: "",
+    card_number: "",
+    gender: "",
+    address: "",
+    dob: "",
+    city: "",
+    state: "",
+    zip_postal_code: "",
+    pin_number: "",
+    defaultTerminal: "",
+    comments: "",
+    role: "",
+    email: "",
+    terminal: "",
+  });
+
   const employeeFields = [
     "first_name",
     "last_name",
