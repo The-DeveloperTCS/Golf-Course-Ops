@@ -3,7 +3,11 @@ import { BaseUrl } from "Constants";
 
 export const createEmployee = async (data) => {
   try {
-    const response = await axios.post(`${BaseUrl}/employee/add`, data);
+    //const response = await axios.post(`${BaseUrl}/employee/add`, data);
+    const response = await axios.post(
+      `http://localhost:3000/employee/add`,
+      data
+    );
     return response.data;
   } catch (error) {
     throw error;

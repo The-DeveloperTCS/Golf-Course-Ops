@@ -13,7 +13,7 @@ import axios from "axios";
 
 //export const LoginOTPUrl = BaseUrl + "loginVerify";
 
-export const BaseUrl = "http://localhost:3000/";
+export const BaseUrl = "http://localhost:3000";
 
 export const LoginUrl = BaseUrl + "user/login";
 export const PermissionsUrl = BaseUrl + "permission/byRole";
@@ -196,13 +196,27 @@ const getSpecificRole = (id, data) =>
   axios.get(`${BaseUrl}/role/specificId/${id}`, data);
 //const loginUser = (data) => axios.post(LoginUrl, data);
 
+//Role Endpoints
+
+const createPermissionByRole = (data) =>
+  axios.post(`${BaseUrl}/role/add`, data);
+const updatePermissionByRole = (id, data) =>
+  axios.put(`${BaseUrl}/role/update/${id}`, data);
+const deletePermissionByRole = (id) =>
+  axios.delete(`${BaseUrl}/role/delete/${id}`);
+const getPermissionByRoleList = (params) =>
+  axios.get(`${BaseUrl}/role/getAll`, { params });
+const getSpecificPermissionByRole = (id, data) =>
+  axios.get(`${BaseUrl}/role/specificId/${id}`, data);
+//const loginUser = (data) => axios.post(LoginUrl, data);
+
 //Supplier Endpoints
 
 const createSupplier = (data) => axios.post(`${BaseUrl}/supplier/add`, data);
 const updateSupplier = (id, data) =>
   axios.put(`${BaseUrl}/supplier/update/${id}`, data);
 const deleteSupplier = (id) => axios.delete(`${BaseUrl}/supplier/delete/${id}`);
-const getRoleSupplier = (params) =>
+const getSupplierList = (params) =>
   axios.get(`${BaseUrl}/supplier/getAll`, { params });
 const getSpecificSupplier = (id, data) =>
   axios.get(`${BaseUrl}/supplier/specificId/${id}`, data);
@@ -598,4 +612,69 @@ export default {
   deleteInventory: deleteInventory,
   getInventoryList: getInventoryList,
   getSpecificInventory: getSpecificInventory,
+  createCart: createCart,
+  updateCart: updateCart,
+  deleteCart: deleteCart,
+  getCartList: getCartList,
+  getSpecificCart: getSpecificCart,
+  createDepartment: createDepartment,
+  updateDepartment: updateDepartment,
+  deleteDepartment: deleteDepartment,
+  getDepartmentList: getDepartmentList,
+  getSpecificDepartment: getSpecificDepartment,
+  createGiftCard: createGiftCard,
+  updateGiftCard: updateGiftCard,
+  deleteGiftCard: deleteGiftCard,
+  getGiftCardList: getGiftCardList,
+  getSpecificGiftCard: getSpecificGiftCard,
+  createCustomer: createCustomer,
+  updateCustomer: updateCustomer,
+  deleteCustomer: deleteCustomer,
+  getCustomerList: getCustomerList,
+  getSpecificCustomer: getSpecificCustomer,
+  createGroup: createGroup,
+  updateGroup: updateGroup,
+  deleteGroup: deleteGroup,
+  getGroupList: getGroupList,
+  getSpecificGroup: getSpecificGroup,
+  createTerminal: createTerminal,
+  updateTerminal: updateTerminal,
+  deleteTerminal: deleteTerminal,
+  getTerminalList: getTerminalList,
+  getSpecificTerminal: getSpecificTerminal,
+  createUser: createUser,
+  updateUser: updateUser,
+  deleteUser: deleteUser,
+  getUserList: getUserList,
+  getSpecificUser: getSpecificUser,
+  createCategory: createCategory,
+  updateCategory: updateCategory,
+  deleteCategory: deleteCategory,
+  getCategoryList: getCategoryList,
+  getSpecificCategory: getSpecificCategory,
+  createSubCategory: createSubCategory,
+  updateSubCategory: updateSubCategory,
+  deleteSubCategory: deleteSubCategory,
+  getSubCategoryList: getSubCategoryList,
+  getSpecificSubCategory: getSpecificSubCategory,
+  createPermission: createPermission,
+  updatePermission: updatePermission,
+  deletePermission: deletePermission,
+  getPermissionList: getPermissionList,
+  getSpecificPermission: getSpecificPermission,
+  createRole: createRole,
+  updateRole: updateRole,
+  deleteRole: deleteRole,
+  getRoleList: getRoleList,
+  getSpecificRole: getSpecificRole,
+  createPermissionByRole: createPermissionByRole,
+  updatePermissionByRole: updatePermissionByRole,
+  deletePermissionByRole: deletePermissionByRole,
+  getPermissionByRoleList: getPermissionByRoleList,
+  getSpecificPermissionByRole: getSpecificPermissionByRole,
+  createSupplier: createSupplier,
+  updateSupplier: updateSupplier,
+  deleteSupplier: deleteSupplier,
+  getSupplierList: getSupplierList,
+  getSpecificSupplier: getSpecificSupplier,
 };
