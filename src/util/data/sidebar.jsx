@@ -68,6 +68,12 @@ export const sidebarData = [
     // iconClass: "fas fa-chalkboard",
     resource: "",
   },
+  {
+    name: "GiftCards",
+    routepath: "/giftCards",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
 
   // {
   //   name: "adminTeeSheetSetting",
