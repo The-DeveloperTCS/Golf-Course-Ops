@@ -1,30 +1,34 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createDepartmentUrl,
+  updateDepartmentUrl,
+  deleteDepartmentUrl,
+  getDepartmentListUrl,
+  getSpecificDepartmentUrl,
+} from "Constants";
 
-export const createDepartment = async (data) => {
+export const createDepartments = async (data) => {
+  console.log(data, "data");
   try {
-    const response = await axios.post(`${BaseUrl}/department/add`, data);
+    const response = await axiosClient.post(createDepartmentUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateDepartment = async (id, data) => {
+export const updateDepartments = async (id, data) => {
   try {
-    const response = await axios.put(
-      `${BaseUrl}/department/update/${id}`,
-      data
-    );
+    const response = await axiosClient.put(`${updateDepartmentUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteDepartment = async (id) => {
+export const deleteDepartments = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/department/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteDepartmentUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -33,18 +37,16 @@ export const deleteDepartment = async (id) => {
 
 export const getDepartmentsList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/department/getAll`, {
-      params,
-    });
+    const response = await axiosClient.get(getDepartmentListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificDepartment = async (id) => {
+export const getSpecificDepartments = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/department/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificDepartmentUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

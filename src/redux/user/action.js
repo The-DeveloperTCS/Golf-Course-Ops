@@ -1,9 +1,9 @@
 import {
-  createUser as createUserService,
-  updateUser as updateUserService,
-  deleteUser as deleteUserService,
+  createUsers as createUserService,
+  updateUsers as updateUserService,
+  deleteUsers as deleteUserService,
   getUsersList as getUsersListService,
-  getSpecificUser as getSpecificUserService,
+  getSpecificUsers as getSpecificUserService,
 } from "./service";
 
 export const userActions = {

@@ -1,5 +1,10 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import {
+  createRoles as createRoleService,
+  updateRoles as updateRoleService,
+  deleteRoles as deleteRoleService,
+  getRolesList as getRolesListService,
+  getSpecificRoles as getSpecificRoleService,
+} from "./service";
 
 export const roleActions = {
   CREATE_ROLE_REQUEST: "role/create-role-request",
@@ -37,8 +42,8 @@ export const createRole = (data) => {
   return async (dispatch) => {
     dispatch(createRoleRequest());
     try {
-      const response = await axios.post(`${BaseUrl}/role/add`, data);
-      dispatch(createRoleSuccess(response.data));
+      const response = await createRoleService(data);
+      dispatch(createRoleSuccess(response));
     } catch (error) {
       dispatch(createRoleFailure(error));
     }
@@ -63,8 +68,8 @@ export const updateRole = (id, data) => {
   return async (dispatch) => {
     dispatch(updateRoleRequest());
     try {
-      const response = await axios.put(`${BaseUrl}/role/update/${id}`, data);
-      dispatch(updateRoleSuccess(response.data));
+      const response = await updateRoleService(id, data);
+      dispatch(updateRoleSuccess(response));
     } catch (error) {
       dispatch(updateRoleFailure(error));
     }
@@ -89,8 +94,8 @@ export const deleteRole = (id) => {
   return async (dispatch) => {
     dispatch(deleteRoleRequest());
     try {
-      const response = await axios.delete(`${BaseUrl}/role/delete/${id}`);
-      dispatch(deleteRoleSuccess(response.data));
+      const response = await deleteRoleService(id);
+      dispatch(deleteRoleSuccess(response));
     } catch (error) {
       dispatch(deleteRoleFailure(error));
     }
@@ -115,8 +120,8 @@ export const getRolesList = (params) => {
   return async (dispatch) => {
     dispatch(getRolesListRequest());
     try {
-      const response = await axios.get(`${BaseUrl}/role/getAll`, { params });
-      dispatch(getRolesListSuccess(response.data));
+      const response = await getRolesListService(params);
+      dispatch(getRolesListSuccess(response));
     } catch (error) {
       dispatch(getRolesListFailure(error));
     }
@@ -141,8 +146,8 @@ export const getSpecificRole = (id) => {
   return async (dispatch) => {
     dispatch(getSpecificRoleRequest());
     try {
-      const response = await axios.get(`${BaseUrl}/role/specificId/${id}`);
-      dispatch(getSpecificRoleSuccess(response.data));
+      const response = await getSpecificRoleService(id);
+      dispatch(getSpecificRoleSuccess(response));
     } catch (error) {
       dispatch(getSpecificRoleFailure(error));
     }

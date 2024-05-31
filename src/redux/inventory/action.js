@@ -1,12 +1,12 @@
 import {
-  createInventory as createInventoryService,
-  updateInventory as updateInventoryService,
-  deleteInventory as deleteInventoryService,
-  getInventoriesList as getInventoriesListService,
-  getSpecificInventory as getSpecificInventoryService,
+  createInventories as createInventoryService,
+  updateInventories as updateInventoryService,
+  deleteInventories as deleteInventoryService,
+  getInventoriesList as getInventoryListService,
+  getSpecificInventories as getSpecificInventoryService,
 } from "./service";
 
-const inventoryActions = {
+export const inventoryActions = {
   CREATE_INVENTORY_REQUEST: "inventory/create-inventory-request",
   CREATE_INVENTORY_SUCCESS: "inventory/create-inventory-success",
   CREATE_INVENTORY_FAILURE: "inventory/create-inventory-failure",
@@ -120,7 +120,7 @@ export const getInventoriesList = (params) => {
   return async (dispatch) => {
     dispatch(getInventoriesListRequest());
     try {
-      const response = await getInventoriesListService(params);
+      const response = await getInventoryListService(params);
       dispatch(getInventoriesListSuccess(response));
     } catch (error) {
       dispatch(getInventoriesListFailure(error));
@@ -153,5 +153,3 @@ export const getSpecificInventory = (id) => {
     }
   };
 };
-
-export default inventoryActions;

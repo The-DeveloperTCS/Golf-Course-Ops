@@ -1,27 +1,34 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createUserUrl,
+  updateUserUrl,
+  deleteUserUrl,
+  getUserListUrl,
+  getSpecificCUserUrl,
+} from "Constants";
 
-export const createUser = async (data) => {
+export const createUsers = async (data) => {
+  console.log(data, "data");
   try {
-    const response = await axios.post(`${BaseUrl}/user/add`, data);
+    const response = await axiosClient.post(createUserUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateUser = async (id, data) => {
+export const updateUsers = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/user/update/${id}`, data);
+    const response = await axiosClient.put(`${updateUserUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteUser = async (id) => {
+export const deleteUsers = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/user/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteUserUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -30,16 +37,16 @@ export const deleteUser = async (id) => {
 
 export const getUsersList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/user/getAll`, { params });
+    const response = await axiosClient.get(getUserListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificUser = async (id) => {
+export const getSpecificUsers = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/user/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificCUserUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

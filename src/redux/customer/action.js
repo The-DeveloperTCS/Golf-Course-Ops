@@ -1,9 +1,9 @@
 import {
-  createCustomer as createCustomerService,
-  updateCustomer as updateCustomerService,
-  deleteCustomer as deleteCustomerService,
+  createCustomers as createCustomerService,
+  updateCustomers as updateCustomerService,
+  deleteCustomers as deleteCustomerService,
   getCustomersList as getCustomersListService,
-  getSpecificCustomer as getSpecificCustomerService,
+  getSpecificCustomers as getSpecificCustomerService,
 } from "./service";
 
 const customerActions = {
@@ -16,9 +16,9 @@ const customerActions = {
   DELETE_CUSTOMER_REQUEST: "customer/delete-customer-request",
   DELETE_CUSTOMER_SUCCESS: "customer/delete-customer-success",
   DELETE_CUSTOMER_FAILURE: "customer/delete-customer-failure",
-  GET_CUSTOMERS_LIST_REQUEST: "customer/get-customers-list-request",
-  GET_CUSTOMERS_LIST_SUCCESS: "customer/get-customers-list-success",
-  GET_CUSTOMERS_LIST_FAILURE: "customer/get-customers-list-failure",
+  GET_CUSTOMER_LIST_REQUEST: "customer/get-customer-list-request",
+  GET_CUSTOMER_LIST_SUCCESS: "customer/get-customer-list-success",
+  GET_CUSTOMER_LIST_FAILURE: "customer/get-customer-list-failure",
   GET_SPECIFIC_CUSTOMER_REQUEST: "customer/get-specific-customer-request",
   GET_SPECIFIC_CUSTOMER_SUCCESS: "customer/get-specific-customer-success",
   GET_SPECIFIC_CUSTOMER_FAILURE: "customer/get-specific-customer-failure",
@@ -90,7 +90,7 @@ export const deleteCustomerFailure = (error) => ({
   error: error,
 });
 
-export const deleteCustomer = (id) => {
+export const deleteCartItem = (id) => {
   return async (dispatch) => {
     dispatch(deleteCustomerRequest());
     try {
@@ -102,28 +102,28 @@ export const deleteCustomer = (id) => {
   };
 };
 
-export const getCustomersListRequest = () => ({
-  type: customerActions.GET_CUSTOMERS_LIST_REQUEST,
+export const getCustomerListRequest = () => ({
+  type: customerActions.GET_CUSTOMER_LIST_REQUEST,
 });
 
-export const getCustomersListSuccess = (data) => ({
-  type: customerActions.GET_CUSTOMERS_LIST_SUCCESS,
+export const getCustomerListSuccess = (data) => ({
+  type: customerActions.GET_CUSTOMER_LIST_SUCCESS,
   payload: data,
 });
 
-export const getCustomersListFailure = (error) => ({
-  type: customerActions.GET_CUSTOMERS_LIST_FAILURE,
+export const getCustomerListFailure = (error) => ({
+  type: customerActions.GET_CUSTOMER_LIST_FAILURE,
   error: error,
 });
 
-export const getCustomersList = (params) => {
+export const getCustomerList = (params) => {
   return async (dispatch) => {
-    dispatch(getCustomersListRequest());
+    dispatch(getCustomerListRequest());
     try {
       const response = await getCustomersListService(params);
-      dispatch(getCustomersListSuccess(response));
+      dispatch(getCustomerListSuccess(response));
     } catch (error) {
-      dispatch(getCustomersListFailure(error));
+      dispatch(getCustomerListFailure(error));
     }
   };
 };

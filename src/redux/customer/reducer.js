@@ -12,7 +12,7 @@ export default function customerReducer(state = initialState, action) {
     case customerActions.CREATE_CUSTOMER_REQUEST:
     case customerActions.UPDATE_CUSTOMER_REQUEST:
     case customerActions.DELETE_CUSTOMER_REQUEST:
-    case customerActions.GET_CUSTOMERS_LIST_REQUEST:
+    case customerActions.GET_CUSTOMER_LIST_REQUEST:
     case customerActions.GET_SPECIFIC_CUSTOMER_REQUEST:
       return {
         ...state,
@@ -27,7 +27,7 @@ export default function customerReducer(state = initialState, action) {
         loading: false,
         error: null,
       };
-    case customerActions.GET_CUSTOMERS_LIST_SUCCESS:
+    case customerActions.GET_CUSTOMER_LIST_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -44,7 +44,7 @@ export default function customerReducer(state = initialState, action) {
     case customerActions.CREATE_CUSTOMER_FAILURE:
     case customerActions.UPDATE_CUSTOMER_FAILURE:
     case customerActions.DELETE_CUSTOMER_FAILURE:
-    case customerActions.GET_CUSTOMERS_LIST_FAILURE:
+    case customerActions.GET_CUSTOMER_LIST_FAILURE:
     case customerActions.GET_SPECIFIC_CUSTOMER_FAILURE:
       return {
         ...state,

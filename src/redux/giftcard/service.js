@@ -1,27 +1,33 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createGiftCardUrl,
+  updateGiftCardUrl,
+  deleteGiftCardUrl,
+  getGiftCardListUrl,
+  getSpecificGiftCardUrl,
+} from "./Constants";
 
-export const createGiftcard = async (data) => {
+export const createGiftcards = async (data) => {
   try {
-    const response = await axios.post(`${BaseUrl}/gift-card/add`, data);
+    const response = await axiosClient.post(createGiftCardUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateGiftcard = async (id, data) => {
+export const updateGiftcards = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/gift-card/update/${id}`, data);
+    const response = await axiosClient.put(`${updateGiftCardUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteGiftcard = async (id) => {
+export const deleteGiftcards = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/gift-card/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteGiftCardUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -30,16 +36,16 @@ export const deleteGiftcard = async (id) => {
 
 export const getGiftcardsList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/gift-card/getAll`, { params });
+    const response = await axiosClient.get(getGiftCardListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificGiftcard = async (id) => {
+export const getSpecificGiftscard = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/gift-card/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificGiftCardUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

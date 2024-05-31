@@ -1,27 +1,33 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createInventoryUrl,
+  updateInventoryUrl,
+  deleteInventoryUrl,
+  getInventoryListUrl,
+  getSpecificInventoryUrl,
+} from "Constants";
 
-export const createInventory = async (data) => {
+export const createInventories = async (data) => {
   try {
-    const response = await axios.post(`${BaseUrl}/inventory/add`, data);
+    const response = await axiosClient.post(createInventoryUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateInventory = async (id, data) => {
+export const updateInventories = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/inventory/update/${id}`, data);
+    const response = await axiosClient.put(`${updateInventoryUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteInventory = async (id) => {
+export const deleteInventories = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/inventory/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteInventoryUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -30,16 +36,16 @@ export const deleteInventory = async (id) => {
 
 export const getInventoriesList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/inventory/getAll`, { params });
+    const response = await axiosClient.get(getInventoryListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificInventory = async (id) => {
+export const getSpecificInventories = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/inventory/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificInventoryUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

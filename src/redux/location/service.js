@@ -1,45 +1,51 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createLocationUrl,
+  updateLocationUrl,
+  deleteLocationUrl,
+  getLocationListUrl,
+  getSpecificLocationUrl,
+} from "Constants";
 
-export const createLocation = async (data) => {
+export const createLocations = async (data) => {
   try {
-    const response = await axios.post(`${BaseUrl}/location/add`, data);
+    const response = await axiosClient.post(createLocationUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateLocation = async (id, data) => {
+export const updateLocations = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/location/update/${id}`, data);
+    const response = await axiosClient.put(`${updateLocationUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteLocation = async (id) => {
+export const deleteLocations = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/location/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteLocationUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getLocationList = async (params) => {
+export const getLocationsList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/location/getAll`, { params });
+    const response = await axiosClient.get(getLocationListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificLocation = async (id) => {
+export const getSpecificLocations = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/location/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificLocationUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

@@ -1,5 +1,10 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import {
+  createCategories as createCategoryService,
+  updateCategories as updateCategoryService,
+  deleteCategories as deleteCategoryService,
+  getCategoriesList as getCategoriesListService,
+  getSpecificCategories as getSpecificCategoryService,
+} from "./service";
 
 export const categoryActions = {
   CREATE_CATEGORY_REQUEST: "category/create-category-request",
@@ -37,8 +42,8 @@ export const createCategory = (data) => {
   return async (dispatch) => {
     dispatch(createCategoryRequest());
     try {
-      const response = await axios.post(`${BaseUrl}/category/add`, data);
-      dispatch(createCategorySuccess(response.data));
+      const response = await createCategoryService(data);
+      dispatch(createCategorySuccess(response));
     } catch (error) {
       dispatch(createCategoryFailure(error));
     }
@@ -63,11 +68,8 @@ export const updateCategory = (id, data) => {
   return async (dispatch) => {
     dispatch(updateCategoryRequest());
     try {
-      const response = await axios.put(
-        `${BaseUrl}/category/update/${id}`,
-        data
-      );
-      dispatch(updateCategorySuccess(response.data));
+      const response = await updateCategoryService(id, data);
+      dispatch(updateCategorySuccess(response));
     } catch (error) {
       dispatch(updateCategoryFailure(error));
     }
@@ -92,8 +94,8 @@ export const deleteCategory = (id) => {
   return async (dispatch) => {
     dispatch(deleteCategoryRequest());
     try {
-      const response = await axios.delete(`${BaseUrl}/category/delete/${id}`);
-      dispatch(deleteCategorySuccess(response.data));
+      const response = await deleteCategoryService(id);
+      dispatch(deleteCategorySuccess(response));
     } catch (error) {
       dispatch(deleteCategoryFailure(error));
     }
@@ -118,10 +120,8 @@ export const getCategoriesList = (params) => {
   return async (dispatch) => {
     dispatch(getCategoriesListRequest());
     try {
-      const response = await axios.get(`${BaseUrl}/category/getAll`, {
-        params,
-      });
-      dispatch(getCategoriesListSuccess(response.data));
+      const response = await getCategoriesListService(params);
+      dispatch(getCategoriesListSuccess(response));
     } catch (error) {
       dispatch(getCategoriesListFailure(error));
     }
@@ -146,8 +146,8 @@ export const getSpecificCategory = (id) => {
   return async (dispatch) => {
     dispatch(getSpecificCategoryRequest());
     try {
-      const response = await axios.get(`${BaseUrl}/category/specificId/${id}`);
-      dispatch(getSpecificCategorySuccess(response.data));
+      const response = await getSpecificCategoryService(id);
+      dispatch(getSpecificCategorySuccess(response));
     } catch (error) {
       dispatch(getSpecificCategoryFailure(error));
     }
