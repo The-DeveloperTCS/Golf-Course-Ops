@@ -14,6 +14,9 @@ import HelpSupport from "views/pages/helpSupport/HelpSupport";
 import Reports from "views/pages/Reports/Reports";
 import InventoryForm from "views/pages/inventoryform/InventoryForm";
 import JesterPark from "views/pages/JesterPark/JesterPark";
+
+import Cart from "views/pages/cart/Cart";
+
 const dashboardRoutes = [
   // { path: "/intro", component: Intro, resource: "" },
   { path: "/employee", component: Employee, resource: "" },
@@ -36,6 +39,9 @@ const dashboardRoutes = [
   { path: "/reports", component: Reports, resource: "" },
   { path: "/inventoryForm", component: InventoryForm, resource: "" },
   { path: "/jesterPark", component: JesterPark, resource: "" },
+
+  { path: "/cart", component: Cart, resource: "" },
+
   {
     path: "/pending-payments",
     component: BulkPayment,

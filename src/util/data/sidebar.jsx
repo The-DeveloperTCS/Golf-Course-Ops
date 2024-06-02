@@ -69,6 +69,14 @@ export const sidebarData = [
     resource: "",
   },
 
+  //Saad
+  {
+    name: "cart",
+    routepath: "/cart",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+
   // {
   //   name: "adminTeeSheetSetting",
   //   routepath: "/adminTeeSheetSetting",

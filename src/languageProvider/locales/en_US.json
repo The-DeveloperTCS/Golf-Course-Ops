@@ -202,5 +202,7 @@
   "Shipped": "Shipped",
   "Delivered": "Delivered",
   "Cancelled": "Cancelled",
-  "Returned": "Returned"
+  "Returned": "Returned",
+
+  "sidebar.cart": "Cart"
 }
