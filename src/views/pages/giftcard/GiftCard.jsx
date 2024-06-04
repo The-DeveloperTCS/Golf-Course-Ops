@@ -16,22 +16,21 @@ import StandardTable from "../tee-slot/Table";
 import "../../style/slider-modal.css";
 import HttpService from "../services/http-service";
 
-import { createCartItems } from "redux/cart/service";
+import { createGiftcards } from "redux/giftcard/service";
 
-function Carts() {
+function GiftCards() {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [cartData, setCartData] = useState({});
-  const [carts, setCarts] = useState([]);
-  const [isCartFocused, setIsCartFocused] = useState(false);
+  const [giftCardData, setGiftCardData] = useState({});
+  const [giftCards, setGiftCards] = useState([]);
+  const [isGiftCardFocused, setIsGiftCardFocused] = useState(false);
   const [terminalsOptions, setTerminalsOptions] = useState([]);
-  const [stateCities, setStateCities] = useState([]);
 
-  const [cart, setCart] = useState({
-    item_name: "",
+  const [giftCard, setGiftCard] = useState({
+    gift_card_id: "",
     value: "",
+    custom_name: "",
     customer_name: "",
-    email: "",
     expiration_date: "",
     date_issued: "",
     department: "",
@@ -39,11 +38,11 @@ function Carts() {
     notes: "",
   });
 
-  const cartFields = [
-    "item_name",
+  const giftCardFields = [
+    "gift_card_id",
     "value",
+    "custom_name",
     "customer_name",
-    "email",
     "expiration_date",
     "date_issued",
     "department",
@@ -71,9 +70,9 @@ function Carts() {
     }
   };
 
-  const createCartItem = async () => {
-    console.log(cartData, "cartData");
-    createCartItems(cartData)
+  const createGiftcard = async () => {
+    console.log(giftCardData, "giftCardData");
+    createGiftcards(giftCardData)
       .then((res) => {
         console.log(res, "response ");
       })
@@ -91,32 +90,32 @@ function Carts() {
     // }
   };
 
-  const modifyCart = async (cart) => {
-    const fullCartObject = cart?.find((e) => {
-      return e.cart === cart.email;
+  const modifyGiftCard = async (giftcard) => {
+    const fullGiftCardObject = giftcard?.find((e) => {
+      return e.giftcard === giftcard.email;
     });
-    setCartData(fullCartObject);
+    setGiftCardData(fullGiftCardObject);
   };
 
-  const updateCart = async () => {
-    let mappedCartData = {};
+  const updateGiftCard = async () => {
+    let mappedGiftCardData = {};
 
-    for (let key in cartData) {
-      if (cartFields.includes(key)) {
-        mappedCartData[key] = cartData[key];
+    for (let key in giftCardData) {
+      if (giftCardFields.includes(key)) {
+        mappedGiftCardData[key] = giftCardData[key];
       }
     }
 
-    setCartData(mappedCartData);
+    setGiftCardData(mappedGiftCardData);
     try {
       setIsLoading(true);
       const {
         data: { message },
-      } = await HttpService.updateCart({
-        params: cartData.id,
-        body: mappedCartData,
+      } = await HttpService.updateGiftCard({
+        params: giftCardData.id,
+        body: mappedGiftCardData,
       });
-      getCartsList();
+      getGiftCardsList();
       setIsShowModal(false);
       // toast.success(message)
     } catch (err) {
@@ -125,15 +124,15 @@ function Carts() {
     }
   };
 
-  const deleteCart = async () => {
+  const deleteGiftCard = async () => {
     setIsLoading(true);
     try {
       const {
         data: { message },
-      } = await HttpService.deleteCart({
-        params: cartData.id,
+      } = await HttpService.deleteGiftCard({
+        params: giftCardData.id,
       });
-      getCartsList();
+      getGiftCardsList();
       setIsShowModal(false);
       // toast.success(message)
     } catch (err) {
@@ -143,28 +142,18 @@ function Carts() {
     }
   };
 
-  const columns = [
-    "Item Name",
-    "Value",
-    "Customer Name",
-    "Email Address",
-    "Expiration Date",
-    "Date Issued",
-    "Department",
-    "Category",
-    "Notes",
-  ];
+  const columns = ["Id", "Name"];
 
-  const getCartsList = async () => {
+  const getGiftCardsList = async () => {
     setIsLoading(true);
     try {
       const {
         data: { data },
-      } = await HttpService.getCartsList({
+      } = await HttpService.getGiftCardsList({
         query: { page: 1, size: 100 },
       });
 
-      setCarts(data);
+      setGiftCards(data);
     } catch (err) {
       // toast.error(err.data.message)
     } finally {
@@ -173,13 +162,8 @@ function Carts() {
   };
 
   useEffect(() => {
-    getCartsList();
+    getGiftCardsList();
   }, []);
-
-  const getCities = (state_id) => {
-    const stateCity = cities.filter((data) => data.value === state_id);
-    setStateCities(stateCity);
-  };
 
   return (
     <Container fluid>
@@ -195,7 +179,7 @@ function Carts() {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            {isCartFocused ? "Cart Details" : "Add Cart"}
+            {isGiftCardFocused ? "GiftCard Details" : "Add GiftCard"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body
@@ -203,60 +187,69 @@ function Carts() {
         >
           <Row className="row-cols-2">
             <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Item Name</Form.Label>
+              <Form.Label htmlFor="inputPassword5">Gift Card Id</Form.Label>
               <Form.Control
-                value={cartData.item_name}
+                value={giftCardData.gift_card_id}
                 onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    item_name: e.target.value,
+                  setGiftCardData({
+                    ...giftCardData,
+                    gift_card_id: e.target.value,
                   });
                 }}
                 type="text"
-              />
-            </Col>
-            <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Value</Form.Label>
-              <Form.Control
-                value={cartData.value}
-                onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    value: e.target.value,
-                  });
-                }}
-                type="number"
               />
             </Col>
 
             <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Customer Name</Form.Label>
+              <Form.Label htmlFor="inputPassword5">Value</Form.Label>
               <Form.Control
-                value={cartData.customer_name}
+                value={giftCardData.value}
                 onChange={(e) => {
-                  setCartData({ ...cartData, customer_name: e.target.value });
+                  setGiftCardData({
+                    ...giftCardData,
+                    value: e.target.value,
+                  });
                 }}
                 type="text"
               />
             </Col>
             <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Email Address</Form.Label>
+              <Form.Label htmlFor="inputPassword5">Custom Name</Form.Label>
               <Form.Control
-                value={cartData.email}
+                value={giftCardData.custom_name}
                 onChange={(e) => {
-                  setCartData({ ...cartData, email: e.target.value });
+                  setGiftCardData({
+                    ...giftCardData,
+                    custom_name: e.target.value,
+                  });
                 }}
-                type="email"
-                disabled={isCartFocused}
+                type="text"
+              />
+            </Col>
+            <Col className="pt-2">
+              <Form.Label htmlFor="inputPassword5">Customer Name</Form.Label>
+              <Form.Control
+                value={giftCardData.customer_name}
+                onChange={(e) => {
+                  setGiftCardData({
+                    ...giftCardData,
+                    customer_name: e.target.value,
+                  });
+                }}
+                type="text"
               />
             </Col>
             <Col className="pt-2">
               <Form.Label htmlFor="inputPassword5">Expiration Date</Form.Label>
               <Form.Control
-                value={cartData.expiration_date}
+                value={
+                  giftCardData.expiration_date
+                    ? moment(giftCardData.expiration_date).format("YYYY-MM-DD")
+                    : ""
+                }
                 onChange={(e) => {
-                  setCartData({
-                    ...cartData,
+                  setGiftCardData({
+                    ...giftCardData,
                     expiration_date: e.target.value,
                   });
                 }}
@@ -266,24 +259,27 @@ function Carts() {
             <Col className="pt-2">
               <Form.Label htmlFor="inputPassword5">Date Issued</Form.Label>
               <Form.Control
-                value={cartData.date_issued}
+                value={
+                  giftCardData.date_issued
+                    ? moment(giftCardData.date_issued).format("YYYY-MM-DD")
+                    : ""
+                }
                 onChange={(e) => {
-                  setCartData({
-                    ...cartData,
+                  setGiftCardData({
+                    ...giftCardData,
                     date_issued: e.target.value,
                   });
                 }}
                 type="date"
               />
             </Col>
-
             <Col className="pt-2">
               <Form.Label htmlFor="inputPassword5">Department</Form.Label>
               <Form.Control
-                value={cartData.department}
+                value={giftCardData.department}
                 onChange={(e) => {
-                  setCartData({
-                    ...cartData,
+                  setGiftCardData({
+                    ...giftCardData,
                     department: e.target.value,
                   });
                 }}
@@ -293,24 +289,23 @@ function Carts() {
             <Col className="pt-2">
               <Form.Label htmlFor="inputPassword5">Category</Form.Label>
               <Form.Control
-                value={cartData.category}
+                value={giftCardData.category}
                 onChange={(e) => {
-                  setCartData({
-                    ...cartData,
+                  setGiftCardData({
+                    ...giftCardData,
                     category: e.target.value,
                   });
                 }}
                 type="text"
               />
             </Col>
-
             <Col className="pt-2">
               <Form.Label htmlFor="inputPassword5">Notes</Form.Label>
               <Form.Control
-                value={cartData.notes}
+                value={giftCardData.notes}
                 onChange={(e) => {
-                  setCartData({
-                    ...cartData,
+                  setGiftCardData({
+                    ...giftCardData,
                     notes: e.target.value,
                   });
                 }}
@@ -329,25 +324,25 @@ function Carts() {
           >
             Close
           </Button>
-          {isCartFocused ? (
+          {isGiftCardFocused ? (
             <Button
               style={{ color: "white" }}
-              onClick={deleteCart}
+              onClick={deleteGiftCard}
               variant="danger"
               disabled={isLoading}
             >
-              Delete Cart
+              Delete GiftCard
             </Button>
           ) : null}
           <Button
             style={{ color: "white" }}
             onClick={() => {
-              isCartFocused ? updateCart() : createCartItem();
+              isGiftCardFocused ? updateGiftCard() : createGiftcard();
             }}
             variant="warning"
             disabled={isLoading}
           >
-            {isCartFocused ? "Save" : "Create Cart"}
+            {isGiftCardFocused ? "Save" : "Create GiftCard"}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -364,15 +359,15 @@ function Carts() {
             )}
             <Button
               onClick={() => {
-                setIsCartFocused(false);
-                setCartData({});
+                setIsGiftCardFocused(false);
+                setGiftCardData({});
                 setIsShowModal(true);
               }}
               disabled={isLoading}
-              style={styles.addCartBtn}
+              style={styles.addEmployeeBtn}
               size="sm"
             >
-              + Add Cart
+              + Add GiftCard
             </Button>
           </div>
         </Col>
@@ -385,19 +380,19 @@ function Carts() {
           >
             <StandardTable
               columns={columns}
-              rows={carts?.map((cart) => {
+              rows={giftCards?.map((giftCard) => {
                 const terminalName = terminalsOptions?.find(
-                  (c) => c.value === cart.terminal_id
+                  (d) => d.value === giftCard.terminal_id
                 );
                 return {
-                  first_name: cart.first_name,
-                  last_name: cart.last_name,
-                  phone_number: cart.phone_number,
-                  email: cart.email,
-                  city: cart.city,
-                  state: cart.state,
-                  job_title: cart.job_title,
-                  role: cart.role,
+                  first_name: giftCard.first_name,
+                  last_name: giftCard.last_name,
+                  phone_number: giftCard.phone_number,
+                  email: giftCard.email,
+                  city: giftCard.city,
+                  state: giftCard.state,
+                  job_title: giftCard.job_title,
+                  role: giftCard.role,
                   terminal: terminalName?.label,
 
                   // status: (
@@ -419,8 +414,8 @@ function Carts() {
                 };
               })}
               handleClick={(value) => {
-                setIsCartFocused(true);
-                modifyCart(value);
+                setIsGiftCardFocused(true);
+                modifyGiftCard(value);
                 setIsShowModal(true);
               }}
               isClickable
@@ -465,4 +460,4 @@ const styles = {
   },
 };
 
-export default Carts;
+export default GiftCards;

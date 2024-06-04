@@ -204,5 +204,7 @@
   "Cancelled": "Cancelled",
   "Returned": "Returned",
 
-  "sidebar.cart": "Cart"
+  "sidebar.cart": "Cart",
+  "sidebar.department": "Department",
+  "sidebar.giftcard": "Gift Card"
 }

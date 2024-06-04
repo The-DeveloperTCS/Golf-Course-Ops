@@ -16,40 +16,22 @@ import StandardTable from "../tee-slot/Table";
 import "../../style/slider-modal.css";
 import HttpService from "../services/http-service";
 
-import { createCartItems } from "redux/cart/service";
+import { createDepartments } from "redux/department/service";
 
-function Carts() {
+function Departments() {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [cartData, setCartData] = useState({});
-  const [carts, setCarts] = useState([]);
-  const [isCartFocused, setIsCartFocused] = useState(false);
+  const [departmentData, setDepartmentData] = useState({});
+  const [departments, setDepartments] = useState([]);
+  const [isDepartmentFocused, setIsDepartmentFocused] = useState(false);
   const [terminalsOptions, setTerminalsOptions] = useState([]);
-  const [stateCities, setStateCities] = useState([]);
 
-  const [cart, setCart] = useState({
-    item_name: "",
-    value: "",
-    customer_name: "",
-    email: "",
-    expiration_date: "",
-    date_issued: "",
-    department: "",
-    category: "",
-    notes: "",
+  const [department, setDepartment] = useState({
+    id: "",
+    name: "",
   });
 
-  const cartFields = [
-    "item_name",
-    "value",
-    "customer_name",
-    "email",
-    "expiration_date",
-    "date_issued",
-    "department",
-    "category",
-    "notes",
-  ];
+  const departmentFields = ["id", "name"];
 
   useEffect(() => {
     getTerminalsList();
@@ -71,9 +53,9 @@ function Carts() {
     }
   };
 
-  const createCartItem = async () => {
-    console.log(cartData, "cartData");
-    createCartItems(cartData)
+  const createDepartment = async () => {
+    console.log(departmentData, "cartData");
+    createDepartments(departmentData)
       .then((res) => {
         console.log(res, "response ");
       })
@@ -91,32 +73,32 @@ function Carts() {
     // }
   };
 
-  const modifyCart = async (cart) => {
-    const fullCartObject = cart?.find((e) => {
-      return e.cart === cart.email;
+  const modifyDepartment = async (department) => {
+    const fullDepartmentObject = department?.find((e) => {
+      return e.cart === department.email;
     });
-    setCartData(fullCartObject);
+    setDepartmentData(fullDepartmentObject);
   };
 
-  const updateCart = async () => {
-    let mappedCartData = {};
+  const updateDepartment = async () => {
+    let mappedDepartmentData = {};
 
-    for (let key in cartData) {
-      if (cartFields.includes(key)) {
-        mappedCartData[key] = cartData[key];
+    for (let key in departmentData) {
+      if (departmentFields.includes(key)) {
+        mappedDepartmentData[key] = departmentData[key];
       }
     }
 
-    setCartData(mappedCartData);
+    setDepartmentData(mappedDepartmentData);
     try {
       setIsLoading(true);
       const {
         data: { message },
-      } = await HttpService.updateCart({
-        params: cartData.id,
-        body: mappedCartData,
+      } = await HttpService.updateDepartment({
+        params: departmentData.id,
+        body: mappedDepartmentData,
       });
-      getCartsList();
+      getDepartmentsList();
       setIsShowModal(false);
       // toast.success(message)
     } catch (err) {
@@ -125,15 +107,15 @@ function Carts() {
     }
   };
 
-  const deleteCart = async () => {
+  const deleteDepartment = async () => {
     setIsLoading(true);
     try {
       const {
         data: { message },
-      } = await HttpService.deleteCart({
-        params: cartData.id,
+      } = await HttpService.deleteDepartment({
+        params: departmentData.id,
       });
-      getCartsList();
+      getDepartmentsList();
       setIsShowModal(false);
       // toast.success(message)
     } catch (err) {
@@ -143,28 +125,18 @@ function Carts() {
     }
   };
 
-  const columns = [
-    "Item Name",
-    "Value",
-    "Customer Name",
-    "Email Address",
-    "Expiration Date",
-    "Date Issued",
-    "Department",
-    "Category",
-    "Notes",
-  ];
+  const columns = ["Id", "Name"];
 
-  const getCartsList = async () => {
+  const getDepartmentsList = async () => {
     setIsLoading(true);
     try {
       const {
         data: { data },
-      } = await HttpService.getCartsList({
+      } = await HttpService.getDepartmentsList({
         query: { page: 1, size: 100 },
       });
 
-      setCarts(data);
+      setDepartments(data);
     } catch (err) {
       // toast.error(err.data.message)
     } finally {
@@ -173,13 +145,8 @@ function Carts() {
   };
 
   useEffect(() => {
-    getCartsList();
+    getDepartmentsList();
   }, []);
-
-  const getCities = (state_id) => {
-    const stateCity = cities.filter((data) => data.value === state_id);
-    setStateCities(stateCity);
-  };
 
   return (
     <Container fluid>
@@ -195,7 +162,7 @@ function Carts() {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            {isCartFocused ? "Cart Details" : "Add Cart"}
+            {isDepartmentFocused ? "Department Details" : "Add Department"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body
@@ -203,115 +170,26 @@ function Carts() {
         >
           <Row className="row-cols-2">
             <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Item Name</Form.Label>
+              <Form.Label htmlFor="inputPassword5">Id</Form.Label>
               <Form.Control
-                value={cartData.item_name}
+                value={departmentData.id}
                 onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    item_name: e.target.value,
-                  });
-                }}
-                type="text"
-              />
-            </Col>
-            <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Value</Form.Label>
-              <Form.Control
-                value={cartData.value}
-                onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    value: e.target.value,
+                  setDepartmentData({
+                    ...departmentData,
+                    id: e.target.value,
                   });
                 }}
                 type="number"
               />
             </Col>
-
             <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Customer Name</Form.Label>
+              <Form.Label htmlFor="inputPassword5">Name</Form.Label>
               <Form.Control
-                value={cartData.customer_name}
+                value={departmentData.name}
                 onChange={(e) => {
-                  setCartData({ ...cartData, customer_name: e.target.value });
-                }}
-                type="text"
-              />
-            </Col>
-            <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Email Address</Form.Label>
-              <Form.Control
-                value={cartData.email}
-                onChange={(e) => {
-                  setCartData({ ...cartData, email: e.target.value });
-                }}
-                type="email"
-                disabled={isCartFocused}
-              />
-            </Col>
-            <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Expiration Date</Form.Label>
-              <Form.Control
-                value={cartData.expiration_date}
-                onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    expiration_date: e.target.value,
-                  });
-                }}
-                type="date"
-              />
-            </Col>
-            <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Date Issued</Form.Label>
-              <Form.Control
-                value={cartData.date_issued}
-                onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    date_issued: e.target.value,
-                  });
-                }}
-                type="date"
-              />
-            </Col>
-
-            <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Department</Form.Label>
-              <Form.Control
-                value={cartData.department}
-                onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    department: e.target.value,
-                  });
-                }}
-                type="text"
-              />
-            </Col>
-            <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Category</Form.Label>
-              <Form.Control
-                value={cartData.category}
-                onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    category: e.target.value,
-                  });
-                }}
-                type="text"
-              />
-            </Col>
-
-            <Col className="pt-2">
-              <Form.Label htmlFor="inputPassword5">Notes</Form.Label>
-              <Form.Control
-                value={cartData.notes}
-                onChange={(e) => {
-                  setCartData({
-                    ...cartData,
-                    notes: e.target.value,
+                  setDepartmentData({
+                    ...departmentData,
+                    name: e.target.value,
                   });
                 }}
                 type="text"
@@ -329,25 +207,25 @@ function Carts() {
           >
             Close
           </Button>
-          {isCartFocused ? (
+          {isDepartmentFocused ? (
             <Button
               style={{ color: "white" }}
-              onClick={deleteCart}
+              onClick={deleteDepartment}
               variant="danger"
               disabled={isLoading}
             >
-              Delete Cart
+              Delete Department
             </Button>
           ) : null}
           <Button
             style={{ color: "white" }}
             onClick={() => {
-              isCartFocused ? updateCart() : createCartItem();
+              isDepartmentFocused ? updateDepartment() : createDepartment();
             }}
             variant="warning"
             disabled={isLoading}
           >
-            {isCartFocused ? "Save" : "Create Cart"}
+            {isDepartmentFocused ? "Save" : "Create Department"}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -364,15 +242,15 @@ function Carts() {
             )}
             <Button
               onClick={() => {
-                setIsCartFocused(false);
-                setCartData({});
+                setIsDepartmentFocused(false);
+                setDepartmentData({});
                 setIsShowModal(true);
               }}
               disabled={isLoading}
               style={styles.addCartBtn}
               size="sm"
             >
-              + Add Cart
+              + Add Department
             </Button>
           </div>
         </Col>
@@ -385,19 +263,19 @@ function Carts() {
           >
             <StandardTable
               columns={columns}
-              rows={carts?.map((cart) => {
+              rows={departments?.map((department) => {
                 const terminalName = terminalsOptions?.find(
-                  (c) => c.value === cart.terminal_id
+                  (d) => d.value === department.terminal_id
                 );
                 return {
-                  first_name: cart.first_name,
-                  last_name: cart.last_name,
-                  phone_number: cart.phone_number,
-                  email: cart.email,
-                  city: cart.city,
-                  state: cart.state,
-                  job_title: cart.job_title,
-                  role: cart.role,
+                  first_name: department.first_name,
+                  last_name: department.last_name,
+                  phone_number: department.phone_number,
+                  email: department.email,
+                  city: department.city,
+                  state: department.state,
+                  job_title: department.job_title,
+                  role: department.role,
                   terminal: terminalName?.label,
 
                   // status: (
@@ -419,8 +297,8 @@ function Carts() {
                 };
               })}
               handleClick={(value) => {
-                setIsCartFocused(true);
-                modifyCart(value);
+                setIsDepartmentFocused(true);
+                modifyDepartment(value);
                 setIsShowModal(true);
               }}
               isClickable
@@ -465,4 +343,4 @@ const styles = {
   },
 };
 
-export default Carts;
+export default Departments;
