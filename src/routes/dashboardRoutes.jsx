@@ -19,6 +19,7 @@ import Cart from "views/pages/cart/Cart";
 import Department from "views/pages/department/Department";
 import GiftCard from "views/pages/giftcard/GiftCard";
 
+
 const dashboardRoutes = [
   // { path: "/intro", component: Intro, resource: "" },
   { path: "/employee", component: Employee, resource: "" },
