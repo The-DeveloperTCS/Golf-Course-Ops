@@ -5,7 +5,7 @@ import {
   deleteGiftCardUrl,
   getGiftCardListUrl,
   getSpecificGiftCardUrl,
-} from "./Constants";
+} from "Constants";
 
 export const createGiftcards = async (data) => {
   try {

@@ -14,7 +14,12 @@ import HelpSupport from "views/pages/helpSupport/HelpSupport";
 import Reports from "views/pages/Reports/Reports";
 import InventoryForm from "views/pages/inventoryform/InventoryForm";
 import JesterPark from "views/pages/JesterPark/JesterPark";
-import GiftCards from "views/pages/giftCards/GiftCards";
+
+import Cart from "views/pages/cart/Cart";
+import Department from "views/pages/department/Department";
+import GiftCard from "views/pages/giftcard/GiftCard";
+
+
 const dashboardRoutes = [
   // { path: "/intro", component: Intro, resource: "" },
   { path: "/employee", component: Employee, resource: "" },
@@ -37,7 +42,10 @@ const dashboardRoutes = [
   { path: "/reports", component: Reports, resource: "" },
   { path: "/inventoryForm", component: InventoryForm, resource: "" },
   { path: "/jesterPark", component: JesterPark, resource: "" },
-  { path: "/giftCards", component: GiftCards, resource: "" },
+
+  { path: "/cart", component: Cart, resource: "" },
+  { path: "/department", component: Department, resource: "" },
+  { path: "/giftcard", component: GiftCard, resource: "" },
 
   {
     path: "/pending-payments",

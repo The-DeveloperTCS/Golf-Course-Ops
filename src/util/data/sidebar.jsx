@@ -75,6 +75,25 @@ export const sidebarData = [
     resource: "",
   },
 
+  {
+    name: "cart",
+    routepath: "/cart",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+  {
+    name: "department",
+    routepath: "/department",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+  {
+    name: "giftcard",
+    routepath: "/giftcard",
+    // iconClass: "fas fa-chalkboard",
+    resource: "",
+  },
+
   // {
   //   name: "adminTeeSheetSetting",
   //   routepath: "/adminTeeSheetSetting",
