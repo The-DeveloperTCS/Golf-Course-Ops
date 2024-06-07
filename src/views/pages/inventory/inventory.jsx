@@ -9,6 +9,13 @@ import { Form, Modal } from "react-bootstrap";
 import HttpService from "../services/http-service";
 import Spinner from "react-bootstrap/Spinner";
 import Select from "react-select";
+import {
+  createInventory,
+  updateInventory,
+  deleteInventory,
+  getInventoryList,
+  getSpecificInventory,
+} from "../../../Constants";
 
 function Inventory() {
   const [isLoading, setIsLoading] = useState(false);

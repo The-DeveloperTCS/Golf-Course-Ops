@@ -50,15 +50,17 @@ const DashboardLayout = (props) => {
   const scrollbars = useRef(null);
   const { fetchPermissions } = props;
 
-  // useEffect(() => {
-  //   fetchPermissions();
-  // }, [fetchPermissions]);
+  useEffect(() => {
+    fetchPermissions();
+  }, [fetchPermissions]);
 
   useMemo(() => {
     if (scrollbars && scrollbars.current) {
       scrollbars.current.scrollToTop(0);
     }
   }, []);
+
+  console.log(props, "props");
 
   const allowedPermissions = useMemo(() => {
     return props.authData.permissions.map((p) => p.name);

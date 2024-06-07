@@ -12,6 +12,13 @@ import HttpService from "../services/http-service";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import {
+  createLocation,
+  updateLocation,
+  deleteLocation,
+  getLocationList,
+  getSpecificLocation,
+} from "../../../Constants";
 
 function Locations() {
   const [isLoading, setIsLoading] = useState(false);
