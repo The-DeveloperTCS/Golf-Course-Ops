@@ -15,15 +15,17 @@ import cities from "../../data/cities.json";
 import StandardTable from "../tee-slot/Table";
 import "../../style/slider-modal.css";
 import HttpService from "../services/http-service";
-import { connect } from "react-redux";
-import {
-  createEmployee,
-  updateEmployee,
-  deleteEmployee,
-  getEmployeesList,
-  getSpecificEmployee,
-  loginUser,
-} from "../../../Constants";
+// import { connect } from "react-redux";
+// import {
+//   createEmployee,
+//   updateEmployee,
+//   deleteEmployee,
+//   getEmployeesList,
+//   getSpecificEmployee,
+//   loginUser,
+// } from "../../../Constants";
+
+import { createEmployees } from "redux/employee/service";
 
 function Employees() {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -347,15 +349,23 @@ function Employees() {
   };
 
   const createEmployee = async () => {
-    setIsLoading(true);
-    try {
-      await HttpService.createEmployee({ body: employeeData });
-      getEmployeesList();
-      setIsShowModal(false);
-    } catch (err) {
-      // toast.error(err.data.message)
-      setIsLoading(false);
-    }
+    console.log(employeeData, "employeeData");
+    createEmployees(employeeData)
+      .then((res) => {
+        console.log(res, "response ");
+      })
+      .catch((err) => {
+        console.log(err.data.message, "error");
+      });
+    // setIsLoading(true);
+    // try {
+    //   await HttpService.createEmployee({ body: employeeData });
+    //   getEmployeesList();
+    //   setIsShowModal(false);
+    // } catch (err) {
+    //   // toast.error(err.data.message)
+    //   setIsLoading(false);
+    // }
   };
 
   const modifyEmployee = async (employee) => {

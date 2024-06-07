@@ -1,4 +1,4 @@
-import inventoryActions from "./actions";
+import { inventoryActions } from "./actions";
 
 const initialState = {
   inventories: [],

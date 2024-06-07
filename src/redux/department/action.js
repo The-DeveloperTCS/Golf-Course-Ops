@@ -1,9 +1,9 @@
 import {
-  createDepartment as createDepartmentService,
-  updateDepartment as updateDepartmentService,
-  deleteDepartment as deleteDepartmentService,
+  createDepartments as createDepartmentService,
+  updateDepartments as updateDepartmentService,
+  deleteDepartments as deleteDepartmentService,
   getDepartmentsList as getDepartmentsListService,
-  getSpecificDepartment as getSpecificDepartmentService,
+  getSpecificDepartments as getSpecificDepartmentService,
 } from "./service";
 
 const departmentActions = {

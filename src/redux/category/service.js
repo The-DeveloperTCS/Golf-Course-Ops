@@ -1,27 +1,34 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createCategoryUrl,
+  updateCategoryUrl,
+  deleteCategoryUrl,
+  getCategoryListUrl,
+  getSpecificCategoryUrl,
+} from "Constants";
 
-export const createCategory = async (data) => {
+export const createCategories = async (data) => {
+  console.log(data, "data");
   try {
-    const response = await axios.post(`${BaseUrl}/category/add`, data);
+    const response = await axiosClient.post(createCategoryUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateCategory = async (id, data) => {
+export const updateCategories = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/category/update/${id}`, data);
+    const response = await axiosClient.put(`${updateCategoryUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteCategory = async (id) => {
+export const deleteCategories = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/category/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteCategoryUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -30,16 +37,16 @@ export const deleteCategory = async (id) => {
 
 export const getCategoriesList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/category/getAll`, { params });
+    const response = await axiosClient.get(getCategoryListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificCategory = async (id) => {
+export const getSpecificCategories = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/category/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificCategoryUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

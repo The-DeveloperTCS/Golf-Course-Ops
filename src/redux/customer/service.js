@@ -1,27 +1,34 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createCustomerUrl,
+  updateCustomerUrl,
+  deleteCustomerUrl,
+  getCustomerListUrl,
+  getSpecificCustomerUrl,
+} from "Constants";
 
-export const createCustomer = async (data) => {
+export const createCustomers = async (data) => {
+  console.log(data, "data");
   try {
-    const response = await axios.post(`${BaseUrl}/customer/add`, data);
+    const response = await axiosClient.post(createCustomerUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateCustomer = async (id, data) => {
+export const updateCustomers = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/customer/update/${id}`, data);
+    const response = await axiosClient.put(`${updateCustomerUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteCustomer = async (id) => {
+export const deleteCustomers = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/customer/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteCustomerUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -30,16 +37,16 @@ export const deleteCustomer = async (id) => {
 
 export const getCustomersList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/customer/getAll`, { params });
+    const response = await axiosClient.get(getCustomerListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificCustomer = async (id) => {
+export const getSpecificCustomers = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/customer/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificCustomerUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

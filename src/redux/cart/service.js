@@ -1,27 +1,33 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createCartUrl,
+  updateCartUrl,
+  deleteCartUrl,
+  getCartListUrl,
+  getSpecificCartUrl,
+} from "Constants";
 
-export const addCartItem = async (data) => {
+export const createCartItems = async (data) => {
   try {
-    const response = await axios.post(`${BaseUrl}/cart/add`, data);
+    const response = await axiosClient.post(createCartUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateCartItem = async (id, data) => {
+export const updateCartItems = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/cart/update/${id}`, data);
+    const response = await axiosClient.put(`${updateCartUrl}${id}`, data); // Updated function name
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteCartItem = async (id) => {
+export const deleteCartItems = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/cart/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteCartUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -30,16 +36,16 @@ export const deleteCartItem = async (id) => {
 
 export const getCartItemsList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/cart/getAll`, { params });
+    const response = await axiosClient.get(getCartListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificCartItem = async (id) => {
+export const getSpecificCartItems = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/cart/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificCartUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

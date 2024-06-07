@@ -1,12 +1,12 @@
 import {
-  createLocation as createLocationService,
-  updateLocation as updateLocationService,
-  deleteLocation as deleteLocationService,
-  getLocationList as getLocationListService,
-  getSpecificLocation as getSpecificLocationService,
+  createLocations as createLocationService,
+  updateLocations as updateLocationService,
+  deleteLocations as deleteLocationService,
+  getLocationsList as getLocationsListService,
+  getSpecificLocations as getSpecificLocationService,
 } from "./service";
 
-const locationActions = {
+export const locationActions = {
   CREATE_LOCATION_REQUEST: "location/create-location-request",
   CREATE_LOCATION_SUCCESS: "location/create-location-success",
   CREATE_LOCATION_FAILURE: "location/create-location-failure",
@@ -102,28 +102,29 @@ export const deleteLocation = (id) => {
   };
 };
 
-export const getLocationListRequest = () => ({
+// Get locations list request action creators
+export const getLocationsListRequest = () => ({
   type: locationActions.GET_LOCATIONS_LIST_REQUEST,
 });
 
-export const getLocationListSuccess = (data) => ({
+export const getLocationsListSuccess = (data) => ({
   type: locationActions.GET_LOCATIONS_LIST_SUCCESS,
   payload: data,
 });
 
-export const getLocationListFailure = (error) => ({
+export const getLocationsListFailure = (error) => ({
   type: locationActions.GET_LOCATIONS_LIST_FAILURE,
   error: error,
 });
 
-export const getLocationList = (params) => {
+export const getLocationsList = (params) => {
   return async (dispatch) => {
-    dispatch(getLocationListRequest());
+    dispatch(getLocationsListRequest());
     try {
-      const response = await getLocationListService(params);
-      dispatch(getLocationListSuccess(response));
+      const response = await getLocationsListService(params);
+      dispatch(getLocationsListSuccess(response));
     } catch (error) {
-      dispatch(getLocationListFailure(error));
+      dispatch(getLocationsListFailure(error));
     }
   };
 };
@@ -153,5 +154,3 @@ export const getSpecificLocation = (id) => {
     }
   };
 };
-
-export default locationActions;

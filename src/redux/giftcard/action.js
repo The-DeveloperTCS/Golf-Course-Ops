@@ -1,9 +1,9 @@
 import {
-  createGiftcard as createGiftcardService,
-  updateGiftcard as updateGiftcardService,
-  deleteGiftcard as deleteGiftcardService,
+  createGiftcards as createGiftcardService,
+  updateGiftcards as updateGiftcardService,
+  deleteGiftcards as deleteGiftcardService,
   getGiftcardsList as getGiftcardsListService,
-  getSpecificGiftcard as getSpecificGiftcardService,
+  getSpecificGiftcards as getSpecificGiftcardService,
 } from "./service";
 
 const giftcardActions = {

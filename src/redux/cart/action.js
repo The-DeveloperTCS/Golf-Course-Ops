@@ -1,9 +1,9 @@
 import {
-  addCartItem as addCartItemService,
-  updateCartItem as updateCartItemService,
-  deleteCartItem as deleteCartItemService,
-  getCartItemsList as getCartItemsListService,
-  getSpecificCartItem as getSpecificCartItemService,
+  createCartItems as createCartService,
+  updateCartItems as updateCartService,
+  deleteCartItems as deleteCartService,
+  getCartItemsList as getCartsListService,
+  getSpecificCartItems as getSpecificCartService,
 } from "./service";
 
 const cartActions = {
@@ -24,28 +24,28 @@ const cartActions = {
   GET_SPECIFIC_CART_ITEM_FAILURE: "cart/get-specific-cart-item-failure",
 };
 
-export const addCartItemRequest = () => ({
+export const createCartItemRequest = () => ({
   type: cartActions.ADD_CART_ITEM_REQUEST,
 });
 
-export const addCartItemSuccess = (data) => ({
+export const createCartItemSuccess = (data) => ({
   type: cartActions.ADD_CART_ITEM_SUCCESS,
   payload: data,
 });
 
-export const addCartItemFailure = (error) => ({
+export const createCartItemFailure = (error) => ({
   type: cartActions.ADD_CART_ITEM_FAILURE,
   error: error,
 });
 
-export const addCartItem = (data) => {
+export const createCartItem = (data) => {
   return async (dispatch) => {
-    dispatch(addCartItemRequest());
+    dispatch(createCartItemRequest());
     try {
-      const response = await addCartItemService(data);
-      dispatch(addCartItemSuccess(response));
+      const response = await createCartService(data);
+      dispatch(createCartItemSuccess(response));
     } catch (error) {
-      dispatch(addCartItemFailure(error));
+      dispatch(createCartItemFailure(error));
     }
   };
 };
@@ -68,7 +68,7 @@ export const updateCartItem = (id, data) => {
   return async (dispatch) => {
     dispatch(updateCartItemRequest());
     try {
-      const response = await updateCartItemService(id, data);
+      const response = await updateCartService(id, data);
       dispatch(updateCartItemSuccess(response));
     } catch (error) {
       dispatch(updateCartItemFailure(error));
@@ -94,7 +94,7 @@ export const deleteCartItem = (id) => {
   return async (dispatch) => {
     dispatch(deleteCartItemRequest());
     try {
-      const response = await deleteCartItemService(id);
+      const response = await deleteCartService(id);
       dispatch(deleteCartItemSuccess(response));
     } catch (error) {
       dispatch(deleteCartItemFailure(error));
@@ -120,7 +120,7 @@ export const getCartItemsList = (params) => {
   return async (dispatch) => {
     dispatch(getCartItemsListRequest());
     try {
-      const response = await getCartItemsListService(params);
+      const response = await getCartsListService(params);
       dispatch(getCartItemsListSuccess(response));
     } catch (error) {
       dispatch(getCartItemsListFailure(error));
@@ -146,7 +146,7 @@ export const getSpecificCartItem = (id) => {
   return async (dispatch) => {
     dispatch(getSpecificCartItemRequest());
     try {
-      const response = await getSpecificCartItemService(id);
+      const response = await getSpecificCartService(id);
       dispatch(getSpecificCartItemSuccess(response));
     } catch (error) {
       dispatch(getSpecificCartItemFailure(error));

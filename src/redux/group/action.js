@@ -1,9 +1,9 @@
 import {
-  createGroup as createGroupService,
-  updateGroup as updateGroupService,
-  deleteGroup as deleteGroupService,
+  createGroups as createGroupService,
+  updateGroups as updateGroupService,
+  deleteGroups as deleteGroupService,
   getGroupsList as getGroupsListService,
-  getSpecificGroup as getSpecificGroupService,
+  getSpecificGroups as getSpecificGroupService,
 } from "./service";
 
 export const groupActions = {

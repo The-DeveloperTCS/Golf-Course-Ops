@@ -1,32 +1,34 @@
-import axios from "axios";
-import { axiosClient } from "redux/store";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createEmployeeUrl,
+  updateEmployeeUrl,
+  deleteEmployeeUrl,
+  getEmployeesListUrl,
+  getSpecificEmployeeUrl,
+} from "Constants";
 
-export const createEmployee = async (data) => {
+export const createEmployees = async (data) => {
+  console.log(data, "data");
   try {
-    //const response = await axios.post(`${BaseUrl}/employee/add`, data);
-    const response = await axios.post(
-      `http://localhost:3000/employee/add`,
-      data
-    );
+    const response = await axiosClient.post(createEmployeeUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateEmployee = async (id, data) => {
+export const updateEmployees = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/employee/update/${id}`, data);
+    const response = await axiosClient.put(`${updateEmployeeUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteEmployee = async (id) => {
+export const deleteEmployees = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/employee/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteEmployeeUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -35,16 +37,16 @@ export const deleteEmployee = async (id) => {
 
 export const getEmployeesList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/employee/getAll`, { params });
+    const response = await axiosClient.get(getEmployeesListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificEmployee = async (id) => {
+export const getSpecificEmployees = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/employee/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificEmployeeUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

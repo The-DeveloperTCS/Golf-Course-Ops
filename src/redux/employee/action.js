@@ -1,9 +1,9 @@
 import {
-  createEmployee as createEmployeeService,
-  updateEmployee as updateEmployeeService,
-  deleteEmployee as deleteEmployeeService,
+  createEmployees as createEmployeeService,
+  updateEmployees as updateEmployeeService,
+  deleteEmployees as deleteEmployeeService,
   getEmployeesList as getEmployeesListService,
-  getSpecificEmployee as getSpecificEmployeeService,
+  getSpecificEmployees as getSpecificEmployeeService,
 } from "./service";
 
 export const employeeActions = {
@@ -42,12 +42,9 @@ export const createEmployee = (data) => {
   return async (dispatch) => {
     dispatch(createEmployeeRequest());
     try {
-      console.log("Data being sent to service:", data);
       const response = await createEmployeeService(data);
-      console.log("Response from service:", response);
       dispatch(createEmployeeSuccess(response));
     } catch (error) {
-      console.error("Error in creating employee:", error);
       dispatch(createEmployeeFailure(error));
     }
   };

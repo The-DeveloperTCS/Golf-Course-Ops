@@ -1,27 +1,34 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../../redux/store";
+import {
+  createRoleUrl,
+  updateRoleUrl,
+  deleteRoleUrl,
+  getRoleListUrl,
+  getSpecificRoleUrl,
+} from "Constants";
 
-export const createRole = async (data) => {
+export const createRoles = async (data) => {
+  console.log(data, "data");
   try {
-    const response = await axios.post(`${BaseUrl}/role/add`, data);
+    const response = await axiosClient.post(createRoleUrl, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateRole = async (id, data) => {
+export const updateRoles = async (id, data) => {
   try {
-    const response = await axios.put(`${BaseUrl}/role/update/${id}`, data);
+    const response = await axiosClient.put(`${updateRoleUrl}${id}`, data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteRole = async (id) => {
+export const deleteRoles = async (id) => {
   try {
-    const response = await axios.delete(`${BaseUrl}/role/delete/${id}`);
+    const response = await axiosClient.delete(`${deleteRoleUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -30,16 +37,16 @@ export const deleteRole = async (id) => {
 
 export const getRolesList = async (params) => {
   try {
-    const response = await axios.get(`${BaseUrl}/role/getAll`, { params });
+    const response = await axiosClient.get(getRoleListUrl, { params });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getSpecificRole = async (id) => {
+export const getSpecificRoles = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/role/specificId/${id}`);
+    const response = await axiosClient.get(`${getSpecificRoleUrl}${id}`);
     return response.data;
   } catch (error) {
     throw error;

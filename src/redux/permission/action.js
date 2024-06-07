@@ -1,5 +1,10 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import {
+  createPermissions as createPermissionService,
+  updatePermissions as updatePermissionService,
+  deletePermissions as deletePermissionService,
+  getPermissionsList as getPermissionsListService,
+  getSpecificPermissions as getSpecificPermissionService,
+} from "./service";
 
 export const permissionActions = {
   CREATE_PERMISSION_REQUEST: "permission/create-permission-request",
@@ -37,8 +42,8 @@ export const createPermission = (data) => {
   return async (dispatch) => {
     dispatch(createPermissionRequest());
     try {
-      const response = await axios.post(`${BaseUrl}/permission/add`, data);
-      dispatch(createPermissionSuccess(response.data));
+      const response = await createPermissionService(data);
+      dispatch(createPermissionSuccess(response));
     } catch (error) {
       dispatch(createPermissionFailure(error));
     }
@@ -63,11 +68,8 @@ export const updatePermission = (id, data) => {
   return async (dispatch) => {
     dispatch(updatePermissionRequest());
     try {
-      const response = await axios.put(
-        `${BaseUrl}/permission/update/${id}`,
-        data
-      );
-      dispatch(updatePermissionSuccess(response.data));
+      const response = await updatePermissionService(id, data);
+      dispatch(updatePermissionSuccess(response));
     } catch (error) {
       dispatch(updatePermissionFailure(error));
     }
@@ -92,8 +94,8 @@ export const deletePermission = (id) => {
   return async (dispatch) => {
     dispatch(deletePermissionRequest());
     try {
-      const response = await axios.delete(`${BaseUrl}/permission/delete/${id}`);
-      dispatch(deletePermissionSuccess(response.data));
+      const response = await deletePermissionService(id);
+      dispatch(deletePermissionSuccess(response));
     } catch (error) {
       dispatch(deletePermissionFailure(error));
     }
@@ -118,10 +120,8 @@ export const getPermissionsList = (params) => {
   return async (dispatch) => {
     dispatch(getPermissionsListRequest());
     try {
-      const response = await axios.get(`${BaseUrl}/permission/getAll`, {
-        params,
-      });
-      dispatch(getPermissionsListSuccess(response.data));
+      const response = await getPermissionsListService(params);
+      dispatch(getPermissionsListSuccess(response));
     } catch (error) {
       dispatch(getPermissionsListFailure(error));
     }
@@ -146,10 +146,8 @@ export const getSpecificPermission = (id) => {
   return async (dispatch) => {
     dispatch(getSpecificPermissionRequest());
     try {
-      const response = await axios.get(
-        `${BaseUrl}/permission/specificId/${id}`
-      );
-      dispatch(getSpecificPermissionSuccess(response.data));
+      const response = await getSpecificPermissionService(id);
+      dispatch(getSpecificPermissionSuccess(response));
     } catch (error) {
       dispatch(getSpecificPermissionFailure(error));
     }
