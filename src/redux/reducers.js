@@ -1,28 +1,34 @@
-import auth from "./auth/reducer";
-import users from "./users/reducer";
-import notifications from "./notifications/reducer";
-import payment from "./payment/reducer";
 import loader from "./loader/reducer";
 import themeChanger from "./themeChanger/reducer";
 import LanguageSwitcher from "./languageSwitcher/reducer";
 import themeSetting from "./themeSettings/reducer";
 import scrumboard from "./scrumboard/reducer";
 import { combineReducers } from "redux";
+import employee from "./employee/reducer";
+
 import { routerReducer } from "react-router-redux";
 import authActions from "./auth/actions";
+
+import auth from "./auth/reducer";
+import users from "./users/reducer";
+import notifications from "./notifications/reducer";
+import payment from "./payment/reducer";
+
 const createReducer = () => rootReducer;
 
 const appReducer = combineReducers({
-  auth,
-  users,
   loader,
-  notifications,
-  payment,
-  themeChanger,
+  employee,
   LanguageSwitcher,
   themeSetting,
   scrumboard,
   router: routerReducer,
+
+  auth,
+  users,
+  notifications,
+  payment,
+  themeChanger,
 });
 
 const rootReducer = (state, action) => {

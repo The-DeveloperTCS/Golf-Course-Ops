@@ -8,7 +8,6 @@ import {
 } from "Constants";
 
 export const createEmployees = async (data) => {
-  console.log(data, "data");
   try {
     const response = await axiosClient.post(createEmployeeUrl, data);
     return response.data;
@@ -35,9 +34,9 @@ export const deleteEmployees = async (id) => {
   }
 };
 
-export const getEmployeesList = async (params) => {
+export const getEmployeesList = async (limit, pageNo) => {
   try {
-    const response = await axiosClient.get(getEmployeesListUrl, { params });
+    const response = await axiosClient.get(getEmployeesListUrl(limit, pageNo));
     return response.data;
   } catch (error) {
     throw error;

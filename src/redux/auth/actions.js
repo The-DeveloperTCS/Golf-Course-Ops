@@ -1,5 +1,6 @@
 import { login, permissions } from "./service";
 import { history } from "../store";
+import notificationActions from "redux/notifications/actions";
 
 const authActions = {
   LOGIN_REQUEST: "auth/login-request",
@@ -25,7 +26,16 @@ const authActions = {
           history.push("/employee");
         })
         .catch((err) => {
-          dispatch({ type: authActions.LOGIN_FAILURE, message: err.message });
+          console.log(err, "errrrr");
+          dispatch({
+            type: authActions.LOGIN_FAILURE,
+            message: err.response.data.message,
+          });
+          dispatch(
+            notificationActions.failure(
+              "Failed to login, " + err.response.data.message
+            )
+          );
         });
     };
   },

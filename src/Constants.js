@@ -13,22 +13,24 @@ import axios from "axios";
 
 //export const LoginOTPUrl = BaseUrl + "loginVerify";
 
+//export const PermissionsUrl = "http://localhost:3000/permission/byRole";
+
+//export const PermissionsUrl = BaseUrl + "authz/permission";
+
 export const BaseUrl = "http://localhost:3000/";
 
 export const LoginUrl = BaseUrl + "user/login";
 export const PermissionsUrl = BaseUrl + "permission/byRole";
 export const LoginOTPUrl = BaseUrl + "loginVerify";
 
-//export const PermissionsUrl = "http://localhost:3000/permission/byRole";
-
-//export const PermissionsUrl = BaseUrl + "authz/permission";
-
 //Employee Endpoints
+export const getEmployeesListUrl = (limit, pageNo) =>
+  BaseUrl + `employee/getAll/?page=${pageNo}&limit=${limit}`;
 
 export const createEmployeeUrl = BaseUrl + "employee/add";
 export const updateEmployeeUrl = BaseUrl + "employee/update/";
 export const deleteEmployeeUrl = BaseUrl + "employee/delete/";
-export const getEmployeesListUrl = BaseUrl + "employee/getAll";
+// export const getEmployeesListUrl = BaseUrl + "employee/getAll";
 export const getSpecificEmployeeUrl = BaseUrl + "employee/specificId/";
 
 //const loginUser = (data) => axios.post(LoginUrl, data);

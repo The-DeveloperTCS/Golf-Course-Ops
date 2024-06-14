@@ -1,8 +1,6 @@
 import Intro from "views/Intro";
-import BulkPayment from "views/pages/payment/BulkPayment";
-import NotFound from "views/pages/NotFound";
-import AccessManagement from "views/pages/authentication/AccessManagement";
-import Employee from "views/pages/employees/Employees";
+import EmployeesList from "views/pages/employees/EmployeesList";
+
 import Locations from "views/pages/location/Locations";
 import AdminTeeSheet from "views/pages/adminTeeSheet/AdminTeeSheet";
 import AdminTeeSheet2 from "views/pages/adminTeeSheet/AdminTeeSheet2";
@@ -19,11 +17,20 @@ import Cart from "views/pages/cart/Cart";
 import Department from "views/pages/department/Department";
 import GiftCard from "views/pages/giftcard/GiftCard";
 
+import AccessManagement from "views/pages/authentication/AccessManagement";
+import NotFound from "views/pages/NotFound";
+import BulkPayment from "views/pages/payment/BulkPayment";
 
 const dashboardRoutes = [
-  // { path: "/intro", component: Intro, resource: "" },
-  { path: "/employee", component: Employee, resource: "" },
+  { path: "/intro", component: Intro, resource: "view_dashboards" },
+
+  {
+    path: "/employee",
+    component: EmployeesList,
+    resource: "access_employee_data",
+  },
   { path: "/location", component: Locations, resource: "" },
+
   { path: "/adminTeeSheet", component: AdminTeeSheet, resource: "" },
   { path: "/adminTeeSheet2", component: AdminTeeSheet2, resource: "" },
   { path: "/clockIn", component: ClockIn, resource: "" },
