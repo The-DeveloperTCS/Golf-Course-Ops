@@ -71,10 +71,10 @@ function GiftCards() {
   };
 
   const createGiftcard = async () => {
-    console.log(giftCardData, "giftCardData");
+    // console.log(giftCardData, "giftCardData");
     createGiftcards(giftCardData)
       .then((res) => {
-        console.log(res, "response ");
+        // console.log(res, "response ");
       })
       .catch((err) => {
         console.log(err.data.message, "error");

@@ -8,7 +8,7 @@ import {
 } from "Constants";
 
 export const createGroups = async (data) => {
-  console.log(data, "data");
+  // console.log(data, "data");
   try {
     const response = await axiosClient.post(createGroupUrl, data);
     return response.data;

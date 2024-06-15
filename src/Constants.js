@@ -26,14 +26,31 @@ export const LoginOTPUrl = BaseUrl + "loginVerify";
 //Employee Endpoints
 export const getEmployeesListUrl = (limit, pageNo) =>
   BaseUrl + `employee/getAll/?page=${pageNo}&limit=${limit}`;
-
 export const createEmployeeUrl = BaseUrl + "employee/add";
-export const updateEmployeeUrl = BaseUrl + "employee/update/";
-export const deleteEmployeeUrl = BaseUrl + "employee/delete/";
-// export const getEmployeesListUrl = BaseUrl + "employee/getAll";
-export const getSpecificEmployeeUrl = BaseUrl + "employee/specificId/";
+export const updateEmployeeUrl = (id) => BaseUrl + `employee/update/${id}`;
+export const getSpecificEmployeeUrl = (id) =>
+  BaseUrl + `employee/specificId/${id}`;
+export const deleteEmployeeUrl = (id) => BaseUrl + `employee/delete/${id}`;
 
-//const loginUser = (data) => axios.post(LoginUrl, data);
+//Role Endpoints
+
+export const getRoleListUrl = (pageNo, limit) =>
+  BaseUrl + `role/getAll?page=${pageNo}&limit=${limit}`;
+
+export const createRoleUrl = BaseUrl + "/role/add";
+export const updateRoleUrl = BaseUrl + "/role/update/";
+export const deleteRoleUrl = BaseUrl + "/role/delete/";
+export const getSpecificRoleUrl = BaseUrl + "/role/specificId/";
+
+//Terminal Endpoints
+
+export const getTerminalListUrl = (pageNo, limit) =>
+  BaseUrl + `terminal/getAll?page=${pageNo}&limit=${limit}`;
+
+export const createTerminalUrl = BaseUrl + "/terminal/add";
+export const updateTerminalUrl = BaseUrl + "/terminal/update/";
+export const deleteTerminalUrl = BaseUrl + "/terminal/delete/";
+export const getSpecificCTerminalUrl = BaseUrl + "/terminal/specificId/";
 
 //Location Endpoints
 
@@ -86,14 +103,6 @@ export const deleteCustomerUrl = BaseUrl + "/customer/delete/";
 export const getCustomerListUrl = BaseUrl + "/customer/getAll/";
 export const getSpecificCustomerUrl = BaseUrl + "/customer/specificId/";
 
-//Terminal Endpoints
-
-export const createTerminalUrl = BaseUrl + "/terminal/add";
-export const updateTerminalUrl = BaseUrl + "/terminal/update/";
-export const deleteTerminalUrl = BaseUrl + "/terminal/delete/";
-export const getTerminalListUrl = BaseUrl + "/terminal/getAll/";
-export const getSpecificCTerminalUrl = BaseUrl + "/terminal/specificId/";
-
 //Group Endpoints
 
 export const createGroupUrl = BaseUrl + "/group/add";
@@ -133,14 +142,6 @@ export const updatePermissionUrl = BaseUrl + "/permission/update/";
 export const deletePermissionUrl = BaseUrl + "/permission/delete/";
 export const getPermissionListUrl = BaseUrl + "/permission/getAll/";
 export const getSpecificPermissionUrl = BaseUrl + "/permission/specificId/";
-
-//Role Endpoints
-
-export const createRoleUrl = BaseUrl + "/role/add";
-export const updateRoleUrl = BaseUrl + "/role/update/";
-export const deleteRoleUrl = BaseUrl + "/role/delete/";
-export const getRoleListUrl = BaseUrl + "/role/getAll/";
-export const getSpecificRoleUrl = BaseUrl + "/role/specificId/";
 
 //PermissionByRole Endpoints
 

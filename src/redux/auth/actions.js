@@ -21,9 +21,9 @@ const authActions = {
     return (dispatch) => {
       login(email, password)
         .then((res) => {
-          console.log(res, "response");
+          // console.log(res, "response");
           dispatch(authActions.login(res.token));
-          history.push("/employee");
+          history.push("/intro");
         })
         .catch((err) => {
           console.log(err, "errrrr");
@@ -41,7 +41,7 @@ const authActions = {
   },
 
   login: (data) => {
-    console.log(data, "data");
+    // console.log(data, "data");
     return {
       type: authActions.LOGIN_SUCCESS,
       isLogin: true,
@@ -60,7 +60,7 @@ const authActions = {
   },
 
   permissionsUpdated: (data) => {
-    console.log(data, "data permissions");
+    // console.log(data, "data permissions");
     return {
       type: authActions.PERMISSIONS_UPDATED,
       permissions: data,

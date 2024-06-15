@@ -54,10 +54,10 @@ function Departments() {
   };
 
   const createDepartment = async () => {
-    console.log(departmentData, "cartData");
+    // console.log(departmentData, "cartData");
     createDepartments(departmentData)
       .then((res) => {
-        console.log(res, "response ");
+        // console.log(res, "response ");
       })
       .catch((err) => {
         console.log(err.data.message, "error");

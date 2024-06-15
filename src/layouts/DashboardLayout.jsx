@@ -60,7 +60,7 @@ const DashboardLayout = (props) => {
     }
   }, []);
 
-  console.log(props, "props");
+  // console.log(props, "props");
 
   const allowedPermissions = useMemo(() => {
     return props.authData.permissions.map((p) => p.name);

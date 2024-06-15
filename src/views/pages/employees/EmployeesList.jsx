@@ -22,10 +22,6 @@ const EmployeesList = (props) => {
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
-  useEffect(() => {
-    startLoader(true);
-  }, []);
-
   const handleChangePage = (event) => {
     fetchEmployeesPagination(pageLimit, event);
   };
@@ -109,26 +105,44 @@ const EmployeesList = (props) => {
   return loader ? (
     <Loader />
   ) : (
-    <div>
-      <div className="mb-6 plr-15">
-        <div className="introduction">Employee List</div>
-        <DataTableWithPagination
-          title="Employee List"
-          columns={columns}
-          data={employeesData}
-          totalCount={totalCount}
-          pageLimit={rowPerPage}
-          pageNo={page}
-          totalPages={totalPages}
-          handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage}
-        ></DataTableWithPagination>
+    <div className="row ma-0">
+      <div className="col-lg-12 ptb-15">
+        <div className="roe-card-style">
+          <div className="roe-card-header flex center">
+            <div className="flex-1 mr-15 my-title ml-1">
+              Employee List{" "}
+              <span className="pull-right">
+                {/* {useSupplierPermission && ( */}
+                <button
+                  className="c-btn ma-5 c-outline-info"
+                  onClick={() => props.history.push("/employee/new")}
+                >
+                  <i className="fas fa-plus" /> New Employee
+                </button>
+                {/* )} */}
+              </span>
+            </div>
+          </div>
+
+          <div className="roe-card-body">
+            <DataTableWithPagination
+              columns={columns}
+              data={employeesData}
+              totalCount={totalCount}
+              pageLimit={rowPerPage}
+              pageNo={page}
+              totalPages={totalPages}
+              handleChangePage={handleChangePage}
+              handleChangeRowsPerPage={handleChangeRowsPerPage}
+            ></DataTableWithPagination>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     employees: state.employee.employees,
     pageLimit: state.employee.pageLimit,

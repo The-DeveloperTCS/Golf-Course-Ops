@@ -1,5 +1,7 @@
 import Intro from "views/Intro";
 import EmployeesList from "views/pages/employees/EmployeesList";
+import NewEmployee from "views/pages/employees/NewEmployee";
+import EmployeeSingle from "views/pages/employees/SingleEmployee";
 
 import Locations from "views/pages/location/Locations";
 import AdminTeeSheet from "views/pages/adminTeeSheet/AdminTeeSheet";
@@ -22,12 +24,23 @@ import NotFound from "views/pages/NotFound";
 import BulkPayment from "views/pages/payment/BulkPayment";
 
 const dashboardRoutes = [
-  { path: "/intro", component: Intro, resource: "view_dashboards" },
+  { path: "/intro", component: Intro, resource: "generate_reports" },
 
   {
-    path: "/employee",
+    path: "/employee/list",
     component: EmployeesList,
-    resource: "access_employee_data",
+    resource: "generate_reports",
+  },
+
+  {
+    path: "/employee/new",
+    component: NewEmployee,
+    resource: "generate_reports",
+  },
+  {
+    path: "/employee/:employeeId(\\d+)",
+    component: EmployeeSingle,
+    resource: "generate_reports",
   },
   { path: "/location", component: Locations, resource: "" },
 

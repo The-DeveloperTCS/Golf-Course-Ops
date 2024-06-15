@@ -8,7 +8,7 @@ import {
 } from "Constants";
 
 export const createUsers = async (data) => {
-  console.log(data, "data");
+  // console.log(data, "data");
   try {
     const response = await axiosClient.post(createUserUrl, data);
     return response.data;

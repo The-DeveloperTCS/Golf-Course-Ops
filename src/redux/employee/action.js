@@ -21,10 +21,10 @@ const employeeActions = {
   employeesFetchedPagination: (data) => {
     return {
       type: employeeActions.EMPLOYEES_FETCHED_PAGINATION,
-      employees: [],
-      total: data.count,
-      pageLimit: data.limit,
-      pageNo: data.page,
+      employees: data.employees,
+      total: 1,
+      pageLimit: 1,
+      pageNo: 1,
     };
   },
 
@@ -32,8 +32,8 @@ const employeeActions = {
     return (dispatch) => {
       getEmployeesList(limit, pageNo)
         .then((res) => {
-          dispatch(employeeActions.employeesFetchedPagination(res.data));
-          // dispatch(employeeActions.loaderOff());
+          dispatch(employeeActions.employeesFetchedPagination(res));
+          dispatch(employeeActions.loaderOff());
         })
         .catch((err) => {
           dispatch({
@@ -41,7 +41,7 @@ const employeeActions = {
             message: err.response.data.message,
           });
           dispatch(notificationActions.failure(err.response.data.message));
-          // dispatch(employeeActions.loaderOff());
+          dispatch(employeeActions.loaderOff());
         });
     };
   },

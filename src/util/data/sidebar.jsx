@@ -3,13 +3,13 @@ export const sidebarData = [
     name: "sidebar.intro",
     routepath: "/Intro",
     iconClass: "fa fa-desktop",
-    resource: "view_dashboards",
+    resource: "generate_reports",
   },
   {
     name: "sidebar.employee",
-    routepath: "/employee",
+    routepath: "/employee/list",
     iconClass: "fa fa-address-book",
-    resource: "access_employee_data",
+    resource: "generate_reports",
   },
 
   // {
@@ -157,13 +157,13 @@ export const HorizontalSidebarData = [
     name: "sidebar.intro",
     routepath: "/Intro",
     iconClass: "fas fa-chalkboard",
-    resource: "view_dashboards",
+    resource: "generate_reports",
   },
   {
     name: "sidebar.employee",
-    routepath: "/employee",
+    routepath: "/employee/list",
     iconClass: "fa fa-address-book",
-    resource: "access_employee_data",
+    resource: "generate_reports",
   },
 
   // {

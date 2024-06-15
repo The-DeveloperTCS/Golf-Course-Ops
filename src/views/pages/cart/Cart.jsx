@@ -72,10 +72,10 @@ function Carts() {
   };
 
   const createCartItem = async () => {
-    console.log(cartData, "cartData");
+    // console.log(cartData, "cartData");
     createCartItems(cartData)
       .then((res) => {
-        console.log(res, "response ");
+        // console.log(res, "response ");
       })
       .catch((err) => {
         console.log(err.data.message, "error");

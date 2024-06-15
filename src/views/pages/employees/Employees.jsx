@@ -349,10 +349,10 @@ function Employees() {
   };
 
   const createEmployee = async () => {
-    console.log(employeeData, "employeeData");
+    // console.log(employeeData, "employeeData");
     createEmployees(employeeData)
       .then((res) => {
-        console.log(res, "response ");
+        // console.log(res, "response ");
       })
       .catch((err) => {
         console.log(err.data.message, "error");

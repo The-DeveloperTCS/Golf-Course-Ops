@@ -1,4 +1,4 @@
-import { employeeActions } from "./action";
+import employeeActions from "./action";
 
 const initialState = {
   employees: [],
@@ -12,14 +12,14 @@ const initialState = {
 
 export default function employeeReducer(state = initialState, action) {
   switch (action.type) {
-    // case employeeActions.EMPLOYEES_FETCHED_PAGINATION:
-    //   return {
-    //     ...state,
-    //     employees: [...action.employees],
-    //     total: action.total,
-    //     pageLimit: action.pageLimit,
-    //     pageNo: action.pageNo,
-    //   };
+    case employeeActions.EMPLOYEES_FETCHED_PAGINATION:
+      return {
+        ...state,
+        employees: [...action.employees],
+        total: action.total,
+        pageLimit: action.pageLimit,
+        pageNo: action.pageNo,
+      };
 
     // case employeeActions.CREATE_EMPLOYEE_REQUEST:
     // case employeeActions.UPDATE_EMPLOYEE_REQUEST:

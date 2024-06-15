@@ -1,110 +1,208 @@
-import React from "react";
-import ReactTableWrapper from "./reacttbl.style";
+import React, { useMemo } from "react";
+import { useTable, useSortBy, useFilters, usePagination } from "react-table";
 import classnames from "classnames";
-import Pagination from "components/common/PaginationWitAPI";
-import { Link } from "react-router-dom";
+import Pagination from "components/common/Pagination";
+import ReactTableWrapper from "./reacttbl.style";
 import { history } from "redux/store";
+import moment from "moment";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { deleteEmployees } from "redux/employee/service";
+import loaderActions from "redux/loader/actions";
+import EmployeeActions from "redux/employee/action";
+const { startLoader, endLoader } = loaderActions;
+const { fetchEmployeesPagination } = EmployeeActions;
 
-export default function StickyHeadTable(props) {
-  let classesOrderSorted = {
+const HeaderComponent = (props) => {
+  let classes = {
     "my-2": true,
     "mx-3": true,
-    "-sort-asc": !props.orderIdSorted,
-    "-sort-desc": props.orderIdSorted,
+    "-sort-asc": props.isSortedDesc !== undefined && !props.isSortedDesc,
+    "-sort-desc": props.isSortedDesc !== undefined && props.isSortedDesc,
+  };
+  return <div className={classnames(classes)}>{props.title}</div>;
+};
+
+const DataTable = (props) => {
+  const sortBy = useMemo(() => {
+    return props.sortBy || [];
+  }, [props.sortBy]);
+  const columns = useMemo(
+    () =>
+      props.columns.map((c) => {
+        const colDef = {
+          Header: (tableInstance) => {
+            return (
+              <HeaderComponent
+                isSortedDesc={tableInstance.column.isSortedDesc}
+                title={c.title}
+              />
+            );
+          },
+          placeholder: c.title,
+          accessor: c.field,
+          disableFilters: !c.enableFilters,
+        };
+
+        if (c.id) {
+          colDef.id = c.id;
+        }
+
+        if (c.cell) {
+          colDef.Cell = c.cell;
+        }
+        if (c.enableFilters) {
+          colDef.Filter = FilterComponent;
+        }
+
+        return colDef;
+      }),
+    [props.columns]
+  );
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    prepareRow,
+    page,
+    headerGroups,
+    pageCount,
+    gotoPage,
+    state: { pageIndex },
+  } = useTable(
+    {
+      data: props.data,
+      columns: columns,
+      initialState: {
+        pageSize: 25,
+        pageIndex: 0,
+        sortBy: sortBy,
+      },
+    },
+    useFilters,
+    useSortBy,
+    usePagination
+  );
+
+  const onEdit = (eId, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    history.push("/employee/" + eId);
   };
 
-  let classesDateSorted = {
-    "my-2": true,
-    "mx-3": true,
-    "-sort-asc": !props.dateSorted,
-    "-sort-desc": props.dateSorted,
-  };
-
-  let classesTotalSorted = {
-    "my-2": true,
-    "mx-3": true,
-    "-sort-asc": !props.totalSorted,
-    "-sort-desc": props.totalSorted,
+  const onDelete = (eId, e) => {
+    startLoader(true);
+    e.preventDefault();
+    e.stopPropagation();
+    deleteEmployees(eId)
+      .then((res) => {
+        console.log(res, "response");
+        fetchEmployeesPagination(25, 1);
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in emploayee table");
+      });
   };
 
   return (
     <ReactTableWrapper {...props}>
       <div className="table-container text-center overflow-auto">
-        <table border={1} className="custom-react-table-theme-class">
+        <table
+          border={1}
+          className="custom-react-table-theme-class"
+          {...getTableProps()}
+        >
           <thead>
-            {props.columns.map((column) => (
-              <th>
-                {column.enableFilters ? (
-                  <div
-                    className={classnames(
-                      column.id === "name" ? classesOrderSorted : ""
-                    )}
-                    onClick={() => props.onSort(column.id)}
-                  >
-                    {column.title}
-                  </div>
-                ) : (
-                  column.title
-                )}
-              </th>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((header) => (
+                  <th {...header.getHeaderProps(header.getSortByToggleProps())}>
+                    <div>{header.render("Header")}</div>
+                  </th>
+                ))}
+              </tr>
             ))}
           </thead>
-          <tbody>
-            {props.columns.map((column) => (
-              <td>
-                {column.id === "name" ? (
-                  <input
-                    type="number"
-                    value={props.orderIdValue || ""}
-                    onChange={(e) => {
-                      // props.setOrderIdValue(e.target.value); // Set undefined to remove the filter entirely
-                    }}
-                    onBlur={(e) => {
-                      // props.onChangeFilter(props.orderIdValue || "", column.id);
-                    }}
-                    onKeyPress={(event) => {
-                      // if (event.key === "Enter") {
-                      //   props.onChangeFilter(
-                      //     props.orderIdValue || "",
-                      //     column.id
-                      //   );
-                      // }
-                    }}
-                    className="tabl-search react-form-input"
-                    placeholder={`${column.title}`}
-                  />
-                ) : null}
-              </td>
+          <tbody {...getTableBodyProps()}>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <td
+                      {...header.getHeaderProps(header.getSortByToggleProps())}
+                    >
+                      <div>
+                        {header.canFilter ? header.render("Filter") : null}
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr>
             ))}
+
             {props.data.map((row) => {
               return (
                 <tr>
                   <Link
                     target="_blank"
-                    // to={`/orders/${row.id}`}
+                    to={`/employee/${row.id}`}
                     style={{ textDecoration: "none" }}
                   >
                     <td style={{ border: 0 }}>{row.id}</td>
                   </Link>
 
-                  <td>{""}</td>
-                  <td>{""}</td>
-                  <td>{""}</td>
-                  <td>{""}</td>
-                  <td>{""}</td>
-                  <td>{""}</td>
+                  <td>{moment(row.createdAt).format("LL")}</td>
+                  <td>{row.firstName}</td>
+                  <td>{row.lastName}</td>
+                  <td>{row.phoneNumber}</td>
+                  <td>{row.emailAddress}</td>
+                  <td>{row.username}</td>
+                  <td>{row.defaultTerminal}</td>
+                  <td>{row.status}</td>
+                  <td>
+                    <button
+                      className="btn c-btn-sm c-outline-danger ma-5"
+                      onClick={(e) => onDelete(row.id, e)}
+                    >
+                      <i className="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <button
+                      className="btn c-btn-sm c-outline-primary ma-5"
+                      onClick={(e) => onEdit(row.id, e)}
+                    >
+                      <i className="fas fa-edit"></i>
+                    </button>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
       </div>
-
-      <Pagination
-        handleChangePage={props.handleChangePage}
-        totalPages={props.totalPages}
-        pageNo={props.pageNo - 1}
-      />
+      <Pagination onPageChange={gotoPage} pages={pageCount} page={pageIndex} />
     </ReactTableWrapper>
   );
-}
+};
+
+const FilterComponent = (tableInstance) => {
+  const { filterValue, setFilter } = tableInstance.column;
+  return (
+    <input
+      type="text"
+      value={filterValue || ""}
+      onChange={(e) => {
+        setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+      }}
+      className="tabl-search react-form-input"
+      placeholder={`${tableInstance.column.placeholder}`}
+      onClick={(e) => e.stopPropagation()}
+    />
+  );
+};
+
+export default connect(null, {
+  fetchEmployeesPagination,
+  startLoader,
+  endLoader,
+})(DataTable);

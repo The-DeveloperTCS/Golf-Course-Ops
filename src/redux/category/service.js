@@ -8,7 +8,7 @@ import {
 } from "Constants";
 
 export const createCategories = async (data) => {
-  console.log(data, "data");
+  // console.log(data, "data");
   try {
     const response = await axiosClient.post(createCategoryUrl, data);
     return response.data;

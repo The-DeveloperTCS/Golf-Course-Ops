@@ -7,33 +7,6 @@ import {
   getSpecificEmployeeUrl,
 } from "Constants";
 
-export const createEmployees = async (data) => {
-  try {
-    const response = await axiosClient.post(createEmployeeUrl, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const updateEmployees = async (id, data) => {
-  try {
-    const response = await axiosClient.put(`${updateEmployeeUrl}${id}`, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const deleteEmployees = async (id) => {
-  try {
-    const response = await axiosClient.delete(`${deleteEmployeeUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
 export const getEmployeesList = async (limit, pageNo) => {
   try {
     const response = await axiosClient.get(getEmployeesListUrl(limit, pageNo));
@@ -43,11 +16,18 @@ export const getEmployeesList = async (limit, pageNo) => {
   }
 };
 
-export const getSpecificEmployees = async (id) => {
-  try {
-    const response = await axiosClient.get(`${getSpecificEmployeeUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createEmployees = (req) => {
+  return axiosClient.post(createEmployeeUrl, req);
+};
+
+export const updateEmployeeDetails = (employeeId, req) => {
+  return axiosClient.post(updateEmployeeUrl(employeeId), req);
+};
+
+export const getSpecificEmployee = async (employeeId) => {
+  return axiosClient.get(getSpecificEmployeeUrl(employeeId));
+};
+
+export const deleteEmployees = async (employeeId) => {
+  return axiosClient.delete(deleteEmployeeUrl(employeeId));
 };
