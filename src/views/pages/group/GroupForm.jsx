@@ -345,12 +345,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.firstName}
+                      value={updatedEmployee.first_name}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          firstName: e.target.value,
+                          first_name: e.target.value,
                         })
                       }
                     />
@@ -362,12 +362,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.lastName}
+                      value={updatedEmployee.last_name}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          lastName: e.target.value,
+                          last_name: e.target.value,
                         })
                       }
                     />
@@ -376,7 +376,7 @@ const EmployeeForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Gender</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-10">
                     <Select
                       value={
                         updatedEmployee.gender
@@ -396,7 +396,7 @@ const EmployeeForm = (props) => {
                     />
                   </div>
                 </div>
-                {/* <div className="form-group row">
+                <div className="form-group row">
                   <label className="col-sm-4 col-form-label">
                     Date Of Birth
                   </label>
@@ -407,18 +407,18 @@ const EmployeeForm = (props) => {
                         style={{ width: "50%" }}
                         // label="Received Date"
                         inputFormat="dd/MM/yyyy"
-                        value={updatedEmployee.dateOfBirth}
+                        value={updatedEmployee.date_of_birth}
                         onChange={(newValue) =>
                           setUpdateEmployee({
                             ...updatedEmployee,
-                            dateOfBirth: newValue,
+                            date_of_birth: newValue,
                           })
                         }
                         renderInput={(params) => <TextField {...params} />}
                       />
                     </LocalizationProvider>
                   </div>
-                </div> */}
+                </div>
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">
@@ -428,12 +428,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="email"
                       className="form-control react-form-input"
-                      value={updatedEmployee.emailAddress}
+                      value={updatedEmployee.email_address}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          emailAddress: e.target.value,
+                          email_address: e.target.value,
                         })
                       }
                     />
@@ -445,14 +445,14 @@ const EmployeeForm = (props) => {
                   </label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control react-form-input"
-                      value={updatedEmployee.phoneNumber}
+                      value={updatedEmployee.phone_number}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          phoneNumber: e.target.value,
+                          phone_number: e.target.value,
                         })
                       }
                     />
@@ -462,14 +462,14 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">Cell Number</label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control react-form-input"
-                      value={updatedEmployee.cellPhoneNumber}
+                      value={updatedEmployee.cell_phone_number}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          cellPhoneNumber: e.target.value,
+                          cell_phone_number: e.target.value,
                         })
                       }
                     />
@@ -552,12 +552,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.zipCode}
+                      value={updatedEmployee.zip_code}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          zipCode: e.target.value,
+                          zip_code: e.target.value,
                         })
                       }
                     />
@@ -570,12 +570,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.jobTitle}
+                      value={updatedEmployee.job_title}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          jobTitle: e.target.value,
+                          job_title: e.target.value,
                         })
                       }
                     />
@@ -587,12 +587,12 @@ const EmployeeForm = (props) => {
                   <div className="col-sm-8">
                     <Select
                       value={terminals?.find(
-                        (c) => c.value === updatedEmployee.defaultTerminal
+                        (c) => c.value === updatedEmployee.terminal_id
                       )}
                       onChange={(e) => {
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          defaultTerminal: e.value,
+                          terminal_id: e.value,
                         });
                       }}
                       options={terminals}
@@ -604,14 +604,14 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">Card Number</label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control react-form-input"
-                      value={updatedEmployee.cardNumber}
+                      value={updatedEmployee.card_number}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          cardNumber: e.target.value,
+                          card_number: e.target.value,
                         })
                       }
                     />
@@ -624,30 +624,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.pinNumber}
+                      value={updatedEmployee.pin_number}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          pinNumber: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Hourly Rate</label>
-                  <div className="col-sm-8">
-                    <input
-                      type="number"
-                      className="form-control react-form-input"
-                      value={updatedEmployee.hourlyRate}
-                      //   disabled={!useSupplierPermission}
-                      onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          hourlyRate: e.target.value,
+                          pin_number: e.target.value,
                         })
                       }
                     />
@@ -739,12 +721,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.confirmPassword}
+                      value={updatedEmployee.confirm_password}
                       //   disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateEmployee({
                           ...updatedEmployee,
-                          confirmPassword: e.target.value,
+                          confirm_password: e.target.value,
                         })
                       }
                     />

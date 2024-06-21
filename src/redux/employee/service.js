@@ -21,7 +21,7 @@ export const createEmployees = (req) => {
 };
 
 export const updateEmployeeDetails = (employeeId, req) => {
-  return axiosClient.post(updateEmployeeUrl(employeeId), req);
+  return axiosClient.patch(updateEmployeeUrl(employeeId), req);
 };
 
 export const getSpecificEmployee = async (employeeId) => {

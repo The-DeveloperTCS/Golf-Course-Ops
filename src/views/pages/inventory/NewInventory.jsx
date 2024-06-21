@@ -3,37 +3,37 @@ import { bindActionCreators } from "redux";
 import EmployeeActions from "redux/employee/action";
 import NotificationActions from "redux/notifications/actions";
 import { createEmployees } from "redux/employee/service";
-import EmployeeForm from "./EmployeeForm";
+import EmployeeForm from "./InventoryForm";
 
 const defaultEmployee = {
   title: "",
   content: "",
-  imageUrl: null,
-  categoryId: null,
+  image_url: "",
+  category_id: null,
   user_id: null,
-  firstName: "",
-  lastName: "",
+  first_name: "",
+  last_name: "",
   gender: "",
-  emailAddress: "",
+  email_address: "",
   password: "",
-  phoneNumber: "",
-  cellPhoneNumber: "",
+  phone_number: "",
+  cell_phone_number: "",
   username: "",
-  dateOfBirth: "",
+  date_of_birth: "",
   address: "",
   city: "",
   state: "",
-  zipCode: "",
-  jobTitle: "",
-  pinNumber: "",
-  cardNumber: "",
-  defaultTerminal: "",
+  zip_code: "",
+  job_title: "",
+  pin_number: "",
+  card_number: "",
+  default_terminal: "",
   comments: "",
   role: "",
-  isEmailVerified: false,
+  is_email_verified: false,
   status: "Active",
-  profilePicture: "",
-  hourlyRate: 0,
+  profile_picture: "",
+  hourly_rate: 0,
 };
 
 const NewEmployee = (props) => {
