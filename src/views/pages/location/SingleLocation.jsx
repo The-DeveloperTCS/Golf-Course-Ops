@@ -2,54 +2,54 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./LocationForm";
+import LocationForm from "./LocationForm";
 import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+  updateLocationDetails,
+  getSpecificLocation,
+} from "redux/location/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const LocationSingle = (props) => {
+  const { locationId } = props;
+  const [locationDetail, setLocationDetails] = useState({});
 
   useEffect(() => {
-    getCityDetails();
-  }, [employeeId]);
+    getLocationDetails();
+  }, [locationId]);
 
-  const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+  const getLocationDetails = async () => {
+    getSpecificLocation(locationId).then((res) => {
+      setLocationDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onLocationSave = async (updatedLocation) => {
+    return updateLocationDetails(locationId, updatedLocation)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
+          `Location #${res.data.id} updated successfully!`
         );
-        props.history.push("/employee/list");
+        props.history.push("/location/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Location #${updatedLocation.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+    <LocationForm
+      updateEmployee={locationDetail}
+      locationId={locationId}
+      onSave={onLocationSave}
     />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const locationId = parseInt(ownProps.match.params.locationId);
   return {
-    employeeId: employeeId,
+    locationId: locationId,
   };
 };
 
@@ -60,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationSingle);

@@ -396,7 +396,7 @@ const EmployeeForm = (props) => {
                     />
                   </div>
                 </div>
-                {/* <div className="form-group row">
+                <div className="form-group row">
                   <label className="col-sm-4 col-form-label">
                     Date Of Birth
                   </label>
@@ -406,8 +406,8 @@ const EmployeeForm = (props) => {
                         // disabled={!usePaymentPermission}
                         style={{ width: "50%" }}
                         // label="Received Date"
-                        inputFormat="dd/MM/yyyy"
-                        value={updatedEmployee.dateOfBirth}
+                        // inputFormat="dd/MM/yyyy"
+                        // value={updatedEmployee?.dateOfBirth}
                         onChange={(newValue) =>
                           setUpdateEmployee({
                             ...updatedEmployee,
@@ -418,7 +418,7 @@ const EmployeeForm = (props) => {
                       />
                     </LocalizationProvider>
                   </div>
-                </div> */}
+                </div>
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">
@@ -445,7 +445,7 @@ const EmployeeForm = (props) => {
                   </label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control react-form-input"
                       value={updatedEmployee.phoneNumber}
                       //   disabled={!useSupplierPermission}
@@ -462,7 +462,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">Cell Number</label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control react-form-input"
                       value={updatedEmployee.cellPhoneNumber}
                       //   disabled={!useSupplierPermission}
@@ -604,7 +604,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">Card Number</label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control react-form-input"
                       value={updatedEmployee.cardNumber}
                       //   disabled={!useSupplierPermission}
@@ -622,7 +622,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">Pin Number</label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control react-form-input"
                       value={updatedEmployee.pinNumber}
                       //   disabled={!useSupplierPermission}
@@ -717,7 +717,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">Password</label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="password"
                       className="form-control react-form-input"
                       value={updatedEmployee.password}
                       //   disabled={!useSupplierPermission}
@@ -737,7 +737,7 @@ const EmployeeForm = (props) => {
                   </label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="password"
                       className="form-control react-form-input"
                       value={updatedEmployee.confirmPassword}
                       //   disabled={!useSupplierPermission}

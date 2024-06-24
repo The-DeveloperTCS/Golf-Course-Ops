@@ -4,6 +4,7 @@ import DataTableWithPagination from "components/table/DataTablePagination";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import EmployeeActions from "redux/employee/action";
+import { deleteEmployees } from "redux/employee/service";
 const { startLoader, endLoader } = loaderActions;
 const { fetchEmployeesPagination } = EmployeeActions;
 
@@ -39,6 +40,20 @@ const EmployeesList = (props) => {
     setTimeout(() => {
       fetchEmployeesPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteEmployee = (id, e) => {
+    startLoader(true);
+    e.preventDefault();
+    e.stopPropagation();
+    deleteEmployees(id)
+      .then((res) => {
+        fetchEmployeesByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in emploayee table");
+      });
   };
 
   useMemo(() => {
@@ -134,6 +149,7 @@ const EmployeesList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteEmployee={deleteEmployee}
             ></DataTableWithPagination>
           </div>
         </div>

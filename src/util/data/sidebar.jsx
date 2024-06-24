@@ -2,96 +2,96 @@ export const sidebarData = [
   {
     name: "sidebar.intro",
     routepath: "/Intro",
-    iconClass: "fa fa-bar-chart",
-    resource: "generate_reports",
+    iconClass: "fa fa-desktop",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.employee",
     routepath: "/employee/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     name: "sidebar.location",
     routepath: "/location/list",
     iconClass: "fa fa-location-arrow",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     name: "sidebar.customer",
     routepath: "/customer/list",
     iconClass: "fa fa-user",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     name: "sidebar.giftCard",
     routepath: "/gift-card/list",
     iconClass: "fa fa-gift",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     name: "sidebar.inventory",
     routepath: "/inventory/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.cart",
     routepath: "/cart/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.supplier",
     routepath: "/suuplier/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.terminal",
     routepath: "/terminal/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.department",
     routepath: "/department/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.group",
     routepath: "/group/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.category",
     routepath: "/category/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.subCategory",
     routepath: "/sub-category/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.role",
     routepath: "/role/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.permission",
     routepath: "/permision/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   // {
@@ -239,13 +239,13 @@ export const HorizontalSidebarData = [
     name: "sidebar.intro",
     routepath: "/Intro",
     iconClass: "fa fa-bar-chart",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     name: "sidebar.employee",
     routepath: "/employee/list",
     iconClass: "fa fa-address-book",
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   // {

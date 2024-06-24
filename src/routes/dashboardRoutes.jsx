@@ -69,244 +69,244 @@ import NotFound from "views/pages/NotFound";
 // import JesterPark from "views/pages/JesterPark/JesterPark";
 
 const dashboardRoutes = [
-  { path: "/intro", component: Intro, resource: "generate_reports" },
+  { path: "/intro", component: Intro, resource: "view_dashboards" },
 
   {
     path: "/employee/list",
     component: EmployeesList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/employee/new",
     component: NewEmployee,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/employee/:employeeId(\\d+)",
     component: EmployeeSingle,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/location/list",
     component: LocationList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/location/new",
     component: NewLocation,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/location/:locationId(\\d+)",
     component: SingleLocation,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/customer/list",
     component: CustomerList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/customer/new",
     component: NewCustomer,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/customer/:customerId(\\d+)",
     component: SingleCustomer,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/gift-card/list",
     component: GiftCardList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/gift-card/new",
     component: NewGiftCard,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
-    path: "/gift-card/:cardId(\\d+)",
+    path: "/gift-card/:giftCardId(\\d+)",
     component: SingleGiftCard,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/inventory/list",
     component: InventoryList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/inventory/new",
     component: NewInventory,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/inventory/:inventoryId(\\d+)",
     component: SingleInventory,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/cart/list",
     component: CartList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/cart/new",
     component: NewCart,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/cart/:cartId(\\d+)",
     component: SingleCart,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/suuplier/list",
     component: SupplierList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/suuplier/new",
     component: NewSupplier,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/suuplier/:suuplierId(\\d+)",
     component: SingleSupplier,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/terminal/list",
     component: TerminalList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/terminal/new",
     component: NewTerminal,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/terminal/:terminalId(\\d+)",
     component: SingleTerminal,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/department/list",
     component: DepartmentList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/department/new",
     component: NewDepartment,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/department/:departmentId(\\d+)",
     component: SingleDepartment,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/group/list",
     component: GroupList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/group/new",
     component: NewGroup,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/group/:groupId(\\d+)",
     component: SingleGroup,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/category/list",
     component: CategoryList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/category/new",
     component: NewCategory,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/category/:categoryId(\\d+)",
     component: SingleCategory,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/sub-category/list",
     component: SubCategoryList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/sub-category/new",
     component: NewSubCategory,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/sub-category/:subCategoryId(\\d+)",
     component: SingleSubCategory,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/role/list",
     component: RoleList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/role/new",
     component: NewRole,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/role/:roleId(\\d+)",
     component: SingleRole,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/permission/list",
     component: PermissionList,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   {
     path: "/permission/new",
     component: NewPermission,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
   {
     path: "/permission/:permissionId(\\d+)",
     component: SinglePermission,
-    resource: "generate_reports",
+    resource: "view_dashboards",
   },
 
   // { path: "/location", component: Locations, resource: "" },

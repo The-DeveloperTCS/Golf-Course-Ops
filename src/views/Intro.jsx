@@ -11,20 +11,11 @@ class Intro extends Component {
     minimumOrderValue: 0,
   };
 
-  // async componentDidMount() {
-  //   const res = await fetchFreeDelivery();
-  //   const data = res.data;
-  //   this.setState({
-  //     applyFreeDelivery: data.freeDelivery,
-  //     minimumOrderValue: data.minOrderValue,
-  //   });
-  // }
-
   render() {
     const { applyFreeDelivery, minimumOrderValue } = this.state;
     return (
       <div>
-        <PageTitle title="sidebar.intro" />
+        <PageTitle title="Dashboard" />
 
         <div className="plr-15">
           <div className="row">

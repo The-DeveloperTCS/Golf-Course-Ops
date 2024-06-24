@@ -41,7 +41,7 @@ const NewEmployee = (props) => {
     return createEmployees(updatedEmployee)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} added successfully!`
+          `Employee #${res.data.employee.id} added successfully!`
         );
         props.history.push("/employee/list");
       })

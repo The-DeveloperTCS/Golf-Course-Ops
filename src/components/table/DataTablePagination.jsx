@@ -90,21 +90,6 @@ const DataTable = (props) => {
     history.push("/employee/" + eId);
   };
 
-  const onDelete = (eId, e) => {
-    startLoader(true);
-    e.preventDefault();
-    e.stopPropagation();
-    deleteEmployees(eId)
-      .then((res) => {
-        console.log(res, "response");
-        fetchEmployeesPagination(25, 1);
-      })
-      .catch((err) => {
-        endLoader(false);
-        console.log(err, "error in emploayee table");
-      });
-  };
-
   return (
     <ReactTableWrapper {...props}>
       <div className="table-container text-center overflow-auto">
@@ -163,7 +148,7 @@ const DataTable = (props) => {
                   <td>
                     <button
                       className="btn c-btn-sm c-outline-danger ma-5"
-                      onClick={(e) => onDelete(row.id, e)}
+                      onClick={(e) => props.deleteEmployee(row.id, e)}
                     >
                       <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>

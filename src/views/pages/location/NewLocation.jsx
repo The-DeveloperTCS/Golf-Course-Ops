@@ -1,71 +1,47 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import EmployeeActions from "redux/employee/action";
+import LOcationActions from "redux/location/action";
 import NotificationActions from "redux/notifications/actions";
-import { createEmployees } from "redux/employee/service";
-import EmployeeForm from "./LocationForm";
+import { createLocation } from "redux/location/service";
+import LocationForm from "./LocationForm";
 
-const defaultEmployee = {
-  title: "",
-  content: "",
-  image_url: "",
-  category_id: null,
-  user_id: null,
-  first_name: "",
-  last_name: "",
-  gender: "",
-  email_address: "",
-  password: "",
-  phone_number: "",
-  cell_phone_number: "",
-  username: "",
-  date_of_birth: "",
-  address: "",
-  city: "",
-  state: "",
-  zip_code: "",
-  job_title: "",
-  pin_number: "",
-  card_number: "",
-  default_terminal: "",
-  comments: "",
-  role: "",
-  is_email_verified: false,
-  status: "Active",
-  profile_picture: "",
-  hourly_rate: 0,
+const defaultLocation = {
+  name: "",
+  destination: "",
+  weather: "",
+  time: null,
 };
 
-const NewEmployee = (props) => {
-  const onSave = async (updatedEmployee) => {
-    return createEmployees(updatedEmployee)
+const NewLocation = (props) => {
+  const onSave = async (updatedLocation) => {
+    return createLocation(updatedLocation)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} added successfully!`
+          `Location #${res.data.id} added successfully!`
         );
-        props.history.push("/employee/list");
+        props.history.push("/location/list");
       })
       .catch((err) =>
         props.failureWithTimeout(
-          "Failed to add new employee, " + err.response.data.message
+          "Failed to add new location, " + err.response.data.message
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={defaultEmployee}
+    <LocationForm
+      updateEmployee={defaultLocation}
       onSave={onSave}
-    ></EmployeeForm>
+    ></LocationForm>
   );
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(EmployeeActions, dispatch),
+    ...bindActionCreators(LOcationActions, dispatch),
     ...bindActionCreators(NotificationActions, dispatch),
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewEmployee);
+export default connect(null, mapDispatchToProps)(NewLocation);

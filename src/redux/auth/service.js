@@ -5,8 +5,8 @@ import { LoginUrl, PermissionsUrl } from "Constants";
 export const login = async (email, password) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/user/login",
-      { email_address: email, password },
+      "https://whale-app-i9cnx.ondigitalocean.app/user/login",
+      { emailAddress: email, password },
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`, // Modify this line to include the bearer token

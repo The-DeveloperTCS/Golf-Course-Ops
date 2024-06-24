@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import IntlMessages from "util/intlMessages";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "redux/auth/actions";
-import logoimg from "../../assets/images/golfer-golf-player-man-illustration-abstract-style_691560-6542.avif";
+import logoimg from "../../assets/images/logo.png";
 
 const Sidebar = (props) => {
   let listNameStyle;
