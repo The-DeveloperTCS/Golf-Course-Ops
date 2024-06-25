@@ -23,7 +23,7 @@ const cartActions = {
     };
   },
 
-  fetchEmployeesPagination: (limit, pageNo) => {
+  fetchCartsPagination: (limit, pageNo) => {
     return (dispatch) => {
       getCartsList(limit, pageNo)
         .then((res) => {

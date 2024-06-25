@@ -1,93 +1,93 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import DataTableWithPagination from "components/table/DataTablePagination";
+import DataTableCarts from "components/table/DataTableCarts";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
-import EmployeeActions from "redux/employee/action";
+import CartActions from "redux/cart/action";
 const { startLoader, endLoader } = loaderActions;
-const { fetchEmployeesPagination } = EmployeeActions;
+const { fetchCartsPagination } = CartActions;
 
-const EmployeesList = (props) => {
+const CartsList = (props) => {
   const {
-    fetchEmployeesPagination,
+    fetchCartsPagination,
     pageLimit,
     pageNo,
     total,
     startLoader,
     loader,
   } = props;
-  const [employeesData, setEmployeeData] = useState([]);
+  const [cartsData, setCartsData] = useState([]);
   const [rowPerPage, setRowPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   const handleChangePage = (event) => {
-    fetchEmployeesPagination(pageLimit, event);
+    fetchCartsPagination(pageLimit, event);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    fetchEmployeesPagination(event.target.value, pageNo);
+    fetchCartsPagination(event.target.value, pageNo);
   };
 
   useEffect(() => {
     startLoader(true);
-    fetchEmployeesByValues();
+    fetchCartsByValues();
   }, []);
 
-  const fetchEmployeesByValues = () => {
+  const fetchCartsByValues = () => {
     setTimeout(() => {
-      fetchEmployeesPagination(25, 1);
+      fetchCartsPagination(25, 1);
     }, 2000);
   };
 
   useMemo(() => {
-    setEmployeeData(props.employees);
+    setCartsData(props.carts);
     setRowPerPage(pageLimit);
     setPage(pageNo);
     setTotalCount(total);
     setTotalPages(Math.ceil(total / pageLimit));
-  }, [props?.employees, total, pageLimit, pageNo]);
+  }, [props?.carts, total, pageLimit, pageNo]);
 
   const columns = useMemo(() => [
     {
-      title: "Employee ID",
+      title: "Cart ID",
       id: "id",
       enableFilters: false,
     },
     {
-      title: "Joining Date",
-      id: "date",
-      enableFilters: false,
-    },
-    {
-      title: "First Name",
-      id: "fName",
+      title: "Item Name",
+      id: "itemName",
       enableFilters: true,
     },
     {
-      title: "Last Name",
-      id: "lName",
+      title: "Value",
+      id: "value",
+      enableFilters: true,
+    },
+    {
+      title: "Customer Name",
+      id: "customerName",
       enableFilters: false,
     },
     {
-      title: "Phone No.",
-      id: "phoneNo",
+      title: "Expiry Date",
+      id: "expirationDate",
       enableFilters: false,
     },
     {
-      title: "Email",
-      id: "email",
+      title: "Issue Date",
+      id: "dateIssued",
       enableFilters: false,
     },
     {
-      title: "User Name",
-      id: "username",
+      title: "Department",
+      id: "department",
       enableFilters: false,
     },
     {
-      title: "Terminal",
-      id: "terminal",
+      title: "Category",
+      id: "category",
       enableFilters: false,
     },
     {
@@ -110,14 +110,14 @@ const EmployeesList = (props) => {
         <div className="roe-card-style">
           <div className="roe-card-header flex center">
             <div className="flex-1 mr-15 my-title ml-1">
-              Employee List{" "}
+              Cart List{" "}
               <span className="pull-right">
                 {/* {useSupplierPermission && ( */}
                 <button
                   className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/employee/new")}
+                  onClick={() => props.history.push("/cart/new")}
                 >
-                  <i className="fas fa-plus" /> New Employee
+                  <i className="fas fa-plus" /> New Cart
                 </button>
                 {/* )} */}
               </span>
@@ -125,16 +125,16 @@ const EmployeesList = (props) => {
           </div>
 
           <div className="roe-card-body">
-            <DataTableWithPagination
+            <DataTableCarts
               columns={columns}
-              data={employeesData}
+              data={cartsData}
               totalCount={totalCount}
               pageLimit={rowPerPage}
               pageNo={page}
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
-            ></DataTableWithPagination>
+            ></DataTableCarts>
           </div>
         </div>
       </div>
@@ -144,16 +144,16 @@ const EmployeesList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    employees: state.employee.employees,
-    pageLimit: state.employee.pageLimit,
-    pageNo: state.employee.pageNo,
-    total: state.employee.total,
+    carts: state.cart.carts,
+    pageLimit: state.cart.pageLimit,
+    pageNo: state.cart.pageNo,
+    total: state.cart.total,
     loader: state.loader.loader,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchEmployeesPagination,
+  fetchCartsPagination,
   startLoader,
   endLoader,
-})(EmployeesList);
+})(CartsList);

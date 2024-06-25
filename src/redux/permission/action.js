@@ -23,7 +23,7 @@ const permissionActions = {
     };
   },
 
-  fetchPermissionPagination: (limit, pageNo) => {
+  fetchPermissionsPagination: (limit, pageNo) => {
     return (dispatch) => {
       getPermissionsList(limit, pageNo)
         .then((res) => {

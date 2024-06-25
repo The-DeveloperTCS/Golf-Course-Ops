@@ -130,7 +130,7 @@ const DataTable = (props) => {
                   >
                     <td style={{ border: 0 }}>{row.id}</td>
                   </Link>
-                  <td>{row.name}</td>
+                  <td>{row.location}</td>
                   <td>{row.destination}</td>
                   <td>{row.weather}</td>
                   <td>{row.time}</td>

@@ -8,7 +8,7 @@ export const sidebarData = [
   {
     name: "sidebar.employee",
     routepath: "/employee/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-users",
     resource: "view_dashboards",
   },
 
@@ -36,25 +36,25 @@ export const sidebarData = [
   {
     name: "sidebar.inventory",
     routepath: "/inventory/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-shopping-basket",
     resource: "view_dashboards",
   },
   {
     name: "sidebar.cart",
     routepath: "/cart/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-car",
     resource: "view_dashboards",
   },
   {
     name: "sidebar.supplier",
     routepath: "/suuplier/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-truck",
     resource: "view_dashboards",
   },
   {
     name: "sidebar.terminal",
     routepath: "/terminal/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-terminal",
     resource: "view_dashboards",
   },
   {
@@ -66,19 +66,19 @@ export const sidebarData = [
   {
     name: "sidebar.group",
     routepath: "/group/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-object-group",
     resource: "view_dashboards",
   },
   {
     name: "sidebar.category",
     routepath: "/category/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-list",
     resource: "view_dashboards",
   },
   {
     name: "sidebar.subCategory",
     routepath: "/sub-category/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-list-ol",
     resource: "view_dashboards",
   },
   {
@@ -90,7 +90,7 @@ export const sidebarData = [
   {
     name: "sidebar.permission",
     routepath: "/permision/list",
-    iconClass: "fa fa-address-book",
+    iconClass: "fa fa-check",
     resource: "view_dashboards",
   },
 
@@ -226,12 +226,12 @@ export const sidebarData = [
   //     },
   //   ],
   // },
-  // {
-  //   name: "sidebar.access_management",
-  //   routepath: "/access-management",
-  //   iconClass: "fas fa-lock",
-  //   resource: "ACCESS_MANAGEMENT",
-  // },
+  {
+    name: "sidebar.access_management",
+    routepath: "/access-management",
+    iconClass: "fas fa-lock",
+    resource: "view_dashboards",
+  },
 ];
 
 export const HorizontalSidebarData = [
@@ -247,11 +247,91 @@ export const HorizontalSidebarData = [
     iconClass: "fa fa-address-book",
     resource: "view_dashboards",
   },
+  {
+    name: "sidebar.location",
+    routepath: "/location/list",
+    iconClass: "fa fa-location-arrow",
+    resource: "view_dashboards",
+  },
 
-  // {
-  //   name: "sidebar.access_management",
-  //   routepath: "/access-management",
-  //   iconClass: "fas fa-lock",
-  //   resource: "ACCESS_MANAGEMENT",
-  // },
+  {
+    name: "sidebar.customer",
+    routepath: "/customer/list",
+    iconClass: "fa fa-user",
+    resource: "view_dashboards",
+  },
+
+  {
+    name: "sidebar.giftCard",
+    routepath: "/gift-card/list",
+    iconClass: "fa fa-gift",
+    resource: "view_dashboards",
+  },
+
+  {
+    name: "sidebar.inventory",
+    routepath: "/inventory/list",
+    iconClass: "fa fa-shopping-basket",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.cart",
+    routepath: "/cart/list",
+    iconClass: "fa fa-car",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.supplier",
+    routepath: "/suuplier/list",
+    iconClass: "fa fa-truck",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.terminal",
+    routepath: "/terminal/list",
+    iconClass: "fa fa-terminal",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.department",
+    routepath: "/department/list",
+    iconClass: "fa fa-address-book",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.group",
+    routepath: "/group/list",
+    iconClass: "fa fa-object-group",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.category",
+    routepath: "/category/list",
+    iconClass: "fa fa-list",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.subCategory",
+    routepath: "/sub-category/list",
+    iconClass: "fa fa-list-ol",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.role",
+    routepath: "/role/list",
+    iconClass: "fa fa-address-book",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.permission",
+    routepath: "/permision/list",
+    iconClass: "fa fa-check",
+    resource: "view_dashboards",
+  },
+  {
+    name: "sidebar.access_management",
+    routepath: "/access-management",
+    iconClass: "fas fa-lock",
+    resource: "ACCESS_MANAGEMENT",
+  },
 ];

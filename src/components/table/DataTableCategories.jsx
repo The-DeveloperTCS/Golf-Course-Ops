@@ -131,8 +131,6 @@ const DataTable = (props) => {
                     <td style={{ border: 0 }}>{row.id}</td>
                   </Link>
                   <td>{row.name}</td>
-                  <td>{row.customer_name}</td>
-                  <td>{moment(row.createdAt).format("LL")}</td>
                   <td>{row.status}</td>
                   <td>
                     <button

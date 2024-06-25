@@ -133,15 +133,15 @@ const DataTable = (props) => {
                   </Link>
                   <td>{row.product_picture}</td>
                   <td>{row.name}</td>
-                  <td>{row.gl_code}</td>
+                  <td>{row.glCode}</td>
                   <td>{row.department}</td>
                   <td>{row.category}</td>
-                  <td>{row.sub_category}</td>
-                  <td>{row.unit_cost}</td>
-                  <td>{row.unit_price}</td>
+                  <td>{row.subCategory}</td>
+                  <td>{row.unitCost}</td>
+                  <td>{row.unitPrice}</td>
                   <td>{row.quantity}</td>
-                  <td>{row.type}</td>
-                  <td>{moment(row.createdAt).format("LL")}</td>
+                  <td>{row.itemType}</td>
+                  <td>{row.foodType}</td>
                   <td>{row.status}</td>
                   <td>
                     <button

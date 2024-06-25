@@ -8,10 +8,11 @@ import { Table } from "reactstrap";
 
 import {
   getAllPermissions,
-  getAllRoles,
   getPermissionsForRole,
   updatePermission,
 } from "redux/users/service";
+
+import { getRolesList } from "redux/role/service";
 
 const humanize = (s) => {
   return s
@@ -114,7 +115,7 @@ const RoleSelect = ({ role, onRoleSelect }) => {
   const [roles, setRoles] = useState([]);
 
   useEffect(() => {
-    getAllRoles().then((res) => {
+    getRolesList("", "").then((res) => {
       setRoles(
         res.data.map((role) => ({
           value: role,

@@ -6,6 +6,7 @@ import ReactTableWrapper from "./reacttbl.style";
 import { history } from "redux/store";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import moment from "moment";
 import loaderActions from "redux/loader/actions";
 const { startLoader, endLoader } = loaderActions;
 
@@ -133,9 +134,10 @@ const DataTable = (props) => {
                   <td>{row.itemName}</td>
                   <td>{row.value}</td>
                   <td>{row.customerName}</td>
-                  <td>{row.emailAddress}</td>
                   <td>{moment(row.expirationDate).format("LL")}</td>
                   <td>{moment(row.dateIssued).format("LL")}</td>
+                  <td>{row.department}</td>
+                  <td>{row.department}</td>
                   <td>{row.status}</td>
                   <td>
                     <button

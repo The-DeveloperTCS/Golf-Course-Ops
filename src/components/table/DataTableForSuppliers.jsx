@@ -5,7 +5,7 @@ import Pagination from "components/common/Pagination";
 import ReactTableWrapper from "./reacttbl.style";
 import { Badge } from "reactstrap";
 import { history } from "redux/store";
-import { activeCityList } from "redux/geo/service";
+import moment from "moment";
 
 const HeaderComponent = (props) => {
   let classes = {
@@ -18,20 +18,6 @@ const HeaderComponent = (props) => {
 };
 
 const DataTable = (props) => {
-  const [cities, setCities] = useState([]);
-  useEffect(() => {
-    activeCityList().then((res) => setCities(res.data));
-  }, []);
-
-  const getCityName = (id) => {
-    const filtered = cities.filter((e) => e.id === id);
-    if (filtered) {
-      const name = filtered[0]?.name.trim();
-      return name;
-    }
-    return "";
-  };
-
   const sortBy = useMemo(() => {
     return props.sortBy || [];
   }, [props.sortBy]);
@@ -141,17 +127,20 @@ const DataTable = (props) => {
                   })}
                 </tr>
               ))}
-              {page.map((row) => {
-                prepareRow(row);
+              {props.data.map((row) => {
                 return (
-                  <tr key={row.original.id}>
-                    <th scope="row">{row.original.id}</th>
+                  <tr key={row.id}>
+                    <th scope="row">{row.id}</th>
+                    <td>{moment(row.createdAt).format("LL")}</td>
 
-                    <td>{row.original.name}</td>
-                    <td>{getCityName(row.original.cityId)}</td>
+                    <td>{`${row.firstName} ${row.lastName}`}</td>
+                    <td>{row.companyName}</td>
+                    <td>{row.phoneNumber}</td>
+                    <td>{row.emailAddress}</td>
+                    <td>{row.address}</td>
 
                     <td>
-                      {row.original.registered ? (
+                      {row.status ? (
                         <Badge className="c-success p-2">Yes</Badge>
                       ) : (
                         <Badge className="c-secondary p-2">No</Badge>

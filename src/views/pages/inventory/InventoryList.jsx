@@ -56,6 +56,11 @@ const InventoriesList = (props) => {
       enableFilters: false,
     },
     {
+      title: "Image",
+      id: "productPicture",
+      enableFilters: false,
+    },
+    {
       title: "Name",
       id: "name",
       enableFilters: false,
@@ -91,8 +96,18 @@ const InventoriesList = (props) => {
       enableFilters: false,
     },
     {
+      title: "Quantity",
+      id: "quantity",
+      enableFilters: false,
+    },
+    {
       title: "Item Type",
-      id: "type",
+      id: "itemType",
+      enableFilters: false,
+    },
+    {
+      title: "Food Type",
+      id: "foodType",
       enableFilters: false,
     },
     {

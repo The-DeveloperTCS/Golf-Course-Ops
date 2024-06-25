@@ -132,7 +132,6 @@ const DataTable = (props) => {
                   </Link>
                   <td>{row.name}</td>
                   <td>{row.basedRole}</td>
-                  <td>{moment(row.createdAt).format("LL")}</td>
                   <td>{row.status}</td>
                   <td>
                     <button

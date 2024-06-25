@@ -1,93 +1,68 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import DataTableWithPagination from "components/table/DataTablePagination";
+import DataTableSubCaregories from "components/table/DataTableSubCaregories";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
-import EmployeeActions from "redux/employee/action";
+import SubCategoryActions from "redux/category/action";
 const { startLoader, endLoader } = loaderActions;
-const { fetchEmployeesPagination } = EmployeeActions;
+const { fetchSubCategoriesPagination } = SubCategoryActions;
 
-const EmployeesList = (props) => {
+const SubCategoriesList = (props) => {
   const {
-    fetchEmployeesPagination,
+    fetchSubCategoriesPagination,
     pageLimit,
     pageNo,
     total,
     startLoader,
     loader,
   } = props;
-  const [employeesData, setEmployeeData] = useState([]);
+  const [subCategoriesData, setSubCategoriesData] = useState([]);
   const [rowPerPage, setRowPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   const handleChangePage = (event) => {
-    fetchEmployeesPagination(pageLimit, event);
+    fetchSubCategoriesPagination(pageLimit, event);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    fetchEmployeesPagination(event.target.value, pageNo);
+    fetchSubCategoriesPagination(event.target.value, pageNo);
   };
 
   useEffect(() => {
     startLoader(true);
-    fetchEmployeesByValues();
+    fetchSubCategoriesByValues();
   }, []);
 
-  const fetchEmployeesByValues = () => {
+  const fetchSubCategoriesByValues = () => {
     setTimeout(() => {
-      fetchEmployeesPagination(25, 1);
+      fetchSubCategoriesPagination(25, 1);
     }, 2000);
   };
 
   useMemo(() => {
-    setEmployeeData(props.employees);
+    setSubCategoriesData(props.subCategories);
     setRowPerPage(pageLimit);
     setPage(pageNo);
     setTotalCount(total);
     setTotalPages(Math.ceil(total / pageLimit));
-  }, [props?.employees, total, pageLimit, pageNo]);
+  }, [props?.subCategories, total, pageLimit, pageNo]);
 
   const columns = useMemo(() => [
     {
-      title: "Employee ID",
+      title: "Sub-Category ID",
       id: "id",
       enableFilters: false,
     },
     {
-      title: "Joining Date",
-      id: "date",
-      enableFilters: false,
-    },
-    {
-      title: "First Name",
+      title: "Parent Category",
       id: "fName",
       enableFilters: true,
     },
     {
-      title: "Last Name",
-      id: "lName",
-      enableFilters: false,
-    },
-    {
-      title: "Phone No.",
-      id: "phoneNo",
-      enableFilters: false,
-    },
-    {
-      title: "Email",
-      id: "email",
-      enableFilters: false,
-    },
-    {
-      title: "User Name",
-      id: "username",
-      enableFilters: false,
-    },
-    {
-      title: "Terminal",
-      id: "terminal",
+      title: "Name",
+      id: "name",
       enableFilters: false,
     },
     {
@@ -110,14 +85,14 @@ const EmployeesList = (props) => {
         <div className="roe-card-style">
           <div className="roe-card-header flex center">
             <div className="flex-1 mr-15 my-title ml-1">
-              Employee List{" "}
+              Sub Category List{" "}
               <span className="pull-right">
                 {/* {useSupplierPermission && ( */}
                 <button
                   className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/employee/new")}
+                  onClick={() => props.history.push("/category/new")}
                 >
-                  <i className="fas fa-plus" /> New Employee
+                  <i className="fas fa-plus" /> New Sub Category
                 </button>
                 {/* )} */}
               </span>
@@ -125,16 +100,16 @@ const EmployeesList = (props) => {
           </div>
 
           <div className="roe-card-body">
-            <DataTableWithPagination
+            <DataTableSubCaregories
               columns={columns}
-              data={employeesData}
+              data={subCategoriesData}
               totalCount={totalCount}
               pageLimit={rowPerPage}
               pageNo={page}
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
-            ></DataTableWithPagination>
+            ></DataTableSubCaregories>
           </div>
         </div>
       </div>
@@ -144,16 +119,16 @@ const EmployeesList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    employees: state.employee.employees,
-    pageLimit: state.employee.pageLimit,
-    pageNo: state.employee.pageNo,
-    total: state.employee.total,
+    subCategories: state.category.subCategories,
+    pageLimit: state.category.pageLimit,
+    pageNo: state.category.pageNo,
+    total: state.category.total,
     loader: state.loader.loader,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchEmployeesPagination,
+  fetchSubCategoriesPagination,
   startLoader,
   endLoader,
-})(EmployeesList);
+})(SubCategoriesList);

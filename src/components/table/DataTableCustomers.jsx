@@ -131,7 +131,7 @@ const DataTable = (props) => {
                   >
                     <td style={{ border: 0 }}>{row.id}</td>
                   </Link>
-                  <td>{moment(row.customerDateJoined).format("LL")}</td>
+                  <td>{moment(row.createdAt).format("LL")}</td>
                   <td>{row.firstName}</td>
                   <td>{row.lastName}</td>
                   <td>{row.phoneNumber}</td>

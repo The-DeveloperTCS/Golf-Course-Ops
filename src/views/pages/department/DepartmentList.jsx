@@ -1,94 +1,64 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import DataTableWithPagination from "components/table/DataTablePagination";
+import DataTableDepartments from "components/table/DataTableDepartments";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
-import EmployeeActions from "redux/employee/action";
+import DepartmentActions from "redux/department/action";
 const { startLoader, endLoader } = loaderActions;
-const { fetchEmployeesPagination } = EmployeeActions;
+const { fetchDepartmentsPagination } = DepartmentActions;
 
-const EmployeesList = (props) => {
+const DepartmentsList = (props) => {
   const {
-    fetchEmployeesPagination,
+    fetchDepartmentsPagination,
     pageLimit,
     pageNo,
     total,
     startLoader,
     loader,
   } = props;
-  const [employeesData, setEmployeeData] = useState([]);
+  const [departmentsData, setDepartmentsData] = useState([]);
   const [rowPerPage, setRowPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   const handleChangePage = (event) => {
-    fetchEmployeesPagination(pageLimit, event);
+    fetchDepartmentsPagination(pageLimit, event);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    fetchEmployeesPagination(event.target.value, pageNo);
+    fetchDepartmentsPagination(event.target.value, pageNo);
   };
 
   useEffect(() => {
     startLoader(true);
-    fetchEmployeesByValues();
+    fetchDepartmentsByValues();
   }, []);
 
-  const fetchEmployeesByValues = () => {
+  const fetchDepartmentsByValues = () => {
     setTimeout(() => {
-      fetchEmployeesPagination(25, 1);
+      fetchDepartmentsPagination(25, 1);
     }, 2000);
   };
 
   useMemo(() => {
-    setEmployeeData(props.employees);
+    setDepartmentsData(props.departments);
     setRowPerPage(pageLimit);
     setPage(pageNo);
     setTotalCount(total);
     setTotalPages(Math.ceil(total / pageLimit));
-  }, [props?.employees, total, pageLimit, pageNo]);
+  }, [props?.departments, total, pageLimit, pageNo]);
 
   const columns = useMemo(() => [
     {
-      title: "Employee ID",
+      title: "Dept. ID",
       id: "id",
       enableFilters: false,
     },
     {
-      title: "Joining Date",
-      id: "date",
-      enableFilters: false,
-    },
-    {
-      title: "First Name",
-      id: "fName",
+      title: "Name",
+      id: "name",
       enableFilters: true,
-    },
-    {
-      title: "Last Name",
-      id: "lName",
-      enableFilters: false,
-    },
-    {
-      title: "Phone No.",
-      id: "phoneNo",
-      enableFilters: false,
-    },
-    {
-      title: "Email",
-      id: "email",
-      enableFilters: false,
-    },
-    {
-      title: "User Name",
-      id: "username",
-      enableFilters: false,
-    },
-    {
-      title: "Terminal",
-      id: "terminal",
-      enableFilters: false,
     },
     {
       title: "Status",
@@ -110,14 +80,14 @@ const EmployeesList = (props) => {
         <div className="roe-card-style">
           <div className="roe-card-header flex center">
             <div className="flex-1 mr-15 my-title ml-1">
-              Employee List{" "}
+              Department List{" "}
               <span className="pull-right">
                 {/* {useSupplierPermission && ( */}
                 <button
                   className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/employee/new")}
+                  onClick={() => props.history.push("/department/new")}
                 >
-                  <i className="fas fa-plus" /> New Employee
+                  <i className="fas fa-plus" /> New Department
                 </button>
                 {/* )} */}
               </span>
@@ -125,16 +95,16 @@ const EmployeesList = (props) => {
           </div>
 
           <div className="roe-card-body">
-            <DataTableWithPagination
+            <DataTableDepartments
               columns={columns}
-              data={employeesData}
+              data={departmentsData}
               totalCount={totalCount}
               pageLimit={rowPerPage}
               pageNo={page}
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
-            ></DataTableWithPagination>
+            ></DataTableDepartments>
           </div>
         </div>
       </div>
@@ -144,16 +114,16 @@ const EmployeesList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    employees: state.employee.employees,
-    pageLimit: state.employee.pageLimit,
-    pageNo: state.employee.pageNo,
-    total: state.employee.total,
+    departments: state.department.departments,
+    pageLimit: state.department.pageLimit,
+    pageNo: state.department.pageNo,
+    total: state.department.total,
     loader: state.loader.loader,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchEmployeesPagination,
+  fetchDepartmentsPagination,
   startLoader,
   endLoader,
-})(EmployeesList);
+})(DepartmentsList);

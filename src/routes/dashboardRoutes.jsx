@@ -293,18 +293,18 @@ const dashboardRoutes = [
   },
 
   {
-    path: "/permission/list",
+    path: "/permision/list",
     component: PermissionList,
     resource: "view_dashboards",
   },
 
   {
-    path: "/permission/new",
+    path: "/permision/new",
     component: NewPermission,
     resource: "view_dashboards",
   },
   {
-    path: "/permission/:permissionId(\\d+)",
+    path: "/permision/:permisionId(\\d+)",
     component: SinglePermission,
     resource: "view_dashboards",
   },
@@ -343,7 +343,7 @@ const dashboardRoutes = [
   {
     path: "/access-management",
     component: AccessManagement,
-    resource: "ACCESS_MANAGEMENT",
+    resource: "view_dashboards",
   },
   {
     path: "*",
