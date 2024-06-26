@@ -17,9 +17,9 @@ const locationActions = {
     return {
       type: locationActions.CUSTOMER_FETCHED_PAGINATION,
       customers: data.customers,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalCustomers,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

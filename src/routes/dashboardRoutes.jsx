@@ -69,40 +69,40 @@ import NotFound from "views/pages/NotFound";
 // import JesterPark from "views/pages/JesterPark/JesterPark";
 
 const dashboardRoutes = [
-  { path: "/intro", component: Intro, resource: "view_dashboards" },
+  { path: "/intro", component: Intro, resource: "DASHBOARD" },
 
   {
     path: "/employee/list",
     component: EmployeesList,
-    resource: "view_dashboards",
+    resource: "EMPLOYEE",
   },
 
   {
     path: "/employee/new",
     component: NewEmployee,
-    resource: "view_dashboards",
+    resource: "EMPLOYEE",
   },
   {
     path: "/employee/:employeeId(\\d+)",
     component: EmployeeSingle,
-    resource: "view_dashboards",
+    resource: "EMPLOYEE",
   },
 
   {
     path: "/location/list",
     component: LocationList,
-    resource: "view_dashboards",
+    resource: "LOCATION",
   },
 
   {
     path: "/location/new",
     component: NewLocation,
-    resource: "view_dashboards",
+    resource: "LOCATION",
   },
   {
     path: "/location/:locationId(\\d+)",
     component: SingleLocation,
-    resource: "view_dashboards",
+    resource: "LOCATION",
   },
 
   {
@@ -343,7 +343,7 @@ const dashboardRoutes = [
   {
     path: "/access-management",
     component: AccessManagement,
-    resource: "view_dashboards",
+    resource: "",
   },
   {
     path: "*",

@@ -17,9 +17,9 @@ const giftCardActions = {
     return {
       type: giftCardActions.GIFTCARDS_FETCHED_PAGINATION,
       giftCards: data.giftCards,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalgiftCards,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

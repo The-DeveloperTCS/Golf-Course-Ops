@@ -17,9 +17,9 @@ const employeeActions = {
     return {
       type: employeeActions.EMPLOYEES_FETCHED_PAGINATION,
       employees: data.employees,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalEmployees,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

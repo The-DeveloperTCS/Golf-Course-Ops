@@ -5,6 +5,7 @@ import {
   deletePermissionUrl,
   getPermissionsListUrl,
   getSpecificPermissionUrl,
+  getRolePermissionUrl,
 } from "Constants";
 
 export const getPermissionsList = async (limit, pageNo) => {
@@ -32,4 +33,8 @@ export const getSpecificPermission = async (permissionId) => {
 
 export const deletePermissions = async (permissionId) => {
   return axiosClient.delete(deletePermissionUrl(permissionId));
+};
+
+export const getPermissionsForRole = (role) => {
+  return axiosClient.get(getRolePermissionUrl(role));
 };

@@ -17,9 +17,9 @@ const cartActions = {
     return {
       type: cartActions.CARTS_FETCHED_PAGINATION,
       carts: data.carts,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalcarts,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

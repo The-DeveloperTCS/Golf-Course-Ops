@@ -17,9 +17,9 @@ const supplierActions = {
     return {
       type: supplierActions.SUPPLIERS_FETCHED_PAGINATION,
       suppliers: data.suppliers,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalSuppliers,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

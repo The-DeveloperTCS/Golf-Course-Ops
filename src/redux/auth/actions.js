@@ -17,13 +17,13 @@ const authActions = {
     };
   },
 
-  loginRequest: (email, password) => {
+  loginRequest: (username, password) => {
     return (dispatch) => {
-      login(email, password)
+      login(username, password)
         .then((res) => {
           // console.log(res, "response");
           dispatch(authActions.login(res.token));
-          history.push("/intro");
+          history.push("/Intro");
         })
         .catch((err) => {
           console.log(err, "errrrr");

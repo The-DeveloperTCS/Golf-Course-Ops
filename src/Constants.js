@@ -128,6 +128,8 @@ export const getPermissionsListUrl = (limit, pageNo) =>
   BaseUrl + `permission/getAll/?page=${pageNo}&limit=${limit}`;
 export const getSpecificPermissionUrl = (id) =>
   BaseUrl + `permission/specificId/${id}`;
+export const getRolePermissionUrl = (id) =>
+  BaseUrl + `permission-by-role/byRoleName/${id}`;
 
 //PermissionByRole Endpoints
 

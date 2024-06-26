@@ -1,11 +1,12 @@
 import React, { useMemo } from "react";
 import { useTable, useSortBy, useFilters, usePagination } from "react-table";
 import classnames from "classnames";
-import Pagination from "components/common/Pagination";
+import Pagination from "components/common/PaginationWitAPI";
 import ReactTableWrapper from "./reacttbl.style";
 import { history } from "redux/store";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Badge } from "reactstrap";
 import loaderActions from "redux/loader/actions";
 const { startLoader, endLoader } = loaderActions;
 
@@ -130,11 +131,18 @@ const DataTable = (props) => {
                   >
                     <td style={{ border: 0 }}>{row.id}</td>
                   </Link>
-                  <td>{row.location}</td>
+                  <td>{row.name}</td>
                   <td>{row.destination}</td>
                   <td>{row.weather}</td>
                   <td>{row.time}</td>
-                  <td>{row.status}</td>
+                  <td>
+                    {" "}
+                    {row.status ? (
+                      <Badge className="c-success p-2">Active</Badge>
+                    ) : (
+                      <Badge className="c-secondary p-2">In-Active</Badge>
+                    )}
+                  </td>
                   <td>
                     <button
                       className="btn c-btn-sm c-outline-danger ma-5"
@@ -155,7 +163,11 @@ const DataTable = (props) => {
           </tbody>
         </table>
       </div>
-      <Pagination onPageChange={gotoPage} pages={pageCount} page={pageIndex} />
+      <Pagination
+        handleChangePage={props.handleChangePage}
+        totalPages={props.totalPages}
+        pageNo={props.pageNo - 1}
+      />
     </ReactTableWrapper>
   );
 };

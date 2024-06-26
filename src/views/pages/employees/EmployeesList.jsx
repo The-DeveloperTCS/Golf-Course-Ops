@@ -5,6 +5,7 @@ import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import EmployeeActions from "redux/employee/action";
 import { deleteEmployees } from "redux/employee/service";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
 const { startLoader, endLoader } = loaderActions;
 const { fetchEmployeesPagination } = EmployeeActions;
 
@@ -22,6 +23,7 @@ const EmployeesList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useEmployeePermission = useRolePermissions("EMPLOYEE");
 
   const handleChangePage = (event) => {
     fetchEmployeesPagination(pageLimit, event);
@@ -127,14 +129,14 @@ const EmployeesList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Employee List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/employee/new")}
-                >
-                  <i className="fas fa-plus" /> New Employee
-                </button>
-                {/* )} */}
+                {useEmployeePermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/employee/new")}
+                  >
+                    <i className="fas fa-plus" /> New Employee
+                  </button>
+                )}
               </span>
             </div>
           </div>

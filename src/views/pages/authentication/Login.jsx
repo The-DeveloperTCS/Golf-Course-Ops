@@ -18,8 +18,8 @@ const Login = (props) => {
 
     setLoading(true);
     try {
-      if (values.email !== "" && values.password !== "") {
-        await props.loginRequest(values.email, values.password); // Pass email and password
+      if (values.username !== "" && values.password !== "") {
+        await props.loginRequest(values.username, values.password); // Pass username and password
       }
     } catch (e) {
       console.log(e);
@@ -74,17 +74,17 @@ const Login = (props) => {
         <div className="login-title">Sign in to your account</div>
         <form className="pa-24" onSubmit={handleLogin}>
           <div className="form-group">
-            <label>Email</label>
+            <label>User Name</label>
             <input
-              type="email"
+              type="username"
               className="form-control react-form-input"
-              id="email"
+              id="username"
               onChange={handleChange}
-              value={values.email}
+              value={values.username}
               onBlur={handleBlur}
-              placeholder="Email"
+              placeholder="User Name"
             />
-            <Error field="email" />
+            <Error field="username" />
           </div>
           <div className="form-group">
             <label>Password</label>

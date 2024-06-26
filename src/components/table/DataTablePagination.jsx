@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { useTable, useSortBy, useFilters, usePagination } from "react-table";
 import classnames from "classnames";
-import Pagination from "components/common/Pagination";
+import Pagination from "components/common/PaginationWitAPI";
 import ReactTableWrapper from "./reacttbl.style";
 import { history } from "redux/store";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { deleteEmployees } from "redux/employee/service";
+import { Badge } from "reactstrap";
 import loaderActions from "redux/loader/actions";
 import EmployeeActions from "redux/employee/action";
 const { startLoader, endLoader } = loaderActions;
@@ -63,11 +63,7 @@ const DataTable = (props) => {
   const {
     getTableProps,
     getTableBodyProps,
-    prepareRow,
-    page,
     headerGroups,
-    pageCount,
-    gotoPage,
     state: { pageIndex },
   } = useTable(
     {
@@ -89,7 +85,7 @@ const DataTable = (props) => {
     e.stopPropagation();
     history.push("/employee/" + eId);
   };
-
+  console.log(props.totalPages, "props totalPages");
   return (
     <ReactTableWrapper {...props}>
       <div className="table-container text-center overflow-auto">
@@ -144,7 +140,14 @@ const DataTable = (props) => {
                   <td>{row.emailAddress}</td>
                   <td>{row.username}</td>
                   <td>{row.defaultTerminal}</td>
-                  <td>{row.status}</td>
+                  <td>
+                    {row.status ? (
+                      <Badge className="c-success p-2">Active</Badge>
+                    ) : (
+                      <Badge className="c-secondary p-2">In-Active</Badge>
+                    )}
+                  </td>
+
                   <td>
                     <button
                       className="btn c-btn-sm c-outline-danger ma-5"
@@ -165,7 +168,11 @@ const DataTable = (props) => {
           </tbody>
         </table>
       </div>
-      <Pagination onPageChange={gotoPage} pages={pageCount} page={pageIndex} />
+      <Pagination
+        handleChangePage={props.handleChangePage}
+        totalPages={props.totalPages}
+        pageNo={props.pageNo - 1}
+      />
     </ReactTableWrapper>
   );
 };

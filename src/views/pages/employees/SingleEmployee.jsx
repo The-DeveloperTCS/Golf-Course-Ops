@@ -22,17 +22,17 @@ const EmployeeSingle = (props) => {
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onEmployeeSave = async (updatedEmployee) => {
+    return updateEmployeeDetails(employeeId, updatedEmployee)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
+          `Employee #${res.data.result.firstName} updated successfully!`
         );
         props.history.push("/employee/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Employee #${updatedEmployee.id} failed to update! ${err.response.data.message}`
         )
       );
   };

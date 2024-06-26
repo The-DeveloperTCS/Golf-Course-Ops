@@ -17,9 +17,9 @@ const groupActions = {
     return {
       type: groupActions.GROUPS_FETCHED_PAGINATION,
       groups: data.groups,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalgroups,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

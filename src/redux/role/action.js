@@ -17,9 +17,9 @@ const roleActions = {
     return {
       type: roleActions.ROLES_FETCHED_PAGINATION,
       roles: data.roles,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalRoles,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

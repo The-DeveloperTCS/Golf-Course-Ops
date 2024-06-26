@@ -3,20 +3,20 @@ export const sidebarData = [
     name: "sidebar.intro",
     routepath: "/Intro",
     iconClass: "fa fa-desktop",
-    resource: "view_dashboards",
+    resource: "DASHBOARD",
   },
   {
     name: "sidebar.employee",
     routepath: "/employee/list",
     iconClass: "fa fa-users",
-    resource: "view_dashboards",
+    resource: "EMPLOYEE",
   },
 
   {
     name: "sidebar.location",
     routepath: "/location/list",
     iconClass: "fa fa-location-arrow",
-    resource: "view_dashboards",
+    resource: "LOCATION",
   },
 
   {
@@ -230,7 +230,7 @@ export const sidebarData = [
     name: "sidebar.access_management",
     routepath: "/access-management",
     iconClass: "fas fa-lock",
-    resource: "view_dashboards",
+    resource: "",
   },
 ];
 
@@ -239,19 +239,19 @@ export const HorizontalSidebarData = [
     name: "sidebar.intro",
     routepath: "/Intro",
     iconClass: "fa fa-bar-chart",
-    resource: "view_dashboards",
+    resource: "DASHBOARD",
   },
   {
     name: "sidebar.employee",
     routepath: "/employee/list",
     iconClass: "fa fa-address-book",
-    resource: "view_dashboards",
+    resource: "EMPLOYEE",
   },
   {
     name: "sidebar.location",
     routepath: "/location/list",
     iconClass: "fa fa-location-arrow",
-    resource: "view_dashboards",
+    resource: "LOCATION",
   },
 
   {
@@ -332,6 +332,6 @@ export const HorizontalSidebarData = [
     name: "sidebar.access_management",
     routepath: "/access-management",
     iconClass: "fas fa-lock",
-    resource: "ACCESS_MANAGEMENT",
+    resource: "",
   },
 ];

@@ -17,9 +17,9 @@ const locationActions = {
     return {
       type: locationActions.LOCATION_FETCHED_PAGINATION,
       locations: data.locations,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalLocations,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

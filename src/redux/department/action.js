@@ -17,13 +17,13 @@ const departmentActions = {
     return {
       type: departmentActions.DEPARTMENTS_FETCHED_PAGINATION,
       departments: data.departments,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totaldepartments,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 
-  fetchEmployeesPagination: (limit, pageNo) => {
+  fetchDepartmentsPagination: (limit, pageNo) => {
     return (dispatch) => {
       getDepartmentsList(limit, pageNo)
         .then((res) => {

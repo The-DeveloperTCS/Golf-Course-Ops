@@ -4,6 +4,7 @@ import DataTableLocations from "components/table/DataTableLocations";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import LocationActions from "redux/location/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
 import { deleteLocations } from "redux/location/service";
 
 const { startLoader, endLoader } = loaderActions;
@@ -23,6 +24,7 @@ const LocationsList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useLocationPermission = useRolePermissions("LOCATION");
 
   const handleChangePage = (event) => {
     fetchLocationsPagination(pageLimit, event);
@@ -113,14 +115,14 @@ const LocationsList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Location List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/location/new")}
-                >
-                  <i className="fas fa-plus" /> New Location
-                </button>
-                {/* )} */}
+                {useLocationPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/location/new")}
+                  >
+                    <i className="fas fa-plus" /> New Location
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -145,6 +147,7 @@ const LocationsList = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state, "state");
   return {
     locations: state.location.locations,
     pageLimit: state.location.pageLimit,

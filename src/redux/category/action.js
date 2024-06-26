@@ -17,9 +17,9 @@ const categoryActions = {
     return {
       type: categoryActions.CATEGORIES_FETCHED_PAGINATION,
       categories: data.categories,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalCategories,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

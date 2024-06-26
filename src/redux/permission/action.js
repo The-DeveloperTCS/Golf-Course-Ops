@@ -17,9 +17,9 @@ const permissionActions = {
     return {
       type: permissionActions.PERMISSIONS_FETCHED_PAGINATION,
       permissions: data.permissions,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalPermissions,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 

@@ -19,7 +19,7 @@ const defaultEmployee = {
   phoneNumber: "",
   cellPhoneNumber: "",
   username: "",
-  dateOfBirth: "",
+  dateOfBirth: null,
   address: "",
   city: "",
   state: "",

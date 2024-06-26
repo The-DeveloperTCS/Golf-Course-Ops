@@ -9,6 +9,9 @@ import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { TextField } from "@mui/material";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const LocationForm = (props) => {
   const { locationId, updateLocation } = props;
@@ -88,30 +91,27 @@ const LocationForm = (props) => {
                   </div>
                 </div>
 
-                {/*                
                 <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">
-                    Date Of Birth
-                  </label>
+                  <label className="col-sm-4 col-form-label">Time</label>
                   <div className="col-sm-8">
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DesktopDatePicker
-                        // disabled={!usePaymentPermission}
-                        style={{ width: "50%" }}
-                        // label="Received Date"
-                        inputFormat="dd/MM/yyyy"
-                        value={updatedLocation.date_of_birth}
-                        onChange={(newValue) =>
-                          setUpdateLocation({
-                            ...updatedLocation,
-                            date_of_birth: newValue,
-                          })
-                        }
-                        renderInput={(params) => <TextField {...params} />}
-                      />
+                    {/* <DemoItem label={<Label componentName="TimePicker" valueType="time" />}> */}
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["TimePicker"]}>
+                        <TimePicker
+                          label="Controlled picker"
+                          value={updatedLocation.time}
+                          onChange={(newValue) => {
+                            setUpdateLocation({
+                              ...updatedLocation,
+                              time: newValue,
+                            });
+                          }}
+                        />
+                        {/* </DemoItem> */}
+                      </DemoContainer>
                     </LocalizationProvider>
                   </div>
-                </div> */}
+                </div>
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Weather</label>

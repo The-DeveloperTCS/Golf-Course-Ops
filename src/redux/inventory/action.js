@@ -17,9 +17,9 @@ const inventoryActions = {
     return {
       type: inventoryActions.INVENTORY_FETCHED_PAGINATION,
       inventories: data.inventories,
-      total: 1,
-      pageLimit: 1,
-      pageNo: 1,
+      total: data.pagination.totalInventories,
+      pageLimit: data.pagination.limit,
+      pageNo: data.pagination.currentPage,
     };
   },
 
