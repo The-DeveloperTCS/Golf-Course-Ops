@@ -57,7 +57,7 @@ import SinglePermission from "views/pages/permission/SinglePermission";
 
 import AccessManagement from "views/pages/authentication/AccessManagement";
 import NotFound from "views/pages/NotFound";
-
+import Profile from "views/pages/Profile";
 // import AdminTeeSheet from "views/pages/adminTeeSheet/AdminTeeSheet";
 // import AdminTeeSheet2 from "views/pages/adminTeeSheet/AdminTeeSheet2";
 // import AdminTeeSheetSetting from "views/pages/adminTeeSheet/AdminTeeSheetSetting";
@@ -76,7 +76,11 @@ const dashboardRoutes = [
     component: EmployeesList,
     resource: "EMPLOYEE",
   },
-
+  {
+    path: "/Profile",
+    component: Profile,
+    resource: "EMPLOYEE",
+  },
   {
     path: "/employee/new",
     component: NewEmployee,

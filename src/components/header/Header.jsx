@@ -21,13 +21,13 @@ const Header = (props) => {
   return (
     <HeaderWrapper {...props} topbarTheme={topbarTheme}>
       <div className="headerBack">
-        <div className="flex-x justify-content-end align-center">
+        <div className="flex-x justify- space-between align-center">
           <div
             className="mini-drawer-menu-icon"
             onClick={() => drawerMiniMethod()}
           >
             <i className="fas fa-bars" />
-            <span className="app-name fs-16 bold-text">{"Roe"}</span>
+            <span className="app-name fs-16 bold-text">{""}</span>
           </div>
           <div className="pl-10">{pageName}</div>
           <div className="pl-10 flex-x align-center">
