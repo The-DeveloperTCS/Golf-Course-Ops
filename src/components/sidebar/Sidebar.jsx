@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import IntlMessages from "util/intlMessages";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "redux/auth/actions";
-import logoimg from "../../assets/images/golfer-golf-player-man-illustration-abstract-style_691560-6542.avif";
+import logoimg from "../../assets/images/logo.png";
 
 const Sidebar = (props) => {
   let listNameStyle;
@@ -127,13 +127,13 @@ const Sidebar = (props) => {
           </NavLink>
           <div className="logo-text simple-text fs-20 bold-text">{AppName}</div>
         </div>
-        <div
+        {/* <div
           className="close-drawer-icon"
           style={closeIcon}
           onClick={closeDrawer()}
         >
-          <i className="fas fa-times-circle" />
-        </div>
+          <i className="fas fa-bars" />
+        </div> */}
         <Scrollbars
           autoHide
           style={sideScrollStyle}

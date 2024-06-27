@@ -1,0 +1,169 @@
+.login-main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-form {
+  width: 50%;
+  padding: 20px 100px;
+  margin-top: -100px;
+}
+
+.login-right {
+  width: 50%;
+  position: relative;
+}
+
+.login-right img {
+  width: 100%;
+}
+
+.login-title h1 {
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 52.5px;
+  text-align: center;
+}
+
+.text-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #919499;
+  margin: 0 10px;
+}
+
+.text {
+  white-space: nowrap;
+}
+
+.login-png1 img {
+  width: 50px;
+}
+
+.login-png1 {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  bottom: 26%;
+  right: 20px;
+  padding: 5px 20px 5px 5px;
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  gap: 5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  padding: 8px 5px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #c4c4c4;
+  color: #c4c4c4;
+}
+
+.form-group ::placeholder {
+  color: #c4c4c4;
+}
+
+.form-group label {
+  color: #919499;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.lable-forget {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lable-forget p {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 44px;
+  color: #f8ad15;
+  cursor: pointer;
+}
+
+.login-btn {
+  width: 100%;
+  background-color: #f8ad15;
+  color: rgb(255, 255, 255);
+  outline: none;
+  border: none;
+  padding: 8px 5px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.signup-btn {
+  width: 100%;
+  background-color: #ffffff;
+  color: rgb(255, 255, 255);
+  outline: none;
+  border: 1px solid #c4c4c4;
+  padding: 8px 5px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.signup-btn button:hover {
+  background-color: red;
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-right {
+    display: none;
+  }
+
+  .login-form {
+    width: 100%;
+    padding: 30px 20px;
+    margin: 0px;
+  }
+
+  .login-title h1 {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 51.5px;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .login-right {
+    display: none;
+  }
+
+  .login-form {
+    width: 100%;
+    padding: 30px 20px;
+    margin: 0px;
+  }
+
+  .login-title h1 {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 51.5px;
+    text-align: center;
+  }
+}
+
+.sidebar.closed {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+}

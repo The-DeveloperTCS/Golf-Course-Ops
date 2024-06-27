@@ -11,22 +11,13 @@ class Intro extends Component {
     minimumOrderValue: 0,
   };
 
-  // async componentDidMount() {
-  //   const res = await fetchFreeDelivery();
-  //   const data = res.data;
-  //   this.setState({
-  //     applyFreeDelivery: data.freeDelivery,
-  //     minimumOrderValue: data.minOrderValue,
-  //   });
-  // }
-
   render() {
     const { applyFreeDelivery, minimumOrderValue } = this.state;
     return (
       <div>
-        <PageTitle title="sidebar.intro" />
+        <PageTitle title="Dashboard" />
 
-        <div className="plr-15">
+        {/* <div className="plr-15">
           <div className="row">
             <div className="col-md-12 pt-30">
               <StockInfo
@@ -48,28 +39,15 @@ class Intro extends Component {
                   title: "Free Delivery",
                   amount: minimumOrderValue,
                   applyFreeDelivery: applyFreeDelivery,
-                  description: `Free delivery ${
-                    applyFreeDelivery ? "Enable" : "Disable"
-                  }`,
+                  description: `Free delivery ${applyFreeDelivery ? "Enable" : "Disable"
+                    }`,
                   // direction: "up",
                   // percent: "0",
                 }}
               />
-              {/* <StockSectionWrapper className="stock-section"> */}
-              {/* <div className="fs-18 header">Free Delivery</div>
-              <div className="section-container">
-                <div className="section-3">
-                  <p className="fs-20 mt-15 bold-text">{minimumOrderValue}</p>
-                  <p className="grey--text">{`Free delivery ${applyFreeDelivery ? "Enable" : "Disable"}`}</p>
-                </div>
-                <div className="section-1">
-                 
-                </div>
-              </div> */}
-              {/* </StockSectionWrapper> */}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -8,7 +8,9 @@ import enhancer from "./enhancer/LoginFormEnhancer";
 import Button from "components/button/Button";
 import notificationActions from "redux/notifications/actions";
 import { bindActionCreators } from "redux";
-
+import login from "../../../assets/images/login-main-img.png";
+import loginpng from "../../../assets/images/downloadlogin.png";
+import "../../style/Login.css";
 const Login = (props) => {
   const [loading, setLoading] = useState(false);
 
@@ -18,8 +20,8 @@ const Login = (props) => {
 
     setLoading(true);
     try {
-      if (values.email !== "" && values.password !== "") {
-        await props.loginRequest(values.email, values.password); // Pass email and password
+      if (values.username !== "" && values.password !== "") {
+        await props.loginRequest(values.username, values.password); // Pass username and password
       }
     } catch (e) {
       console.log(e);
@@ -66,48 +68,72 @@ const Login = (props) => {
   };
 
   return (
-    <div className="container-fluid" style={loginContainer}>
-      <div className="form-container">
-        <div className="login-icon">
-          <img src={logo} alt="icon" height="100px" />
+    <div className="login-main-div">
+      <form className="login-form" onSubmit={handleLogin}>
+        <div className="login-title">
+          <h1>Hi, Welcome Back!</h1>
         </div>
-        <div className="login-title">Sign in to your account</div>
-        <form className="pa-24" onSubmit={handleLogin}>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              className="form-control react-form-input"
-              id="email"
-              onChange={handleChange}
-              value={values.email}
-              onBlur={handleBlur}
-              placeholder="Email"
-            />
-            <Error field="email" />
-          </div>
-          <div className="form-group">
+
+        <div className="form-group">
+          <label>User Name</label>
+          <input
+            type="username"
+            className=""
+            id="username"
+            onChange={handleChange}
+            value={values.username}
+            onBlur={handleBlur}
+            placeholder="User Name"
+          />
+          <Error field="username" />
+        </div>
+        <div className="form-group">
+          <div className="lable-forget">
             <label>Password</label>
-            <input
-              type="password"
-              className="form-control react-form-input"
-              id="password"
-              onChange={handleChange}
-              value={values.password}
-              onBlur={handleBlur}
-              placeholder="Password"
-            />
-            <Error field="password" />
+            {/* <p>Forgot Password</p> */}
           </div>
-          <Button
-            type="submit"
-            className="c-btn ma-5 form-button"
-            dataStyle="expand-left"
-            loading={loading}
-          >
-            Login
-          </Button>
-        </form>
+
+          <input
+            type="password"
+            className=""
+            id="password"
+            onChange={handleChange}
+            value={values.password}
+            onBlur={handleBlur}
+            placeholder="Password"
+          />
+          <Error field="password" />
+        </div>
+        <Button
+          type="submit"
+          className="login-btn"
+          dataStyle="expand-left"
+          loading={loading}
+        >
+          Sign In
+        </Button>
+        {/* <div class="text-divider">
+          <span class="line"></span>
+          <span class="text">Didn’t have an account?</span>
+          <span class="line">
+
+          </span>
+        </div>
+        <Button
+          type="submit"
+          className="signup-btn"
+          dataStyle="expand-left"
+          loading={loading}
+        >
+          Sign Up
+        </Button> */}
+      </form>
+      <div className="login-right">
+        <img src={login} alt="" />
+        <div className="login-png1">
+          <img src={loginpng} alt="" />
+          <p>Help/Support</p>
+        </div>
       </div>
     </div>
   );

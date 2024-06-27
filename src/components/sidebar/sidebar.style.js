@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { palette } from "styled-theme";
 const SidebarWrapper = styled.div`
     .close-drawer-icon {
-        display: none;
+        display: block;
         position: absolute;
         right: 15px;
         top: 18px;

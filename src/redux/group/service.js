@@ -1,54 +1,33 @@
-import { axiosClient } from "../../redux/store";
+import { axiosClient } from "../store";
 import {
   createGroupUrl,
   updateGroupUrl,
   deleteGroupUrl,
-  getGiftCardListUrl,
-  getSpecificCGroupUrl,
+  getGroupsListUrl,
+  getSpecificGroupUrl,
 } from "Constants";
 
-export const createGroups = async (data) => {
-  console.log(data, "data");
+export const getGroupsList = async (limit, pageNo) => {
   try {
-    const response = await axiosClient.post(createGroupUrl, data);
+    const response = await axiosClient.get(getGroupsListUrl(limit, pageNo));
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateGroups = async (id, data) => {
-  try {
-    const response = await axiosClient.put(`${updateGroupUrl}${id}`, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createGroups = (req) => {
+  return axiosClient.post(createGroupUrl, req);
 };
 
-export const deleteGroups = async (id) => {
-  try {
-    const response = await axiosClient.delete(`${deleteGroupUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const updateGroupDetails = (groupId, req) => {
+  return axiosClient.patch(updateGroupUrl(groupId), req);
 };
 
-export const getGroupsList = async (params) => {
-  try {
-    const response = await axiosClient.get(getGiftCardListUrl, { params });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const getSpecificGroup = async (groupId) => {
+  return axiosClient.get(getSpecificGroupUrl(groupId));
 };
 
-export const getSpecificGroups = async (id) => {
-  try {
-    const response = await axiosClient.get(`${getSpecificCGroupUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const deleteGroups = async (groupId) => {
+  return axiosClient.delete(deleteGroupUrl(groupId));
 };

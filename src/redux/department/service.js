@@ -1,54 +1,35 @@
-import { axiosClient } from "../../redux/store";
+import { axiosClient } from "../store";
 import {
   createDepartmentUrl,
   updateDepartmentUrl,
   deleteDepartmentUrl,
-  getDepartmentListUrl,
+  getDepartmentsListUrl,
   getSpecificDepartmentUrl,
 } from "Constants";
 
-export const createDepartments = async (data) => {
-  console.log(data, "data");
+export const getDepartmentsList = async (limit, pageNo) => {
   try {
-    const response = await axiosClient.post(createDepartmentUrl, data);
+    const response = await axiosClient.get(
+      getDepartmentsListUrl(limit, pageNo)
+    );
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateDepartments = async (id, data) => {
-  try {
-    const response = await axiosClient.put(`${updateDepartmentUrl}${id}`, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createDepartments = (req) => {
+  return axiosClient.post(createDepartmentUrl, req);
 };
 
-export const deleteDepartments = async (id) => {
-  try {
-    const response = await axiosClient.delete(`${deleteDepartmentUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const updateDepartmentDetails = (departmentId, req) => {
+  return axiosClient.patch(updateDepartmentUrl(departmentId), req);
 };
 
-export const getDepartmentsList = async (params) => {
-  try {
-    const response = await axiosClient.get(getDepartmentListUrl, { params });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const getSpecificDepartment = async (departmentId) => {
+  return axiosClient.get(getSpecificDepartmentUrl(departmentId));
 };
 
-export const getSpecificDepartments = async (id) => {
-  try {
-    const response = await axiosClient.get(`${getSpecificDepartmentUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const deleteDepartments = async (departmentId) => {
+  return axiosClient.delete(deleteDepartmentUrl(departmentId));
 };

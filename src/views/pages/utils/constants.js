@@ -73,6 +73,11 @@ export const GENERAL_ADMIN_SIDEBAR_LIST_ITEMS = [
     item: "Sub Category",
     url: "/dashboard/sub-category",
   },
+  {
+    item: "profile",
+    url: "/dashboard/profile",
+  },
+
   // {
   //   item: "adminTeeSheetSetting",
   //   url: "/dashboard/adminTeeSheet-Setting",

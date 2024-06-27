@@ -1,258 +1,173 @@
-import React, { useEffect, useState } from "react";
-import moment from "moment";
-import ReactTableWrapper from "./reacttbl.style";
-import { history } from "redux/store";
+import React, { useMemo } from "react";
+import { useTable, useSortBy, useFilters, usePagination } from "react-table";
 import classnames from "classnames";
 import Pagination from "components/common/PaginationWitAPI";
+import ReactTableWrapper from "./reacttbl.style";
+import { history } from "redux/store";
+import moment from "moment";
 import { Link } from "react-router-dom";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import TextField from "@mui/material/TextField";
-import { withStyles } from "@material-ui/core/styles";
-const styles = (theme) => ({
-  "@global": {
-    ".css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
-      borderColot: "#000000",
+import { connect } from "react-redux";
+import { Badge } from "reactstrap";
+import loaderActions from "redux/loader/actions";
+import EmployeeActions from "redux/employee/action";
+const { startLoader, endLoader } = loaderActions;
+const { fetchEmployeesPagination } = EmployeeActions;
+
+const HeaderComponent = (props) => {
+  let classes = {
+    "my-2": true,
+    "mx-3": true,
+    "-sort-asc": props.isSortedDesc !== undefined && !props.isSortedDesc,
+    "-sort-desc": props.isSortedDesc !== undefined && props.isSortedDesc,
+  };
+  return <div className={classnames(classes)}>{props.title}</div>;
+};
+
+const DataTable = (props) => {
+  const sortBy = useMemo(() => {
+    return props.sortBy || [];
+  }, [props.sortBy]);
+  const columns = useMemo(
+    () =>
+      props.columns.map((c) => {
+        const colDef = {
+          Header: (tableInstance) => {
+            return (
+              <HeaderComponent
+                isSortedDesc={tableInstance.column.isSortedDesc}
+                title={c.title}
+              />
+            );
+          },
+          placeholder: c.title,
+          accessor: c.field,
+          disableFilters: !c.enableFilters,
+        };
+
+        if (c.id) {
+          colDef.id = c.id;
+        }
+
+        if (c.cell) {
+          colDef.Cell = c.cell;
+        }
+        if (c.enableFilters) {
+          colDef.Filter = FilterComponent;
+        }
+
+        return colDef;
+      }),
+    [props.columns]
+  );
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    state: { pageIndex },
+  } = useTable(
+    {
+      data: props.data,
+      columns: columns,
+      initialState: {
+        pageSize: 25,
+        pageIndex: 0,
+        sortBy: sortBy,
+      },
     },
-  },
-});
+    useFilters,
+    useSortBy,
+    usePagination
+  );
 
-export default function StickyHeadTable(props) {
-  const [date, setDate] = useState(null);
-
-  let classesOrderSorted = {
-    "my-2": true,
-    "mx-3": true,
-    "-sort-asc": !props.orderIdSorted,
-    "-sort-desc": props.orderIdSorted,
+  const onEdit = (eId, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    history.push("/employee/" + eId);
   };
-
-  let classesDateSorted = {
-    "my-2": true,
-    "mx-3": true,
-    "-sort-asc": !props.dateSorted,
-    "-sort-desc": props.dateSorted,
-  };
-
-  let classesTotalSorted = {
-    "my-2": true,
-    "mx-3": true,
-    "-sort-asc": !props.totalSorted,
-    "-sort-desc": props.totalSorted,
-  };
-
-  useEffect(() => {
-    setDate(null);
-  }, [props.status]);
-
-  const onChangeDate = (e, id) => {
-    setDate(e);
-    props.onChangeFilter(moment(e).format("YYYY-MM-DD") || "", id);
-  };
-
+  console.log(props.totalPages, "props totalPages");
   return (
     <ReactTableWrapper {...props}>
       <div className="table-container text-center overflow-auto">
-        <table border={1} className="custom-react-table-theme-class">
+        <table
+          border={1}
+          className="custom-react-table-theme-class"
+          {...getTableProps()}
+        >
           <thead>
-            {props.columns.map((column) => (
-              <th>
-                {column.enableFilters ? (
-                  <div
-                    className={classnames(
-                      column.id === "id"
-                        ? classesOrderSorted
-                        : column.id === "date"
-                        ? classesDateSorted
-                        : column.id === "total"
-                        ? classesTotalSorted
-                        : ""
-                    )}
-                    onClick={() => props.onSort(column.id)}
-                  >
-                    {column.title}
-                  </div>
-                ) : (
-                  column.title
-                )}
-              </th>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((header) => (
+                  <th {...header.getHeaderProps(header.getSortByToggleProps())}>
+                    <div>{header.render("Header")}</div>
+                  </th>
+                ))}
+              </tr>
             ))}
           </thead>
-          <tbody>
-            {props.columns.map((column) => (
-              <td>
-                {column.id === "id" ? (
-                  <input
-                    type="number"
-                    value={props.orderIdValue || ""}
-                    onChange={(e) => {
-                      props.setOrderIdValue(e.target.value); // Set undefined to remove the filter entirely
-                    }}
-                    onBlur={(e) => {
-                      props.onChangeFilter(props.orderIdValue || "", column.id);
-                    }}
-                    onKeyPress={(event) => {
-                      if (event.key === "Enter") {
-                        props.onChangeFilter(
-                          props.orderIdValue || "",
-                          column.id
-                        );
-                      }
-                    }}
-                    className="tabl-search react-form-input"
-                    placeholder={`${column.title}`}
-                  />
-                ) : column.id === "date" ? (
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      style={{ width: "50%" }}
-                      label="Date"
-                      inputFormat="dd-MM-yyyy"
-                      value={date}
-                      onChange={(e) => onChangeDate(e, column.id)}
-                      renderInput={(params) => (
-                        <TextField size="small" {...params} />
-                      )}
-                    />
-                  </LocalizationProvider>
-                ) : column.id === "merchant" ? (
-                  <input
-                    type="text"
-                    value={props.searchMerchantValue || ""}
-                    onChange={(e) => {
-                      props.setSearchMerchantValue(e.target.value); // Set undefined to remove the filter entirely
-                    }}
-                    onBlur={(e) => {
-                      props.onChangeFilter(
-                        props.searchMerchantValue || "",
-                        column.id
-                      );
-                    }}
-                    onKeyPress={(event) => {
-                      if (event.key === "Enter") {
-                        props.onChangeFilter(
-                          props.searchMerchantValue || "",
-                          column.id
-                        );
-                      }
-                    }}
-                    className="tabl-search react-form-input"
-                    placeholder={`${column.title}`}
-                  />
-                ) : column.id === "salesAgentId" ? (
-                  <input
-                    type="text"
-                    value={props.searchSalesAgentValue || ""}
-                    onChange={(e) => {
-                      props.setSearchSalesAgentValue(e.target.value); // Set undefined to remove the filter entirely
-                    }}
-                    onBlur={(e) => {
-                      props.onChangeFilter(
-                        props.searchSalesAgentValue || "",
-                        column.id
-                      );
-                    }}
-                    onKeyPress={(event) => {
-                      if (event.key === "Enter") {
-                        props.onChangeFilter(
-                          props.searchSalesAgentValue || "",
-                          column.id
-                        );
-                      }
-                    }}
-                    className="tabl-search react-form-input"
-                    placeholder={`${column.title}`}
-                  />
-                ) : column.id === "customer" ? (
-                  <input
-                    type="text"
-                    value={props.searchCustomerValue || ""}
-                    onChange={(e) => {
-                      props.setSearchCustomerValue(
-                        e.target.value || "",
-                        column.id
-                      ); // Set undefined to remove the filter entirely
-                    }}
-                    onBlur={(e) => {
-                      props.onChangeFilter(
-                        props.searchCustomerValue || "",
-                        column.id
-                      );
-                    }}
-                    onKeyPress={(event) => {
-                      if (event.key === "Enter") {
-                        props.onChangeFilter(
-                          props.searchCustomerValue || "",
-                          column.id
-                        );
-                      }
-                    }}
-                    className="tabl-search react-form-input"
-                    placeholder={`${column.title}`}
-                  />
-                ) : null}
-              </td>
+          <tbody {...getTableBodyProps()}>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <td
+                      {...header.getHeaderProps(header.getSortByToggleProps())}
+                    >
+                      <div>
+                        {header.canFilter ? header.render("Filter") : null}
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr>
             ))}
+
             {props.data.map((row) => {
               return (
                 <tr>
                   <Link
                     target="_blank"
-                    to={`/orders/${row.id}`}
+                    to={`/employee/${row.id}`}
                     style={{ textDecoration: "none" }}
                   >
                     <td style={{ border: 0 }}>{row.id}</td>
                   </Link>
-                  {props.columns.map(
-                    (column) =>
-                      column.id === "date" && (
-                        <td onClick={() => history.push(`/orders/${row.id}`)}>
-                          {moment(row.placedAt)
-                            .local()
-                            .format("DD-MM-YYYY")}
-                        </td>
-                      )
-                  )}
-                  <td onClick={() => history.push(`/orders/${row.id}`)}>
-                    {row.merchant ? row.merchant : ""}
-                  </td>
-                  <td onClick={() => history.push(`/orders/${row.id}`)}>
-                    {row.salesAgent ? row.salesAgent : ""}
-                  </td>
-                  <td onClick={() => history.push(`/orders/${row.id}`)}>
-                    {!!row.customerName
-                      ? row.customerName + " - " + row.customerPhone
-                      : row.customerPhone}
-                  </td>
-                  <td onClick={() => history.push(`/orders/${row.id}`)}>
-                    {row.countPreOrder}
-                  </td>
-                  <td onClick={() => history.push(`/orders/${row.id}`)}>
-                    {row.total}
-                  </td>
-                  <td onClick={() => history.push(`/orders/${row.id}`)}>
-                    {row.receivedPayment}
-                  </td>
-                  <td onClick={() => history.push(`/orders/${row.id}`)}>
-                    {row.balancePayment}
+
+                  <td>{moment(row.createdAt).format("LL")}</td>
+                  <td>{row.firstName}</td>
+                  <td>{row.lastName}</td>
+                  <td>{row.phoneNumber}</td>
+                  <td>{row.emailAddress}</td>
+                  <td>{row.username}</td>
+                  <td>{row.defaultTerminal}</td>
+                  <td>
+                    {row.status ? (
+                      <Badge className="c-success p-2">Active</Badge>
+                    ) : (
+                      <Badge className="c-secondary p-2">In-Active</Badge>
+                    )}
                   </td>
 
-                  {props.columns.map(
-                    (column) =>
-                      column.id === "courier" && (
-                        <td onClick={() => history.push(`/orders/${row.id}`)}>
-                          {row.courierName ? row.courierName : ""}
-                        </td>
-                      )
-                  )}
+                  <td>
+                    <button
+                      className="btn c-btn-sm c-outline-danger ma-5"
+                      onClick={(e) => props.deleteEmployee(row.id, e)}
+                    >
+                      <i className="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <button
+                      className="btn c-btn-sm c-outline-primary ma-5"
+                      onClick={(e) => onEdit(row.id, e)}
+                    >
+                      <i className="fas fa-edit"></i>
+                    </button>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
       </div>
-
       <Pagination
         handleChangePage={props.handleChangePage}
         totalPages={props.totalPages}
@@ -260,4 +175,26 @@ export default function StickyHeadTable(props) {
       />
     </ReactTableWrapper>
   );
-}
+};
+
+const FilterComponent = (tableInstance) => {
+  const { filterValue, setFilter } = tableInstance.column;
+  return (
+    <input
+      type="text"
+      value={filterValue || ""}
+      onChange={(e) => {
+        setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+      }}
+      className="tabl-search react-form-input"
+      placeholder={`${tableInstance.column.placeholder}`}
+      onClick={(e) => e.stopPropagation()}
+    />
+  );
+};
+
+export default connect(null, {
+  fetchEmployeesPagination,
+  startLoader,
+  endLoader,
+})(DataTable);

@@ -8,10 +8,16 @@ import { Table } from "reactstrap";
 
 import {
   getAllPermissions,
-  getAllRoles,
-  getPermissionsForRole,
+  // getPermissionsForRole,
   updatePermission,
 } from "redux/users/service";
+
+import {
+  getPermissionsList,
+  getPermissionsForRole,
+} from "redux/permission/service";
+
+import { getRolesList } from "redux/role/service";
 
 const humanize = (s) => {
   return s
@@ -46,18 +52,20 @@ const PermissionsList = ({ role }) => {
 
   const fetchData = useCallback(async () => {
     if (!role) return null;
-    const permsRes = await getAllPermissions();
+    const permsRes = await getPermissionsList("", "");
+    console.log(permsRes, "permsRes");
     const rolePermsRes = await getPermissionsForRole(role);
 
-    const updatedData = permsRes.data.map((perm) => {
-      const rolePerm = rolePermsRes.data.find((p) => p.name === perm);
+    const updatedData = permsRes.permissions.map((perm) => {
+      console.log(perm, "perm");
+      // const rolePerm = rolePermsRes.data.find((p) => p.name === perm);
       return {
-        name: perm,
-        ...rolePerm,
-        accessType: rolePerm ? rolePerm.accessType : "NONE",
+        name: perm.name,
+        // ...rolePerm,
+        accessType: "NONE",
       };
     });
-    setData(updatedData.sort((a, b) => a.name.localeCompare(b.name)));
+    setData(updatedData.sort((a, b) => a.name));
   }, [role]);
 
   const handleAccessTypeUpdate = async (perm, type, ind) => {
@@ -80,7 +88,7 @@ const PermissionsList = ({ role }) => {
   if (data.length === 0) {
     return null;
   }
-
+  console.log(data, "data");
   return (
     <div className="row ma-0">
       <div className="col-lg-6">
@@ -94,7 +102,11 @@ const PermissionsList = ({ role }) => {
           <tbody>
             {data.map((p, i) => (
               <tr key={i}>
-                <td>{humanize(p.name)}</td>
+                <td>
+                  {/* {humanize( */}
+                  {p.name}
+                  {/* // ) */}
+                </td>
                 <td>
                   <RoleAccessType
                     type={p.accessType}
@@ -114,12 +126,16 @@ const RoleSelect = ({ role, onRoleSelect }) => {
   const [roles, setRoles] = useState([]);
 
   useEffect(() => {
-    getAllRoles().then((res) => {
+    getRolesList("", "").then((res) => {
+      console.log(res, "res");
       setRoles(
-        res.data.map((role) => ({
-          value: role,
-          label: humanize(role.replace("ROLE_", "")),
-        }))
+        res.data.roles.map((role) =>
+          // console.log(role, 'role')
+          ({
+            value: role.name,
+            label: humanize(role.name.replace("ROLE_", "")),
+          })
+        )
       );
     });
   }, []);
@@ -142,9 +158,9 @@ const AccessManagement = () => {
   const [can] = usePermission();
   const [selectedRole, setSelectedRole] = useState(null);
 
-  if (!can("ACCESS_MANAGEMENT", ["WRITE"])) {
-    return <Redirect to="/" />;
-  }
+  // if (!can("ACCESS_MANAGEMENT", ["WRITE"])) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <div className="row ma-0">

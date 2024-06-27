@@ -1,53 +1,33 @@
-import { axiosClient } from "../../redux/store";
+import { axiosClient } from "../store";
 import {
   createCartUrl,
   updateCartUrl,
   deleteCartUrl,
-  getCartListUrl,
+  getCartsListUrl,
   getSpecificCartUrl,
 } from "Constants";
 
-export const createCartItems = async (data) => {
+export const getCartsList = async (limit, pageNo) => {
   try {
-    const response = await axiosClient.post(createCartUrl, data);
+    const response = await axiosClient.get(getCartsListUrl(limit, pageNo));
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateCartItems = async (id, data) => {
-  try {
-    const response = await axiosClient.put(`${updateCartUrl}${id}`, data); // Updated function name
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createCarts = (req) => {
+  return axiosClient.post(createCartUrl, req);
 };
 
-export const deleteCartItems = async (id) => {
-  try {
-    const response = await axiosClient.delete(`${deleteCartUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const updateCartDetails = (cartId, req) => {
+  return axiosClient.patch(updateCartUrl(cartId), req);
 };
 
-export const getCartItemsList = async (params) => {
-  try {
-    const response = await axiosClient.get(getCartListUrl, { params });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const getSpecificCart = async (cartId) => {
+  return axiosClient.get(getSpecificCartUrl(cartId));
 };
 
-export const getSpecificCartItems = async (id) => {
-  try {
-    const response = await axiosClient.get(`${getSpecificCartUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const deleteCarts = async (cartId) => {
+  return axiosClient.delete(deleteCartUrl(cartId));
 };

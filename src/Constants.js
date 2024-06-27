@@ -1,144 +1,135 @@
-import axios from "axios";
-
-//export const BaseUrl = "https://api.traveling-partner.com/api/";
-
-//export const BaseUrl = "https://http://localhost:3000/";
-
-// export const SENTRY_DSN = process.env.SENTRY_DSN;
-
-//export const LoginUrl = BaseUrl + "user/login";
-
-//export const LoginUrl = "http://localhost:3000/user/login";
-//export const PermissionsUrl = "http://localhost:3000/permission/byRole";
-
-//export const LoginOTPUrl = BaseUrl + "loginVerify";
-
-export const BaseUrl = "http://localhost:3000/";
+export const BaseUrl = "https://whale-app-i9cnx.ondigitalocean.app/";
 
 export const LoginUrl = BaseUrl + "user/login";
 export const PermissionsUrl = BaseUrl + "permission/byRole";
 export const LoginOTPUrl = BaseUrl + "loginVerify";
 
-//export const PermissionsUrl = "http://localhost:3000/permission/byRole";
-
-//export const PermissionsUrl = BaseUrl + "authz/permission";
-
 //Employee Endpoints
-
+export const getEmployeesListUrl = (limit, pageNo) =>
+  BaseUrl + `employee/getAll/?page=${pageNo}&limit=${limit}`;
 export const createEmployeeUrl = BaseUrl + "employee/add";
-export const updateEmployeeUrl = BaseUrl + "employee/update/";
-export const deleteEmployeeUrl = BaseUrl + "employee/delete/";
-export const getEmployeesListUrl = BaseUrl + "employee/getAll";
-export const getSpecificEmployeeUrl = BaseUrl + "employee/specificId/";
-
-//const loginUser = (data) => axios.post(LoginUrl, data);
+export const updateEmployeeUrl = (id) => BaseUrl + `employee/update/${id}`;
+export const getSpecificEmployeeUrl = (id) =>
+  BaseUrl + `employee/specificId/${id}`;
+export const deleteEmployeeUrl = (id) => BaseUrl + `employee/delete/${id}`;
 
 //Location Endpoints
-
 export const createLocationUrl = BaseUrl + "location/add";
-export const updateLocationUrl = BaseUrl + "location/update/";
-export const deleteLocationUrl = BaseUrl + "location/delete/";
-export const getLocationListUrl = BaseUrl + "location/getAll";
-export const getSpecificLocationUrl = BaseUrl + "location/specificId/";
+export const updateLocationUrl = (id) => BaseUrl + `location/update/${id}`;
+export const deleteLocationUrl = (id) => BaseUrl + `location/delete/${id}`;
+export const getLocationsListUrl = (limit, pageNo) =>
+  BaseUrl + `location/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificLocationUrl = (id) =>
+  BaseUrl + `location/specificId/${id}`;
+
+//Gift Cards Endpoints
+export const createCustomerUrl = BaseUrl + "customer/add";
+export const updateCustomerUrl = (id) => BaseUrl + `customer/update/${id}`;
+export const deleteCustomerUrl = (id) => BaseUrl + `customer/delete/${id}`;
+export const getCustomersListUrl = (limit, pageNo) =>
+  BaseUrl + `customer/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificCustomerUrl = (id) =>
+  BaseUrl + `customer/specificId/${id}`;
+
+//Gift Cards Endpoints
+export const createGiftCardUrl = BaseUrl + "gift-card/add";
+export const updateGiftCardUrl = (id) => BaseUrl + `gift-card/update/${id}`;
+export const deleteGiftCardUrl = (id) => BaseUrl + `gift-card/delete/${id}`;
+export const getGiftCardsListUrl = (limit, pageNo) =>
+  BaseUrl + `gift-card/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificGiftCardUrl = (id) =>
+  BaseUrl + `gift-card/specificId/${id}`;
 
 //Inventory Endpoints
+export const createInventoryUrl = BaseUrl + "inventory/add";
+export const updateInventoryUrl = (id) => BaseUrl + `inventory/update/${id}`;
+export const deleteInventoryUrl = (id) => BaseUrl + `inventory/delete/${id}`;
+export const getInventorysListUrl = (limit, pageNo) =>
+  BaseUrl + `inventory/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificInventoryUrl = (id) =>
+  BaseUrl + `inventory/specificId/${id}`;
 
-export const createInventoryUrl = BaseUrl + "/inventory/add";
-export const updateInventoryUrl = BaseUrl + "/inventory/update/";
-export const deleteInventoryUrl = BaseUrl + "/inventory/delete/";
-export const getInventoryListUrl = BaseUrl + "/inventory/getAll";
-export const getSpecificInventoryUrl = BaseUrl + "/inventory/specificId/";
-//const loginUser = (data) => axios.post(LoginUrl, data);
-
-//Cart Endpoints
-
+//Carts Endpoints
 export const createCartUrl = BaseUrl + "cart/add";
-export const updateCartUrl = BaseUrl + "cart/update/";
-export const deleteCartUrl = BaseUrl + "cart/delete/";
-export const getCartListUrl = BaseUrl + "cart/getAll";
-export const getSpecificCartUrl = BaseUrl + "cart/specificId/";
-//const loginUser = (data) => axios.post(LoginUrl, data);
+export const updateCartUrl = (id) => BaseUrl + `cart/update/${id}`;
+export const deleteCartUrl = (id) => BaseUrl + `cart/delete/${id}`;
+export const getCartsListUrl = (limit, pageNo) =>
+  BaseUrl + `cart/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificCartUrl = (id) => BaseUrl + `cart/specificId/${id}`;
 
-//Department Endpoints
-
-export const createDepartmentUrl = BaseUrl + "department/add";
-export const updateDepartmentUrl = BaseUrl + "department/update/";
-export const deleteDepartmentUrl = BaseUrl + "department/delete/";
-export const getDepartmentListUrl = BaseUrl + "department/getAll";
-export const getSpecificDepartmentUrl = BaseUrl + "department/specificId/";
-//const loginUser = (data) => axios.post(LoginUrl, data);
-
-//GiftCard Endpoints
-
-export const createGiftCardUrl = BaseUrl + "/giftcard/add";
-export const updateGiftCardUrl = BaseUrl + "/giftcard/update/";
-export const deleteGiftCardUrl = BaseUrl + "/giftcard/delete/";
-export const getGiftCardListUrl = BaseUrl + "/giftcard/getAll/";
-export const getSpecificGiftCardUrl = BaseUrl + "/giftcard/specificId/";
-
-//Customer Endpoints
-
-export const createCustomerUrl = BaseUrl + "/customer/add";
-export const updateCustomerUrl = BaseUrl + "/customer/update/";
-export const deleteCustomerUrl = BaseUrl + "/customer/delete/";
-export const getCustomerListUrl = BaseUrl + "/customer/getAll/";
-export const getSpecificCustomerUrl = BaseUrl + "/customer/specificId/";
+//Supplier Endpoints
+export const createSupplierUrl = BaseUrl + "supplier/add";
+export const updateSupplierUrl = (id) => BaseUrl + `supplier/update/${id}`;
+export const deleteSupplierUrl = (id) => BaseUrl + `supplier/delete/${id}`;
+export const getSuppliersListUrl = (limit, pageNo) =>
+  BaseUrl + `supplier/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificSupplierUrl = (id) =>
+  BaseUrl + `supplier/specificId/${id}`;
 
 //Terminal Endpoints
+export const createTerminalUrl = BaseUrl + "terminal/add";
+export const updateTerminalUrl = (id) => BaseUrl + `terminal/update/${id}`;
+export const deleteTerminalUrl = (id) => BaseUrl + `terminal/delete/${id}`;
+export const getTerminalListUrl = (pageNo, limit) =>
+  BaseUrl + `terminal/getAll?page=${pageNo}&limit=${limit}`;
+export const getSpecificCTerminalUrl = (id) =>
+  BaseUrl + `terminal/specificId/${id}`;
 
-export const createTerminalUrl = BaseUrl + "/terminal/add";
-export const updateTerminalUrl = BaseUrl + "/terminal/update/";
-export const deleteTerminalUrl = BaseUrl + "/terminal/delete/";
-export const getTerminalListUrl = BaseUrl + "/terminal/getAll/";
-export const getSpecificCTerminalUrl = BaseUrl + "/terminal/specificId/";
+//Departments Endpoints
+export const createDepartmentUrl = BaseUrl + "department/add";
+export const updateDepartmentUrl = (id) => BaseUrl + `department/update/${id}`;
+export const deleteDepartmentUrl = (id) => BaseUrl + `department/delete/${id}`;
+export const getDepartmentsListUrl = (limit, pageNo) =>
+  BaseUrl + `department/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificDepartmentUrl = (id) =>
+  BaseUrl + `department/specificId/${id}`;
 
-//Group Endpoints
-
-export const createGroupUrl = BaseUrl + "/group/add";
-export const updateGroupUrl = BaseUrl + "/group/update/";
-export const deleteGroupUrl = BaseUrl + "/group/delete/";
-export const getGroupListUrl = BaseUrl + "/group/getAll/";
-export const getSpecificCGroupUrl = BaseUrl + "/group/specificId/";
-
-//User Endpoints
-
-export const createUserUrl = BaseUrl + "/user/add";
-export const updateUserUrl = BaseUrl + "/user/update/";
-export const deleteUserUrl = BaseUrl + "/user/delete/";
-export const getUserListUrl = BaseUrl + "/user/getAll/";
-export const getSpecificCUserUrl = BaseUrl + "/user/specificId/";
+//Groups Endpoints
+export const createGroupUrl = BaseUrl + "group/add";
+export const updateGroupUrl = (id) => BaseUrl + `group/update/${id}`;
+export const deleteGroupUrl = (id) => BaseUrl + `group/delete/${id}`;
+export const getGroupsListUrl = (limit, pageNo) =>
+  BaseUrl + `group/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificGroupUrl = (id) => BaseUrl + `group/specificId/${id}`;
 
 //Category Endpoints
+export const createCategoryUrl = BaseUrl + "category/add";
+export const updateCategoryUrl = (id) => BaseUrl + `category/update/${id}`;
+export const deleteCategoryUrl = (id) => BaseUrl + `category/delete/${id}`;
+export const getCategorysListUrl = (limit, pageNo) =>
+  BaseUrl + `category/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificCategoryUrl = (id) =>
+  BaseUrl + `category/specificId/${id}`;
 
-export const createCategoryUrl = BaseUrl + "/category/add";
-export const updateCategoryUrl = BaseUrl + "/category/update/";
-export const deleteCategoryUrl = BaseUrl + "/category/delete/";
-export const getCategoryListUrl = BaseUrl + "/category/getAll/";
-export const getSpecificCategoryUrl = BaseUrl + "/category/specificId/";
-
-//SubCategory Endpoints
-
-export const createSubCategoryUrl = BaseUrl + "/sub-category/add";
-export const updateSubCategoryUrl = BaseUrl + "/sub-category/update/";
-export const deleteSubCategoryUrl = BaseUrl + "/sub-category/delete/";
-export const getSubCategoryListUrl = BaseUrl + "/sub-category/getAll/";
-export const getSpecificSubCategoryUrl = BaseUrl + "/sub-category/specificId/";
-
-//Permission Endpoints
-
-export const createPermissionUrl = BaseUrl + "/permission/add";
-export const updatePermissionUrl = BaseUrl + "/permission/update/";
-export const deletePermissionUrl = BaseUrl + "/permission/delete/";
-export const getPermissionListUrl = BaseUrl + "/permission/getAll/";
-export const getSpecificPermissionUrl = BaseUrl + "/permission/specificId/";
+//Sub Category Endpoints
+export const createSubCategoryUrl = BaseUrl + "sub-category/add";
+export const updateSubCategoryUrl = (id) =>
+  BaseUrl + `sub-category/update/${id}`;
+export const deleteSubCategoryUrl = (id) =>
+  BaseUrl + `sub-category/delete/${id}`;
+export const getSubCategorysListUrl = (limit, pageNo) =>
+  BaseUrl + `sub-category/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificSubCategoryUrl = (id) =>
+  BaseUrl + `sub-category/specificId/${id}`;
 
 //Role Endpoints
+export const createRoleUrl = BaseUrl + "role/add";
+export const updateRoleUrl = (id) => BaseUrl + `role/update/${id}`;
+export const deleteRoleUrl = (id) => BaseUrl + `role/delete/${id}`;
+export const getRoleListUrl = (pageNo, limit) =>
+  BaseUrl + `role/getAll?page=${pageNo}&limit=${limit}`;
+export const getSpecificRoleUrl = (id) => BaseUrl + `role/specificId/${id}`;
 
-export const createRoleUrl = BaseUrl + "/role/add";
-export const updateRoleUrl = BaseUrl + "/role/update/";
-export const deleteRoleUrl = BaseUrl + "/role/delete/";
-export const getRoleListUrl = BaseUrl + "/role/getAll/";
-export const getSpecificRoleUrl = BaseUrl + "/role/specificId/";
+//Permissions Endpoints
+export const createPermissionUrl = BaseUrl + "permission/add";
+export const updatePermissionUrl = (id) => BaseUrl + `permission/update/${id}`;
+export const deletePermissionUrl = (id) => BaseUrl + `permission/delete/${id}`;
+export const getPermissionsListUrl = (limit, pageNo) =>
+  BaseUrl + `permission/getAll/?page=${pageNo}&limit=${limit}`;
+export const getSpecificPermissionUrl = (id) =>
+  BaseUrl + `permission/specificId/${id}`;
+export const getRolePermissionUrl = (id) =>
+  BaseUrl + `permission-by-role/byRoleName/${id}`;
 
 //PermissionByRole Endpoints
 

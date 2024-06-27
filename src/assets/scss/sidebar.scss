@@ -127,12 +127,13 @@ body > .navbar-collapse {
 }
 
 .hor_mobile_sidebar {
-  display: none;
+  display: block;
   @media (max-width: 991.98px) {
     display: block;
-    // .close-drawer-icon, .sidebar-overlay {
-    //     display: block !important;
-    // }
+    .close-drawer-icon,
+    .sidebar-overlay {
+      display: block !important;
+    }
   }
 }
 

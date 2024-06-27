@@ -1,53 +1,33 @@
-import { axiosClient } from "../../redux/store";
+import { axiosClient } from "../store";
 import {
   createLocationUrl,
   updateLocationUrl,
   deleteLocationUrl,
-  getLocationListUrl,
+  getLocationsListUrl,
   getSpecificLocationUrl,
 } from "Constants";
 
-export const createLocations = async (data) => {
+export const getLocationsList = async (limit, pageNo) => {
   try {
-    const response = await axiosClient.post(createLocationUrl, data);
+    const response = await axiosClient.get(getLocationsListUrl(limit, pageNo));
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateLocations = async (id, data) => {
-  try {
-    const response = await axiosClient.put(`${updateLocationUrl}${id}`, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createLocation = (req) => {
+  return axiosClient.post(createLocationUrl, req);
 };
 
-export const deleteLocations = async (id) => {
-  try {
-    const response = await axiosClient.delete(`${deleteLocationUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const updateLocationDetails = (employeeId, req) => {
+  return axiosClient.patch(updateLocationUrl(employeeId), req);
 };
 
-export const getLocationsList = async (params) => {
-  try {
-    const response = await axiosClient.get(getLocationListUrl, { params });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const getSpecificLocation = async (employeeId) => {
+  return axiosClient.get(getSpecificLocationUrl(employeeId));
 };
 
-export const getSpecificLocations = async (id) => {
-  try {
-    const response = await axiosClient.get(`${getSpecificLocationUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const deleteLocations = async (employeeId) => {
+  return axiosClient.delete(deleteLocationUrl(employeeId));
 };

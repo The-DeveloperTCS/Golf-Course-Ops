@@ -1,5 +1,6 @@
 import { login, permissions } from "./service";
 import { history } from "../store";
+import notificationActions from "redux/notifications/actions";
 
 const authActions = {
   LOGIN_REQUEST: "auth/login-request",
@@ -16,22 +17,31 @@ const authActions = {
     };
   },
 
-  loginRequest: (email, password) => {
+  loginRequest: (username, password) => {
     return (dispatch) => {
-      login(email, password)
+      login(username, password)
         .then((res) => {
-          console.log(res, "response");
+          // console.log(res, "response");
           dispatch(authActions.login(res.token));
-          history.push("/employee");
+          history.push("/Intro");
         })
         .catch((err) => {
-          dispatch({ type: authActions.LOGIN_FAILURE, message: err.message });
+          console.log(err, "errrrr");
+          dispatch({
+            type: authActions.LOGIN_FAILURE,
+            message: err.response.data.message,
+          });
+          dispatch(
+            notificationActions.failure(
+              "Failed to login, " + err.response.data.message
+            )
+          );
         });
     };
   },
 
   login: (data) => {
-    console.log(data, "data");
+    // console.log(data, "data");
     return {
       type: authActions.LOGIN_SUCCESS,
       isLogin: true,
@@ -50,7 +60,7 @@ const authActions = {
   },
 
   permissionsUpdated: (data) => {
-    console.log(data, "data permissions");
+    // console.log(data, "data permissions");
     return {
       type: authActions.PERMISSIONS_UPDATED,
       permissions: data,

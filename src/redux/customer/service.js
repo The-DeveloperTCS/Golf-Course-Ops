@@ -1,54 +1,33 @@
-import { axiosClient } from "../../redux/store";
+import { axiosClient } from "../store";
 import {
   createCustomerUrl,
   updateCustomerUrl,
   deleteCustomerUrl,
-  getCustomerListUrl,
+  getCustomersListUrl,
   getSpecificCustomerUrl,
 } from "Constants";
 
-export const createCustomers = async (data) => {
-  console.log(data, "data");
+export const getCustomersList = async (limit, pageNo) => {
   try {
-    const response = await axiosClient.post(createCustomerUrl, data);
+    const response = await axiosClient.get(getCustomersListUrl(limit, pageNo));
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateCustomers = async (id, data) => {
-  try {
-    const response = await axiosClient.put(`${updateCustomerUrl}${id}`, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createCustomers = (req) => {
+  return axiosClient.post(createCustomerUrl, req);
 };
 
-export const deleteCustomers = async (id) => {
-  try {
-    const response = await axiosClient.delete(`${deleteCustomerUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const updateCustomerDetails = (customerId, req) => {
+  return axiosClient.patch(updateCustomerUrl(customerId), req);
 };
 
-export const getCustomersList = async (params) => {
-  try {
-    const response = await axiosClient.get(getCustomerListUrl, { params });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const getSpecificCustomer = async (customerId) => {
+  return axiosClient.get(getSpecificCustomerUrl(customerId));
 };
 
-export const getSpecificCustomers = async (id) => {
-  try {
-    const response = await axiosClient.get(`${getSpecificCustomerUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const deleteCustomers = async (customerId) => {
+  return axiosClient.delete(deleteCustomerUrl(customerId));
 };

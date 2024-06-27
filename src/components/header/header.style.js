@@ -26,7 +26,7 @@ const HeaderWrapper = styled.div`
       margin: 6px 0;
       justify-content: center;
       cursor: pointer;
-      display: none;
+      display: block;
       color: ${(props) => props.topbarTheme.textColor};
       @media only screen and (max-width: 991.98px) {
         display: block;

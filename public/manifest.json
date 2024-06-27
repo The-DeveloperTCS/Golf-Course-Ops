@@ -1,6 +1,6 @@
 {
-  "short_name": "nfc-golf-management-client",
-  "name": "nfc-golf-management-client",
+  "short_name": "Golf-Course",
+  "name": "Golf-Course",
 
   "start_url": ".",
   "display": "standalone",

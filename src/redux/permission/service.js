@@ -1,54 +1,40 @@
-import { axiosClient } from "../../redux/store";
+import { axiosClient } from "../store";
 import {
   createPermissionUrl,
   updatePermissionUrl,
   deletePermissionUrl,
-  getPermissionListUrl,
+  getPermissionsListUrl,
   getSpecificPermissionUrl,
+  getRolePermissionUrl,
 } from "Constants";
 
-export const createPermissions = async (data) => {
-  console.log(data, "data");
+export const getPermissionsList = async (limit, pageNo) => {
   try {
-    const response = await axiosClient.post(createPermissionUrl, data);
+    const response = await axiosClient.get(
+      getPermissionsListUrl(limit, pageNo)
+    );
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updatePermissions = async (id, data) => {
-  try {
-    const response = await axiosClient.put(`${updatePermissionUrl}${id}`, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createPermissions = (req) => {
+  return axiosClient.post(createPermissionUrl, req);
 };
 
-export const deletePermissions = async (id) => {
-  try {
-    const response = await axiosClient.delete(`${deletePermissionUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const updatePermissionDetails = (permissionId, req) => {
+  return axiosClient.patch(updatePermissionUrl(permissionId), req);
 };
 
-export const getPermissionsList = async (params) => {
-  try {
-    const response = await axiosClient.get(getPermissionListUrl, { params });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const getSpecificPermission = async (permissionId) => {
+  return axiosClient.get(getSpecificPermissionUrl(permissionId));
 };
 
-export const getSpecificPermissions = async (id) => {
-  try {
-    const response = await axiosClient.get(`${getSpecificPermissionUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const deletePermissions = async (permissionId) => {
+  return axiosClient.delete(deletePermissionUrl(permissionId));
+};
+
+export const getPermissionsForRole = (role) => {
+  return axiosClient.get(getRolePermissionUrl(role));
 };

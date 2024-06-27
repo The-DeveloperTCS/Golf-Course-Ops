@@ -1,47 +1,33 @@
-import axios from "axios";
-import { BaseUrl } from "Constants";
+import { axiosClient } from "../store";
+import {
+  createSupplierUrl,
+  updateSupplierUrl,
+  deleteSupplierUrl,
+  getSuppliersListUrl,
+  getSpecificSupplierUrl,
+} from "Constants";
 
-export const createSupplier = async (data) => {
+export const getSuppliersList = async (limit, pageNo) => {
   try {
-    const response = await axios.post(`${BaseUrl}/supplier/add`, data);
+    const response = await axiosClient.get(getSuppliersListUrl(limit, pageNo));
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateSupplier = async (id, data) => {
-  try {
-    const response = await axios.put(`${BaseUrl}/supplier/update/${id}`, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createSuppliers = (req) => {
+  return axiosClient.post(createSupplierUrl, req);
 };
 
-export const deleteSupplier = async (id) => {
-  try {
-    const response = await axios.delete(`${BaseUrl}/supplier/delete/${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const updateSupplierDetails = (supplierId, req) => {
+  return axiosClient.patch(updateSupplierUrl(supplierId), req);
 };
 
-export const getSuppliersList = async (params) => {
-  try {
-    const response = await axios.get(`${BaseUrl}/supplier/getAll`, { params });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const getSpecificSupplier = async (supplierId) => {
+  return axiosClient.get(getSpecificSupplierUrl(supplierId));
 };
 
-export const getSpecificSupplier = async (id) => {
-  try {
-    const response = await axios.get(`${BaseUrl}/supplier/specificId/${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const deleteSuppliers = async (supplierId) => {
+  return axiosClient.delete(deleteSupplierUrl(supplierId));
 };

@@ -15,8 +15,8 @@ const usePermission = (permissionType) => {
   const permission = permissions.filter(
     (permission) => permission.name === permissionType
   );
-  return permission[0]?.accessType === "WRITE" ||
-    permission[0]?.accessType === "RESTRICTED_WRITE"
+  return permission[0]?.access === "WRITE" ||
+    permission[0]?.access === "RESTRICTED_WRITE"
     ? true
     : false;
 };

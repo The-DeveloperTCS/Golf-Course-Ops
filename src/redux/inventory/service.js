@@ -1,53 +1,33 @@
-import { axiosClient } from "../../redux/store";
+import { axiosClient } from "../store";
 import {
   createInventoryUrl,
   updateInventoryUrl,
   deleteInventoryUrl,
-  getInventoryListUrl,
+  getInventorysListUrl,
   getSpecificInventoryUrl,
 } from "Constants";
 
-export const createInventories = async (data) => {
+export const getIntevoriesList = async (limit, pageNo) => {
   try {
-    const response = await axiosClient.post(createInventoryUrl, data);
+    const response = await axiosClient.get(getInventorysListUrl(limit, pageNo));
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateInventories = async (id, data) => {
-  try {
-    const response = await axiosClient.put(`${updateInventoryUrl}${id}`, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const createInventorys = (req) => {
+  return axiosClient.post(createInventoryUrl, req);
 };
 
-export const deleteInventories = async (id) => {
-  try {
-    const response = await axiosClient.delete(`${deleteInventoryUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const updateInventoryDetails = (inventoryId, req) => {
+  return axiosClient.patch(updateInventoryUrl(inventoryId), req);
 };
 
-export const getInventoriesList = async (params) => {
-  try {
-    const response = await axiosClient.get(getInventoryListUrl, { params });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const getSpecificInventory = async (inventoryId) => {
+  return axiosClient.get(getSpecificInventoryUrl(inventoryId));
 };
 
-export const getSpecificInventories = async (id) => {
-  try {
-    const response = await axiosClient.get(`${getSpecificInventoryUrl}${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const deleteInventorys = async (inventoryId) => {
+  return axiosClient.delete(deleteInventoryUrl(inventoryId));
 };
