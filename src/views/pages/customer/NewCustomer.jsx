@@ -5,7 +5,7 @@ import NotificationActions from "redux/notifications/actions";
 import { createCustomers } from "redux/customer/service";
 import CustomerForm from "./CustomerForm";
 
-const defaultEmployee = {
+const defaultCustomer = {
   title: "",
   content: "",
   imageUrl: "",
@@ -50,7 +50,7 @@ const NewCustomer = (props) => {
 
   return (
     <CustomerForm
-      updateEmployee={defaultEmployee}
+      updateEmployee={defaultCustomer}
       onSave={onSave}
     ></CustomerForm>
   );

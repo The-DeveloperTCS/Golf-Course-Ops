@@ -4,6 +4,9 @@ import DataTableGiftCard from "components/table/DataTableGiftCard";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import GiftCardActions from "redux/giftCard/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deleteGiftCards } from "redux/giftCard/service";
+
 const { startLoader, endLoader } = loaderActions;
 const { fetchGiftCardsPagination } = GiftCardActions;
 
@@ -21,6 +24,7 @@ const GiftCardsList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useGiftCardPermission = useRolePermissions("GIFT_CARD");
 
   const handleChangePage = (event) => {
     fetchGiftCardsPagination(pageLimit, event);
@@ -39,6 +43,20 @@ const GiftCardsList = (props) => {
     setTimeout(() => {
       fetchGiftCardsPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteGiftCard = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteGiftCards(id)
+      .then((res) => {
+        fetchGiftCardsByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in emploayee table");
+      });
   };
 
   useMemo(() => {
@@ -66,13 +84,13 @@ const GiftCardsList = (props) => {
       enableFilters: false,
     },
     {
-      title: "Expiry Date",
-      id: "expirationDate",
+      title: "Issue Date",
+      id: "dateIssued",
       enableFilters: false,
     },
     {
-      title: "Issue Date",
-      id: "dateIssued",
+      title: "Expiry Date",
+      id: "expirationDate",
       enableFilters: false,
     },
     {
@@ -97,14 +115,14 @@ const GiftCardsList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Gift Card List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/gift-card/new")}
-                >
-                  <i className="fas fa-plus" /> New Gift Card
-                </button>
-                {/* )} */}
+                {useGiftCardPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/gift-card/new")}
+                  >
+                    <i className="fas fa-plus" /> New Gift Card
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -119,6 +137,7 @@ const GiftCardsList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteGiftCard={deleteGiftCard}
             ></DataTableGiftCard>
           </div>
         </div>
@@ -128,6 +147,7 @@ const GiftCardsList = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state, "state");
   return {
     giftCards: state.giftCard.giftCards,
     pageLimit: state.giftCard.pageLimit,
