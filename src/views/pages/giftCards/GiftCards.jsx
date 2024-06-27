@@ -581,18 +581,92 @@ function GiftCards() {
                 <div className="Time-of-day-gift">
                   <p>Time of day</p>
                   <div className="time-gift-btn">
-                    <button className="btn-12">Morning</button>
-                    <button>Midday</button>
-                    <button>Evenning</button>
+                    <button
+                      onClick={() => handleButtonClick("Morning")}
+                      style={{
+                        backgroundColor:
+                          activeButton === "Morning" ? "#2F60FA" : "",
+                        color: activeButton === "Morning" ? "white" : "",
+                      }}
+                      className="btn-12"
+                    >
+                      Morning
+                    </button>
+                    <button
+                      onClick={() => handleButtonClick("Midday")}
+                      style={{
+                        backgroundColor:
+                          activeButton === "Midday" ? "#2F60FA" : "",
+                        color: activeButton === "Midday" ? "white" : "",
+                      }}
+                    >
+                      Midday
+                    </button>
+                    <button
+                      onClick={() => handleButtonClick("Evenning")}
+                      style={{
+                        backgroundColor:
+                          activeButton === "Evenning" ? "#2F60FA" : "",
+                        color: activeButton === "Evenning" ? "white" : "",
+                      }}
+                    >
+                      Evenning
+                    </button>
                   </div>
                   <div className="All">
                     <button
+                      onClick={() => handleButtonClick("  All")}
+                      style={{
+                        backgroundColor:
+                          activeButton === "  All" ? "#2F60FA" : "",
+                        color: activeButton === "  All" ? "white" : "",
+                      }}
                       className="btn-13"
-                      style={{ backgroundColor: "#2F60FA", color: "white" }}
                     >
                       All
                     </button>
                   </div>
+                </div>
+                <div className="Players-giftcrd" style={{ marginTop: "20px" }}>
+                  <button
+                    className="btn-1"
+                    onClick={() => handleButtonClick("1")}
+                    style={{
+                      backgroundColor: activeButton === "9" ? "#2F60FA" : "",
+                      color: activeButton === "9" ? "white" : "",
+                    }}
+                  >
+                    9
+                  </button>
+                  <button
+                    onClick={() => handleButtonClick("18")}
+                    style={{
+                      backgroundColor: activeButton === "18" ? "#2F60FA" : "",
+                      color: activeButton === "18" ? "white" : "",
+                    }}
+                  >
+                    18
+                  </button>
+                  <button
+                    onClick={() => handleButtonClick("Both")}
+                    style={{
+                      backgroundColor: activeButton === "Both" ? "#2F60FA" : "",
+                      color: activeButton === "Both" ? "white" : "",
+                    }}
+                  >
+                    Both{" "}
+                  </button>
+                </div>
+                <div className="Booking-rules">
+                  <h2>Booking rules</h2>
+                  <p>Tee Times can be made seven days in advance.</p>
+                  <br />
+                  <p>
+                    If your group NO SHOWS for your tee time, you may be block
+                    from make future times online. Please make sure to cancel.
+                  </p>{" "}
+                  <br />
+                  <p>Thank you and enjoy your round!</p>
                 </div>
               </div>
             </Col>

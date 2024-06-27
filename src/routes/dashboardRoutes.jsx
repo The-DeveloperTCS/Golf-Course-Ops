@@ -15,6 +15,7 @@ import Reports from "views/pages/Reports/Reports";
 import InventoryForm from "views/pages/inventoryform/InventoryForm";
 import JesterPark from "views/pages/JesterPark/JesterPark";
 import GiftCards from "views/pages/giftCards/GiftCards";
+
 const dashboardRoutes = [
   // { path: "/intro", component: Intro, resource: "" },
   { path: "/employee", component: Employee, resource: "" },
@@ -38,7 +39,6 @@ const dashboardRoutes = [
   { path: "/inventoryForm", component: InventoryForm, resource: "" },
   { path: "/jesterPark", component: JesterPark, resource: "" },
   { path: "/giftCards", component: GiftCards, resource: "" },
-
   {
     path: "/pending-payments",
     component: BulkPayment,

@@ -51,3 +51,15 @@
   color: white;
   background-color: #2f60fa;
 }
+
+.Booking-rules h2 {
+  font-size: 16px;
+  color: #0f2552;
+}
+
+.Booking-rules p {
+  font-size: 14px;
+}
+.Booking-rules {
+  margin-top: 10px;
+}
