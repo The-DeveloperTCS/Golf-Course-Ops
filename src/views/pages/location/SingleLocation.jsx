@@ -25,9 +25,7 @@ const LocationSingle = (props) => {
   const onLocationSave = async (updatedLocation) => {
     return updateLocationDetails(locationId, updatedLocation)
       .then((res) => {
-        props.successWithTimeout(
-          `Location #${res.data.id} updated successfully!`
-        );
+        props.successWithTimeout(`Location updated successfully!`);
         props.history.push("/location/list");
       })
       .catch((err) =>

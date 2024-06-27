@@ -23,27 +23,27 @@ export const sidebarData = [
     name: "sidebar.customer",
     routepath: "/customer/list",
     iconClass: "fa fa-user",
-    resource: "view_dashboards",
+    resource: "CUSTOMER",
   },
 
   {
     name: "sidebar.giftCard",
     routepath: "/gift-card/list",
     iconClass: "fa fa-gift",
-    resource: "view_dashboards",
+    resource: "GIFT_CARD",
   },
 
   {
     name: "sidebar.inventory",
     routepath: "/inventory/list",
     iconClass: "fa fa-shopping-basket",
-    resource: "view_dashboards",
+    resource: "INVENTORY",
   },
   {
     name: "sidebar.cart",
     routepath: "/cart/list",
     iconClass: "fa fa-car",
-    resource: "view_dashboards",
+    resource: "CART",
   },
   {
     name: "sidebar.supplier",
@@ -91,7 +91,7 @@ export const sidebarData = [
     name: "sidebar.permission",
     routepath: "/permision/list",
     iconClass: "fa fa-check",
-    resource: "view_dashboards",
+    resource: "PERMISSION",
   },
 
   // {
@@ -258,27 +258,27 @@ export const HorizontalSidebarData = [
     name: "sidebar.customer",
     routepath: "/customer/list",
     iconClass: "fa fa-user",
-    resource: "view_dashboards",
+    resource: "CUSTOMER",
   },
 
   {
     name: "sidebar.giftCard",
     routepath: "/gift-card/list",
     iconClass: "fa fa-gift",
-    resource: "view_dashboards",
+    resource: "GIFT_CARD",
   },
 
   {
     name: "sidebar.inventory",
     routepath: "/inventory/list",
     iconClass: "fa fa-shopping-basket",
-    resource: "view_dashboards",
+    resource: "INVENTORY",
   },
   {
     name: "sidebar.cart",
     routepath: "/cart/list",
     iconClass: "fa fa-car",
-    resource: "view_dashboards",
+    resource: "CART",
   },
   {
     name: "sidebar.supplier",
@@ -326,7 +326,7 @@ export const HorizontalSidebarData = [
     name: "sidebar.permission",
     routepath: "/permision/list",
     iconClass: "fa fa-check",
-    resource: "view_dashboards",
+    resource: "PERMISSION",
   },
   {
     name: "sidebar.access_management",

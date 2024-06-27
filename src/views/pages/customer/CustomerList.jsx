@@ -4,6 +4,8 @@ import DataTableCustomers from "components/table/DataTableCustomers";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import CustomerActions from "redux/customer/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+
 const { startLoader, endLoader } = loaderActions;
 const { fetchCustomersPagination } = CustomerActions;
 
@@ -21,6 +23,7 @@ const CustomersList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useCustomerPermission = useRolePermissions("CUSTOMER");
 
   const handleChangePage = (event) => {
     fetchCustomersPagination(pageLimit, event);
@@ -112,14 +115,14 @@ const CustomersList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Customer List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/customer/new")}
-                >
-                  <i className="fas fa-plus" /> New Customer
-                </button>
-                {/* )} */}
+                {useCustomerPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/customer/new")}
+                  >
+                    <i className="fas fa-plus" /> New Customer
+                  </button>
+                )}
               </span>
             </div>
           </div>

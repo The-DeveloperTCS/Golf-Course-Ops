@@ -1,71 +1,67 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import EmployeeActions from "redux/employee/action";
+import CustomerActions from "redux/customer/action";
 import NotificationActions from "redux/notifications/actions";
-import { createEmployees } from "redux/employee/service";
-import EmployeeForm from "./CustomerForm";
+import { createCustomers } from "redux/customer/service";
+import CustomerForm from "./CustomerForm";
 
 const defaultEmployee = {
   title: "",
   content: "",
-  image_url: "",
-  category_id: null,
-  user_id: null,
-  first_name: "",
-  last_name: "",
+  imageUrl: "",
+  categoryId: null,
+  userId: null,
+  firstName: "",
+  lastName: "",
   gender: "",
-  email_address: "",
+  emailAddress: "",
   password: "",
-  phone_number: "",
-  cell_phone_number: "",
+  phoneNumber: "",
+  cellPhoneNumber: "",
   username: "",
-  date_of_birth: "",
+  dateOfBirth: "",
   address: "",
   city: "",
   state: "",
-  zip_code: "",
-  job_title: "",
-  pin_number: "",
-  card_number: "",
-  default_terminal: "",
+  zipCode: "",
+  role: "Customer",
   comments: "",
   role: "",
-  is_email_verified: false,
-  status: "Active",
+  isEmailVerified: false,
+  status: false,
   profile_picture: "",
-  hourly_rate: 0,
 };
 
-const NewEmployee = (props) => {
-  const onSave = async (updatedEmployee) => {
-    return createEmployees(updatedEmployee)
+const NewCustomer = (props) => {
+  const onSave = async (updatedCustomer) => {
+    return createCustomers(updatedCustomer)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} added successfully!`
+          `Customer #${res.data.customer.id} added successfully!`
         );
-        props.history.push("/employee/list");
+        props.history.push("/customer/list");
       })
       .catch((err) =>
         props.failureWithTimeout(
-          "Failed to add new employee, " + err.response.data.message
+          "Failed to add new customer, " + err.response.data.message
         )
       );
   };
 
   return (
-    <EmployeeForm
+    <CustomerForm
       updateEmployee={defaultEmployee}
       onSave={onSave}
-    ></EmployeeForm>
+    ></CustomerForm>
   );
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(EmployeeActions, dispatch),
+    ...bindActionCreators(CustomerActions, dispatch),
     ...bindActionCreators(NotificationActions, dispatch),
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewEmployee);
+export default connect(null, mapDispatchToProps)(NewCustomer);

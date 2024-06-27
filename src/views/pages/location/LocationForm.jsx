@@ -5,19 +5,17 @@ import locationActions from "redux/location/action";
 import { bindActionCreators } from "redux";
 import { getSpecificLocation } from "redux/location/service";
 import NotificationActions from "redux/notifications/actions";
-import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { TextField } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import moment from "moment";
 
 const LocationForm = (props) => {
   const { locationId, updateLocation } = props;
   const [updatedLocation, setUpdateLocation] = useState({ ...updateLocation });
   const [saving, setSaving] = useState(false);
-  //   const useSupplierPermission = useRolePermissions("SUPPLIER");
+  const useLocationPermission = useRolePermissions("LOCATION");
 
   useEffect(() => {
     if (locationId) {
@@ -63,7 +61,7 @@ const LocationForm = (props) => {
                       type="text"
                       className="form-control react-form-input"
                       value={updatedLocation.name}
-                      //   disabled={!useSupplierPermission}
+                      disabled={!useLocationPermission}
                       onChange={(e) =>
                         setUpdateLocation({
                           ...updatedLocation,
@@ -80,7 +78,7 @@ const LocationForm = (props) => {
                       type="text"
                       className="form-control react-form-input"
                       value={updatedLocation.destination}
-                      //   disabled={!useSupplierPermission}
+                      disabled={!useLocationPermission}
                       onChange={(e) =>
                         setUpdateLocation({
                           ...updatedLocation,
@@ -94,21 +92,17 @@ const LocationForm = (props) => {
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Time</label>
                   <div className="col-sm-8">
-                    {/* <DemoItem label={<Label componentName="TimePicker" valueType="time" />}> */}
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DemoContainer components={["TimePicker"]}>
-                        <TimePicker
-                          label="Controlled picker"
-                          value={updatedLocation.time}
-                          onChange={(newValue) => {
-                            setUpdateLocation({
-                              ...updatedLocation,
-                              time: newValue,
-                            });
-                          }}
-                        />
-                        {/* </DemoItem> */}
-                      </DemoContainer>
+                      <TimePicker
+                        label="Controlled picker"
+                        value={moment(updatedLocation.time).format("LLL")}
+                        onChange={(newValue) => {
+                          setUpdateLocation({
+                            ...updatedLocation,
+                            time: newValue,
+                          });
+                        }}
+                      />
                     </LocalizationProvider>
                   </div>
                 </div>
@@ -120,7 +114,7 @@ const LocationForm = (props) => {
                       type="text"
                       className="form-control react-form-input"
                       value={updatedLocation.weather}
-                      //   disabled={!useSupplierPermission}
+                      disabled={!useLocationPermission}
                       onChange={(e) =>
                         setUpdateLocation({
                           ...updatedLocation,
@@ -137,7 +131,7 @@ const LocationForm = (props) => {
                     <div className="pretty p-default p-curve p-toggle">
                       <input
                         type="checkbox"
-                        // checked={updatedLocation.registered}
+                        checked={updatedLocation.status}
                         onChange={(e) => {
                           setUpdateLocation({
                             ...updatedLocation,
@@ -155,17 +149,17 @@ const LocationForm = (props) => {
                   </div>
                 </div>
 
-                {/* {useSupplierPermission && ( */}
-                <Button
-                  type="button"
-                  className="c-btn ma-5 c-success"
-                  dataStyle="expand-left"
-                  onClick={onSave}
-                  loading={saving}
-                >
-                  Save
-                </Button>
-                {/* )} */}
+                {useLocationPermission && (
+                  <Button
+                    type="button"
+                    className="c-btn ma-5 c-success"
+                    dataStyle="expand-left"
+                    onClick={onSave}
+                    loading={saving}
+                  >
+                    Save
+                  </Button>
+                )}
               </form>
             </div>
           </div>

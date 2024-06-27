@@ -108,69 +108,69 @@ const dashboardRoutes = [
   {
     path: "/customer/list",
     component: CustomerList,
-    resource: "view_dashboards",
+    resource: "CUSTOMER",
   },
 
   {
     path: "/customer/new",
     component: NewCustomer,
-    resource: "view_dashboards",
+    resource: "CUSTOMER",
   },
   {
     path: "/customer/:customerId(\\d+)",
     component: SingleCustomer,
-    resource: "view_dashboards",
+    resource: "CUSTOMER",
   },
 
   {
     path: "/gift-card/list",
     component: GiftCardList,
-    resource: "view_dashboards",
+    resource: "GIFT_CARD",
   },
 
   {
     path: "/gift-card/new",
     component: NewGiftCard,
-    resource: "view_dashboards",
+    resource: "GIFT_CARD",
   },
   {
     path: "/gift-card/:giftCardId(\\d+)",
     component: SingleGiftCard,
-    resource: "view_dashboards",
+    resource: "GIFT_CARD",
   },
 
   {
     path: "/inventory/list",
     component: InventoryList,
-    resource: "view_dashboards",
+    resource: "INVENTORY",
   },
 
   {
     path: "/inventory/new",
     component: NewInventory,
-    resource: "view_dashboards",
+    resource: "INVENTORY",
   },
   {
     path: "/inventory/:inventoryId(\\d+)",
     component: SingleInventory,
-    resource: "view_dashboards",
+    resource: "INVENTORY",
   },
 
   {
     path: "/cart/list",
     component: CartList,
-    resource: "view_dashboards",
+    resource: "CART",
   },
 
   {
     path: "/cart/new",
     component: NewCart,
-    resource: "view_dashboards",
+    resource: "CART",
   },
   {
     path: "/cart/:cartId(\\d+)",
     component: SingleCart,
-    resource: "view_dashboards",
+    resource: "CART",
   },
 
   {
@@ -295,18 +295,18 @@ const dashboardRoutes = [
   {
     path: "/permision/list",
     component: PermissionList,
-    resource: "view_dashboards",
+    resource: "PERMISSION",
   },
 
   {
     path: "/permision/new",
     component: NewPermission,
-    resource: "view_dashboards",
+    resource: "PERMISSION",
   },
   {
     path: "/permision/:permisionId(\\d+)",
     component: SinglePermission,
-    resource: "view_dashboards",
+    resource: "PERMISSION",
   },
 
   // { path: "/location", component: Locations, resource: "" },

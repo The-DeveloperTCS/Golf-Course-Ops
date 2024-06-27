@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Badge } from "reactstrap";
 import loaderActions from "redux/loader/actions";
+import moment from "moment";
 const { startLoader, endLoader } = loaderActions;
 
 const HeaderComponent = (props) => {
@@ -134,9 +135,8 @@ const DataTable = (props) => {
                   <td>{row.name}</td>
                   <td>{row.destination}</td>
                   <td>{row.weather}</td>
-                  <td>{row.time}</td>
+                  <td>{moment(row.time).format("LT")}</td>
                   <td>
-                    {" "}
                     {row.status ? (
                       <Badge className="c-success p-2">Active</Badge>
                     ) : (

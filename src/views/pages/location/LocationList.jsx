@@ -147,7 +147,6 @@ const LocationsList = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state, "state");
   return {
     locations: state.location.locations,
     pageLimit: state.location.pageLimit,

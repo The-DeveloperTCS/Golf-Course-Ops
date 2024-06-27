@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import Button from "components/button/Button";
 import { connect } from "react-redux";
-import employeeActions from "redux/employee/action";
+import customerActions from "redux/customer/action";
 import { bindActionCreators } from "redux";
-import { getSpecificEmployee } from "redux/employee/service";
-import { getRolesList } from "redux/role/service";
-import { getTerminalsList } from "redux/terminal/service";
+import { getSpecificCustomer } from "redux/customer/service";
 import NotificationActions from "redux/notifications/actions";
 import Select from "react-select";
 import { pascalCase } from "pascal-case";
@@ -15,48 +13,19 @@ import { TextField } from "@mui/material";
 import cities from "../../data/cities.json";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
 
-const EmployeeForm = (props) => {
-  const { employeeId, updateEmployee } = props;
-  const [updatedEmployee, setUpdateEmployee] = useState({ ...updateEmployee });
+const CustomerForm = (props) => {
+  const { customerId, updateCustomer } = props;
+  const [updatedCustomer, setUpdateCustomer] = useState({ ...updateCustomer });
   const [stateCities, setStateCities] = useState([]);
-  const [terminals, setTerminals] = useState([]);
-  const [roles, setRoles] = useState([]);
   const [saving, setSaving] = useState(false);
-  //   const useSupplierPermission = useRolePermissions("SUPPLIER");
+  const useCustomerPermission = useRolePermissions("CUSTOMER");
 
   useEffect(() => {
-    if (employeeId) {
-      getSpecificEmployee(employeeId).then((res) => {
-        setUpdateEmployee(res.data);
+    if (customerId) {
+      getSpecificCustomer(customerId).then((res) => {
+        setUpdateCustomer(res.data);
       });
     }
-    getRolesList("", "")
-      .then((res) => {
-        const roleData = res.data.roles.map((data) => {
-          return {
-            label: data.name,
-            value: data.name,
-          };
-        });
-        setRoles(roleData);
-      })
-      .catch((err) => {
-        console.log(err, "err in employee role screen");
-      });
-
-    getTerminalsList("", "")
-      .then((res) => {
-        const terminalData = res.data.terminals.map((data) => {
-          return {
-            label: data.name,
-            value: data.name,
-          };
-        });
-        setTerminals(terminalData);
-      })
-      .catch((err) => {
-        console.log(err, "err in employee terminal screen");
-      });
   }, []);
 
   const genderOptions = [
@@ -312,15 +281,15 @@ const EmployeeForm = (props) => {
   const onSave = () => {
     setSaving(true);
 
-    props.onSave({ ...updatedEmployee }).then(() => setSaving(false));
+    props.onSave({ ...updatedCustomer }).then(() => setSaving(false));
   };
-  console.log(updatedEmployee, "updatedEmployee");
+
   const title = () => {
-    if (updatedEmployee.id) {
-      return `Update Employee #${updatedEmployee.id} - ${updatedEmployee.firstName} ${updateEmployee.lastName}`;
+    if (updatedCustomer.id) {
+      return `Update Customer #${updatedCustomer.id} `;
     }
 
-    return "New Employee";
+    return "New Customer";
   };
 
   // const showError = (message) => {
@@ -345,12 +314,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.first_name}
-                      //   disabled={!useSupplierPermission}
+                      value={updatedCustomer.firstName}
+                      disabled={!useCustomerPermission}
                       onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          first_name: e.target.value,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
+                          firstName: e.target.value,
                         })
                       }
                     />
@@ -362,12 +331,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.last_name}
-                      //   disabled={!useSupplierPermission}
+                      value={updatedCustomer.lastName}
+                      disabled={!useCustomerPermission}
                       onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          last_name: e.target.value,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
+                          lastName: e.target.value,
                         })
                       }
                     />
@@ -376,19 +345,19 @@ const EmployeeForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Gender</label>
-                  <div className="col-sm-10">
+                  <div className="col-sm-8">
                     <Select
                       value={
-                        updatedEmployee.gender
+                        updatedCustomer.gender
                           ? {
-                              value: updatedEmployee.gender,
-                              label: pascalCase(updatedEmployee.gender),
+                              value: updatedCustomer.gender,
+                              label: pascalCase(updatedCustomer.gender),
                             }
                           : null
                       }
                       onChange={(e) => {
-                        setUpdateEmployee({
-                          ...updatedEmployee,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
                           gender: e.value,
                         });
                       }}
@@ -403,15 +372,14 @@ const EmployeeForm = (props) => {
                   <div className="col-sm-8">
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DesktopDatePicker
-                        // disabled={!usePaymentPermission}
+                        disabled={!useCustomerPermission}
                         style={{ width: "50%" }}
-                        // label="Received Date"
                         inputFormat="dd/MM/yyyy"
-                        value={updatedEmployee.date_of_birth}
+                        value={new Date(updatedCustomer.dateOfBirth)}
                         onChange={(newValue) =>
-                          setUpdateEmployee({
-                            ...updatedEmployee,
-                            date_of_birth: newValue,
+                          setUpdateCustomer({
+                            ...updatedCustomer,
+                            dateOfBirth: newValue,
                           })
                         }
                         renderInput={(params) => <TextField {...params} />}
@@ -428,12 +396,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="email"
                       className="form-control react-form-input"
-                      value={updatedEmployee.email_address}
-                      //   disabled={!useSupplierPermission}
+                      value={updatedCustomer.emailAddress}
+                      disabled={!useCustomerPermission}
                       onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          email_address: e.target.value,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
+                          emailAddress: e.target.value,
                         })
                       }
                     />
@@ -447,12 +415,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="number"
                       className="form-control react-form-input"
-                      value={updatedEmployee.phone_number}
-                      //   disabled={!useSupplierPermission}
+                      value={updatedCustomer.phoneNumber}
+                      disabled={!useCustomerPermission}
                       onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          phone_number: e.target.value,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
+                          phoneNumber: e.target.value,
                         })
                       }
                     />
@@ -464,12 +432,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="number"
                       className="form-control react-form-input"
-                      value={updatedEmployee.cell_phone_number}
-                      //   disabled={!useSupplierPermission}
+                      value={updatedCustomer.cellPhoneNumber}
+                      disabled={!useCustomerPermission}
                       onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          cell_phone_number: e.target.value,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
+                          cellPhoneNumber: e.target.value,
                         })
                       }
                     />
@@ -484,11 +452,11 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.address}
-                      //   disabled={!useSupplierPermission}
+                      value={updatedCustomer.address}
+                      disabled={!useCustomerPermission}
                       onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
                           address: e.target.value,
                         })
                       }
@@ -501,17 +469,17 @@ const EmployeeForm = (props) => {
                   <div className="col-sm-8">
                     <Select
                       value={
-                        updatedEmployee.state
+                        updatedCustomer.state
                           ? {
-                              value: updatedEmployee.state,
-                              label: pascalCase(updatedEmployee.state),
+                              value: updatedCustomer.state,
+                              label: pascalCase(updatedCustomer.state),
                             }
                           : null
                       }
                       onChange={(e) => {
                         getCities(e.value);
-                        setUpdateEmployee({
-                          ...updatedEmployee,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
                           state: e.label,
                         });
                       }}
@@ -525,17 +493,17 @@ const EmployeeForm = (props) => {
                   <div className="col-sm-8">
                     <Select
                       value={
-                        updatedEmployee.city
+                        updatedCustomer.city
                           ? {
-                              value: updatedEmployee.city,
-                              label: pascalCase(updatedEmployee.city),
+                              value: updatedCustomer.city,
+                              label: pascalCase(updatedCustomer.city),
                             }
                           : null
                       }
                       onChange={(e) => {
                         getCities(e.value);
-                        setUpdateEmployee({
-                          ...updatedEmployee,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
                           city: e.label,
                         });
                       }}
@@ -552,84 +520,12 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.zip_code}
-                      //   disabled={!useSupplierPermission}
+                      value={updatedCustomer.zipCode}
+                      disabled={!useCustomerPermission}
                       onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          zip_code: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Job Title</label>
-                  <div className="col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control react-form-input"
-                      value={updatedEmployee.job_title}
-                      //   disabled={!useSupplierPermission}
-                      onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          job_title: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Terminal</label>
-                  <div className="col-sm-8">
-                    <Select
-                      value={terminals?.find(
-                        (c) => c.value === updatedEmployee.terminal_id
-                      )}
-                      onChange={(e) => {
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          terminal_id: e.value,
-                        });
-                      }}
-                      options={terminals}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Card Number</label>
-                  <div className="col-sm-8">
-                    <input
-                      type="number"
-                      className="form-control react-form-input"
-                      value={updatedEmployee.card_number}
-                      //   disabled={!useSupplierPermission}
-                      onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          card_number: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Pin Number</label>
-                  <div className="col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control react-form-input"
-                      value={updatedEmployee.pin_number}
-                      //   disabled={!useSupplierPermission}
-                      onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          pin_number: e.target.value,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
+                          zipCode: e.target.value,
                         })
                       }
                     />
@@ -642,11 +538,11 @@ const EmployeeForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedEmployee.comments}
-                      //   disabled={!useSupplierPermission}
+                      value={updatedCustomer.comments}
+                      disabled={!useCustomerPermission}
                       onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
+                        setUpdateCustomer({
+                          ...updatedCustomer,
                           comments: e.target.value,
                         })
                       }
@@ -654,95 +550,77 @@ const EmployeeForm = (props) => {
                   </div>
                 </div>
 
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Role</label>
-                  <div className="col-sm-8">
-                    <Select
-                      value={
-                        updatedEmployee.role
-                          ? {
-                              value: updatedEmployee.role,
-                              label: pascalCase(updatedEmployee.role),
-                            }
-                          : null
-                      }
-                      onChange={(e) => {
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          role: e.value,
-                        });
-                      }}
-                      options={roles}
-                    />
+                {updatedCustomer.id && (
+                  <div className="form-group row">
+                    <label className="col-sm-4 col-form-label">User Name</label>
+                    <div className="col-sm-8">
+                      <input
+                        type="text"
+                        className="form-control react-form-input"
+                        value={updatedCustomer.username}
+                        disabled={!useCustomerPermission}
+                        onChange={(e) =>
+                          setUpdateCustomer({
+                            ...updatedCustomer,
+                            username: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
 
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">User Name</label>
-                  <div className="col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control react-form-input"
-                      value={updatedEmployee.username}
-                      //   disabled={!useSupplierPermission}
-                      onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          username: e.target.value,
-                        })
-                      }
-                    />
+                {updatedCustomer.id && (
+                  <div className="form-group row">
+                    <label className="col-sm-4 col-form-label">Password</label>
+                    <div className="col-sm-8">
+                      <input
+                        type="text"
+                        className="form-control react-form-input"
+                        value={updatedCustomer.password}
+                        disabled={!useCustomerPermission}
+                        onChange={(e) =>
+                          setUpdateCustomer({
+                            ...updatedCustomer,
+                            password: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
 
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Password</label>
-                  <div className="col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control react-form-input"
-                      value={updatedEmployee.password}
-                      //   disabled={!useSupplierPermission}
-                      onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          password: e.target.value,
-                        })
-                      }
-                    />
+                {updatedCustomer.id && (
+                  <div className="form-group row">
+                    <label className="col-sm-4 col-form-label">
+                      Confirm Password
+                    </label>
+                    <div className="col-sm-8">
+                      <input
+                        type="text"
+                        className="form-control react-form-input"
+                        value={updatedCustomer.confirmPassword}
+                        disabled={!useCustomerPermission}
+                        onChange={(e) =>
+                          setUpdateCustomer({
+                            ...updatedCustomer,
+                            confirmPassword: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
                   </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">
-                    Confirm Password
-                  </label>
-                  <div className="col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control react-form-input"
-                      value={updatedEmployee.confirm_password}
-                      //   disabled={!useSupplierPermission}
-                      onChange={(e) =>
-                        setUpdateEmployee({
-                          ...updatedEmployee,
-                          confirm_password: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                </div>
-
+                )}
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Status</label>
                   <div className="col-sm-8">
                     <div className="pretty p-default p-curve p-toggle">
                       <input
                         type="checkbox"
-                        // checked={updatedEmployee.registered}
+                        checked={updatedCustomer.status}
                         onChange={(e) => {
-                          setUpdateEmployee({
-                            ...updatedEmployee,
+                          setUpdateCustomer({
+                            ...updatedCustomer,
                             status: e.target.checked,
                           });
                         }}
@@ -757,17 +635,17 @@ const EmployeeForm = (props) => {
                   </div>
                 </div>
 
-                {/* {useSupplierPermission && ( */}
-                <Button
-                  type="button"
-                  className="c-btn ma-5 c-success"
-                  dataStyle="expand-left"
-                  onClick={onSave}
-                  loading={saving}
-                >
-                  Save
-                </Button>
-                {/* )} */}
+                {useCustomerPermission && (
+                  <Button
+                    type="button"
+                    className="c-btn ma-5 c-success"
+                    dataStyle="expand-left"
+                    onClick={onSave}
+                    loading={saving}
+                  >
+                    Save
+                  </Button>
+                )}
               </form>
             </div>
           </div>
@@ -784,9 +662,9 @@ const mapStateToProps = () => {
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(employeeActions, dispatch),
+    ...bindActionCreators(customerActions, dispatch),
     ...bindActionCreators(NotificationActions, dispatch),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerForm);

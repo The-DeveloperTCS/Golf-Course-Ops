@@ -17,7 +17,7 @@ const NewLocation = (props) => {
     return createLocation(updatedLocation)
       .then((res) => {
         props.successWithTimeout(
-          `Location #${res.data.id} added successfully!`
+          `Location #${res.data.post.id} added successfully!`
         );
         props.history.push("/location/list");
       })
