@@ -760,7 +760,7 @@ const EmployeeForm = (props) => {
                 {/* {useSupplierPermission && ( */}
                 <Button
                   type="button"
-                  className="c-btn ma-5 c-success"
+                  className="c-btn ma-5 add-new-btn-color"
                   dataStyle="expand-left"
                   onClick={onSave}
                   loading={saving}

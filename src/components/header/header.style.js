@@ -3,7 +3,7 @@ import styled from "styled-components";
 const HeaderWrapper = styled.div`
   .headerBack {
     background-color: white
-    padding: 15px 10px;
+    padding: 20px 10px;
     margin-left: -${(props) =>
       props.themeSetting.toolbarAlignValue === "above" && !props.mini
         ? props.drawerWidth
@@ -46,6 +46,12 @@ const HeaderWrapper = styled.div`
       width: 35px;
       height: 35px;
       border-radius: 50%;
+    }
+    .header-search-bar{
+      display:flex;
+      align-items: center;
+      gap: 25px;
+  }
     }
   }
 `;

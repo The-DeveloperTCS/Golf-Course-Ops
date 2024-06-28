@@ -134,10 +134,10 @@ const InventoriesList = (props) => {
               <span className="pull-right">
                 {/* {useSupplierPermission && ( */}
                 <button
-                  className="c-btn ma-5 c-outline-info"
+                  className="c-btn ma-5 add-new-btn-color"
                   onClick={() => props.history.push("/inventory/new")}
                 >
-                  <i className="fas fa-plus" /> New Inventory
+                  <i className="fas fa-plusss" /> New Inventory
                 </button>
                 {/* )} */}
               </span>

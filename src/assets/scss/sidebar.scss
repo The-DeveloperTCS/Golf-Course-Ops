@@ -11,6 +11,12 @@
   background-size: cover;
   overflow-x: hidden;
   background-position: center center;
+  .a.nav-link.main-list.active {
+    background-color: transparent;
+  }
+  .ihQHls .sidebar-wrapper .nav-link {
+    color: #c4c4c4;
+  }
   .sidebar-wrapper {
     position: relative;
     height: calc(100vh - 75px);
@@ -182,7 +188,7 @@ body > .navbar-collapse {
     }
     &.active {
       text-decoration: none;
-      background-color: #f4f5f7;
+      background-color: #f4f5f700;
       span {
         font-family: "muli-bold";
       }
@@ -198,4 +204,7 @@ body > .navbar-collapse {
 
 .text-upper {
   text-transform: uppercase;
+}
+a.nav-link.main-list.active {
+  background-color: transparent !important;
 }

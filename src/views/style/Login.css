@@ -71,7 +71,7 @@
   border-radius: 5px;
   outline: none;
   border: 1px solid #c4c4c4;
-  color: #c4c4c4;
+  color: #161819;
 }
 
 .form-group ::placeholder {
@@ -80,8 +80,8 @@
 
 .form-group label {
   color: #919499;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
 }
 
 .lable-forget {

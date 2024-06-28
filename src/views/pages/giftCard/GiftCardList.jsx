@@ -117,7 +117,7 @@ const GiftCardsList = (props) => {
               <span className="pull-right">
                 {useGiftCardPermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
+                    className="c-btn ma-5 add-new-btn-color"
                     onClick={() => props.history.push("/gift-card/new")}
                   >
                     <i className="fas fa-plus" /> New Gift Card
