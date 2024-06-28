@@ -4,6 +4,8 @@ import DataTableGroups from "components/table/DataTableGroups";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import GroupActions from "redux/group/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deleteGroups } from "redux/group/service";
 const { startLoader, endLoader } = loaderActions;
 const { fetchGroupsPagination } = GroupActions;
 
@@ -21,6 +23,7 @@ const GroupssList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useGroupPermission = useRolePermissions("GROUP");
 
   const handleChangePage = (event) => {
     fetchGroupsPagination(pageLimit, event);
@@ -39,6 +42,20 @@ const GroupssList = (props) => {
     setTimeout(() => {
       fetchGroupsPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteGroup = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteGroups(id)
+      .then((res) => {
+        fetchGroupsByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in group table");
+      });
   };
 
   useMemo(() => {
@@ -82,14 +99,14 @@ const GroupssList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Group List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/group/new")}
-                >
-                  <i className="fas fa-plus" /> New Group
-                </button>
-                {/* )} */}
+                {useGroupPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/group/new")}
+                  >
+                    <i className="fas fa-plus" /> New Group
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -104,6 +121,7 @@ const GroupssList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteGroup={deleteGroup}
             ></DataTableGroups>
           </div>
         </div>

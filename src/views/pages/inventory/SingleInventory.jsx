@@ -2,54 +2,52 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./InventoryForm";
+import InventoryForm from "./InventoryForm";
 import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+  updateInventoryDetails,
+  getSpecificInventory,
+} from "redux/inventory/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const InventorySingle = (props) => {
+  const { inventoryId } = props;
+  const [inventoryDetail, setInventoryDetails] = useState({});
 
   useEffect(() => {
     getCityDetails();
-  }, [employeeId]);
+  }, [inventoryId]);
 
   const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+    getSpecificInventory(inventoryId).then((res) => {
+      setInventoryDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onInventorySave = async (updatedInventory) => {
+    return updateInventoryDetails(inventoryId, updatedInventory)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Inventory updated successfully!`);
+        props.history.push("/inventory/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Inventory #${updatedInventory.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+    <InventoryForm
+      updateInventory={inventoryDetail}
+      inventoryId={inventoryId}
+      onSave={onInventorySave}
     />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const inventoryId = parseInt(ownProps.match.params.inventoryId);
   return {
-    employeeId: employeeId,
+    inventoryId: inventoryId,
   };
 };
 
@@ -60,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(InventorySingle);

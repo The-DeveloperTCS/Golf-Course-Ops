@@ -2,54 +2,49 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./GroupForm";
-import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+import GroupForm from "./GroupForm";
+import { updateGroupDetails, getSpecificGroup } from "redux/group/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const GroupSingle = (props) => {
+  const { groupId } = props;
+  const [groupDetail, setGroupDetails] = useState({});
 
   useEffect(() => {
     getCityDetails();
-  }, [employeeId]);
+  }, [groupId]);
 
   const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+    getSpecificGroup(groupId).then((res) => {
+      setGroupDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onGroupSave = async (updatedGroup) => {
+    return updateGroupDetails(groupId, updatedGroup)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Group updated successfully!`);
+        props.history.push("/group/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Group #${updatedGroup.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+    <GroupForm
+      updateGroup={groupDetail}
+      groupId={groupId}
+      onSave={onGroupSave}
     />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const groupId = parseInt(ownProps.match.params.groupId);
   return {
-    employeeId: employeeId,
+    groupId: groupId,
   };
 };
 
@@ -60,4 +55,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(GroupSingle);

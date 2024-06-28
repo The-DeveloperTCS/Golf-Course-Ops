@@ -1,94 +1,81 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import DataTableWithPagination from "components/table/DataTablePagination";
+import DataTableTerminals from "components/table/DataTableTerminals";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
-import EmployeeActions from "redux/employee/action";
+import TerminalActions from "redux/terminal/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deleteTerminals } from "redux/terminal/service";
 const { startLoader, endLoader } = loaderActions;
-const { fetchEmployeesPagination } = EmployeeActions;
+const { fetchTerminalsPagination } = TerminalActions;
 
-const EmployeesList = (props) => {
+const TerminalsList = (props) => {
   const {
-    fetchEmployeesPagination,
+    fetchTerminalsPagination,
     pageLimit,
     pageNo,
     total,
     startLoader,
     loader,
   } = props;
-  const [employeesData, setEmployeeData] = useState([]);
+  const [terminalsData, setTerminalsData] = useState([]);
   const [rowPerPage, setRowPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useTerminalPermission = useRolePermissions("TERMINAL");
 
   const handleChangePage = (event) => {
-    fetchEmployeesPagination(pageLimit, event);
+    fetchTerminalsPagination(pageLimit, event);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    fetchEmployeesPagination(event.target.value, pageNo);
+    fetchTerminalsPagination(event.target.value, pageNo);
   };
 
   useEffect(() => {
     startLoader(true);
-    fetchEmployeesByValues();
+    fetchTerminalsByValues();
   }, []);
 
-  const fetchEmployeesByValues = () => {
+  const fetchTerminalsByValues = () => {
     setTimeout(() => {
-      fetchEmployeesPagination(25, 1);
+      fetchTerminalsPagination(25, 1);
     }, 2000);
   };
 
+  const deleteTerminal = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteTerminals(id)
+      .then((res) => {
+        fetchTerminalsByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in terminal table");
+      });
+  };
+
   useMemo(() => {
-    setEmployeeData(props.employees);
+    setTerminalsData(props.terminals);
     setRowPerPage(pageLimit);
     setPage(pageNo);
     setTotalCount(total);
     setTotalPages(Math.ceil(total / pageLimit));
-  }, [props?.employees, total, pageLimit, pageNo]);
+  }, [props?.terminals, total, pageLimit, pageNo]);
 
   const columns = useMemo(() => [
     {
-      title: "Employee ID",
+      title: "Terminal ID",
       id: "id",
       enableFilters: false,
     },
     {
-      title: "Joining Date",
-      id: "date",
-      enableFilters: false,
-    },
-    {
-      title: "First Name",
-      id: "fName",
+      title: "Name",
+      id: "name",
       enableFilters: true,
-    },
-    {
-      title: "Last Name",
-      id: "lName",
-      enableFilters: false,
-    },
-    {
-      title: "Phone No.",
-      id: "phoneNo",
-      enableFilters: false,
-    },
-    {
-      title: "Email",
-      id: "email",
-      enableFilters: false,
-    },
-    {
-      title: "User Name",
-      id: "username",
-      enableFilters: false,
-    },
-    {
-      title: "Terminal",
-      id: "terminal",
-      enableFilters: false,
     },
     {
       title: "Status",
@@ -110,31 +97,32 @@ const EmployeesList = (props) => {
         <div className="roe-card-style">
           <div className="roe-card-header flex center">
             <div className="flex-1 mr-15 my-title ml-1">
-              Employee List{" "}
+              Terminal List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/employee/new")}
-                >
-                  <i className="fas fa-plus" /> New Employee
-                </button>
-                {/* )} */}
+                {useTerminalPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/terminal/new")}
+                  >
+                    <i className="fas fa-plus" /> New Terminal
+                  </button>
+                )}
               </span>
             </div>
           </div>
 
           <div className="roe-card-body">
-            <DataTableWithPagination
+            <DataTableTerminals
               columns={columns}
-              data={employeesData}
+              data={terminalsData}
               totalCount={totalCount}
               pageLimit={rowPerPage}
               pageNo={page}
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
-            ></DataTableWithPagination>
+              deleteTerminal={deleteTerminal}
+            ></DataTableTerminals>
           </div>
         </div>
       </div>
@@ -144,16 +132,16 @@ const EmployeesList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    employees: state.employee.employees,
-    pageLimit: state.employee.pageLimit,
-    pageNo: state.employee.pageNo,
-    total: state.employee.total,
+    terminals: state.terminal.terminals,
+    pageLimit: state.terminal.pageLimit,
+    pageNo: state.terminal.pageNo,
+    total: state.terminal.total,
     loader: state.loader.loader,
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchEmployeesPagination,
+  fetchTerminalsPagination,
   startLoader,
   endLoader,
-})(EmployeesList);
+})(TerminalsList);

@@ -17,7 +17,7 @@ const groupActions = {
     return {
       type: groupActions.GROUPS_FETCHED_PAGINATION,
       groups: data.groups,
-      total: data.pagination.totalgroups,
+      total: data.pagination.totalGroups,
       pageLimit: data.pagination.limit,
       pageNo: data.pagination.currentPage,
     };

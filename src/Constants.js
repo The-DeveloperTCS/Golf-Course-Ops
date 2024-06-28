@@ -72,7 +72,7 @@ export const updateTerminalUrl = (id) => BaseUrl + `terminal/update/${id}`;
 export const deleteTerminalUrl = (id) => BaseUrl + `terminal/delete/${id}`;
 export const getTerminalListUrl = (pageNo, limit) =>
   BaseUrl + `terminal/getAll?page=${pageNo}&limit=${limit}`;
-export const getSpecificCTerminalUrl = (id) =>
+export const getSpecificTerminalUrl = (id) =>
   BaseUrl + `terminal/specificId/${id}`;
 
 //Departments Endpoints
@@ -121,7 +121,7 @@ export const getRoleListUrl = (pageNo, limit) =>
 export const getSpecificRoleUrl = (id) => BaseUrl + `role/specificId/${id}`;
 
 //Permissions Endpoints
-export const createPermissionUrl = BaseUrl + "permission/add";
+export const createPermissionUrl = BaseUrl + "permission/addSingle";
 export const updatePermissionUrl = (id) => BaseUrl + `permission/update/${id}`;
 export const deletePermissionUrl = (id) => BaseUrl + `permission/delete/${id}`;
 export const getPermissionsListUrl = (limit, pageNo) =>

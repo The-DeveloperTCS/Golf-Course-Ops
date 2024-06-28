@@ -2,54 +2,45 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./CartForm";
-import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+import CartForm from "./CartForm";
+import { updateCartDetails, getSpecificCart } from "redux/cart/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const CartSingle = (props) => {
+  const { cartId } = props;
+  const [cartDetail, setCartDetails] = useState({});
 
   useEffect(() => {
-    getCityDetails();
-  }, [employeeId]);
+    getCartDetails();
+  }, [cartId]);
 
-  const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+  const getCartDetails = async () => {
+    getSpecificCart(cartId).then((res) => {
+      setCartDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onCartSave = async (updatedCart) => {
+    return updateCartDetails(cartId, updatedCart)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Cart updated successfully!`);
+        props.history.push("/cart/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Cart #${updatedCart.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
-    />
+    <CartForm updateCart={cartDetail} cartId={cartId} onSave={onCartSave} />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const cartId = parseInt(ownProps.match.params.cartId);
   return {
-    employeeId: employeeId,
+    cartId: cartId,
   };
 };
 
@@ -60,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(CartSingle);

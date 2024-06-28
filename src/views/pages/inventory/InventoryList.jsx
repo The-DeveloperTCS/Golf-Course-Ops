@@ -4,6 +4,9 @@ import DataTableInventories from "components/table/DataTableInventories";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import inventoryActions from "redux/inventory/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deleteInventorys } from "redux/inventory/service";
+
 const { startLoader, endLoader } = loaderActions;
 const { fetchInventoriesPagination } = inventoryActions;
 
@@ -21,6 +24,7 @@ const InventoriesList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useInventoryPermission = useRolePermissions("INVENTORY");
 
   const handleChangePage = (event) => {
     fetchInventoriesPagination(pageLimit, event);
@@ -39,6 +43,20 @@ const InventoriesList = (props) => {
     setTimeout(() => {
       fetchInventoriesPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteInventory = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteInventorys(id)
+      .then((res) => {
+        fetchInventoriesByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in inventory table");
+      });
   };
 
   useMemo(() => {
@@ -70,21 +88,21 @@ const InventoriesList = (props) => {
       id: "glCode",
       enableFilters: true,
     },
-    {
-      title: "Department",
-      id: "department",
-      enableFilters: false,
-    },
-    {
-      title: "Category",
-      id: "category",
-      enableFilters: false,
-    },
-    {
-      title: "Sub Category",
-      id: "subCategory",
-      enableFilters: false,
-    },
+    // {
+    //   title: "Department",
+    //   id: "department",
+    //   enableFilters: false,
+    // },
+    // {
+    //   title: "Category",
+    //   id: "category",
+    //   enableFilters: false,
+    // },
+    // {
+    //   title: "Sub Category",
+    //   id: "subCategory",
+    //   enableFilters: false,
+    // },
     {
       title: "Unit Cost",
       id: "unitCost",
@@ -132,14 +150,14 @@ const InventoriesList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Intentory List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/inventory/new")}
-                >
-                  <i className="fas fa-plus" /> New Inventory
-                </button>
-                {/* )} */}
+                {useInventoryPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/inventory/new")}
+                  >
+                    <i className="fas fa-plus" /> New Inventory
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -154,6 +172,7 @@ const InventoriesList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteInventory={deleteInventory}
             ></DataTableInventories>
           </div>
         </div>
