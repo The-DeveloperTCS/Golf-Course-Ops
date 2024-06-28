@@ -2,54 +2,52 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./SupplierForm";
+import SupplierForm from "./SupplierForm";
 import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+  updateSupplierDetails,
+  getSpecificSupplier,
+} from "redux/supplier/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const SupplierSingle = (props) => {
+  const { supplierId } = props;
+  const [supplierDetail, setSupplierDetails] = useState({});
 
   useEffect(() => {
-    getCityDetails();
-  }, [employeeId]);
+    getSupplierDetails();
+  }, [supplierId]);
 
-  const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+  const getSupplierDetails = async () => {
+    getSpecificSupplier(supplierId).then((res) => {
+      setSupplierDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onSupplierSave = async (updatedSupplier) => {
+    return updateSupplierDetails(supplierId, updatedSupplier)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Supplier updated successfully!`);
+        props.history.push("/supplier/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Supplier #${updatedSupplier.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+    <SupplierForm
+      updateSupplier={supplierDetail}
+      supplierId={supplierId}
+      onSave={onSupplierSave}
     />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const supplierId = parseInt(ownProps.match.params.supplierId);
   return {
-    employeeId: employeeId,
+    supplierId: supplierId,
   };
 };
 
@@ -60,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(SupplierSingle);

@@ -178,141 +178,142 @@ const dashboardRoutes = [
   },
 
   {
-    path: "/suuplier/list",
+    path: "/supplier/list",
     component: SupplierList,
-    resource: "view_dashboards",
+    resource: "SUPPLIER",
   },
 
   {
-    path: "/suuplier/new",
+    path: "/supplier/new",
     component: NewSupplier,
-    resource: "view_dashboards",
+    resource: "SUPPLIER",
   },
   {
-    path: "/suuplier/:suuplierId(\\d+)",
+    path: "/supplier/:supplierId(\\d+)",
     component: SingleSupplier,
-    resource: "view_dashboards",
+    resource: "SUPPLIER",
   },
 
   {
     path: "/terminal/list",
     component: TerminalList,
-    resource: "view_dashboards",
+    resource: "TERMINAL",
   },
 
   {
     path: "/terminal/new",
     component: NewTerminal,
-    resource: "view_dashboards",
+    resource: "TERMINAL",
   },
   {
     path: "/terminal/:terminalId(\\d+)",
     component: SingleTerminal,
-    resource: "view_dashboards",
+    resource: "TERMINAL",
   },
 
   {
     path: "/department/list",
     component: DepartmentList,
-    resource: "view_dashboards",
+    resource: "DEPARTMENT",
   },
 
   {
     path: "/department/new",
     component: NewDepartment,
-    resource: "view_dashboards",
+    resource: "DEPARTMENT",
   },
   {
     path: "/department/:departmentId(\\d+)",
     component: SingleDepartment,
-    resource: "view_dashboards",
+    resource: "DEPARTMENT",
   },
 
   {
     path: "/group/list",
     component: GroupList,
-    resource: "view_dashboards",
+    resource: "GROUP",
   },
 
   {
     path: "/group/new",
     component: NewGroup,
-    resource: "view_dashboards",
+    resource: "GROUP",
   },
   {
     path: "/group/:groupId(\\d+)",
     component: SingleGroup,
-    resource: "view_dashboards",
+    resource: "GROUP",
   },
 
   {
     path: "/category/list",
     component: CategoryList,
-    resource: "view_dashboards",
+    resource: "CATEGORY",
   },
 
   {
     path: "/category/new",
     component: NewCategory,
-    resource: "view_dashboards",
+    resource: "CATEGORY",
   },
   {
     path: "/category/:categoryId(\\d+)",
     component: SingleCategory,
-    resource: "view_dashboards",
+    resource: "CATEGORY",
   },
 
   {
     path: "/sub-category/list",
     component: SubCategoryList,
-    resource: "view_dashboards",
+    resource: "CATEGORY",
   },
 
   {
     path: "/sub-category/new",
     component: NewSubCategory,
-    resource: "view_dashboards",
+    resource: "CATEGORY",
   },
   {
     path: "/sub-category/:subCategoryId(\\d+)",
     component: SingleSubCategory,
-    resource: "view_dashboards",
+    resource: "CATEGORY",
   },
 
   {
     path: "/role/list",
     component: RoleList,
-    resource: "view_dashboards",
+    resource: "ROLE",
   },
 
   {
     path: "/role/new",
     component: NewRole,
-    resource: "view_dashboards",
+    resource: "ROLE",
   },
   {
     path: "/role/:roleId(\\d+)",
     component: SingleRole,
-    resource: "view_dashboards",
+    resource: "ROLE",
   },
 
   {
-    path: "/permision/list",
+    path: "/permission/list",
     component: PermissionList,
     resource: "PERMISSION",
   },
 
   {
-    path: "/permision/new",
+    path: "/permission/new",
     component: NewPermission,
     resource: "PERMISSION",
   },
   {
-    path: "/permision/:permisionId(\\d+)",
+    path: "/permission/:permissionId(\\d+)",
     component: SinglePermission,
     resource: "PERMISSION",
   },
 
+  ,
   // { path: "/location", component: Locations, resource: "" },
 
   // { path: "/adminTeeSheet", component: AdminTeeSheet, resource: "" },
@@ -347,7 +348,7 @@ const dashboardRoutes = [
   {
     path: "/access-management",
     component: AccessManagement,
-    resource: "",
+    resource: "ACCESS_MANAGEMENT",
   },
   {
     path: "*",

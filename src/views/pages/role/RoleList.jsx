@@ -4,6 +4,9 @@ import DataTableRoles from "components/table/DataTableRoles";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import RoleActions from "redux/role/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deleteRoles } from "redux/role/service";
+
 const { startLoader, endLoader } = loaderActions;
 const { fetchRolesPagination } = RoleActions;
 
@@ -21,6 +24,7 @@ const RolesList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useRolePermission = useRolePermissions("ROLE");
 
   const handleChangePage = (event) => {
     fetchRolesPagination(pageLimit, event);
@@ -39,6 +43,20 @@ const RolesList = (props) => {
     setTimeout(() => {
       fetchRolesPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteRole = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteRoles(id)
+      .then((res) => {
+        fetchRolesByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in role table");
+      });
   };
 
   useMemo(() => {
@@ -87,14 +105,14 @@ const RolesList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Role List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/role/new")}
-                >
-                  <i className="fas fa-plus" /> New Role
-                </button>
-                {/* )} */}
+                {useRolePermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/role/new")}
+                  >
+                    <i className="fas fa-plus" /> New Role
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -109,6 +127,7 @@ const RolesList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteRole={deleteRole}
             ></DataTableRoles>
           </div>
         </div>

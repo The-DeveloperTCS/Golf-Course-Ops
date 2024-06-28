@@ -4,6 +4,9 @@ import DataTableDepartments from "components/table/DataTableDepartments";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import DepartmentActions from "redux/department/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deleteDepartments } from "redux/department/service";
+
 const { startLoader, endLoader } = loaderActions;
 const { fetchDepartmentsPagination } = DepartmentActions;
 
@@ -21,6 +24,7 @@ const DepartmentsList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useDepartmentPermission = useRolePermissions("DEPARTMENT");
 
   const handleChangePage = (event) => {
     fetchDepartmentsPagination(pageLimit, event);
@@ -39,6 +43,20 @@ const DepartmentsList = (props) => {
     setTimeout(() => {
       fetchDepartmentsPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteDepartment = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteDepartments(id)
+      .then((res) => {
+        fetchDepartmentsByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in department table");
+      });
   };
 
   useMemo(() => {
@@ -82,14 +100,14 @@ const DepartmentsList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Department List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/department/new")}
-                >
-                  <i className="fas fa-plus" /> New Department
-                </button>
-                {/* )} */}
+                {useDepartmentPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/department/new")}
+                  >
+                    <i className="fas fa-plus" /> New Department
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -104,6 +122,7 @@ const DepartmentsList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteDepartment={deleteDepartment}
             ></DataTableDepartments>
           </div>
         </div>

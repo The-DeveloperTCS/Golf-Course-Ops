@@ -62,8 +62,6 @@ const DataTable = (props) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    pageCount,
-    gotoPage,
     state: { pageIndex },
   } = useTable(
     {

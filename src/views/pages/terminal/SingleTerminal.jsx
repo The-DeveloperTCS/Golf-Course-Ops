@@ -2,54 +2,52 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./TerminalForm";
+import TerminalForm from "./TerminalForm";
 import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+  updateTerminalDetails,
+  getSpecificTerminal,
+} from "redux/terminal/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const TerminalSingle = (props) => {
+  const { terminalId } = props;
+  const [terminalDetail, setTerminalDetails] = useState({});
 
   useEffect(() => {
     getCityDetails();
-  }, [employeeId]);
+  }, [terminalId]);
 
   const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+    getSpecificTerminal(terminalId).then((res) => {
+      setTerminalDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onTerminalSave = async (updatedTerminal) => {
+    return updateTerminalDetails(terminalId, updatedTerminal)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Terminal updated successfully!`);
+        props.history.push("/terminal/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Terminal #${updatedTerminal.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+    <TerminalForm
+      updateTerminal={terminalDetail}
+      terminalId={terminalId}
+      onSave={onTerminalSave}
     />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const terminalId = parseInt(ownProps.match.params.terminalId);
   return {
-    employeeId: employeeId,
+    terminalId: terminalId,
   };
 };
 
@@ -60,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(TerminalSingle);

@@ -14,6 +14,7 @@ const categoryActions = {
   },
 
   categoriesFetchedPagination: (data) => {
+    console.log(data);
     return {
       type: categoryActions.CATEGORIES_FETCHED_PAGINATION,
       categories: data.categories,

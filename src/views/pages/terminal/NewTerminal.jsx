@@ -1,71 +1,45 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import EmployeeActions from "redux/employee/action";
+import TerminalActions from "redux/terminal/action";
 import NotificationActions from "redux/notifications/actions";
-import { createEmployees } from "redux/employee/service";
-import EmployeeForm from "./TerminalForm";
+import { createTerminals } from "redux/terminal/service";
+import TerminalForm from "./TerminalForm";
 
-const defaultEmployee = {
-  title: "",
-  content: "",
-  image_url: "",
-  category_id: null,
-  user_id: null,
-  first_name: "",
-  last_name: "",
-  gender: "",
-  email_address: "",
-  password: "",
-  phone_number: "",
-  cell_phone_number: "",
-  username: "",
-  date_of_birth: "",
-  address: "",
-  city: "",
-  state: "",
-  zip_code: "",
-  job_title: "",
-  pin_number: "",
-  card_number: "",
-  default_terminal: "",
-  comments: "",
-  role: "",
-  is_email_verified: false,
-  status: "Active",
-  profile_picture: "",
-  hourly_rate: 0,
+const defaultTerminal = {
+  name: "",
+  status: false,
 };
 
-const NewEmployee = (props) => {
-  const onSave = async (updatedEmployee) => {
-    return createEmployees(updatedEmployee)
+const NewTerminal = (props) => {
+  const onSave = async (updatedTerminal) => {
+    return createTerminals(updatedTerminal)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} added successfully!`
+          `Terminal #${res.data.post.id} added successfully!`
         );
-        props.history.push("/employee/list");
+        props.history.push("/terminal/list");
       })
       .catch((err) =>
         props.failureWithTimeout(
-          "Failed to add new employee, " + err.response.data.message
+          "Failed to add new terminal, " + err.response.data.message
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={defaultEmployee}
+    <TerminalForm
+      updateTerminal={defaultTerminal}
       onSave={onSave}
-    ></EmployeeForm>
+    ></TerminalForm>
   );
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(EmployeeActions, dispatch),
+    ...bindActionCreators(TerminalActions, dispatch),
     ...bindActionCreators(NotificationActions, dispatch),
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewEmployee);
+export default connect(null, mapDispatchToProps)(NewTerminal);

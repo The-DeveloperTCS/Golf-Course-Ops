@@ -4,6 +4,9 @@ import DataTableForSuppliers from "components/table/DataTableForSuppliers";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import SupplierActions from "redux/supplier/action";
+import { deleteSuppliers } from "redux/supplier/service";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+
 const { startLoader, endLoader } = loaderActions;
 const { fetchSuppliersPagination } = SupplierActions;
 
@@ -21,6 +24,7 @@ const SuppliersList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useSupplierPermission = useRolePermissions("SUPPLIER");
 
   const handleChangePage = (event) => {
     fetchSuppliersPagination(pageLimit, event);
@@ -32,13 +36,27 @@ const SuppliersList = (props) => {
 
   useEffect(() => {
     startLoader(true);
-    fetchEmployeesByValues();
+    fetchSuppliersByValues();
   }, []);
 
-  const fetchEmployeesByValues = () => {
+  const fetchSuppliersByValues = () => {
     setTimeout(() => {
       fetchSuppliersPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteSupplier = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteSuppliers(id)
+      .then((res) => {
+        fetchSuppliersByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in supplier table");
+      });
   };
 
   useMemo(() => {
@@ -107,14 +125,14 @@ const SuppliersList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Supplier List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/supplier/new")}
-                >
-                  <i className="fas fa-plus" /> New Supplier
-                </button>
-                {/* )} */}
+                {useSupplierPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/supplier/new")}
+                  >
+                    <i className="fas fa-plus" /> New Supplier
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -129,6 +147,7 @@ const SuppliersList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteSupplier={deleteSupplier}
             ></DataTableForSuppliers>
           </div>
         </div>

@@ -1,71 +1,38 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import EmployeeActions from "redux/employee/action";
+import RoleActions from "redux/role/action";
 import NotificationActions from "redux/notifications/actions";
-import { createEmployees } from "redux/employee/service";
-import EmployeeForm from "./RoleForm";
+import { createRoles } from "redux/role/service";
+import RoleForm from "./RoleForm";
 
-const defaultEmployee = {
-  title: "",
-  content: "",
-  image_url: "",
-  category_id: null,
-  user_id: null,
-  first_name: "",
-  last_name: "",
-  gender: "",
-  email_address: "",
-  password: "",
-  phone_number: "",
-  cell_phone_number: "",
-  username: "",
-  date_of_birth: "",
-  address: "",
-  city: "",
-  state: "",
-  zip_code: "",
-  job_title: "",
-  pin_number: "",
-  card_number: "",
-  default_terminal: "",
-  comments: "",
-  role: "",
-  is_email_verified: false,
-  status: "Active",
-  profile_picture: "",
-  hourly_rate: 0,
+const defaultRole = {
+  name: "",
+  status: false,
 };
 
-const NewEmployee = (props) => {
-  const onSave = async (updatedEmployee) => {
-    return createEmployees(updatedEmployee)
+const NewRole = (props) => {
+  const onSave = async (updatedRole) => {
+    return createRoles(updatedRole)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} added successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Role #${res.data.id} added successfully!`);
+        props.history.push("/role/list");
       })
       .catch((err) =>
         props.failureWithTimeout(
-          "Failed to add new employee, " + err.response.data.message
+          "Failed to add new role, " + err.response.data.message
         )
       );
   };
 
-  return (
-    <EmployeeForm
-      updateEmployee={defaultEmployee}
-      onSave={onSave}
-    ></EmployeeForm>
-  );
+  return <RoleForm updateRole={defaultRole} onSave={onSave}></RoleForm>;
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(EmployeeActions, dispatch),
+    ...bindActionCreators(RoleActions, dispatch),
     ...bindActionCreators(NotificationActions, dispatch),
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewEmployee);
+export default connect(null, mapDispatchToProps)(NewRole);

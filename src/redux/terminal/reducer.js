@@ -1,56 +1,26 @@
-import { terminalActions } from "./actions";
+import terminalActions from "./action";
 
 const initialState = {
   terminals: [],
   specificTerminal: null,
   loading: false,
   error: null,
+  total: null,
+  pageLimit: null,
+  pageNo: null,
 };
 
-export default function terminalReducer(state = initialState, action) {
+export default function permissionReducer(state = initialState, action) {
   switch (action.type) {
-    case terminalActions.CREATE_TERMINAL_REQUEST:
-    case terminalActions.UPDATE_TERMINAL_REQUEST:
-    case terminalActions.DELETE_TERMINAL_REQUEST:
-    case terminalActions.GET_TERMINALS_LIST_REQUEST:
-    case terminalActions.GET_SPECIFIC_TERMINAL_REQUEST:
+    case terminalActions.TERMINALS_FETCHED_PAGINATION:
       return {
         ...state,
-        loading: true,
-        error: null,
+        terminals: [...action.terminals],
+        total: action.total,
+        pageLimit: action.pageLimit,
+        pageNo: action.pageNo,
       };
-    case terminalActions.CREATE_TERMINAL_SUCCESS:
-    case terminalActions.UPDATE_TERMINAL_SUCCESS:
-    case terminalActions.DELETE_TERMINAL_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: null,
-      };
-    case terminalActions.GET_TERMINALS_LIST_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        terminals: action.payload,
-        error: null,
-      };
-    case terminalActions.GET_SPECIFIC_TERMINAL_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        specificTerminal: action.payload,
-        error: null,
-      };
-    case terminalActions.CREATE_TERMINAL_FAILURE:
-    case terminalActions.UPDATE_TERMINAL_FAILURE:
-    case terminalActions.DELETE_TERMINAL_FAILURE:
-    case terminalActions.GET_TERMINALS_LIST_FAILURE:
-    case terminalActions.GET_SPECIFIC_TERMINAL_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-      };
+
     default:
       return state;
   }

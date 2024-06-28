@@ -1,42 +1,28 @@
 import { axiosClient } from "../../redux/store";
-import { getTerminalListUrl } from "Constants";
+import {
+  getTerminalListUrl,
+  createTerminalUrl,
+  updateTerminalUrl,
+  deleteTerminalUrl,
+  getSpecificTerminalUrl,
+} from "Constants";
 
 export const getTerminalsList = (pageNo, limit) => {
-  return axiosClient.get(getTerminalListUrl(pageNo, limit));
+  return axiosClient.get(getTerminalListUrl(limit, pageNo));
 };
 
-// export const createTerminal = async (data) => {
-//   try {
-//     const response = await axios.post(`${BaseUrl}/terminal/add`, data);
-//     return response.data;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const createTerminals = (req) => {
+  return axiosClient.post(createTerminalUrl, req);
+};
 
-// export const updateTerminal = async (id, data) => {
-//   try {
-//     const response = await axios.put(`${BaseUrl}/terminal/update/${id}`, data);
-//     return response.data;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const updateTerminalDetails = (terminalId, req) => {
+  return axiosClient.patch(updateTerminalUrl(terminalId), req);
+};
 
-// export const deleteTerminal = async (id) => {
-//   try {
-//     const response = await axios.delete(`${BaseUrl}/terminal/delete/${id}`);
-//     return response.data;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const getSpecificTerminal = async (terminalId) => {
+  return axiosClient.get(getSpecificTerminalUrl(terminalId));
+};
 
-// export const getSpecificTerminal = async (id) => {
-//   try {
-//     const response = await axios.get(`${BaseUrl}/terminal/specificId/${id}`);
-//     return response.data;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const deleteTerminals = async (terminalId) => {
+  return axiosClient.delete(deleteTerminalUrl(terminalId));
+};

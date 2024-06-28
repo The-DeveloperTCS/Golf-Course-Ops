@@ -1,11 +1,12 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { useTable, useSortBy, useFilters, usePagination } from "react-table";
 import classnames from "classnames";
-import Pagination from "components/common/Pagination";
+import Pagination from "components/common/PaginationWitAPI";
 import ReactTableWrapper from "./reacttbl.style";
 import { Badge } from "reactstrap";
 import { history } from "redux/store";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const HeaderComponent = (props) => {
   let classes = {
@@ -130,7 +131,15 @@ const DataTable = (props) => {
               {props.data.map((row) => {
                 return (
                   <tr key={row.id}>
-                    <th scope="row">{row.id}</th>
+                    <th scope="row">
+                      <Link
+                        target="_blank"
+                        to={`/supplier/${row.id}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <td style={{ border: 0 }}>{row.id}</td>
+                      </Link>
+                    </th>
                     <td>{moment(row.createdAt).format("LL")}</td>
 
                     <td>{`${row.firstName} ${row.lastName}`}</td>
@@ -148,8 +157,14 @@ const DataTable = (props) => {
                     </td>
                     <td>
                       <button
+                        className="btn c-btn-sm c-outline-danger ma-5"
+                        onClick={(e) => props.deleteSupplier(row.id, e)}
+                      >
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                      <button
                         className="btn c-btn-sm c-outline-primary ma-5"
-                        onClick={(e) => onEdit(row.original.id, e)}
+                        onClick={(e) => onEdit(row.id, e)}
                       >
                         <i className="fas fa-edit"></i>
                       </button>
@@ -161,9 +176,9 @@ const DataTable = (props) => {
           </table>
         </div>
         <Pagination
-          onPageChange={gotoPage}
-          pages={pageCount}
-          page={pageIndex}
+          handleChangePage={props.handleChangePage}
+          totalPages={props.totalPages}
+          pageNo={props.pageNo - 1}
         />
       </div>
     </ReactTableWrapper>

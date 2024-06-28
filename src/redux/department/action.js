@@ -17,7 +17,7 @@ const departmentActions = {
     return {
       type: departmentActions.DEPARTMENTS_FETCHED_PAGINATION,
       departments: data.departments,
-      total: data.pagination.totaldepartments,
+      total: data.pagination.totalDepartments,
       pageLimit: data.pagination.limit,
       pageNo: data.pagination.currentPage,
     };

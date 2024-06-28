@@ -15,7 +15,7 @@ import giftCard from "./giftCard/reducer";
 import inventory from "./inventory/reducer";
 import cart from "./cart/reducer";
 import supplier from "./supplier/reducer";
-// import terminal from './terminal/reducer';
+import terminal from "./terminal/reducer";
 import department from "./department/reducer";
 import group from "./group/reducer";
 import categories from "./category/reducer";
@@ -33,7 +33,7 @@ const appReducer = combineReducers({
   inventory,
   cart,
   supplier,
-  // terminal,
+  terminal,
   department,
   group,
   categories,
