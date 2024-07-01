@@ -230,7 +230,7 @@ export const sidebarData = [
     name: "sidebar.access_management",
     routepath: "/access-management",
     iconClass: "fas fa-lock",
-    resource: "ACCESS_MANAGEMENT",
+    resource: "ACCESS_MANAGMENT",
   },
 ];
 
@@ -332,6 +332,6 @@ export const HorizontalSidebarData = [
     name: "sidebar.access_management",
     routepath: "/access-management",
     iconClass: "fas fa-lock",
-    resource: "ACCESS_MANAGEMENT",
+    resource: "ACCESS_MANAGMENT",
   },
 ];

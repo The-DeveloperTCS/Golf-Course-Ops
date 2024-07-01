@@ -130,6 +130,8 @@ export const getSpecificPermissionUrl = (id) =>
   BaseUrl + `permission/specificId/${id}`;
 export const getRolePermissionUrl = (id) =>
   BaseUrl + `permission-by-role/byRoleName/${id}`;
+export const RolePermissionsUpdateUrl = (id) =>
+  BaseUrl + `permission-by-role/update/${id}`;
 
 //PermissionByRole Endpoints
 
