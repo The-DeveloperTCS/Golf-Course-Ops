@@ -550,7 +550,7 @@ const CustomerForm = (props) => {
                   </div>
                 </div>
 
-                {updatedCustomer.id && (
+                {!updatedCustomer.id && (
                   <div className="form-group row">
                     <label className="col-sm-4 col-form-label">User Name</label>
                     <div className="col-sm-8">
@@ -570,7 +570,7 @@ const CustomerForm = (props) => {
                   </div>
                 )}
 
-                {updatedCustomer.id && (
+                {!updatedCustomer.id && (
                   <div className="form-group row">
                     <label className="col-sm-4 col-form-label">Password</label>
                     <div className="col-sm-8">
@@ -590,7 +590,7 @@ const CustomerForm = (props) => {
                   </div>
                 )}
 
-                {updatedCustomer.id && (
+                {!updatedCustomer.id && (
                   <div className="form-group row">
                     <label className="col-sm-4 col-form-label">
                       Confirm Password

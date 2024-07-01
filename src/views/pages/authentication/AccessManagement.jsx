@@ -7,16 +7,10 @@ import { useEffect, useState, useCallback, useMemo } from "react";
 import { Table } from "reactstrap";
 
 import {
-  getAllPermissions,
-  // getPermissionsForRole,
-  updatePermission,
-} from "redux/users/service";
-
-import {
   getPermissionsList,
   getPermissionsForRole,
+  updatePermissionsOfRoles,
 } from "redux/permission/service";
-
 import { getRolesList } from "redux/role/service";
 
 const humanize = (s) => {
@@ -27,21 +21,21 @@ const humanize = (s) => {
 };
 
 const RoleAccessType = ({ type, onChange }) => {
-  const accessTypes = useMemo(
+  const accesss = useMemo(
     () => ["NONE", "READ", "RESTRICTED_READ", "WRITE", "RESTRICTED_WRITE"],
     []
   );
 
-  const accessTypeOptions = useMemo(() => {
-    return accessTypes.map((a) => {
+  const accessOptions = useMemo(() => {
+    return accesss.map((a) => {
       return { label: humanize(a), value: a };
     });
-  }, [accessTypes]);
+  }, [accesss]);
 
   return (
     <Select
-      options={accessTypeOptions}
-      value={accessTypeOptions.find((a) => a.value === type)}
+      options={accessOptions}
+      value={accessOptions.find((a) => a.value === type)}
       onChange={(v) => onChange(v.value)}
     />
   );
@@ -53,31 +47,29 @@ const PermissionsList = ({ role }) => {
   const fetchData = useCallback(async () => {
     if (!role) return null;
     const permsRes = await getPermissionsList("", "");
-    console.log(permsRes, "permsRes");
     const rolePermsRes = await getPermissionsForRole(role);
-
+    setData([]);
     const updatedData = permsRes.permissions.map((perm) => {
-      console.log(perm, "perm");
-      // const rolePerm = rolePermsRes.data.find((p) => p.name === perm);
+      const rolePerm = rolePermsRes.data.find((p) => p.name === perm.name);
       return {
         name: perm.name,
-        // ...rolePerm,
-        accessType: "NONE",
+        ...rolePerm,
+        access: rolePerm ? rolePerm.access : "NONE",
       };
     });
-    setData(updatedData.sort((a, b) => a.name));
+    setData(updatedData.sort((a, b) => a.name.localeCompare(b.name)));
   }, [role]);
 
   const handleAccessTypeUpdate = async (perm, type, ind) => {
-    await updatePermission({
+    await updatePermissionsOfRoles({
       ...perm,
-      accessType: type,
+      access: type,
       role: role,
       description: "Updated from portal",
     });
 
     const newData = [...data];
-    newData[ind].accessType = type;
+    newData[ind].access = type;
     setData(newData);
   };
 
@@ -88,7 +80,7 @@ const PermissionsList = ({ role }) => {
   if (data.length === 0) {
     return null;
   }
-  console.log(data, "data");
+
   return (
     <div className="row ma-0">
       <div className="col-lg-6">
@@ -102,14 +94,10 @@ const PermissionsList = ({ role }) => {
           <tbody>
             {data.map((p, i) => (
               <tr key={i}>
-                <td>
-                  {/* {humanize( */}
-                  {p.name}
-                  {/* // ) */}
-                </td>
+                <td>{humanize(p.name)}</td>
                 <td>
                   <RoleAccessType
-                    type={p.accessType}
+                    type={p.access}
                     onChange={(t) => handleAccessTypeUpdate(p, t, i)}
                   />
                 </td>
@@ -127,15 +115,11 @@ const RoleSelect = ({ role, onRoleSelect }) => {
 
   useEffect(() => {
     getRolesList("", "").then((res) => {
-      console.log(res, "res");
       setRoles(
-        res.data.roles.map((role) =>
-          // console.log(role, 'role')
-          ({
-            value: role.name,
-            label: humanize(role.name.replace("ROLE_", "")),
-          })
-        )
+        res.data.roles.map((role) => ({
+          value: role.name,
+          label: humanize(role.name.replace("ROLE_", "")),
+        }))
       );
     });
   }, []);
@@ -158,7 +142,7 @@ const AccessManagement = () => {
   const [can] = usePermission();
   const [selectedRole, setSelectedRole] = useState(null);
 
-  // if (!can("ACCESS_MANAGEMENT", ["WRITE"])) {
+  // if (!can("ACCESS_MANAGMENT", ["WRITE"])) {
   //   return <Redirect to="/" />;
   // }
 
