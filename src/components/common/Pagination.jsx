@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import "../../views/style/Pagination.css";
-import { MdNavigateNext } from "react-icons/md";
+import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 
 const defaultButton = (props) => <button {...props}>{props.children}</button>;
@@ -116,7 +116,7 @@ const Pagination = (props) => {
 
             <i>
               {" "}
-              <MdNavigateNext />
+              <IoIosArrowForward />
             </i>
           </PageButtonComponent>
         </div>

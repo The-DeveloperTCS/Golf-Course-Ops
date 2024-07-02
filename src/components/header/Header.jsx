@@ -31,17 +31,17 @@ const Header = (props) => {
               <span className="app-name fs-16 bold-text">{""}</span>
             </div>
             <div className="pl-10">{pageName}</div>
-            <form className="form-search">
+            {/* <form className="form-search">
               <FaSearch className="search-icon" />
               <input
                 type="text"
                 className="search-input"
                 placeholder="Search..."
               />
-            </form>
+            </form> */}
           </div>
 
-          <div className="pl-10 flex-x align-center cursur-pointer">
+          <div className="pl-10 flex-x align-center cursor-pointer">
             <p style={{ padding: "0px 5px", fontWeight: "500" }}>Admin</p>
             <div id="profile" className="mr-10">
               <img

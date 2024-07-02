@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../style/AdminSidebar1.css";
+import { IoIosArrowForward } from "react-icons/io";
+import PaymentPopup from "../PaymentPopup";
 
 function AdminSidebar1() {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(0); // Initialize with 0 for Page 1
+  const [showPaymentPopup, setShowPaymentPopup] = useState(false);
 
   const items = [
     { label: "Page 1", subPages: null },
@@ -42,24 +45,41 @@ function AdminSidebar1() {
     },
   ];
 
+  useEffect(() => {
+    // Optionally, you can add any initialization logic here
+    // if needed when the component mounts.
+  }, []);
+
   const handleItemClick = (index) => {
     setSelectedItem(selectedItem === index ? null : index);
+
+    // Show payment popup when "Page 1" is clicked
+    if (index === 0) {
+      setShowPaymentPopup(true);
+    } else {
+      setShowPaymentPopup(false);
+    }
   };
 
-  const handleItemHover = (index) => {
-    setSelectedItem(index);
+  const handleClosePaymentPopup = () => {
+    setShowPaymentPopup(false);
   };
 
   return (
     <div className="adminSidebar1">
       <div className="page-selector">
         {items.map((item, index) => (
-          <div key={index} onMouseEnter={() => handleItemHover(index)}>
+          <div key={index}>
             <button
               onClick={() => handleItemClick(index)}
               className={selectedItem === index ? "active" : ""}
             >
               {item.label}
+              {item.subPages && (
+                <span className="sub-label-icon">
+                  <IoIosArrowForward />
+                </span>
+              )}
             </button>
             {item.subPages && selectedItem === index && (
               <div className="sub-menu">
@@ -71,6 +91,8 @@ function AdminSidebar1() {
           </div>
         ))}
       </div>
+
+      {showPaymentPopup && <PaymentPopup onClose={handleClosePaymentPopup} />}
     </div>
   );
 }

@@ -13,7 +13,7 @@
   flex-direction: column;
 }
 
-button {
+.page-selector button {
   border: none;
   background: none;
   padding: 10px;
@@ -21,15 +21,23 @@ button {
   outline: none;
   color: #161819;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
-
-button.active {
+.sub-label-icon {
+  display: flex;
+  justify-content: end;
+}
+.page-selector button.active {
   background-color: #4365cf;
   color: white;
   width: 100%;
   border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .sub-menu {

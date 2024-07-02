@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
-import { MdNavigateNext } from "react-icons/md";
+import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import "../../views/style/Pagination.css";
 
@@ -91,7 +91,7 @@ const Pagination = ({
             disabled={activePage === totalPages}
           >
             {nextText}
-            <MdNavigateNext />
+            <IoIosArrowForward />
           </PageButtonComponent>
         </div>
       </div>

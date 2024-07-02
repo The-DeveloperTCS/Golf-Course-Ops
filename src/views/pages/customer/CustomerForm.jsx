@@ -309,8 +309,10 @@ const CustomerForm = (props) => {
             <div className="roe-card-body">
               <form>
                 <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">First Name</label>
-                  <div className="col-sm-8">
+                  <label className="col-sm-4 col-form-label">
+                    First Name123
+                  </label>
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -327,7 +329,7 @@ const CustomerForm = (props) => {
                 </div>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Last Name</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -345,7 +347,7 @@ const CustomerForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Gender</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <Select
                       value={
                         updatedCustomer.gender
@@ -369,7 +371,7 @@ const CustomerForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Date Of Birth
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DesktopDatePicker
                         disabled={!useCustomerPermission}
@@ -392,7 +394,7 @@ const CustomerForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Email Address
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="email"
                       className="form-control react-form-input"
@@ -411,7 +413,7 @@ const CustomerForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Phone Number
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="number"
                       className="form-control react-form-input"
@@ -428,7 +430,7 @@ const CustomerForm = (props) => {
                 </div>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Cell Number</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="number"
                       className="form-control react-form-input"
@@ -448,7 +450,7 @@ const CustomerForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Current Address
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -466,7 +468,7 @@ const CustomerForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">State</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <Select
                       value={
                         updatedCustomer.state
@@ -490,7 +492,7 @@ const CustomerForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">City</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <Select
                       value={
                         updatedCustomer.city
@@ -516,7 +518,7 @@ const CustomerForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Zip/Postal Code
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -534,7 +536,7 @@ const CustomerForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Comment</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -553,7 +555,7 @@ const CustomerForm = (props) => {
                 {updatedCustomer.id && (
                   <div className="form-group row">
                     <label className="col-sm-4 col-form-label">User Name</label>
-                    <div className="col-sm-8">
+                    <div className="col-sm-12">
                       <input
                         type="text"
                         className="form-control react-form-input"
@@ -573,7 +575,7 @@ const CustomerForm = (props) => {
                 {updatedCustomer.id && (
                   <div className="form-group row">
                     <label className="col-sm-4 col-form-label">Password</label>
-                    <div className="col-sm-8">
+                    <div className="col-sm-12">
                       <input
                         type="text"
                         className="form-control react-form-input"
@@ -595,7 +597,7 @@ const CustomerForm = (props) => {
                     <label className="col-sm-4 col-form-label">
                       Confirm Password
                     </label>
-                    <div className="col-sm-8">
+                    <div className="col-sm-12">
                       <input
                         type="text"
                         className="form-control react-form-input"
@@ -613,7 +615,7 @@ const CustomerForm = (props) => {
                 )}
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Status</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <div className="pretty p-default p-curve p-toggle">
                       <input
                         type="checkbox"
