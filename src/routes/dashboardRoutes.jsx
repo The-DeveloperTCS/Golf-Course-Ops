@@ -62,6 +62,11 @@ import AdminTeeSheet from "views/pages/adminTeeSheet/AdminTeeSheet";
 import AdminTeeSheet2 from "views/pages/adminTeeSheet/AdminTeeSheet2";
 import AdminTeeSheetSetting from "views/pages/adminTeeSheet/AdminTeeSheetSetting";
 import AdminDashboardItems from "views/pages/tee-slot/AdminDashboardItems";
+// import ClockIn from "views/pages/clockInClockOut/ClockIn";
+// import HelpSupport from "views/pages/helpSupport/HelpSupport";
+// import Reports from "views/pages/Reports/Reports";
+// import InventoryForm from "views/pages/inventoryform/InventoryForm";
+// import JesterPark from "views/pages/JesterPark/JesterPark";
 import ClockIn from "views/pages/clockInClockOut/ClockIn";
 import HelpSupport from "views/pages/helpSupport/HelpSupport";
 import Reports from "views/pages/Reports/Reports";
@@ -313,6 +318,10 @@ const dashboardRoutes = [
     resource: "PERMISSION",
   },
 
+
+  { path: "/adminTeeSheet", component: AdminTeeSheet, resource: "" },
+  { path: "/adminTeeSheet2", component: AdminTeeSheet2, resource: "" },
+  // { path: "/clockIn", component: ClockIn, resource: "" },
   { path: "/tee-sheet/list", component: AdminTeeSheet, resource: "" },
 
   {
@@ -320,12 +329,26 @@ const dashboardRoutes = [
     component: AdminTeeSheetSetting,
     resource: "",
   },
-
   {
     path: "/adminDashboardItems",
     component: AdminDashboardItems,
     resource: "",
   },
+  // { path: "/inventory", component: Inventory, resource: "" },
+  // { path: "/helpSupport", component: HelpSupport, resource: "" },
+  // { path: "/reports", component: Reports, resource: "" },
+  // { path: "/inventoryForm", component: InventoryForm, resource: "" },
+  // { path: "/jesterPark", component: JesterPark, resource: "" },
+
+  // { path: "/cart", component: Cart, resource: "" },
+  // { path: "/department", component: Department, resource: "" },
+  // { path: "/giftcard", component: GiftCard, resource: "" },
+
+  // {
+  //   path: "/pending-payments",
+  //   component: BulkPayment,
+  //   resource: "PENDING_PAYMENTS",
+  // },
 
   { path: "/adminTeeSheet2", component: AdminTeeSheet2, resource: "" },
   { path: "/clockIn", component: ClockIn, resource: "" },

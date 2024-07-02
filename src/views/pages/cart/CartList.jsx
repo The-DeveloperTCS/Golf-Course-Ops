@@ -132,9 +132,9 @@ const CartsList = (props) => {
               <span className="pull-right">
                 {useCartPermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
-                    onClick={() => props.history.push("/cart/new")}
-                  >
+                  className="c-btn ma-5 add-new-btn-color"
+                  onClick={() => props.history.push("/cart/new")}
+                >
                     <i className="fas fa-plus" /> New Cart
                   </button>
                 )}

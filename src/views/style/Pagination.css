@@ -1,0 +1,26 @@
+.Table__visiblePagesWrapper {
+}
+
+.Table__visiblePagesWrapper button {
+  padding: 12.5px 15px;
+  margin: 0px;
+  border-top: none;
+  border-bottom: none;
+  border-color: #4365cf;
+  border-right-width: 0.7px;
+}
+
+.cOwSZC .Table__pageButton--active {
+  font-weight: bold;
+  background: #563c91;
+  color: white !important;
+  width: 45px;
+  height: 30px;
+}
+
+.table-for-border {
+  display: flex;
+  border: 1px solid #4365cf;
+  border-radius: 10px;
+  padding: 0;
+}

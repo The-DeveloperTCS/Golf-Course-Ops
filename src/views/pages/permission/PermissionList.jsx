@@ -102,8 +102,8 @@ const PermissionsList = (props) => {
               <span className="pull-right">
                 {usePermissionPermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
-                    onClick={() => props.history.push("/permission/new")}
+                  className="c-btn ma-5 add-new-btn-color"
+                  onClick={() => props.history.push("/permission/new")}
                   >
                     <i className="fas fa-plus" /> New Permission
                   </button>

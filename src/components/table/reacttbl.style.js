@@ -38,24 +38,28 @@ const ReactTableWrapper = styled.div`
   }
   table {
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, .1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
-  tr:nth-child(even) {background: rgba(0,0,0,.03)}
-  
-  tr:nth-child(odd) {background: rgba(255,255,255)}
+
+  tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  tr:nth-child(odd) {
+    background: rgba(255, 255, 255);
+  }
 
   tr td {
     cursor: pointer;
   }
-  
+
   .table-container {
-      margin: auto 24px;
-      padding-bottom: 20px;
+    margin: auto 24px;
+    padding-bottom: 20px;
   }
   .custom-react-table-theme-class {
     th {
-      min-width: 200px; 
+      min-width: 200px;
     }
     tbody {
       td {
@@ -63,7 +67,7 @@ const ReactTableWrapper = styled.div`
         font-family: "muli-medium";
         color: #757575;
       }
-      td.wide-cell{
+      td.wide-cell {
         width: 150px;
       }
     }
@@ -79,40 +83,53 @@ const ReactTableWrapper = styled.div`
   }
 
   .Table__pagination {
+    align-items: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: end;
     padding: 20px 24px;
   }
 
   .Table__pageButton {
-    font-size: 18px;
+    font-size: 14px;
     outline: none;
     border: none;
     background-color: transparent;
     cursor: pointer;
     color: #757575 !important;
-    margin: 0 5px;
+    margin: 0 0px;
+    border-right: 1px solid #4365cf;
   }
 
+  .Table__pageButton1:disabled {
+    cursor: not-allowed;
+    color: white;
+    padding: 11px 15px;
+    background-color: #4365cf;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
   .Table__pageButton:disabled {
     cursor: not-allowed;
-    color: gray;
+    color: white !important;
+    padding: 14px 15px;
+    background-color: #4365cf;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
 
   .Table__pageButton--active {
     font-weight: bold;
-    background: #563c91
-    color: white !important;
+    background-color: #FFFFF;
+    color: black !important;
     width: 45px;
-    height: 30px;
-    border-radius: 6px;
+    height: 49px;
   }
 
   .tabl-search {
     padding: 4px;
-        margin: 10px;
-        border-radius: 3px;
-        border: 1px solid rgba(0, 0, 0, .1);
+    margin: 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     &:focus {
       outline: 0;
     }
@@ -144,7 +161,7 @@ const ReactTableWrapper = styled.div`
       color: #563c91;
     }
   }
-  .react-action-class.wide-cell{
+  .react-action-class.wide-cell {
     width: 150px;
   }
   .react-action-class {
@@ -153,7 +170,7 @@ const ReactTableWrapper = styled.div`
       width: auto !important;
     }
   }
-  .break-word{
+  .break-word {
     word-break: break-word;
   }
 `;

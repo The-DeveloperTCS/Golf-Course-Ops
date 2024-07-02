@@ -131,7 +131,7 @@ const EmployeesList = (props) => {
               <span className="pull-right">
                 {useEmployeePermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
+                    className="c-btn ma-5 add-new-btn-color"
                     onClick={() => props.history.push("/employee/new")}
                   >
                     <i className="fas fa-plus" /> New Employee

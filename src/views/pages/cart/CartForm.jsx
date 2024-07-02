@@ -75,7 +75,7 @@ const CartForm = (props) => {
                 </div>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Cart No</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -93,7 +93,7 @@ const CartForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Value</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="number"
                       className="form-control react-form-input"
@@ -113,7 +113,7 @@ const CartForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Customer Name
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -131,7 +131,7 @@ const CartForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Issue Date</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DesktopDatePicker
                         disabled={!useCartPermission}
@@ -152,7 +152,7 @@ const CartForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Expiry Date</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DesktopDatePicker
                         disabled={!useCartPermission}
@@ -209,7 +209,7 @@ const CartForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Notes</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -227,7 +227,7 @@ const CartForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Status</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <div className="pretty p-default p-curve p-toggle">
                       <input
                         type="checkbox"

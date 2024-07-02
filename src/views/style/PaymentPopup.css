@@ -1,0 +1,158 @@
+/* General styles */
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.popup-content {
+  position: relative; /* Added for positioning the "X" button */
+  background: white;
+  border-radius: 10px;
+  width: 50%;
+  height: 550px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.popup-content h2 {
+  width: 100%;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: #4365cf;
+  color: #0f2552;
+}
+/* X button styles */
+.x-btn {
+  position: absolute;
+  top: -7px;
+  right: -6px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+}
+.suggested-amounts {
+  display: flex;
+  flex-direction: column;
+}
+.suggested-amounts button,
+.pay-btn,
+.close-btn,
+button {
+  margin: 10px;
+  padding: 10px;
+  width: 80px;
+  background: #0cd374;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.keypad button {
+  margin: 10px;
+  padding: 10px;
+  width: 80px;
+  background: #0cd374;
+  color: #fff;
+  /* border: 1px solid black; */
+  cursor: pointer;
+  border-radius: 5px;
+}
+.suggested-amounts button {
+  margin: 10px;
+  padding: 10px;
+  background: #0cd374;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  border-radius: 5px;
+  border: none;
+}
+.manual-entry input {
+  margin: 10px auto;
+  padding: 10px;
+  width: calc(100% - 40px);
+}
+.manual-entry {
+  display: flex;
+}
+.total-due,
+.customer-note {
+  margin: 20px;
+}
+.total-due {
+  display: flex;
+  justify-content: space-between;
+}
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px;
+}
+
+.keypad button:nth-child(10) {
+  grid-column: span 2;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .popup-content {
+    width: 80%;
+    height: auto;
+  }
+
+  .suggested-amounts button,
+  .pay-btn,
+  .close-btn,
+  .keypad button {
+    width: 80px;
+  }
+
+  .manual-entry input {
+    width: calc(100% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-content {
+    width: 90%;
+    height: auto;
+  }
+
+  .suggested-amounts button,
+  .pay-btn,
+  .close-btn,
+  .keypad button {
+    width: 60px;
+  }
+
+  .manual-entry input {
+    width: calc(100% - 10px);
+  }
+}
+
+.popup-main {
+  display: flex;
+  justify-content: space-between;
+}
+.popup-left {
+  width: 50%;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.popup-right {
+  width: 50%;
+}

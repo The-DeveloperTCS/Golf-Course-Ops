@@ -117,7 +117,7 @@ const CustomersList = (props) => {
               <span className="pull-right">
                 {useCustomerPermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
+                    className="c-btn ma-5 add-new-btn-color"
                     onClick={() => props.history.push("/customer/new")}
                   >
                     <i className="fas fa-plus" /> New Customer

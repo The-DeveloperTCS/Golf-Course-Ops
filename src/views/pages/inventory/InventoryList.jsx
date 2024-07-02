@@ -151,10 +151,10 @@ const InventoriesList = (props) => {
               Intentory List{" "}
               <span className="pull-right">
                 {useInventoryPermission && (
-                  <button
-                    className="c-btn ma-5 c-outline-info"
-                    onClick={() => props.history.push("/inventory/new")}
-                  >
+                <button
+                  className="c-btn ma-5 add-new-btn-color"
+                  onClick={() => props.history.push("/inventory/new")}
+                >
                     <i className="fas fa-plus" /> New Inventory
                   </button>
                 )}

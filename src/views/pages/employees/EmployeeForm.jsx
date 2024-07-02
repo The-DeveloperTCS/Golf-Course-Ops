@@ -341,7 +341,7 @@ const EmployeeForm = (props) => {
               <form>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">First Name</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -358,7 +358,7 @@ const EmployeeForm = (props) => {
                 </div>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Last Name</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -376,7 +376,7 @@ const EmployeeForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Gender</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <Select
                       value={
                         updatedEmployee.gender
@@ -400,7 +400,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Date Of Birth
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DesktopDatePicker
                         disabled={!useEmployeePermission}
@@ -424,7 +424,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Email Address
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="email"
                       className="form-control react-form-input"
@@ -443,7 +443,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Phone Number
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="number"
                       className="form-control react-form-input"
@@ -460,7 +460,7 @@ const EmployeeForm = (props) => {
                 </div>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Cell Number</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="number"
                       className="form-control react-form-input"
@@ -480,7 +480,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Current Address
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -498,7 +498,7 @@ const EmployeeForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">State</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <Select
                       value={
                         updatedEmployee.state
@@ -522,7 +522,7 @@ const EmployeeForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">City</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <Select
                       value={
                         updatedEmployee.city
@@ -548,7 +548,7 @@ const EmployeeForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Zip/Postal Code
                   </label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -584,7 +584,7 @@ const EmployeeForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Terminal</label>
-                  <div className="col-sm-8">
+                  <div className="col-sm-12">
                     <Select
                       value={terminals?.find(
                         (c) => c.value === updatedEmployee.defaultTerminal

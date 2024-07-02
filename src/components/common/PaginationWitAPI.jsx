@@ -1,104 +1,113 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
+import "../../views/style/Pagination.css";
 
 const defaultButton = (props) => <button {...props}>{props.children}</button>;
 
-const Pagination = (props) => {
-  const [visiblePages, setvisiblePages] = useState(null);
-  const {
-    PageButtonComponent = defaultButton,
-    changeMethodFlag,
-    handleChangePage,
-    pageNo,
-    resetMethodFlag,
-  } = props;
+const Pagination = ({
+  PageButtonComponent = defaultButton,
+  handleChangePage,
+  pageNo,
+  totalPages,
+  previousText,
+  nextText,
+  changeMethodFlag,
+  resetMethodFlag,
+}) => {
+  const [visiblePages, setVisiblePages] = useState([]);
+
   const activePage = pageNo + 1;
 
-  const getVisiblePages = useCallback((pageNo, total) => {
+  const getVisiblePages = useCallback((page, total) => {
     if (total < 7) {
-      return filterPages([1, 2, 3, 4, 5, 6], total);
+      return [1, 2, 3];
+    } else if (page < 3) {
+      return [1, 2, 3];
+    } else if (page > total - 3) {
+      return [total - 3, total - 2, total - 1, total];
     } else {
-      if (pageNo % 5 >= 0 && pageNo > 4 && pageNo + 2 < total) {
-        return [1, pageNo - 1, pageNo, pageNo + 1, total];
-      } else if (pageNo % 5 >= 0 && pageNo > 4 && pageNo + 2 >= total) {
-        return [1, total - 3, total - 2, total - 1, total];
-      } else {
-        return [1, 2, 3, 4, 5, total];
-      }
+      return [page - 1, page, page + 1, page + 2];
     }
   }, []);
 
   useEffect(() => {
-    setvisiblePages(getVisiblePages(null, props.totalPages));
-  }, [getVisiblePages, props.totalPages]);
+    setVisiblePages(getVisiblePages(pageNo, totalPages));
+  }, [getVisiblePages, pageNo, totalPages]);
 
-  const filterPages = (visiblePages, totalPages) => {
-    return visiblePages.filter((pageNo) => pageNo <= totalPages);
+  const filterPages = (pages, totalPages) => {
+    return pages.filter((page) => page >= 1 && page <= totalPages);
   };
 
-  const changePage = (pageNo) => {
-    const visiblePages = getVisiblePages(pageNo, props.totalPages);
+  const changePage = (page) => {
+    if (page === activePage) {
+      return;
+    }
 
-    setvisiblePages(filterPages(visiblePages, props.totalPages));
-    handleChangePage(pageNo);
+    const newVisiblePages = getVisiblePages(page, totalPages);
+    setVisiblePages(filterPages(newVisiblePages, totalPages));
+    handleChangePage(page - 1);
   };
 
   return (
     <div className="Table__pagination">
-      <div className="Table__prevPageWrapper">
-        <PageButtonComponent
-          className="Table__pageButton"
-          onClick={() => {
-            if (activePage === 1) return;
-            changePage(activePage - 1);
-          }}
-          disabled={activePage === 1}
-        >
-          {/* {props.previousText} */}
-          <i className="fas fa-backward"></i>
-        </PageButtonComponent>
-      </div>
-      <div className="Table__visiblePagesWrapper">
-        {visiblePages &&
-          visiblePages.map((pageNo, index, array) => {
-            return (
-              <PageButtonComponent
-                key={pageNo}
-                className={
-                  activePage === pageNo
-                    ? "Table__pageButton Table__pageButton--active"
-                    : "Table__pageButton"
-                }
-                onClick={changePage.bind(null, pageNo)}
-              >
-                {array[index - 1] + 2 < pageNo ? `...${pageNo}` : pageNo}
-              </PageButtonComponent>
-            );
-          })}
-      </div>
-      <div className="Table__nextPageWrapper">
-        <PageButtonComponent
-          className="Table__pageButton"
-          onClick={() => {
-            if (activePage === props.totalPages) return;
-            changePage(activePage + 1);
-          }}
-          disabled={activePage === props.totalPages}
-        >
-          <i className="fas fa-forward"></i>
-        </PageButtonComponent>
+      <div className="table-for-border">
+        <div className="Table__prevPageWrapper">
+          <PageButtonComponent
+            className="Table__pageButton"
+            onClick={() => {
+              if (activePage === 1) return;
+              changePage(activePage - 1);
+            }}
+            disabled={activePage === 1}
+          >
+            <IoIosArrowBack />
+            {previousText}
+          </PageButtonComponent>
+        </div>
+        <div className="Table__visiblePagesWrapper">
+          {visiblePages.map((page, index, array) => (
+            <PageButtonComponent
+              key={page}
+              className={
+                activePage === page
+                  ? "Table__pageButton Table__pageButton--active"
+                  : "Table__pageButton"
+              }
+              onClick={() => changePage(page)}
+            >
+              {array[index - 1] + 2 < page ? `...${page}` : page}
+            </PageButtonComponent>
+          ))}
+        </div>
+        <div className="Table__nextPageWrapper">
+          <PageButtonComponent
+            className="Table__pageButton1"
+            onClick={() => {
+              if (activePage === totalPages) return;
+              changePage(activePage + 1);
+            }}
+            disabled={activePage === totalPages}
+          >
+            {nextText}
+            <IoIosArrowForward />
+          </PageButtonComponent>
+        </div>
       </div>
     </div>
   );
 };
 
 Pagination.propTypes = {
-  totalPages: PropTypes.number,
-  pageNo: PropTypes.number,
+  totalPages: PropTypes.number.isRequired,
+  pageNo: PropTypes.number.isRequired,
   PageButtonComponent: PropTypes.any,
-  handleChangePage: PropTypes.func,
+  handleChangePage: PropTypes.func.isRequired,
   previousText: PropTypes.string,
   nextText: PropTypes.string,
+  changeMethodFlag: PropTypes.bool,
+  resetMethodFlag: PropTypes.func,
 };
 
 export default Pagination;

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import AuthActions from "redux/auth/actions";
 import { withRouter } from "react-router-dom";
-import { FaRegBell, FaCaretDown } from "react-icons/fa";
+import { FaRegBell, FaCaretDown, FaSearch } from "react-icons/fa";
 
 const { logout } = AuthActions;
 
@@ -22,15 +22,26 @@ const Header = (props) => {
     <HeaderWrapper {...props} topbarTheme={topbarTheme}>
       <div className="headerBack">
         <div className="flex-x justify- space-between align-center">
-          <div
-            className="mini-drawer-menu-icon"
-            onClick={() => drawerMiniMethod()}
-          >
-            <i className="fas fa-bars" />
-            <span className="app-name fs-16 bold-text">{""}</span>
+          <div className="header-search-bar">
+            <div
+              className="mini-drawer-menu-icon"
+              onClick={() => drawerMiniMethod()}
+            >
+              <i className="fas fa-bars" />
+              <span className="app-name fs-16 bold-text">{""}</span>
+            </div>
+            <div className="pl-10">{pageName}</div>
+            {/* <form className="form-search">
+              <FaSearch className="search-icon" />
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search..."
+              />
+            </form> */}
           </div>
-          <div className="pl-10">{pageName}</div>
-          <div className="pl-10 flex-x align-center">
+
+          <div className="pl-10 flex-x align-center cursor-pointer">
             <p style={{ padding: "0px 5px", fontWeight: "500" }}>Admin</p>
             <div id="profile" className="mr-10">
               <img

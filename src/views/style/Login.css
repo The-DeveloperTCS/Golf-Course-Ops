@@ -71,7 +71,7 @@
   border-radius: 5px;
   outline: none;
   border: 1px solid #c4c4c4;
-  color: #c4c4c4;
+  color: #161819;
 }
 
 .form-group ::placeholder {
@@ -80,8 +80,8 @@
 
 .form-group label {
   color: #919499;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
 }
 
 .lable-forget {
@@ -166,4 +166,23 @@
   width: 0;
   overflow: hidden;
   transition: width 0.3s ease-in-out;
+}
+/*  */
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100;
+  width: 100% !important;
+  outline: none !important;
 }

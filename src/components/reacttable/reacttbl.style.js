@@ -78,11 +78,11 @@ const ReactTableWrapper = styled.div`
   .Table__pageButton {
     font-size: 18px;
     outline: none;
-    border: none;
+    border: 1px solid;
     background-color: transparent;
     cursor: pointer;
-    color: #757575 !important;
-    margin: 0 5px;
+    // color: #757575 !important;
+    margin: 0 0px;
   }
 
   .Table__pageButton:disabled {
