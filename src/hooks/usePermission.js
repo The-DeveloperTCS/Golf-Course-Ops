@@ -15,7 +15,7 @@ const usePermission = () => {
   const can = (resource, types) => {
     const permission = permissions.filter(
       (permission) =>
-        permission.name === resource && types.includes(permission.accessType)
+        permission.name === resource && types.includes(permission.access)
     );
     return permission.length > 0;
   };

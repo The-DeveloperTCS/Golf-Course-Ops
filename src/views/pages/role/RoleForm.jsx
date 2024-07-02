@@ -64,6 +64,24 @@ const RoleForm = (props) => {
                   </div>
                 </div>
 
+                <div className="form-Dgroup row">
+                  <label className="col-sm-4 col-form-label">Base Role</label>
+                  <div className="col-sm-8">
+                    <input
+                      type="text"
+                      className="form-control react-form-input"
+                      value={updatedRole.basedRole}
+                      disabled={!useRolePermission}
+                      onChange={(e) =>
+                        setUpdateRole({
+                          ...updatedRole,
+                          basedRole: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+
                 <div className="form-role row">
                   <label className="col-sm-4 col-form-label">Status</label>
                   <div className="col-sm-8">

@@ -2,54 +2,45 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./RoleForm";
-import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+import RoleForm from "./RoleForm";
+import { updateRoleDetails, getSpecificRole } from "redux/role/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const RoleSingle = (props) => {
+  const { roleId } = props;
+  const [roleDetail, setRoleDetails] = useState({});
 
   useEffect(() => {
     getCityDetails();
-  }, [employeeId]);
+  }, [roleId]);
 
   const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+    getSpecificRole(roleId).then((res) => {
+      setRoleDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onRoleSave = async (updatedSupplier) => {
+    return updateRoleDetails(roleId, updatedSupplier)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Role updated successfully!`);
+        props.history.push("/role/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Role #${updatedSupplier.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
-    />
+    <RoleForm updateRole={roleDetail} roleId={roleId} onSave={onRoleSave} />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const roleId = parseInt(ownProps.match.params.roleId);
   return {
-    employeeId: employeeId,
+    roleId: roleId,
   };
 };
 
@@ -60,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(RoleSingle);

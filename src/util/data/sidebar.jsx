@@ -13,6 +13,13 @@ export const sidebarData = [
   },
 
   {
+    name: "sidebar.tee-sheet",
+    routepath: "/tee-sheet/list",
+    iconClass: "fa fa-sitemap",
+    resource: "",
+  },
+
+  {
     name: "sidebar.location",
     routepath: "/location/list",
     iconClass: "fa fa-location-arrow",
@@ -230,7 +237,7 @@ export const sidebarData = [
     name: "sidebar.access_management",
     routepath: "/access-management",
     iconClass: "fas fa-lock",
-    resource: "ACCESS_MANAGMENT",
+    resource: "ACCESS_MANAGEMENT",
   },
 ];
 
@@ -332,6 +339,6 @@ export const HorizontalSidebarData = [
     name: "sidebar.access_management",
     routepath: "/access-management",
     iconClass: "fas fa-lock",
-    resource: "ACCESS_MANAGMENT",
+    resource: "ACCESS_MANAGEMENT",
   },
 ];

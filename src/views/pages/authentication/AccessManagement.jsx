@@ -142,9 +142,9 @@ const AccessManagement = () => {
   const [can] = usePermission();
   const [selectedRole, setSelectedRole] = useState(null);
 
-  // if (!can("ACCESS_MANAGMENT", ["WRITE"])) {
-  //   return <Redirect to="/" />;
-  // }
+  if (!can("ACCESS_MANAGEMENT", ["WRITE"])) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="row ma-0">

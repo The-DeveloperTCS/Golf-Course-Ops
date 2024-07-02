@@ -6,6 +6,7 @@ import ReactTableWrapper from "./reacttbl.style";
 import { history } from "redux/store";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Badge } from "reactstrap";
 import loaderActions from "redux/loader/actions";
 const { startLoader, endLoader } = loaderActions;
 
@@ -132,7 +133,14 @@ const DataTable = (props) => {
                   </Link>
                   <td>{row.name}</td>
                   <td>{row.basedRole}</td>
-                  <td>{row.status}</td>
+                  <td>
+                    {" "}
+                    {row.status ? (
+                      <Badge className="c-success p-2">Active</Badge>
+                    ) : (
+                      <Badge className="c-secondary p-2">In-Active</Badge>
+                    )}
+                  </td>
                   <td>
                     <button
                       className="btn c-btn-sm c-outline-danger ma-5"

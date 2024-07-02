@@ -1,5 +1,6 @@
 {
   "sidebar.employee": "Employee",
+  "sidebar.tee-sheet": "Tee Sheet",
   "sidebar.location": "Location",
   "sidebar.customer": "Customer",
   "sidebar.giftCard": "Gift Card",
@@ -17,7 +18,6 @@
   "sidebar.error": "Error",
   "sidebar.400": "400",
   "sidebar.Profile": "Profile",
-
   "sidebar.demo": "Demo",
   "sidebar.AdminTeeSheet": "AdminTeeSheet",
   "sidebar.AdminTeeSheetSetting": "adminTeeSheetSetting",

@@ -14,6 +14,7 @@ const roleActions = {
   },
 
   rolesFetchedPagination: (data) => {
+    console.log(data, "data");
     return {
       type: roleActions.ROLES_FETCHED_PAGINATION,
       roles: data.roles,
@@ -27,7 +28,7 @@ const roleActions = {
     return (dispatch) => {
       getRolesList(limit, pageNo)
         .then((res) => {
-          dispatch(roleActions.rolesFetchedPagination(res));
+          dispatch(roleActions.rolesFetchedPagination(res.data));
           dispatch(roleActions.loaderOff());
         })
         .catch((err) => {
