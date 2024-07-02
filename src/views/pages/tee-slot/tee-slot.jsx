@@ -1,7 +1,7 @@
 import tee1Icon from "../../../assets/images/tee1_icon.png";
 import { Link } from "react-router-dom";
 
-function TeeSlot({ backgroundColor, playerNumber, playerName }) {
+function TeeSlot({ backgroundColor, holes, playerName, players }) {
   return (
     <Link
       to="/adminTeeSheetSetting"
@@ -33,7 +33,7 @@ function TeeSlot({ backgroundColor, playerNumber, playerName }) {
             textAlign: "center",
           }}
         >
-          <p>{playerNumber}</p>
+          <p>{holes}</p>
         </div>
         <div
           className="px-2"
@@ -44,7 +44,7 @@ function TeeSlot({ backgroundColor, playerNumber, playerName }) {
           }}
         >
           <div className="m-0 p-0" style={{ height: "40%" }}>
-            {playerName}
+            {players} {playerName}
           </div>
           <div style={{ textAlign: "left" }}>
             <img src={tee1Icon} alt="" />

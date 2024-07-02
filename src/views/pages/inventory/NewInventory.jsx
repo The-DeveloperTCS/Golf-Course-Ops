@@ -1,71 +1,56 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import EmployeeActions from "redux/employee/action";
+import InventoryActions from "redux/inventory/action";
 import NotificationActions from "redux/notifications/actions";
-import { createEmployees } from "redux/employee/service";
-import EmployeeForm from "./InventoryForm";
+import { createInventorys } from "redux/inventory/service";
+import InventoryForm from "./InventoryForm";
 
-const defaultEmployee = {
-  title: "",
-  content: "",
-  image_url: "",
-  category_id: null,
-  user_id: null,
-  first_name: "",
-  last_name: "",
-  gender: "",
-  email_address: "",
-  password: "",
-  phone_number: "",
-  cell_phone_number: "",
-  username: "",
-  date_of_birth: "",
-  address: "",
-  city: "",
-  state: "",
-  zip_code: "",
-  job_title: "",
-  pin_number: "",
-  card_number: "",
-  default_terminal: "",
-  comments: "",
-  role: "",
-  is_email_verified: false,
-  status: "Active",
-  profile_picture: "",
-  hourly_rate: 0,
+const defaultInventory = {
+  name: "",
+  glCode: "",
+  productPicture: "",
+  category: null,
+  department: null,
+  subCategory: null,
+  unitCost: 0,
+  unitPrice: 0,
+  quantity: 0,
+  taxableStatus: "Taxable",
+  itemType: "",
+  foodType: "",
+  status: false,
 };
 
-const NewEmployee = (props) => {
-  const onSave = async (updatedEmployee) => {
-    return createEmployees(updatedEmployee)
+const NewInventory = (props) => {
+  const onSave = async (updatedInventory) => {
+    return createInventorys(updatedInventory)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} added successfully!`
+          `Inventory #${res.data.inventory.id} added successfully!`
         );
-        props.history.push("/employee/list");
+        props.history.push("/inventory/list");
       })
       .catch((err) =>
         props.failureWithTimeout(
-          "Failed to add new employee, " + err.response.data.message
+          "Failed to add new inventory, " + err.response.data.message
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={defaultEmployee}
+    <InventoryForm
+      updateEmployee={defaultInventory}
       onSave={onSave}
-    ></EmployeeForm>
+    ></InventoryForm>
   );
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(EmployeeActions, dispatch),
+    ...bindActionCreators(InventoryActions, dispatch),
     ...bindActionCreators(NotificationActions, dispatch),
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewEmployee);
+export default connect(null, mapDispatchToProps)(NewInventory);

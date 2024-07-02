@@ -4,6 +4,8 @@ import DataTableCategories from "components/table/DataTableCategories";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import CategoryActions from "redux/category/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deleteCategories } from "redux/category/service";
 const { startLoader, endLoader } = loaderActions;
 const { fetchCategoriesPagination } = CategoryActions;
 
@@ -21,6 +23,7 @@ const CategoriesList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useCategoryPermission = useRolePermissions("CATEGORY");
 
   const handleChangePage = (event) => {
     fetchCategoriesPagination(pageLimit, event);
@@ -39,6 +42,20 @@ const CategoriesList = (props) => {
     setTimeout(() => {
       fetchCategoriesPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteCategory = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteCategories(id)
+      .then((res) => {
+        fetchCategoriesByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in category table");
+      });
   };
 
   useMemo(() => {
@@ -82,14 +99,14 @@ const CategoriesList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Category List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
-                  className="c-btn ma-5 c-outline-info"
-                  onClick={() => props.history.push("/category/new")}
-                >
-                  <i className="fas fa-plus" /> New Category
-                </button>
-                {/* )} */}
+                {useCategoryPermission && (
+                  <button
+                    className="c-btn ma-5 c-outline-info"
+                    onClick={() => props.history.push("/category/new")}
+                  >
+                    <i className="fas fa-plus" /> New Category
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -104,6 +121,7 @@ const CategoriesList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteCategory={deleteCategory}
             ></DataTableCategories>
           </div>
         </div>
@@ -114,10 +132,10 @@ const CategoriesList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.category.categories,
-    pageLimit: state.category.pageLimit,
-    pageNo: state.category.pageNo,
-    total: state.category.total,
+    categories: state.categories.categories,
+    pageLimit: state.categories.pageLimit,
+    pageNo: state.categories.pageNo,
+    total: state.categories.total,
     loader: state.loader.loader,
   };
 };

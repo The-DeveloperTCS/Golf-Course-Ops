@@ -58,7 +58,7 @@ const CartForm = (props) => {
               <form>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Item Name</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <input
                       type="text"
                       className="form-control react-form-input"

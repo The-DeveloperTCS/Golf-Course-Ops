@@ -2,54 +2,52 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./PermissionForm";
+import PermissionForm from "./PermissionForm";
 import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+  updatePermissionDetails,
+  getSpecificPermission,
+} from "redux/permission/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const PermissionSingle = (props) => {
+  const { permissionId } = props;
+  const [permissionDetail, setPermissionDetails] = useState({});
 
   useEffect(() => {
     getCityDetails();
-  }, [employeeId]);
+  }, [permissionId]);
 
   const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+    getSpecificPermission(permissionId).then((res) => {
+      setPermissionDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onPermissionSave = async (updatedSupplier) => {
+    return updatePermissionDetails(permissionId, updatedSupplier)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Permission updated successfully!`);
+        props.history.push("/permission/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Permission #${updatedSupplier.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+    <PermissionForm
+      updatePermission={permissionDetail}
+      permissionId={permissionId}
+      onSave={onPermissionSave}
     />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const permissionId = parseInt(ownProps.match.params.permissionId);
   return {
-    employeeId: employeeId,
+    permissionId: permissionId,
   };
 };
 
@@ -60,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(PermissionSingle);

@@ -4,6 +4,9 @@ import DataTablePermissions from "components/table/DataTablePermissions";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import PermissionActions from "redux/permission/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deletePermissions } from "redux/permission/service";
+
 const { startLoader, endLoader } = loaderActions;
 const { fetchPermissionsPagination } = PermissionActions;
 
@@ -21,6 +24,7 @@ const PermissionsList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const usePermissionPermission = useRolePermissions("PERMISSION");
 
   const handleChangePage = (event) => {
     fetchPermissionsPagination(pageLimit, event);
@@ -39,6 +43,20 @@ const PermissionsList = (props) => {
     setTimeout(() => {
       fetchPermissionsPagination(25, 1);
     }, 2000);
+  };
+
+  const deletePermission = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deletePermissions(id)
+      .then((res) => {
+        fetchPermissionsByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in permission table");
+      });
   };
 
   useMemo(() => {
@@ -82,14 +100,14 @@ const PermissionsList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Permission List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
+                {usePermissionPermission && (
+                  <button
                   className="c-btn ma-5 add-new-btn-color"
                   onClick={() => props.history.push("/permission/new")}
-                >
-                  <i className="fas fa-plus" /> New Permission
-                </button>
-                {/* )} */}
+                  >
+                    <i className="fas fa-plus" /> New Permission
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -104,6 +122,7 @@ const PermissionsList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deletePermission={deletePermission}
             ></DataTablePermissions>
           </div>
         </div>

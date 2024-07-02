@@ -17,7 +17,7 @@ const cartActions = {
     return {
       type: cartActions.CARTS_FETCHED_PAGINATION,
       carts: data.carts,
-      total: data.pagination.totalcarts,
+      total: data.pagination.totalCarts,
       pageLimit: data.pagination.limit,
       pageNo: data.pagination.currentPage,
     };

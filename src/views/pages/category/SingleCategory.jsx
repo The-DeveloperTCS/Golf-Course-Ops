@@ -2,54 +2,52 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./CategoryForm";
+import CategoryForm from "./CategoryForm";
 import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+  updateCategoryDetails,
+  getSpecificCategory,
+} from "redux/category/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const CategorySingle = (props) => {
+  const { categoryId } = props;
+  const [categoryDetail, setCategoryDetails] = useState({});
 
   useEffect(() => {
     getCityDetails();
-  }, [employeeId]);
+  }, [categoryId]);
 
   const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+    getSpecificCategory(categoryId).then((res) => {
+      setCategoryDetails(res.data);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onCategorySave = async (updatedSupplier) => {
+    return updateCategoryDetails(categoryId, updatedSupplier)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
-        );
-        props.history.push("/employee/list");
+        props.successWithTimeout(`Category updated successfully!`);
+        props.history.push("/category/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Category #${updatedSupplier.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+    <CategoryForm
+      updateCategory={categoryDetail}
+      categoryId={categoryId}
+      onSave={onCategorySave}
     />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const categoryId = parseInt(ownProps.match.params.categoryId);
   return {
-    employeeId: employeeId,
+    categoryId: categoryId,
   };
 };
 
@@ -60,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, mapDispatchToProps)(CategorySingle);

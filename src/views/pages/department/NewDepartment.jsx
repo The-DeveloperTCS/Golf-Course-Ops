@@ -1,71 +1,45 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import EmployeeActions from "redux/employee/action";
+import DepartmentActions from "redux/department/action";
 import NotificationActions from "redux/notifications/actions";
-import { createEmployees } from "redux/employee/service";
-import EmployeeForm from "./DepartmentForm";
+import { createDepartments } from "redux/department/service";
+import DepartmentForm from "./DepartmentForm";
 
-const defaultEmployee = {
-  title: "",
-  content: "",
-  image_url: "",
-  category_id: null,
-  user_id: null,
-  first_name: "",
-  last_name: "",
-  gender: "",
-  email_address: "",
-  password: "",
-  phone_number: "",
-  cell_phone_number: "",
-  username: "",
-  date_of_birth: "",
-  address: "",
-  city: "",
-  state: "",
-  zip_code: "",
-  job_title: "",
-  pin_number: "",
-  card_number: "",
-  default_terminal: "",
-  comments: "",
-  role: "",
-  is_email_verified: false,
-  status: "Active",
-  profile_picture: "",
-  hourly_rate: 0,
+const defaultDepartment = {
+  name: "",
+  status: false,
 };
 
-const NewEmployee = (props) => {
-  const onSave = async (updatedEmployee) => {
-    return createEmployees(updatedEmployee)
+const NewDepartment = (props) => {
+  const onSave = async (updatedDepartment) => {
+    return createDepartments(updatedDepartment)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} added successfully!`
+          `Department #${res.data.post.id} added successfully!`
         );
-        props.history.push("/employee/list");
+        props.history.push("/department/list");
       })
       .catch((err) =>
         props.failureWithTimeout(
-          "Failed to add new employee, " + err.response.data.message
+          "Failed to add new department, " + err.response.data.message
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={defaultEmployee}
+    <DepartmentForm
+      updateDepartment={defaultDepartment}
       onSave={onSave}
-    ></EmployeeForm>
+    ></DepartmentForm>
   );
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(EmployeeActions, dispatch),
+    ...bindActionCreators(DepartmentActions, dispatch),
     ...bindActionCreators(NotificationActions, dispatch),
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewEmployee);
+export default connect(null, mapDispatchToProps)(NewDepartment);

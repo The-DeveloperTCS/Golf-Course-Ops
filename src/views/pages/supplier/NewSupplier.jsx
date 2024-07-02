@@ -1,71 +1,57 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import EmployeeActions from "redux/employee/action";
+import SupplierActions from "redux/supplier/action";
 import NotificationActions from "redux/notifications/actions";
-import { createEmployees } from "redux/employee/service";
-import EmployeeForm from "./SupplierForm";
+import { createSuppliers } from "redux/supplier/service";
+import SupplierForm from "./SupplierForm";
 
-const defaultEmployee = {
-  title: "",
-  content: "",
-  image_url: "",
-  category_id: null,
-  user_id: null,
-  first_name: "",
-  last_name: "",
-  gender: "",
-  email_address: "",
-  password: "",
-  phone_number: "",
-  cell_phone_number: "",
-  username: "",
-  date_of_birth: "",
+const defaultSupplier = {
+  companyName: "",
+  firstName: "",
+  lastName: "",
+  emailAddress: "",
+  phoneNumber: "",
+  cellPhoneNumber: "",
+  faxNumber: "",
   address: "",
   city: "",
   state: "",
-  zip_code: "",
-  job_title: "",
-  pin_number: "",
-  card_number: "",
-  default_terminal: "",
+  zipCode: "",
+  accountNumber: "",
   comments: "",
-  role: "",
-  is_email_verified: false,
-  status: "Active",
-  profile_picture: "",
-  hourly_rate: 0,
+  status: false,
 };
 
-const NewEmployee = (props) => {
-  const onSave = async (updatedEmployee) => {
-    return createEmployees(updatedEmployee)
+const NewSupplier = (props) => {
+  const onSave = async (updatedSupplier) => {
+    return createSuppliers(updatedSupplier)
       .then((res) => {
         props.successWithTimeout(
-          `Employee #${res.data.id} added successfully!`
+          `Supplier #${res.data.post.id} added successfully!`
         );
-        props.history.push("/employee/list");
+        props.history.push("/supplier/list");
       })
       .catch((err) =>
         props.failureWithTimeout(
-          "Failed to add new employee, " + err.response.data.message
+          "Failed to add new supplier, " + err.response.data.message
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={defaultEmployee}
+    <SupplierForm
+      updateSupplier={defaultSupplier}
       onSave={onSave}
-    ></EmployeeForm>
+    ></SupplierForm>
   );
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
-    ...bindActionCreators(EmployeeActions, dispatch),
+    ...bindActionCreators(SupplierActions, dispatch),
     ...bindActionCreators(NotificationActions, dispatch),
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewEmployee);
+export default connect(null, mapDispatchToProps)(NewSupplier);

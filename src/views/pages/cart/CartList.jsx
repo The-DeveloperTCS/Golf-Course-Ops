@@ -4,6 +4,9 @@ import DataTableCarts from "components/table/DataTableCarts";
 import loaderActions from "redux/loader/actions";
 import Loader from "components/loader/Loader";
 import CartActions from "redux/cart/action";
+import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { deleteCarts } from "redux/cart/service";
+
 const { startLoader, endLoader } = loaderActions;
 const { fetchCartsPagination } = CartActions;
 
@@ -21,6 +24,7 @@ const CartsList = (props) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const useCartPermission = useRolePermissions("CART");
 
   const handleChangePage = (event) => {
     fetchCartsPagination(pageLimit, event);
@@ -39,6 +43,20 @@ const CartsList = (props) => {
     setTimeout(() => {
       fetchCartsPagination(25, 1);
     }, 2000);
+  };
+
+  const deleteCart = (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    startLoader(true);
+    deleteCarts(id)
+      .then((res) => {
+        fetchCartsByValues();
+      })
+      .catch((err) => {
+        endLoader(false);
+        console.log(err, "error in cart table");
+      });
   };
 
   useMemo(() => {
@@ -71,25 +89,25 @@ const CartsList = (props) => {
       enableFilters: false,
     },
     {
-      title: "Expiry Date",
-      id: "expirationDate",
-      enableFilters: false,
-    },
-    {
       title: "Issue Date",
       id: "dateIssued",
       enableFilters: false,
     },
     {
-      title: "Department",
-      id: "department",
+      title: "Expiry Date",
+      id: "expirationDate",
       enableFilters: false,
     },
-    {
-      title: "Category",
-      id: "category",
-      enableFilters: false,
-    },
+    // {
+    //   title: "Department",
+    //   id: "department",
+    //   enableFilters: false,
+    // },
+    // {
+    //   title: "Category",
+    //   id: "category",
+    //   enableFilters: false,
+    // },
     {
       title: "Status",
       id: "status",
@@ -112,14 +130,14 @@ const CartsList = (props) => {
             <div className="flex-1 mr-15 my-title ml-1">
               Cart List{" "}
               <span className="pull-right">
-                {/* {useSupplierPermission && ( */}
-                <button
+                {useCartPermission && (
+                  <button
                   className="c-btn ma-5 add-new-btn-color"
                   onClick={() => props.history.push("/cart/new")}
                 >
-                  <i className="fas fa-plus" /> New Cart
-                </button>
-                {/* )} */}
+                    <i className="fas fa-plus" /> New Cart
+                  </button>
+                )}
               </span>
             </div>
           </div>
@@ -134,6 +152,7 @@ const CartsList = (props) => {
               totalPages={totalPages}
               handleChangePage={handleChangePage}
               handleChangeRowsPerPage={handleChangeRowsPerPage}
+              deleteCart={deleteCart}
             ></DataTableCarts>
           </div>
         </div>
@@ -143,6 +162,7 @@ const CartsList = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state, "state");
   return {
     carts: state.cart.carts,
     pageLimit: state.cart.pageLimit,
