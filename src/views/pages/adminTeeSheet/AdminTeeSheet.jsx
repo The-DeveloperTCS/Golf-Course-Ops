@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,343 +9,382 @@ import StandardTable from "../tee-slot/Table";
 import TeeSlot from "../tee-slot/tee-slot";
 import Weather from "./Weather";
 // import TeeSlot from "./common/tee-slot"
+import moment from "moment";
 
 function AdminTeeSheet() {
   const [date, setDate] = useState();
+  const [timeSlots, setTimeSlots] = useState([]);
+  const [rows, setRows] = useState([]);
   const columns = ["Timings", "Names"];
 
-  const rows = [
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: "",
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: "",
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: "",
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Kuhle (Badge), Roger"}
-        />
-      ),
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Kuhle (Badge), Roger"}
-        />
-      ),
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Kuhle (Badge), Roger"}
-        />
-      ),
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Kuhle (Badge), Roger"}
-        />
-      ),
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Kuhle (Badge), Roger"}
-        />
-      ),
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: "",
-      slot4: "",
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Kuhle (Badge), Roger"}
-        />
-      ),
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="white"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: "",
-      slot4: "",
-    },
-    {
-      timing: "08:54 am",
-      slot1: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"4 Cole (Badge)"}
-        />
-      ),
-      slot2: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Shirk (Badge), Larry"}
-        />
-      ),
-      slot3: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 McGowan Badge, Bill"}
-        />
-      ),
-      slot4: (
-        <TeeSlot
-          backgroundColor="#E8EDFF"
-          playerNumber={18}
-          playerName={"1 Kuhle (Badge), Roger"}
-        />
-      ),
-    },
-  ];
+  useEffect(() => {
+    var x = {
+      nextSlot: 9,
+      startTime: "8:00",
+      endTime: "18:00",
+    };
+
+    var slotTime = moment(x.startTime, "HH:mm");
+    var endTime = moment(x.endTime, "HH:mm");
+
+    let times = [];
+    while (slotTime < endTime) {
+      times.push(slotTime.format("HH:mm"));
+      slotTime = slotTime.add(x.nextSlot, "minutes");
+    }
+    setTimeSlots(times);
+  }, []);
+
+  useEffect(() => {
+    const rowsData = timeSlots.map((time, index) => {
+      return {
+        timing: time,
+        slot1: (
+          <TeeSlot
+            backgroundColor="white"
+            holes={18}
+            playerName={"Cole (Badge)"}
+            players={4}
+          />
+        ),
+      };
+    });
+    // console.log(rows, 'rows')
+    setRows(rowsData);
+  }, [timeSlots]);
+
+  // const rows = [
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: "",
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: "",
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: "",
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Kuhle (Badge), Roger"}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Kuhle (Badge), Roger"}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Kuhle (Badge), Roger"}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Kuhle (Badge), Roger"}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Kuhle (Badge), Roger"}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: "",
+  //     slot4: "",
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Kuhle (Badge), Roger"}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="white"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: "",
+  //     slot4: "",
+  //   },
+  //   {
+  //     timing: "08:54 am",
+  //     slot1: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"4 Cole (Badge)"}
+  //       />
+  //     ),
+  //     slot2: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Shirk (Badge), Larry"}
+  //       />
+  //     ),
+  //     slot3: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 McGowan Badge, Bill"}
+  //       />
+  //     ),
+  //     slot4: (
+  //       <TeeSlot
+  //         backgroundColor="#E8EDFF"
+  //         playerNumber={18}
+  //         playerName={"1 Kuhle (Badge), Roger"}
+  //       />
+  //     ),
+  //   },
+  // ];
 
   return (
     <Container fluid>

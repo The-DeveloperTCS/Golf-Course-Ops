@@ -116,7 +116,7 @@ export const getSpecificSubCategoryUrl = (id) =>
 export const createRoleUrl = BaseUrl + "role/add";
 export const updateRoleUrl = (id) => BaseUrl + `role/update/${id}`;
 export const deleteRoleUrl = (id) => BaseUrl + `role/delete/${id}`;
-export const getRoleListUrl = (pageNo, limit) =>
+export const getRoleListUrl = (limit, pageNo) =>
   BaseUrl + `role/getAll?page=${pageNo}&limit=${limit}`;
 export const getSpecificRoleUrl = (id) => BaseUrl + `role/specificId/${id}`;
 

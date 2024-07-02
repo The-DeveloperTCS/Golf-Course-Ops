@@ -7,22 +7,22 @@ import {
   getSpecificRoleUrl,
 } from "Constants";
 
-export const getRolesList = (pageNo, limit) => {
-  return axiosClient.get(getRoleListUrl(pageNo, limit));
+export const getRolesList = (limit, pageNo) => {
+  return axiosClient.get(getRoleListUrl(limit, pageNo));
 };
 
 export const createRoles = (req) => {
   return axiosClient.post(createRoleUrl, req);
 };
 
-export const updateRoleDetails = (terminalId, req) => {
-  return axiosClient.patch(updateRoleUrl(terminalId), req);
+export const updateRoleDetails = (roleId, req) => {
+  return axiosClient.patch(updateRoleUrl(roleId), req);
 };
 
-export const getSpecificRole = async (terminalId) => {
-  return axiosClient.get(getSpecificRoleUrl(terminalId));
+export const getSpecificRole = async (roleId) => {
+  return axiosClient.get(getSpecificRoleUrl(roleId));
 };
 
-export const deleteRoles = async (terminalId) => {
-  return axiosClient.delete(deleteRoleUrl(terminalId));
+export const deleteRoles = async (roleId) => {
+  return axiosClient.delete(deleteRoleUrl(roleId));
 };

@@ -14,7 +14,9 @@ const NewRole = (props) => {
   const onSave = async (updatedRole) => {
     return createRoles(updatedRole)
       .then((res) => {
-        props.successWithTimeout(`Role #${res.data.id} added successfully!`);
+        props.successWithTimeout(
+          `Role #${res.data.post.id} added successfully!`
+        );
         props.history.push("/role/list");
       })
       .catch((err) =>

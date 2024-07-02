@@ -313,19 +313,23 @@ const dashboardRoutes = [
     resource: "PERMISSION",
   },
 
-  { path: "/adminTeeSheet", component: AdminTeeSheet, resource: "" },
-  { path: "/adminTeeSheet2", component: AdminTeeSheet2, resource: "" },
-  { path: "/clockIn", component: ClockIn, resource: "" },
+  { path: "/tee-sheet/list", component: AdminTeeSheet, resource: "" },
+
   {
     path: "/adminTeeSheetSetting",
     component: AdminTeeSheetSetting,
     resource: "",
   },
+
   {
     path: "/adminDashboardItems",
     component: AdminDashboardItems,
     resource: "",
   },
+
+  { path: "/adminTeeSheet2", component: AdminTeeSheet2, resource: "" },
+  { path: "/clockIn", component: ClockIn, resource: "" },
+
   { path: "/helpSupport", component: HelpSupport, resource: "" },
   { path: "/reports", component: Reports, resource: "" },
   { path: "/inventoryForm", component: InventoryForm, resource: "" },
@@ -334,7 +338,7 @@ const dashboardRoutes = [
   {
     path: "/access-management",
     component: AccessManagement,
-    resource: "ACCESS_MANAGMENT",
+    resource: "ACCESS_MANAGEMENT",
   },
   {
     path: "*",
