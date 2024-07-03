@@ -521,6 +521,16 @@ label {
   padding: 10px 20px;
   width: 20%;
   border-radius: 15px;
+  border: none;
+  color: white;
+}
+button.close-btn {
+  padding: 10px;
+  margin: 10px;
+  margin-top: 1px;
+  border: none;
+  color: white;
+  border-radius: 5px;
 }
 
 .cash-in-nbr {
