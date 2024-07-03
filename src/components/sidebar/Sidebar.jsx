@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import IntlMessages from "util/intlMessages";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "redux/auth/actions";
-import logoimg from "../../assets/images/logo.png";
+import logoimg from "../../assets/images/Untitled-2-01.png";
 
 const Sidebar = (props) => {
   let listNameStyle;
