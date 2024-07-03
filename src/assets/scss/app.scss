@@ -1005,12 +1005,13 @@ select.selectpicker {
 }
 
 .add-new-btn-color {
-  padding: 10px 15px;
+  padding: 10px 15px !important;
   background-color: #0cd374;
   color: white;
   border: none;
   border-radius: 10px;
   font-size: 14px;
+  width: 95%;
 }
 
 .form-search input {

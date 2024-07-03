@@ -21,8 +21,8 @@ const PaymentPopup = ({ onClose }) => {
   };
 
   return (
-    <div className="popup">
-      <div className="popup-content">
+    <div className="popup1">
+      <div className="popup-content1">
         <h2>Pay With Cash</h2>
         <div className="popup-main">
           <div className="popup-left">
@@ -47,6 +47,15 @@ const PaymentPopup = ({ onClose }) => {
             </div>
           </div>
           <div className="popup-right">
+            <div className="manual-entry">
+              <input
+                type="text"
+                value={amount}
+                onChange={handleInputChange}
+                placeholder="Enter Amount"
+              />
+              <button className="pay-btn1">Pay</button>
+            </div>
             <div className="keypad">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0].map((num, index) => (
                 <button
@@ -70,15 +79,6 @@ const PaymentPopup = ({ onClose }) => {
         <button className="close-btn" onClick={onClose}>
           Close
         </button>
-        <div className="manual-entry">
-          <input
-            type="text"
-            value={amount}
-            onChange={handleInputChange}
-            placeholder="Enter Amount"
-          />
-          <button className="pay-btn">Pay</button>
-        </div>
       </div>
     </div>
   );

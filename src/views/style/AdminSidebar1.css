@@ -20,12 +20,13 @@
   cursor: pointer;
   outline: none;
   color: #161819;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   transition: background-color 0.3s ease;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-left: 0px;
 }
 .sub-label-icon {
   display: flex;
@@ -51,6 +52,7 @@
   font-size: 14px;
   font-weight: 400;
   transition: background-color 0.3s ease;
+  text-align: left;
 }
 
 .sub-menu button:hover {

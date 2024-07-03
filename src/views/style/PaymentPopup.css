@@ -1,5 +1,5 @@
 /* General styles */
-.popup {
+.popup1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,28 +12,35 @@
   z-index: 1000;
 }
 
-.popup-content {
-  position: relative; /* Added for positioning the "X" button */
+.popup-content1 {
+  position: relative;
+  /* Added for positioning the "X" button */
   background: white;
   border-radius: 10px;
-  width: 50%;
-  height: 550px;
+  width: 550px;
   max-width: 90%;
   max-height: 90%;
   overflow-y: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow-x: hidden;
 }
-.popup-content h2 {
+
+.popup-content1 h2 {
   width: 100%;
   text-align: center;
-  padding: 10px 10px;
+  padding: 30px 10px;
   background-color: #4365cf;
-  color: #0f2552;
+  color: #ffffff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  font-size: 25px;
+  text-transform: capitalize;
 }
+
 /* X button styles */
 .x-btn {
   position: absolute;
-  top: -7px;
+  top: 10px;
   right: -6px;
   background: transparent;
   border: none;
@@ -41,37 +48,59 @@
   font-weight: 600;
   cursor: pointer;
   color: #ffffff;
+  display: none;
 }
+
 .suggested-amounts {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
 }
+
 .suggested-amounts button,
-.pay-btn,
+.pay-btn1,
 .close-btn,
 button {
+  margin: 10px 5px 10px 10px;
+  padding: 6px;
+  width: 59px;
+  background: #0cd374;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.pay-btn button {
   margin: 10px;
-  padding: 10px;
+  padding: 6px;
   width: 80px;
   background: #0cd374;
   color: #fff;
   cursor: pointer;
   border: none;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 .keypad button {
-  margin: 10px;
-  padding: 10px;
-  width: 80px;
+  margin: 5px;
+  padding: 6px;
+  width: 59px;
   background: #0cd374;
   color: #fff;
   /* border: 1px solid black; */
   cursor: pointer;
   border-radius: 5px;
+  justify-content: space-around;
 }
+
 .suggested-amounts button {
-  margin: 10px;
-  padding: 10px;
+  margin: 10px 7px 7px 5px;
+  padding: 6px;
   background: #0cd374;
   color: white;
   border: none;
@@ -80,53 +109,111 @@ button {
   border-radius: 5px;
   border: none;
 }
+
 .manual-entry input {
   margin: 10px auto;
-  padding: 10px;
+  padding: 6px;
   width: calc(100% - 40px);
+  outline: none;
+  color: #161819;
+  border-radius: 5px;
+  border: 1px solid #d6d8e1;
 }
+
 .manual-entry {
   display: flex;
+  margin-left: 5px;
 }
-.total-due,
+
 .customer-note {
-  margin: 20px;
+  padding: 20px 10px 10px 10px;
+  width: 100%;
 }
+
+.customer-note textarea {
+  width: 100%;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px 10px;
+  border: 1px solid #d6d8e1;
+}
+
 .total-due {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  padding: 15px 10px;
 }
+
 .keypad {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0px;
 }
 
-.keypad button:nth-child(10) {
-  grid-column: span 2;
+.popup-main {
+  display: flex;
+  justify-content: space-between;
 }
+
+.popup-left {
+  /* width: 50%; */
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.popup-right button {
+  /* width: 50%; */
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.total-due h3 {
+  font-size: 25px;
+}
+/* .keypad button:nth-child(10) {
+  grid-column: span 2;
+} */
 
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
-  .popup-content {
+  .popup-content1 {
     width: 80%;
     height: auto;
   }
 
-  .suggested-amounts button,
+  /* .suggested-amounts button,
   .pay-btn,
   .close-btn,
   .keypad button {
     width: 80px;
-  }
+  } */
 
   .manual-entry input {
     width: calc(100% - 20px);
+    color: #161819;
+  }
+
+  .popup-main {
+    /* display: block; */
+    justify-content: space-between;
+  }
+
+  .suggested-amounts button {
+    margin: 9px;
+    padding: 6px;
+    background: #0cd374;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 68%;
+    border-radius: 5px;
+    border: none;
   }
 }
 
 @media (max-width: 480px) {
-  .popup-content {
+  .popup-content1 {
     width: 90%;
     height: auto;
   }
@@ -135,24 +222,55 @@ button {
   .pay-btn,
   .close-btn,
   .keypad button {
-    width: 60px;
+    width: 63px;
+    font-size: 12px;
+    margin-left: 2px;
   }
 
   .manual-entry input {
     width: calc(100% - 10px);
   }
-}
 
-.popup-main {
-  display: flex;
-  justify-content: space-between;
-}
-.popup-left {
-  width: 50%;
-  flex-wrap: wrap;
-  display: flex;
-}
+  .popup-main {
+    display: block;
+    justify-content: space-between;
+  }
 
-.popup-right {
-  width: 50%;
+  .suggested-amounts {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .total-due h3 {
+    font-size: 20px;
+  }
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0px;
+    gap: 0px;
+    place-items: center;
+  }
+  .manual-entry {
+    display: flex;
+    margin-left: 15px;
+  }
+  .pay-btn1,
+  .close-btn,
+  button {
+    margin: 10px 20px 10px 10px;
+    padding: 6px;
+    width: 59px;
+    background: #0cd374;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
 }

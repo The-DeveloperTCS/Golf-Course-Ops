@@ -1,5 +1,5 @@
 import React from "react";
-import LogoLoader from "../../assets/images/favicon-16x16.png";
+import LogoLoader from "../../assets/images/Untitled-2-01.png";
 
 const Loader = () => {
   return (

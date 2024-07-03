@@ -8,52 +8,42 @@ function AdminSidebar1() {
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);
 
   const items = [
-    { label: "Page 1", subPages: null },
-    { label: "Page 2", subPages: null },
-    { label: "Page 3", subPages: null },
+    { label: "Overview", subPages: null },
+    { label: "Players", subPages: null },
+    { label: "Scores", subPages: null },
     {
-      label: "Page 4",
+      label: "Holes",
+      subPages: [{ label: "Hole 1" }, { label: "Hole 2" }, { label: "Hole 3" }],
+    },
+    {
+      label: "Leaderboard",
       subPages: [
-        { label: "SubPage 1" },
-        { label: "SubPage 2" },
-        { label: "SubPage 3" },
+        { label: "Top Players" },
+        { label: "Monthly Winners" },
+        { label: "All Time Stats" },
       ],
     },
     {
-      label: "Page 5",
+      label: "Settings",
       subPages: [
-        { label: "SubPage 4" },
-        { label: "SubPage 5" },
-        { label: "SubPage 6" },
+        { label: "Course Settings" },
+        { label: "Player Settings" },
+        { label: "Admin Settings" },
       ],
     },
     {
-      label: "Page 6",
+      label: "Reports",
       subPages: [
-        { label: "SubPage 7" },
-        { label: "SubPage 8" },
-        { label: "SubPage 9" },
-      ],
-    },
-    {
-      label: "Page 7",
-      subPages: [
-        { label: "SubPage 1" },
-        { label: "SubPage 2" },
-        { label: "SubPage 3" },
+        { label: "Player Reports" },
+        { label: "Course Analytics" },
+        { label: "Financial Reports" },
       ],
     },
   ];
 
-  useEffect(() => {
-    // Optionally, you can add any initialization logic here
-    // if needed when the component mounts.
-  }, []);
-
   const handleItemClick = (index) => {
     setSelectedItem(selectedItem === index ? null : index);
 
-    // Show payment popup when "Page 1" is clicked
     if (index === 0) {
       setShowPaymentPopup(true);
     } else {
@@ -61,9 +51,9 @@ function AdminSidebar1() {
     }
   };
 
-  const handleClosePaymentPopup = () => {
-    setShowPaymentPopup(false);
-  };
+  // const handleClosePaymentPopup = () => {
+  //   setShowPaymentPopup(false);
+  // };
 
   return (
     <div className="adminSidebar1">
@@ -92,7 +82,7 @@ function AdminSidebar1() {
         ))}
       </div>
 
-      {showPaymentPopup && <PaymentPopup onClose={handleClosePaymentPopup} />}
+      {/* {showPaymentPopup && <PaymentPopup onClose={handleClosePaymentPopup} />} */}
     </div>
   );
 }

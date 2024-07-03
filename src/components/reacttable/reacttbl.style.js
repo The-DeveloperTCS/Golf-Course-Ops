@@ -41,7 +41,7 @@ const ReactTableWrapper = styled.div`
     border: 1px solid rgba(0, 0, 0, .1);
   }
   
-  tr:nth-child(even) {background: rgba(0,0,0,.03)}
+  tr:nth-child(even) { background: #E8EDFF;}
   
   tr:nth-child(odd) {background: rgba(255,255,255)}
   
@@ -56,8 +56,8 @@ const ReactTableWrapper = styled.div`
     tbody {
       td {
         padding: 10px;
-        font-family: "muli-medium";
-        color: #757575;
+        font-family: "Poppins, san";
+        color: red;
       }
       td.wide-cell{
         width: 150px;
