@@ -40,7 +40,7 @@ const EmployeesList = (props) => {
 
   const fetchEmployeesByValues = () => {
     setTimeout(() => {
-      fetchEmployeesPagination(25, 1);
+      fetchEmployeesPagination(1, 1);
     }, 2000);
   };
 
