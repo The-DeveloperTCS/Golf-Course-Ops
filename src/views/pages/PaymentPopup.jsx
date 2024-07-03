@@ -1,7 +1,8 @@
+// PaymentPopup.js
 import React, { useState } from "react";
 import "../style/PaymentPopup.css";
 
-const PaymentPopup = ({ onClose }) => {
+const PaymentPopup = ({ isOpen, togglePopup }) => {
   const [amount, setAmount] = useState("639.90");
 
   const handleAmountClick = (value) => {
@@ -26,11 +27,9 @@ const PaymentPopup = ({ onClose }) => {
         <h2>Pay With Cash</h2>
         <div className="popup-main">
           <div className="popup-left">
-            {/* Close button with "X" */}
-            <button className="x-btn" onClick={onClose}>
+            <button className="x-btn" onClick={togglePopup}>
               &times;
             </button>
-
             <div className="suggested-amounts">
               <button onClick={() => handleAmountClick("639.90")}>
                 $639.90
@@ -54,7 +53,12 @@ const PaymentPopup = ({ onClose }) => {
                 onChange={handleInputChange}
                 placeholder="Enter Amount"
               />
-              <button className="pay-btn1">Pay</button>
+              <button
+                className="pay-btn1"
+                style={{ backgroundColor: "#0CD374" }}
+              >
+                Pay
+              </button>
             </div>
             <div className="keypad">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0].map((num, index) => (
@@ -65,7 +69,12 @@ const PaymentPopup = ({ onClose }) => {
                   {num}
                 </button>
               ))}
-              <button onClick={handleClear}>Clear</button>
+              <button
+                onClick={handleClear}
+                style={{ backgroundColor: "#E92A2A" }}
+              >
+                Clear
+              </button>
             </div>
           </div>
         </div>
@@ -76,7 +85,11 @@ const PaymentPopup = ({ onClose }) => {
         <div className="customer-note">
           <textarea placeholder="Customer Note"></textarea>
         </div>
-        <button className="close-btn" onClick={onClose}>
+        <button
+          className="close-btn"
+          onClick={togglePopup}
+          style={{ backgroundColor: "#E92A2A" }}
+        >
           Close
         </button>
       </div>

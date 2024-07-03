@@ -4,6 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import AdminSidebar1 from "./AdminSidebar1";
 import { MdCancel } from "react-icons/md";
 import PaymentPopup from "../PaymentPopup";
+import CreditPopup from "../CreditPopup";
 
 const dummyData = [
   { name: "Green Fees", price: "$34", qty: 2, discount: "-" },
@@ -11,14 +12,24 @@ const dummyData = [
   { name: "tees / h2", price: "$34", qty: 2, discount: "-" },
 ];
 
-export default function AdminDashboardItems() {
+const AdminDashboardItems = () => {
   const [data, setData] = useState(dummyData);
   const [buttonColors, setButtonColors] = useState([
     "rgb(81, 16, 186)",
     "rgb(81, 16, 186)",
     "rgb(81, 16, 186)",
   ]);
-  const [isPopupVisible, setPopupVisible] = useState(false); // State to control popup visibility
+
+  const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
+  const [isCreditPopupOpen, setCreditPopupOpen] = useState(false);
+
+  const togglePaymentPopup = () => {
+    setPaymentPopupOpen(!isPaymentPopupOpen);
+  };
+
+  const toggleCreditPopup = () => {
+    setCreditPopupOpen(!isCreditPopupOpen);
+  };
 
   const handleDelete = (index) => {
     const newData = data.filter((item, i) => i !== index);
@@ -27,24 +38,25 @@ export default function AdminDashboardItems() {
 
   const handleButtonClick = (index) => {
     const newColors = buttonColors.map((color, i) =>
-      i === index ? "#0CD374" : "rgb(81, 16, 186)"
+      i === index ? "#0CD374" : "#4365CF"
     );
     setButtonColors(newColors);
 
     if (index === 0) {
-      // Check if the Cash button is clicked
-      setPopupVisible(true);
+      togglePaymentPopup(); // Open PaymentPopup for Cash button
+    } else if (index === 1) {
+      toggleCreditPopup(); // Open CreditPopup for Credit Card button
     }
-  };
-
-  const handleClosePopup = () => {
-    setPopupVisible(false);
   };
 
   return (
     <div
       className="adminDashboardItems"
-      style={{ width: "100%", padding: "20px", backgroundColor: "#EEF0F6" }}
+      style={{
+        width: "100%",
+        padding: "20px",
+        backgroundColor: "#EEF0F6",
+      }}
     >
       <div className="Dashboard-Items-main">
         <div className="Dashboard-Items-left-main">
@@ -131,7 +143,24 @@ export default function AdminDashboardItems() {
           <AdminSidebar1 />
         </div>
       </div>
-      {isPopupVisible && <PaymentPopup onClose={handleClosePopup} />}
+
+      {/* Render PaymentPopup if open */}
+      {isPaymentPopupOpen && (
+        <PaymentPopup
+          isOpen={isPaymentPopupOpen}
+          togglePopup={togglePaymentPopup}
+        />
+      )}
+
+      {/* Render CreditPopup if open */}
+      {isCreditPopupOpen && (
+        <CreditPopup
+          isOpen={isCreditPopupOpen}
+          togglePopup={toggleCreditPopup}
+        />
+      )}
     </div>
   );
-}
+};
+
+export default AdminDashboardItems;

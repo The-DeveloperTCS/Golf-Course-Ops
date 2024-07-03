@@ -925,10 +925,10 @@ select.selectpicker {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   background: transparent;
-  border: 3px solid #f9f9f9;
+  border: 3px solid #b03535;
   border-radius: 50%;
   text-align: center;
   line-height: 70px;
@@ -940,10 +940,11 @@ select.selectpicker {
 
 .loader-circle-9 img {
   position: absolute;
-  width: 67px;
-  height: 65px;
-  right: 0%;
-  z-index: 1;
+  width: 113px;
+  height: 113px;
+  right: -26%;
+  z-index: 0;
+  top: -18px;
 }
 
 .loader-circle-9:before {

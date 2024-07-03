@@ -10,11 +10,13 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.popup-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+.credit-content {
+  background: white;
+  border-radius: 10px;
+  width: 550px;
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .close {
@@ -24,4 +26,46 @@
   cursor: pointer;
   font-size: 20px;
   color: #888;
+}
+.credit-buttons {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.credit-buttons button {
+  padding: 8px 2px;
+  width: 30%;
+  font-size: 1em;
+  background-color: #4365cf;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+
+.credit-price {
+  padding: 5px 10px;
+  display: flex;
+}
+
+.credit-price span {
+  padding: 8px 12px;
+  background-color: #c3c0cb;
+  color: #161819;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 1px solid #c3c0cb;
+}
+.credit-price input {
+  outline: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-left: none;
+  border: 1px solid #c3c0cb;
+  width: 100%;
+}
+
+.credit-price1 label {
+  margin-left: 15px;
 }

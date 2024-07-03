@@ -45,7 +45,7 @@ function AdminTeeSheetSetting() {
       <div className="admin-t-buttons">
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 0 ? "#5110BA" : "",
+            backgroundColor: clickedButtonIndex === 0 ? "#5110BA" : "#0CD374 ",
             color: clickedButtonIndex === 0 ? "white" : "",
           }}
           onClick={() => handleButtonClick(0)}
@@ -54,7 +54,7 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 1 ? "#5110BA" : "",
+            backgroundColor: clickedButtonIndex === 1 ? "#5110BA" : "#0CD374",
             color: clickedButtonIndex === 1 ? "white" : "",
           }}
           onClick={() => handleButtonClick(1)}
@@ -63,7 +63,7 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 2 ? "#5110BA" : "",
+            backgroundColor: clickedButtonIndex === 2 ? "#5110BA" : "#0CD374",
             color: clickedButtonIndex === 2 ? "white" : "",
           }}
           onClick={() => handleButtonClick(2)}
@@ -72,7 +72,7 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 3 ? "#5110BA" : "",
+            backgroundColor: clickedButtonIndex === 3 ? "#5110BA" : "#0CD374",
             color: clickedButtonIndex === 3 ? "white" : "",
           }}
           onClick={() => handleButtonClick(3)}
@@ -81,7 +81,7 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 4 ? "#5110BA" : "",
+            backgroundColor: clickedButtonIndex === 4 ? "#5110BA" : "#0CD374",
             color: clickedButtonIndex === 4 ? "white" : "",
           }}
           onClick={() => handleButtonClick(4)}
@@ -90,7 +90,7 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 5 ? "#5110BA" : "",
+            backgroundColor: clickedButtonIndex === 5 ? "#5110BA" : "#0CD374",
             color: clickedButtonIndex === 5 ? "white" : "",
           }}
           onClick={() => handleButtonClick(5)}
@@ -122,7 +122,7 @@ function AdminTeeSheetSetting() {
               style={{
                 backgroundColor:
                   clickedGolferCartButtonIndex === 0 ? "#4365CF" : "",
-                color: clickedGolferCartButtonIndex === 0 ? "white" : "",
+                color: clickedGolferCartButtonIndex === 0 ? "white" : "#161819",
               }}
               onClick={() => handleGolferCartButtonClick(0)}
             >
@@ -132,7 +132,7 @@ function AdminTeeSheetSetting() {
               style={{
                 backgroundColor:
                   clickedGolferCartButtonIndex === 2 ? "#4365CF" : "",
-                color: clickedGolferCartButtonIndex === 2 ? "white" : "",
+                color: clickedGolferCartButtonIndex === 2 ? "white" : "#161819",
               }}
               onClick={() => handleGolferCartButtonClick(2)}
             >
@@ -142,7 +142,7 @@ function AdminTeeSheetSetting() {
               style={{
                 backgroundColor:
                   clickedGolferCartButtonIndex === 3 ? "#4365CF" : "",
-                color: clickedGolferCartButtonIndex === 3 ? "white" : "",
+                color: clickedGolferCartButtonIndex === 3 ? "white" : "#161819",
               }}
               onClick={() => handleGolferCartButtonClick(3)}
             >
@@ -153,7 +153,7 @@ function AdminTeeSheetSetting() {
               style={{
                 backgroundColor:
                   clickedGolferCartButtonIndex === 4 ? "#4365CF" : "",
-                color: clickedGolferCartButtonIndex === 4 ? "white" : "",
+                color: clickedGolferCartButtonIndex === 4 ? "white" : "#161819",
               }}
               onClick={() => handleGolferCartButtonClick(4)}
             >
@@ -174,7 +174,7 @@ function AdminTeeSheetSetting() {
               className="golferbtn1"
               style={{
                 backgroundColor: clickedCartButtonIndex === 0 ? "#5110BA" : "",
-                color: clickedCartButtonIndex === 0 ? "white" : "",
+                color: clickedCartButtonIndex === 0 ? "white" : "#161819",
               }}
               onClick={() => handleCartButtonClick(0)}
             >
@@ -183,7 +183,7 @@ function AdminTeeSheetSetting() {
             <button
               style={{
                 backgroundColor: clickedCartButtonIndex === 2 ? "#5110BA" : "",
-                color: clickedCartButtonIndex === 2 ? "white" : "",
+                color: clickedCartButtonIndex === 2 ? "white" : "#161819",
               }}
               onClick={() => handleCartButtonClick(2)}
             >
@@ -192,7 +192,7 @@ function AdminTeeSheetSetting() {
             <button
               style={{
                 backgroundColor: clickedCartButtonIndex === 3 ? "#5110BA" : "",
-                color: clickedCartButtonIndex === 3 ? "white" : "",
+                color: clickedCartButtonIndex === 3 ? "white" : "#161819",
               }}
               onClick={() => handleCartButtonClick(3)}
             >
@@ -202,7 +202,7 @@ function AdminTeeSheetSetting() {
               className="golferbtn4"
               style={{
                 backgroundColor: clickedCartButtonIndex === 4 ? "#5110BA" : "",
-                color: clickedCartButtonIndex === 4 ? "white" : "",
+                color: clickedCartButtonIndex === 4 ? "white" : "#161819",
               }}
               onClick={() => handleCartButtonClick(4)}
             >
@@ -222,7 +222,7 @@ function AdminTeeSheetSetting() {
             className="golferbtn1"
             style={{
               backgroundColor: clickedRadioButtonIndex === 0 ? "#5110BA" : "",
-              color: clickedRadioButtonIndex === 0 ? "white" : "",
+              color: clickedRadioButtonIndex === 0 ? "white" : "#161819",
             }}
             onClick={() => handleRadioButtonClick(0)}
           >
@@ -232,7 +232,7 @@ function AdminTeeSheetSetting() {
             className="golferbtn4"
             style={{
               backgroundColor: clickedRadioButtonIndex === 2 ? "#5110BA" : "",
-              color: clickedRadioButtonIndex === 2 ? "white" : "",
+              color: clickedRadioButtonIndex === 2 ? "white" : "#161819",
             }}
             onClick={() => handleRadioButtonClick(2)}
           >
@@ -411,7 +411,7 @@ function AdminTeeSheetSetting() {
               style={{
                 backgroundColor:
                   clickedCheckInButtonIndex === 0 ? "#5110BA" : "",
-                color: clickedCheckInButtonIndex === 0 ? "white" : "",
+                color: clickedCheckInButtonIndex === 0 ? "white" : "#161819",
               }}
               onClick={() => handleCheckInButtonClick(0)}
             >
@@ -421,7 +421,7 @@ function AdminTeeSheetSetting() {
               style={{
                 backgroundColor:
                   clickedCheckInButtonIndex === 2 ? "#5110BA" : "",
-                color: clickedCheckInButtonIndex === 2 ? "white" : "",
+                color: clickedCheckInButtonIndex === 2 ? "white" : "#161819",
               }}
               onClick={() => handleCheckInButtonClick(2)}
             >
@@ -431,7 +431,7 @@ function AdminTeeSheetSetting() {
               style={{
                 backgroundColor:
                   clickedCheckInButtonIndex === 3 ? "#5110BA" : "",
-                color: clickedCheckInButtonIndex === 3 ? "white" : "",
+                color: clickedCheckInButtonIndex === 3 ? "white" : "#161819",
               }}
               onClick={() => handleCheckInButtonClick(3)}
             >
@@ -442,7 +442,7 @@ function AdminTeeSheetSetting() {
               style={{
                 backgroundColor:
                   clickedCheckInButtonIndex === 4 ? "#5110BA" : "",
-                color: clickedCheckInButtonIndex === 4 ? "white" : "",
+                color: clickedCheckInButtonIndex === 4 ? "white" : "#161819",
               }}
               onClick={() => handleCheckInButtonClick(4)}
             >
