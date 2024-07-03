@@ -42,7 +42,7 @@ const ReactTableWrapper = styled.div`
   }
 
   tr:nth-child(even) {
-    background: rgba(0, 0, 0, 0.03);
+    background: #e8edff;
   }
 
   tr:nth-child(odd) {
@@ -56,6 +56,7 @@ const ReactTableWrapper = styled.div`
   .table-container {
     margin: auto 24px;
     padding-bottom: 20px;
+    background-color: white;
   }
   .custom-react-table-theme-class {
     th {
@@ -65,7 +66,7 @@ const ReactTableWrapper = styled.div`
       td {
         padding: 10px;
         font-family: "muli-medium";
-        color: #757575;
+        color: #33363f;
       }
       td.wide-cell {
         width: 150px;
