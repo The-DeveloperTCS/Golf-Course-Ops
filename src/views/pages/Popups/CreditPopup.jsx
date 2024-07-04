@@ -1,6 +1,6 @@
 // CreditPopup.js
 import React from "react";
-import "../style/CreditPopup.css";
+import "../../style/CreditPopup.css";
 
 const CreditPopup = ({ isOpen, togglePopup }) => {
   return (
@@ -8,6 +8,7 @@ const CreditPopup = ({ isOpen, togglePopup }) => {
       {isOpen && (
         <div className="credit-popup">
           <div className="credit-content">
+            <h2>Payments</h2>
             <div className="credit-buttons">
               <button>Cash</button>
               <button>Check</button>
@@ -29,11 +30,16 @@ const CreditPopup = ({ isOpen, togglePopup }) => {
 
                 <input type="text" id="inputField" name="inputField" />
               </div>
-              <div className="pymet-"></div>
+              <div className="pymet-credit">
+                <h4> Total Due </h4>
+                <h3>$98.09</h3>
+              </div>
             </div>
-            {/* <button className="close-button" onClick={togglePopup}>
-                            Close
-                        </button> */}
+            <div className="credit-close">
+              <button className="close-button" onClick={togglePopup}>
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

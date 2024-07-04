@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../style/AdminSidebar1.css";
 import { IoIosArrowForward } from "react-icons/io";
-import PaymentPopup from "../PaymentPopup";
+import PaymentPopup from "../Popups/PaymentPopup";
 
 function AdminSidebar1() {
   const [selectedItem, setSelectedItem] = useState(0); // Initialize with 0 for Page 1

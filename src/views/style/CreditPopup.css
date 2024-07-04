@@ -53,19 +53,77 @@
   padding: 8px 12px;
   background-color: #c3c0cb;
   color: #161819;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   border: 1px solid #c3c0cb;
 }
 .credit-price input {
   outline: none;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   border-left: none;
-  border: 1px solid #c3c0cb;
+  border: 1px solid #ccc;
   width: 100%;
 }
 
 .credit-price1 label {
   margin-left: 15px;
+}
+.pymet-credit {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+}
+.pymet-credit h3 {
+  font-size: 25px;
+}
+.pymet-credit h4 {
+  font-size: 25px;
+}
+.credit-close {
+  display: flex;
+  padding: 10px;
+}
+.credit-close button {
+  border: none;
+  padding: 5px 5px;
+  background-color: #e92a2a;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 85px;
+}
+.credit-content h2 {
+  width: 100%;
+  text-align: center;
+  padding: 30px 10px;
+  background-color: #4365cf;
+  color: #ffffff;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  font-size: 25px;
+  text-transform: capitalize;
+}
+
+@media (max-width: 768px) {
+  .credit-buttons button {
+    padding: 8px 2px;
+    width: 31%;
+  }
+}
+
+@media (max-width: 480px) {
+  .credit-buttons button {
+    padding: 6px 4px;
+    width: 38%;
+    font-size: 12px;
+  }
+  .credit-buttons {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    gap: 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

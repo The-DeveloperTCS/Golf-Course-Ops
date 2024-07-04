@@ -1,6 +1,6 @@
 // PaymentPopup.js
 import React, { useState } from "react";
-import "../style/PaymentPopup.css";
+import "../../style/PaymentPopup.css";
 
 const PaymentPopup = ({ isOpen, togglePopup }) => {
   const [amount, setAmount] = useState("639.90");
