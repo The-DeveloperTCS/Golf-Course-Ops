@@ -21,6 +21,7 @@
   font-size: 14px;
   border: 1px solid #d4d8da;
   width: 140px;
+  color: white;
 }
 
 .admin-btn-yellow {
@@ -43,6 +44,32 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
+  margin-left: 40px;
+}
+
+.golfer-cart-area-main2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  margin-left: -21px;
+}
+
+.golfer-img img {
+  position: absolute;
+  left: -49px;
+  top: 10px;
+}
+
+.golfer-img2 {
+  position: relative;
+}
+
+.golfer-img2 img {
+  position: absolute;
+  top: -10px;
+  left: -62px;
 }
 
 /* 
@@ -116,8 +143,13 @@
 .tee-raido-btn-main {
   display: flex;
   align-items: center;
+  position: relative;
 }
-
+.tee-raido-btn-main img {
+  position: absolute;
+  left: -38px;
+  top: 12px;
+}
 .tee-raido-btn-main button {
   width: 55px;
   text-align: center;
@@ -159,8 +191,8 @@
 }
 
 .seeting-input-row1 input:focus {
-  border-color: #5110ba;
-  box-shadow: 0 0 2px #5110ba;
+  border-color: #4365cf;
+  box-shadow: 0 0 2px #4365cf;
   /* optional: add a subtle box-shadow for a more pronounced focus effect */
 }
 
@@ -203,17 +235,22 @@
   width: 100%;
 }
 
-.Tee-sheet-large-input input {
+.Tee-sheet-large-input textarea {
   width: 100%;
-  padding: 50px 10px;
+  padding: 10px 10px;
   border-radius: 10px;
   box-shadow: 0px 0px 13px 0px rgba(239, 240, 242, 0.8) inset;
   -webkit-box-shadow: 0px 0px 13px 0px rgba(239, 240, 242, 0.8) inset;
   -moz-box-shadow: 0px 0px 13px 0px rgba(239, 240, 242, 0.8) inset;
   border: 1px solid #d4d8da;
   font-family: "Poppins", sans-serif;
+  outline: none;
 }
-
+.Tee-sheet-large-input textarea:focus {
+  border-color: #4365cf;
+  box-shadow: 0 0 2px #4365cf;
+  /* optional: add a subtle box-shadow for a more pronounced focus effect */
+}
 .delet-update-tee-sheet-btn {
   display: flex;
   justify-content: space-between;
@@ -376,6 +413,10 @@
   }
 
   .golfer-img {
+    margin-top: 10px;
+  }
+
+  .golfer-img2 {
     margin-top: 10px;
   }
 }

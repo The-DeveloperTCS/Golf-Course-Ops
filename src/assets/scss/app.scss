@@ -927,8 +927,8 @@ select.selectpicker {
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
-  background: transparent;
-  border: 3px solid #b03535;
+  background: #ffffff;
+  border: 3px solid #ffffff;
   border-radius: 50%;
   text-align: center;
   line-height: 70px;
@@ -940,22 +940,22 @@ select.selectpicker {
 
 .loader-circle-9 img {
   position: absolute;
-  width: 113px;
-  height: 113px;
-  right: -26%;
+  width: 127px;
+  height: 127px;
+  right: -37%;
   z-index: 0;
-  top: -18px;
+  top: -26px;
 }
 
 .loader-circle-9:before {
   content: "";
   position: absolute;
-  left: -2px;
+  left: 2px;
   width: 100%;
   height: 100%;
   border: 3px solid transparent;
-  border-top: 3px solid white;
-  border-right: 3px solid white;
+  border-top: 3px solid #0cd374;
+  border-right: 3px solid #0cd374;
   border-radius: 50%;
   animation: animateC 2s linear infinite;
   z-index: 99999;

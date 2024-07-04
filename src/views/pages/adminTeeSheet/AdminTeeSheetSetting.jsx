@@ -45,8 +45,8 @@ function AdminTeeSheetSetting() {
       <div className="admin-t-buttons">
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 0 ? "#5110BA" : "#0CD374 ",
-            color: clickedButtonIndex === 0 ? "white" : "",
+            backgroundColor: clickedButtonIndex === 0 ? "#4365CF" : "#0CD374 ",
+            color: clickedButtonIndex === 0 ? "#fffffff" : "#ffffff",
           }}
           onClick={() => handleButtonClick(0)}
         >
@@ -54,8 +54,8 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 1 ? "#5110BA" : "#0CD374",
-            color: clickedButtonIndex === 1 ? "white" : "",
+            backgroundColor: clickedButtonIndex === 1 ? "#4365CF" : "#0CD374",
+            color: clickedButtonIndex === 1 ? "#ffffff" : "#ffffff",
           }}
           onClick={() => handleButtonClick(1)}
         >
@@ -63,8 +63,8 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 2 ? "#5110BA" : "#0CD374",
-            color: clickedButtonIndex === 2 ? "white" : "",
+            backgroundColor: clickedButtonIndex === 2 ? "#4365CF" : "#0CD374",
+            color: clickedButtonIndex === 2 ? "white" : "#ffffff",
           }}
           onClick={() => handleButtonClick(2)}
         >
@@ -72,8 +72,8 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 3 ? "#5110BA" : "#0CD374",
-            color: clickedButtonIndex === 3 ? "white" : "",
+            backgroundColor: clickedButtonIndex === 3 ? "#4365CF" : "#0CD374",
+            color: clickedButtonIndex === 3 ? "white" : "#ffffff",
           }}
           onClick={() => handleButtonClick(3)}
         >
@@ -81,8 +81,8 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 4 ? "#5110BA" : "#0CD374",
-            color: clickedButtonIndex === 4 ? "white" : "",
+            backgroundColor: clickedButtonIndex === 4 ? "#4365CF" : "#0CD374",
+            color: clickedButtonIndex === 4 ? "white" : "#ffffff",
           }}
           onClick={() => handleButtonClick(4)}
         >
@@ -90,8 +90,8 @@ function AdminTeeSheetSetting() {
         </button>
         <button
           style={{
-            backgroundColor: clickedButtonIndex === 5 ? "#5110BA" : "#0CD374",
-            color: clickedButtonIndex === 5 ? "white" : "",
+            backgroundColor: clickedButtonIndex === 5 ? "#4365CF" : "#0CD374",
+            color: clickedButtonIndex === 5 ? "white" : "#ffffff",
           }}
           onClick={() => handleButtonClick(5)}
         >
@@ -163,8 +163,8 @@ function AdminTeeSheetSetting() {
           {/* =========Golfer buttons ========*/}
         </div>
 
-        <div className="golfer-cart-area-main">
-          <div className="golfer-img">
+        <div className="golfer-cart-area-main2">
+          <div className="golfer-img2">
             <img src={profileimg2} alt="" />
           </div>
           <input className="golfer-input" type="text" value="01" disabled />
@@ -173,7 +173,7 @@ function AdminTeeSheetSetting() {
             <button
               className="golferbtn1"
               style={{
-                backgroundColor: clickedCartButtonIndex === 0 ? "#5110BA" : "",
+                backgroundColor: clickedCartButtonIndex === 0 ? "#4365CF" : "",
                 color: clickedCartButtonIndex === 0 ? "white" : "#161819",
               }}
               onClick={() => handleCartButtonClick(0)}
@@ -182,7 +182,7 @@ function AdminTeeSheetSetting() {
             </button>
             <button
               style={{
-                backgroundColor: clickedCartButtonIndex === 2 ? "#5110BA" : "",
+                backgroundColor: clickedCartButtonIndex === 2 ? "#4365CF" : "",
                 color: clickedCartButtonIndex === 2 ? "white" : "#161819",
               }}
               onClick={() => handleCartButtonClick(2)}
@@ -191,7 +191,7 @@ function AdminTeeSheetSetting() {
             </button>
             <button
               style={{
-                backgroundColor: clickedCartButtonIndex === 3 ? "#5110BA" : "",
+                backgroundColor: clickedCartButtonIndex === 3 ? "#4365CF" : "",
                 color: clickedCartButtonIndex === 3 ? "white" : "#161819",
               }}
               onClick={() => handleCartButtonClick(3)}
@@ -201,7 +201,7 @@ function AdminTeeSheetSetting() {
             <button
               className="golferbtn4"
               style={{
-                backgroundColor: clickedCartButtonIndex === 4 ? "#5110BA" : "",
+                backgroundColor: clickedCartButtonIndex === 4 ? "#4365CF" : "",
                 color: clickedCartButtonIndex === 4 ? "white" : "#161819",
               }}
               onClick={() => handleCartButtonClick(4)}
@@ -221,7 +221,7 @@ function AdminTeeSheetSetting() {
           <button
             className="golferbtn1"
             style={{
-              backgroundColor: clickedRadioButtonIndex === 0 ? "#5110BA" : "",
+              backgroundColor: clickedRadioButtonIndex === 0 ? "#4365CF" : "",
               color: clickedRadioButtonIndex === 0 ? "white" : "#161819",
             }}
             onClick={() => handleRadioButtonClick(0)}
@@ -231,7 +231,7 @@ function AdminTeeSheetSetting() {
           <button
             className="golferbtn4"
             style={{
-              backgroundColor: clickedRadioButtonIndex === 2 ? "#5110BA" : "",
+              backgroundColor: clickedRadioButtonIndex === 2 ? "#4365CF" : "",
               color: clickedRadioButtonIndex === 2 ? "white" : "#161819",
             }}
             onClick={() => handleRadioButtonClick(2)}
@@ -394,7 +394,7 @@ function AdminTeeSheetSetting() {
         </div>
       </div>
       <div className="Tee-sheet-large-input">
-        <input type="text" name="" id="" disabled />
+        <textarea id="w3review" name="w3review" rows="4" />
       </div>
 
       <div className="delet-update-tee-sheet-btn">
@@ -410,7 +410,7 @@ function AdminTeeSheetSetting() {
               className="golferbtn1"
               style={{
                 backgroundColor:
-                  clickedCheckInButtonIndex === 0 ? "#5110BA" : "",
+                  clickedCheckInButtonIndex === 0 ? "#4365CF" : "",
                 color: clickedCheckInButtonIndex === 0 ? "white" : "#161819",
               }}
               onClick={() => handleCheckInButtonClick(0)}
@@ -420,7 +420,7 @@ function AdminTeeSheetSetting() {
             <button
               style={{
                 backgroundColor:
-                  clickedCheckInButtonIndex === 2 ? "#5110BA" : "",
+                  clickedCheckInButtonIndex === 2 ? "#4365CF" : "",
                 color: clickedCheckInButtonIndex === 2 ? "white" : "#161819",
               }}
               onClick={() => handleCheckInButtonClick(2)}
@@ -430,7 +430,7 @@ function AdminTeeSheetSetting() {
             <button
               style={{
                 backgroundColor:
-                  clickedCheckInButtonIndex === 3 ? "#5110BA" : "",
+                  clickedCheckInButtonIndex === 3 ? "#4365CF" : "",
                 color: clickedCheckInButtonIndex === 3 ? "white" : "#161819",
               }}
               onClick={() => handleCheckInButtonClick(3)}
@@ -441,7 +441,7 @@ function AdminTeeSheetSetting() {
               className="golferbtn4"
               style={{
                 backgroundColor:
-                  clickedCheckInButtonIndex === 4 ? "#5110BA" : "",
+                  clickedCheckInButtonIndex === 4 ? "#4365CF" : "",
                 color: clickedCheckInButtonIndex === 4 ? "white" : "#161819",
               }}
               onClick={() => handleCheckInButtonClick(4)}

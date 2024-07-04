@@ -89,6 +89,10 @@ const ReactTableWrapper = styled.div`
     cursor: not-allowed;
     color: gray;
   }
+  .Table__pageButton1:disabled {
+    cursor: not-allowed;
+    color: gray;
+  }
 
   .Table__pageButton--active {
     font-weight: bold;

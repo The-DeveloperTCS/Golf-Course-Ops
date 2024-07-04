@@ -162,11 +162,17 @@ const Sidebar = (props) => {
               className=""
               style={{ display: "flex", padding: "24px 30px 0px 29px" }}
             >
-              <p
-                style={{ color: "black", fontSize: "22px", fontWeight: "600" }}
-              >
-                General
-              </p>
+              {!mini && (
+                <p
+                  style={{
+                    color: "black",
+                    fontSize: "22px",
+                    fontWeight: "600",
+                  }}
+                >
+                  General
+                </p>
+              )}
             </div>
 
             <ul className="nav">
