@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import CustomerActions from "redux/customer/action";
 import NotificationActions from "redux/notifications/actions";
 import { createCustomers } from "redux/customer/service";
+import { setPermissionByRoleFunc } from "redux/permission/service";
 import CustomerForm from "./CustomerForm";
 
 const defaultCustomer = {
@@ -36,10 +37,27 @@ const NewCustomer = (props) => {
   const onSave = async (updatedCustomer) => {
     return createCustomers(updatedCustomer)
       .then((res) => {
-        props.successWithTimeout(
-          `Customer #${res.data.customer.id} added successfully!`
-        );
-        props.history.push("/customer/list");
+        const permission = {
+          permissions: [
+            {
+              name: "TEE_SHEET",
+              access: "WRITE",
+              role: "Customer",
+              status: true,
+            },
+          ],
+        };
+        setPermissionByRoleFunc(permission)
+          .then((res) => {
+            props.successWithTimeout(
+              `Customer #${res.data.customer.id} added successfully!`
+            );
+
+            props.history.push("/customer/list");
+          })
+          .catch((err) => {
+            console.log(err, "erro");
+          });
       })
       .catch((err) =>
         props.failureWithTimeout(

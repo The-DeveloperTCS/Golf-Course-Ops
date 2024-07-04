@@ -133,6 +133,9 @@ export const getRolePermissionUrl = (id) =>
 export const RolePermissionsUpdateUrl = (id) =>
   BaseUrl + `permission-by-role/update/${id}`;
 
+export const setPermissionByRole =
+  BaseUrl + "permission-by-role/addWithMultipleObject";
+
 //PermissionByRole Endpoints
 
 export const createPermissionRoleUrl = BaseUrl + "/permission-by-role/add";
