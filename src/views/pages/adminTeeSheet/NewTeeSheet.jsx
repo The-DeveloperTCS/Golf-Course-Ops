@@ -247,8 +247,8 @@ function AdminTeeSheetSetting() {
           <p>1</p>
           <input type="text" placeholder="Brandit (Badge)" />
           <div className="for-edit-icons">
-            <img src={edit1} alt="" />
-            <img src={edit3} alt="" />
+            {/* <img src={edit1} alt="" />
+            <img src={edit3} alt="" /> */}
             <img src={edit2} alt="" />
           </div>
           <input type="text" placeholder="mark.brandit@opewm.org" />
@@ -278,8 +278,8 @@ function AdminTeeSheetSetting() {
           <p>2</p>
           <input type="text" placeholder="Last. First name" />
           <div className="for-edit-icons">
-            <img src={edit1} alt="" />
-            <img src={edit3} alt="" />
+            {/* <img src={edit1} alt="" />
+            <img src={edit3} alt="" /> */}
             <img src={edit2} alt="" />
           </div>
           <input type="text" placeholder="Email" />
@@ -309,8 +309,8 @@ function AdminTeeSheetSetting() {
           <p>3</p>
           <input type="text" placeholder="Last. First name" />
           <div className="for-edit-icons">
-            <img src={edit1} alt="" />
-            <img src={edit3} alt="" />
+            {/* <img src={edit1} alt="" />
+            <img src={edit3} alt="" /> */}
             <img src={edit2} alt="" />
           </div>
           <input type="text" placeholder="Email" />
@@ -340,8 +340,8 @@ function AdminTeeSheetSetting() {
           <p>4</p>
           <input type="text" placeholder="Last. First name" />
           <div className="for-edit-icons">
-            <img src={edit1} alt="" />
-            <img src={edit3} alt="" />
+            {/* <img src={edit1} alt="" />
+            <img src={edit3} alt="" /> */}
             <img src={edit2} alt="" />
           </div>
           <input type="text" placeholder="Email" />
