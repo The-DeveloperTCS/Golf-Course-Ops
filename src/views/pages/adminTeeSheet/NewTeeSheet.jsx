@@ -97,7 +97,7 @@ function AdminTeeSheetSetting() {
         >
           shotgun
         </button>
-        <button
+        {/* <button
           // style={{
           //   backgroundColor: clickedButtonIndex === 6 ? "#5110BA" : "#F8AD15",
           //   color: clickedButtonIndex === 6 ? "white" : "",
@@ -106,7 +106,7 @@ function AdminTeeSheetSetting() {
           className="admin-btn-yellow"
         >
           cart sign
-        </button>
+        </button> */}
       </div>
       {/*========== Golfer and Cart Area ===========================*/}
       <div className="golfer-cart-area-main1">
@@ -211,10 +211,10 @@ function AdminTeeSheetSetting() {
           </div>
           {/* =========cart buttons ========*/}
         </div>
-        <div className="adminteeSheet-input-cart">
+        {/* <div className="adminteeSheet-input-cart">
           <input type="text" value="Cart#" disabled />
           <input type="text" value="Cart#" disabled />
-        </div>
+        </div> */}
         <div className="adminteeSheet-radio-btn"></div>
         <div className="tee-raido-btn-main">
           <img src={profileimg3} alt="" />
@@ -268,8 +268,8 @@ function AdminTeeSheetSetting() {
               placeholder="zip"
             />
           </div>
-          <TeeSheetDropdown />
-          <button>no show</button>
+          {/* <TeeSheetDropdown />
+          <button>no show</button> */}
         </div>
       </div>
       {/* Tee Sheet input Feilds seeting row2 */}
@@ -299,8 +299,8 @@ function AdminTeeSheetSetting() {
               placeholder="zip"
             />
           </div>
-          <TeeSheetDropdown />
-          <button>no show</button>
+          {/* <TeeSheetDropdown />
+          <button>no show</button> */}
         </div>
       </div>
       {/* Tee Sheet input Feilds seeting row3*/}
@@ -330,8 +330,8 @@ function AdminTeeSheetSetting() {
               placeholder="zip"
             />
           </div>
-          <TeeSheetDropdown />
-          <button>no show</button>
+          {/* <TeeSheetDropdown />
+          <button>no show</button> */}
         </div>
       </div>
       {/* Tee Sheet input Feilds seeting row4 */}
@@ -362,36 +362,36 @@ function AdminTeeSheetSetting() {
             />
           </div>
 
-          <TeeSheetDropdown />
-          <button>no show</button>
+          {/* <TeeSheetDropdown /> */}
+          {/* <button>no show</button> */}
         </div>
       </div>
       <div className="tee-sheet-check-button">
-        <div className="for-btns">
+        {/* <div className="for-btns">
           <div className="tee-check-btn1">
             {" "}
             <input type="checkbox" id="checkButton" />
             <label htmlFor="checkButton">list all</label>
           </div>
 
-          {/* btn 2 */}
           <div className="tee-check-btn1">
             {" "}
             <input type="checkbox" id="checkButton" />
             <label htmlFor="checkButton">split</label>
           </div>
-          {/* btn 3 */}
+
           <div className="tee-check-btn1">
             {" "}
             <input type="checkbox" id="checkButton" />
             <label htmlFor="checkButton">send confrim emai</label>
           </div>
-        </div>
-        <div className="check-text">
+        </div> */}
+
+        {/* <div className="check-text">
           <p>
             booked by wave 2022 wave 2022 <br /> 4:28 @ 08:19 AM
           </p>
-        </div>
+        </div> */}
       </div>
       <div className="Tee-sheet-large-input">
         <input type="text" name="" id="" disabled />
@@ -399,13 +399,15 @@ function AdminTeeSheetSetting() {
 
       <div className="delet-update-tee-sheet-btn">
         <div className="btn-delet-update">
-          <button style={{ backgroundColor: "#E92A2A" }}>delete</button>
-          <button style={{ backgroundColor: "#0CD374" }}>update</button>
+          {/* <button style={{ backgroundColor: "#E92A2A" }}>delete</button>
+          <button style={{ backgroundColor: "#0CD374" }}>update</button> */}
+
+          <button style={{ backgroundColor: "#0CD374" }}>Reserved</button>
         </div>
         <div className="tee-sheet-Check-In">
-          <span>$</span>
+          {/* <span>$</span> */}
 
-          <div className="Check-In-btn">
+          {/* <div className="Check-In-btn">
             <button
               className="golferbtn1"
               style={{
@@ -448,7 +450,7 @@ function AdminTeeSheetSetting() {
             >
               4
             </button>
-          </div>
+          </div> */}
           <div className="check-in-admint-tee-sheet">
             <Link to="/adminDashboardItems">
               <button>Check in</button>
