@@ -3,8 +3,9 @@ import "../../style/AdminDashboardItems.css";
 import { IoIosSearch } from "react-icons/io";
 import AdminSidebar1 from "./AdminSidebar1";
 import { MdCancel } from "react-icons/md";
-import PaymentPopup from "../PaymentPopup";
-import CreditPopup from "../CreditPopup";
+import PaymentPopup from "../Popups/PaymentPopup";
+import CreditPopup from "../Popups/CreditPopup";
+import CardPaymentPopup from "../Popups/CardPaymentPopup"; // Import CardPaymentPopup
 
 const dummyData = [
   { name: "Green Fees", price: "$34", qty: 2, discount: "-" },
@@ -15,13 +16,14 @@ const dummyData = [
 const AdminDashboardItems = () => {
   const [data, setData] = useState(dummyData);
   const [buttonColors, setButtonColors] = useState([
-    "rgb(81, 16, 186)",
-    "rgb(81, 16, 186)",
-    "rgb(81, 16, 186)",
+    "rgb(67, 101, 207)",
+    "rgb(67, 101, 207)",
+    "rgb(67, 101, 207)",
   ]);
 
   const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
   const [isCreditPopupOpen, setCreditPopupOpen] = useState(false);
+  const [isCardPaymentPopupOpen, setCardPaymentPopupOpen] = useState(false); // State for CardPaymentPopup
 
   const togglePaymentPopup = () => {
     setPaymentPopupOpen(!isPaymentPopupOpen);
@@ -29,6 +31,10 @@ const AdminDashboardItems = () => {
 
   const toggleCreditPopup = () => {
     setCreditPopupOpen(!isCreditPopupOpen);
+  };
+
+  const toggleCardPaymentPopup = () => {
+    setCardPaymentPopupOpen(!isCardPaymentPopupOpen);
   };
 
   const handleDelete = (index) => {
@@ -46,6 +52,8 @@ const AdminDashboardItems = () => {
       togglePaymentPopup(); // Open PaymentPopup for Cash button
     } else if (index === 1) {
       toggleCreditPopup(); // Open CreditPopup for Credit Card button
+    } else if (index === 2) {
+      toggleCardPaymentPopup(); // Open CardPaymentPopup for Pay Now button
     }
   };
 
@@ -124,13 +132,13 @@ const AdminDashboardItems = () => {
                 style={{ backgroundColor: buttonColors[1] }}
                 onClick={() => handleButtonClick(1)}
               >
-                Credit Card
+                Pay Now
               </button>
               <button
                 style={{ backgroundColor: buttonColors[2] }}
                 onClick={() => handleButtonClick(2)}
               >
-                Pay Now
+                Credit Card
               </button>
             </div>
             <div className="cash-in-nbr">
@@ -157,6 +165,14 @@ const AdminDashboardItems = () => {
         <CreditPopup
           isOpen={isCreditPopupOpen}
           togglePopup={toggleCreditPopup}
+        />
+      )}
+
+      {/* Render CardPaymentPopup if open */}
+      {isCardPaymentPopupOpen && (
+        <CardPaymentPopup
+          isOpen={isCardPaymentPopupOpen}
+          onClose={toggleCardPaymentPopup}
         />
       )}
     </div>
