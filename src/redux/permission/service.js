@@ -7,6 +7,7 @@ import {
   getSpecificPermissionUrl,
   getRolePermissionUrl,
   RolePermissionsUpdateUrl,
+  setPermissionByRole,
 } from "Constants";
 
 export const getPermissionsList = async (limit, pageNo) => {
@@ -42,4 +43,8 @@ export const getPermissionsForRole = (role) => {
 
 export const updatePermissionsOfRoles = (permission) => {
   return axiosClient.put(RolePermissionsUpdateUrl(permission.id), permission);
+};
+
+export const setPermissionByRoleFunc = (req) => {
+  return axiosClient.post(setPermissionByRole, req);
 };

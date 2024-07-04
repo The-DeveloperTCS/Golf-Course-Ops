@@ -309,9 +309,7 @@ const CustomerForm = (props) => {
             <div className="roe-card-body">
               <form>
                 <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">
-                    First Name123
-                  </label>
+                  <label className="col-sm-4 col-form-label">First Name</label>
                   <div className="col-sm-12">
                     <input
                       type="text"

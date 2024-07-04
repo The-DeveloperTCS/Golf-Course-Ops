@@ -127,12 +127,12 @@ export const sidebarData = [
   //   // iconClass: "fas fa-chalkboard",
   //   resource: "",
   // },
-  // {
-  //   name: "ClockIn",
-  //   routepath: "/clockIn",
-  //   // iconClass: "fas fa-chalkboard",
-  //   resource: "",
-  // },
+  {
+    name: "ClockIn",
+    routepath: "/clockIn",
+    iconClass: "fas fa-chalkboard",
+    resource: "CLOCKIN",
+  },
   // {
   //   name: "Help & Support",
   //   routepath: "/helpSupport",
