@@ -75,7 +75,6 @@ import JesterPark from "views/pages/JesterPark/JesterPark";
 
 const dashboardRoutes = [
   { path: "/intro", component: Intro, resource: "DASHBOARD" },
-
   {
     path: "/employee/list",
     component: EmployeesList,
