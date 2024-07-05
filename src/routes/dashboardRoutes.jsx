@@ -75,7 +75,6 @@ import JesterPark from "views/pages/JesterPark/JesterPark";
 
 const dashboardRoutes = [
   { path: "/intro", component: Intro, resource: "DASHBOARD" },
-
   {
     path: "/employee/list",
     component: EmployeesList,
@@ -324,7 +323,7 @@ const dashboardRoutes = [
   { path: "/tee-sheet/list", component: AdminTeeSheet, resource: "TEE_SHEET" },
 
   {
-    path: "/adminTeeSheetSetting",
+    path: "/tee-sheet-new",
     component: NewTeeSheet,
     resource: "",
   },
