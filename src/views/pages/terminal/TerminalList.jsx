@@ -97,11 +97,11 @@ const TerminalsList = (props) => {
         <div className="roe-card-style">
           <div className="roe-card-header flex center">
             <div className="flex-1 mr-15 my-title ml-1">
-              Terminal List{" "}
+              Terminal List123{" "}
               <span className="pull-right">
                 {useTerminalPermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
+                    className="c-btn ma-5 add-new-btn-color"
                     onClick={() => props.history.push("/terminal/new")}
                   >
                     <i className="fas fa-plus" /> New Terminal

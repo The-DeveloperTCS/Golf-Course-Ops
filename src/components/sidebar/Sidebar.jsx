@@ -160,7 +160,7 @@ const Sidebar = (props) => {
           <div className="sidebar-wrapper">
             <div
               className=""
-              style={{ display: "flex", padding: "24px 30px 0px 29px" }}
+              style={{ display: "flex", padding: "0px 30px 0px 29px" }}
             >
               {!mini && (
                 <p

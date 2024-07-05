@@ -121,7 +121,7 @@ const ReactTableWrapper = styled.div`
   .Table__pageButton1:disabled {
     cursor: not-allowed;
     color: white !important;
-    padding: 10px 15px;
+    padding: 11px 15px;
     background-color: #4365cf;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;

@@ -107,7 +107,7 @@ const RolesList = (props) => {
               <span className="pull-right">
                 {useRolePermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
+                    className="c-btn ma-5 add-new-btn-color"
                     onClick={() => props.history.push("/role/new")}
                   >
                     <i className="fas fa-plus" /> New Role
