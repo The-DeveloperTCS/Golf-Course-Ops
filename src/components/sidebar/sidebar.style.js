@@ -225,7 +225,7 @@ const SidebarWrapper = styled.div`
               border-radius: 50%;
               padding: 0;
               margin-top: -16px;
-              margin-left: -10px;
+              margin-left: -15px;
             }
         }
         .logo-text {
