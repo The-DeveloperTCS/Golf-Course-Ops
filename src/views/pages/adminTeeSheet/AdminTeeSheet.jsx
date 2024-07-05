@@ -509,7 +509,7 @@ function AdminTeeSheet() {
               className="px-0"
               sm={12}
               style={{
-                height: "calc(100vh - 271px)",
+                height: "calc(100vh - 188px)",
                 overflowY: "auto",
               }}
             >
