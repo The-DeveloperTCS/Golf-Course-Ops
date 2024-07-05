@@ -60,7 +60,7 @@ import NotFound from "views/pages/NotFound";
 import Profile from "views/pages/Profile";
 import AdminTeeSheet from "views/pages/adminTeeSheet/AdminTeeSheet";
 import AdminTeeSheet2 from "views/pages/adminTeeSheet/AdminTeeSheet2";
-import AdminTeeSheetSetting from "views/pages/adminTeeSheet/AdminTeeSheetSetting";
+import NewTeeSheet from "views/pages/adminTeeSheet/NewTeeSheet";
 import AdminDashboardItems from "views/pages/tee-slot/AdminDashboardItems";
 // import ClockIn from "views/pages/clockInClockOut/ClockIn";
 // import HelpSupport from "views/pages/helpSupport/HelpSupport";
@@ -75,7 +75,6 @@ import JesterPark from "views/pages/JesterPark/JesterPark";
 
 const dashboardRoutes = [
   { path: "/intro", component: Intro, resource: "DASHBOARD" },
-
   {
     path: "/employee/list",
     component: EmployeesList,
@@ -324,8 +323,8 @@ const dashboardRoutes = [
   { path: "/tee-sheet/list", component: AdminTeeSheet, resource: "TEE_SHEET" },
 
   {
-    path: "/adminTeeSheetSetting",
-    component: AdminTeeSheetSetting,
+    path: "/tee-sheet-new",
+    component: NewTeeSheet,
     resource: "",
   },
   {

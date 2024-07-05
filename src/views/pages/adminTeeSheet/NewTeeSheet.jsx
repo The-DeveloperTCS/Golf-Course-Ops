@@ -5,38 +5,30 @@ import profileimg2 from "../../../assets/images/Vector (2).png";
 import edit3 from "../../../assets/images/Group 1000002539.png";
 import edit1 from "../../../assets/images/Group 1000002531.png";
 import edit2 from "../../../assets/images/Group 1000002532.png";
-import "../../style/AdminTeeSheetSetting.css";
+import "../../style/NewTeeSheet.css";
 import TeeSheetDropdown from "./TeeSheetDropdown";
 import { Link } from "react-router-dom";
-
 function AdminTeeSheetSetting() {
   const [clickedButtonIndex, setClickedButtonIndex] = useState(0);
-
   const [
     clickedGolferCartButtonIndex,
     setClickedGolferCartButtonIndex,
   ] = useState(0);
-
   const handleButtonClick = (index) => {
     setClickedButtonIndex(index);
   };
-
   const handleGolferCartButtonClick = (index) => {
     setClickedGolferCartButtonIndex(index);
   };
   const [clickedCartButtonIndex, setClickedCartButtonIndex] = useState(0);
-
   const handleCartButtonClick = (index) => {
     setClickedCartButtonIndex(index);
   };
   const [clickedRadioButtonIndex, setClickedRadioButtonIndex] = useState(0);
-
   const handleRadioButtonClick = (index) => {
     setClickedRadioButtonIndex(index);
   };
-
   const [clickedCheckInButtonIndex, setClickedCheckInButtonIndex] = useState(0);
-
   const handleCheckInButtonClick = (index) => {
     setClickedCheckInButtonIndex(index);
   };
@@ -162,7 +154,6 @@ function AdminTeeSheetSetting() {
           </div>
           {/* =========Golfer buttons ========*/}
         </div>
-
         <div className="golfer-cart-area-main2">
           <div className="golfer-img2">
             <img src={profileimg2} alt="" />
@@ -240,7 +231,6 @@ function AdminTeeSheetSetting() {
           </button>
         </div>
       </div>
-
       {/* Tee Sheet input Feilds seeting row1 */}
       <div className="tee-sheet-seeting-input-main">
         <div className="seeting-input-row1">
@@ -361,7 +351,6 @@ function AdminTeeSheetSetting() {
               placeholder="zip"
             />
           </div>
-
           <TeeSheetDropdown />
           <button>no show</button>
         </div>
@@ -373,7 +362,6 @@ function AdminTeeSheetSetting() {
             <input type="checkbox" id="checkButton" />
             <label htmlFor="checkButton">list all</label>
           </div>
-
           {/* btn 2 */}
           <div className="tee-check-btn1">
             {" "}
@@ -396,7 +384,6 @@ function AdminTeeSheetSetting() {
       <div className="Tee-sheet-large-input">
         <textarea id="w3review" name="w3review" rows="4" />
       </div>
-
       <div className="delet-update-tee-sheet-btn">
         <div className="btn-delet-update">
           <button style={{ backgroundColor: "#E92A2A" }}>delete</button>
@@ -404,7 +391,6 @@ function AdminTeeSheetSetting() {
         </div>
         <div className="tee-sheet-Check-In">
           <span>$</span>
-
           <div className="Check-In-btn">
             <button
               className="golferbtn1"
@@ -459,5 +445,4 @@ function AdminTeeSheetSetting() {
     </div>
   );
 }
-
 export default AdminTeeSheetSetting;
