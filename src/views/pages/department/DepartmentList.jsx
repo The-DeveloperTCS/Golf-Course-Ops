@@ -102,7 +102,7 @@ const DepartmentsList = (props) => {
               <span className="pull-right">
                 {useDepartmentPermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
+                    className="c-btn ma-5 add-new-btn-color"
                     onClick={() => props.history.push("/department/new")}
                   >
                     <i className="fas fa-plus" /> New Department

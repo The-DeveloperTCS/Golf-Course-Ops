@@ -196,7 +196,7 @@ const SidebarWrapper = styled.div`
         cursor: pointer;
         position: relative;
         z-index: 4;
-        padding: 8px 0.7rem;
+        padding: 8px 0rem;
         // border-bottom: 1px solid rgba(0,0,0,0.06);
         background-color: ${(props) =>
           props.themeSetting.sidebarTransParentValue !== "on" &&
@@ -220,13 +220,17 @@ const SidebarWrapper = styled.div`
             margin-right: 12px;
             padding: 6px 0px 8px;
             img {
-                width: 50px;
-                height: 40px;
-                border-radius:50%;
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              padding: 0;
+              margin-top: -16px;
+              margin-left: -10px;
             }
         }
         .logo-text {
             display: block;
+            margin-top: 4px;
             opacity: 1;
             transform: translateZ(0px);
             padding: 9px 0px 8px;

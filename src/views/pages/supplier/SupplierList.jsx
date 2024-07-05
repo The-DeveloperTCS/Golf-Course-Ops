@@ -123,11 +123,11 @@ const SuppliersList = (props) => {
         <div className="roe-card-style">
           <div className="roe-card-header flex center">
             <div className="flex-1 mr-15 my-title ml-1">
-              Supplier List{" "}
+              Supplier List123{" "}
               <span className="pull-right">
                 {useSupplierPermission && (
                   <button
-                    className="c-btn ma-5 c-outline-info"
+                    className="c-btn ma-5 add-new-btn-color"
                     onClick={() => props.history.push("/supplier/new")}
                   >
                     <i className="fas fa-plus" /> New Supplier
