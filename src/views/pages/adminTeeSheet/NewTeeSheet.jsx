@@ -5,11 +5,11 @@ import profileimg2 from "../../../assets/images/Vector (2).png";
 import edit3 from "../../../assets/images/Group 1000002539.png";
 import edit1 from "../../../assets/images/Group 1000002531.png";
 import edit2 from "../../../assets/images/Group 1000002532.png";
-import "../../style/AdminTeeSheetSetting.css";
+import "../../style/NewTeeSheet.css";
 import TeeSheetDropdown from "./TeeSheetDropdown";
 import { Link } from "react-router-dom";
 
-function AdminTeeSheetSetting() {
+function NewTeeSheet() {
   const [clickedButtonIndex, setClickedButtonIndex] = useState(0);
 
   const [
@@ -460,4 +460,4 @@ function AdminTeeSheetSetting() {
   );
 }
 
-export default AdminTeeSheetSetting;
+export default NewTeeSheet;
