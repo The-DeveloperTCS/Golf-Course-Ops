@@ -175,7 +175,7 @@ const Sidebar = (props) => {
               )}
             </div>
 
-            <ul className="nav">
+            <ul className="nav" style={{ paddingBottom: "30px" }}>
               {sidebarData
                 .filter((l) => {
                   return (
