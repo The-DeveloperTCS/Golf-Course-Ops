@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { TableVirtuoso } from "react-virtuoso";
+// import { TableVirtuoso } from "react-virtuoso";
 import "../../style/ClockInTabel.css";
 
 export default function ReactVirtualizedTable({ data, columns }) {
@@ -69,12 +69,12 @@ export default function ReactVirtualizedTable({ data, columns }) {
 
   return (
     <Paper style={{ height: 700, width: "100%" }}>
-      <TableVirtuoso
+      {/* <TableVirtuoso
         data={data}
         components={VirtuosoTableComponents}
         fixedHeaderContent={fixedHeaderContent}
         itemContent={rowContent}
-      />
+      /> */}
     </Paper>
   );
 }
