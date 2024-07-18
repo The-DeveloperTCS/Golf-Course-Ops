@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
+import { MdOutlineNavigateNext } from "react-icons/md";
+import { MdOutlineNavigateBefore } from "react-icons/md";
 
 const defaultButton = (props) => <button {...props}>{props.children}</button>;
 
@@ -55,7 +57,7 @@ const Pagination = (props) => {
           disabled={activePage === 1}
         >
           {/* {props.previousText} */}
-          <i className="fas fa-backward"></i>
+          <MdOutlineNavigateBefore />
         </PageButtonComponent>
       </div>
       <div className="Table__visiblePagesWrapper">
@@ -78,14 +80,14 @@ const Pagination = (props) => {
       </div>
       <div className="Table__nextPageWrapper">
         <PageButtonComponent
-          className="Table__pageButton"
+          className="Table__pageButton1"
           onClick={() => {
             if (activePage === props.totalPages) return;
             changePage(activePage + 1);
           }}
           disabled={activePage === props.totalPages}
         >
-          <i className="fas fa-forward"></i>
+          <MdOutlineNavigateNext />
         </PageButtonComponent>
       </div>
     </div>

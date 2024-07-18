@@ -7,6 +7,7 @@ const initState = {
   accessToken: localStorage.getItem("accessToken"),
   refreshToken: localStorage.getItem("refreshToken"),
   permissions: [],
+  user: null,
 };
 
 export default function rootReducer(state = initState, action) {
@@ -17,6 +18,7 @@ export default function rootReducer(state = initState, action) {
         isLogin: action.isLogin,
         accessToken: action.accessToken,
         refreshToken: action.refreshToken,
+        user: action.user,
       };
     case authAction.LOGOUT:
       return {

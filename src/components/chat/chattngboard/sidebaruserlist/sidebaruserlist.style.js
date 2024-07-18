@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ChattingBoardWrapper = styled.div`
 .chat-user-sidebar{
@@ -18,7 +18,8 @@ const ChattingBoardWrapper = styled.div`
     box-shadow: 0 0.46875rem 2.1875rem rgba(0,0,0,0.03), 0 0.9375rem 1.40625rem rgba(0,0,0,0.03), 0 0.25rem 0.53125rem rgba(0,0,0,0.05), 0 0.125rem 0.1875rem rgba(0,0,0,0.03);
 
     .user-list-block {
-        transform: ${props => props.mini ?  'translateX(-500px)' :  'translatex(0px)'};
+        transform: ${(props) =>
+          props.mini ? "translateX(-500px)" : "translatex(0px)"};
         transition: all 0.5s;
     }
 
@@ -28,7 +29,8 @@ const ChattingBoardWrapper = styled.div`
         text-align: center;
         padding-top: 15px;
         padding-bottom: 15px;
-        transform: ${props => props.mini ?  'translateX(-500px)' :  'translatex(0px)'};
+        transform: ${(props) =>
+          props.mini ? "translateX(-500px)" : "translatex(0px)"};
         transition: transform 0.5s;
     }
 
@@ -79,6 +81,7 @@ body > .navbar-collapse{
     transition-timing-function: linear,linear,ease;
     -webkit-overflow-scrolling: touch;
 }
+
 `;
 
-export default ChattingBoardWrapper
+export default ChattingBoardWrapper;

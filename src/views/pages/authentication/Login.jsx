@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { logo } from "helper/constant";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
@@ -44,16 +43,6 @@ const Login = (props) => {
     submitCount,
   } = props;
 
-  const loginContainer = {
-    backgroundColor: "white",
-    backgroundPosition: "center center",
-    backgroundSize: "cover",
-    position: "fixed",
-    overflow: "auto",
-    top: 0,
-    bottom: 0,
-  };
-
   const Error = (props) => {
     const field = props.field;
     if ((errors[field] && touched[field]) || submitCount > 0) {
@@ -90,9 +79,7 @@ const Login = (props) => {
         <div className="form-group">
           <div className="lable-forget">
             <label>Password</label>
-            {/* <p>Forgot Password</p> */}
           </div>
-
           <input
             type="password"
             className=""
@@ -112,21 +99,6 @@ const Login = (props) => {
         >
           Sign In
         </Button>
-        {/* <div class="text-divider">
-          <span class="line"></span>
-          <span class="text">Didn’t have an account?</span>
-          <span class="line">
-
-          </span>
-        </div>
-        <Button
-          type="submit"
-          className="signup-btn"
-          dataStyle="expand-left"
-          loading={loading}
-        >
-          Sign Up
-        </Button> */}
       </form>
       <div className="login-right">
         <img src={login} alt="" />

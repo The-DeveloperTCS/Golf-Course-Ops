@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function TeeSlot({ backgroundColor, holes, playerName, players }) {
   return (
     <Link
-      to="/adminTeeSheetSetting"
+      to="/tee-sheet-new"
       style={{
         textDecoration: "none",
         color: "inherit",

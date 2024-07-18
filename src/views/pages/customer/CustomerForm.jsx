@@ -575,7 +575,7 @@ const CustomerForm = (props) => {
                     <label className="col-sm-4 col-form-label">Password</label>
                     <div className="col-sm-12">
                       <input
-                        type="text"
+                        type="password"
                         className="form-control react-form-input"
                         value={updatedCustomer.password}
                         disabled={!useCustomerPermission}
@@ -597,7 +597,7 @@ const CustomerForm = (props) => {
                     </label>
                     <div className="col-sm-12">
                       <input
-                        type="text"
+                        type="password"
                         className="form-control react-form-input"
                         value={updatedCustomer.confirmPassword}
                         disabled={!useCustomerPermission}

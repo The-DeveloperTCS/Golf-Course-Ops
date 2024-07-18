@@ -147,7 +147,6 @@ const GiftCardsList = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state, "state");
   return {
     giftCards: state.giftCard.giftCards,
     pageLimit: state.giftCard.pageLimit,

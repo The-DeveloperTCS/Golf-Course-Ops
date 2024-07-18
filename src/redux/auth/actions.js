@@ -21,8 +21,8 @@ const authActions = {
     return (dispatch) => {
       login(username, password)
         .then((res) => {
-          // console.log(res, "response");
-          dispatch(authActions.login(res.token));
+          console.log(res, "response");
+          dispatch(authActions.login(res));
           history.push("/Intro");
         })
         .catch((err) => {
@@ -41,12 +41,12 @@ const authActions = {
   },
 
   login: (data) => {
-    // console.log(data, "data");
     return {
       type: authActions.LOGIN_SUCCESS,
       isLogin: true,
-      accessToken: data,
-      refreshToken: data,
+      accessToken: data.token,
+      refreshToken: data.token,
+      user: data.user,
     };
   },
 
@@ -60,7 +60,6 @@ const authActions = {
   },
 
   permissionsUpdated: (data) => {
-    // console.log(data, "data permissions");
     return {
       type: authActions.PERMISSIONS_UPDATED,
       permissions: data,

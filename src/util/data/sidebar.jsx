@@ -16,9 +16,14 @@ export const sidebarData = [
     name: "sidebar.tee-sheet",
     routepath: "/tee-sheet/list",
     iconClass: "fa fa-sitemap",
-    resource: "",
+    resource: "TEE_SHEET",
   },
-
+  {
+    name: "sidebar.customer-tee-sheet",
+    routepath: "/customer-tee-sheet",
+    iconClass: "fa fa-sitemap",
+    resource: "CUSTOMER_TEE_SHEET",
+  },
   {
     name: "sidebar.location",
     routepath: "/location/list",

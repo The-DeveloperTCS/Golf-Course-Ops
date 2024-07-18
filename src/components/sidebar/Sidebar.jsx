@@ -160,13 +160,19 @@ const Sidebar = (props) => {
           <div className="sidebar-wrapper">
             <div
               className=""
-              style={{ display: "flex", padding: "24px 30px 0px 29px" }}
+              style={{ display: "flex", padding: "0px 30px 0px 29px" }}
             >
-              <p
-                style={{ color: "black", fontSize: "22px", fontWeight: "600" }}
-              >
-                General
-              </p>
+              {!mini && (
+                <p
+                  style={{
+                    color: "black",
+                    fontSize: "22px",
+                    fontWeight: "600",
+                  }}
+                >
+                  General
+                </p>
+              )}
             </div>
 
             <ul className="nav">

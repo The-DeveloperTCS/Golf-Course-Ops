@@ -57,7 +57,6 @@ const ImageUploader = ({ onUploadStart, onUploadReady, onError }) => {
           let image = await resizeThumbnail(selectedFile);
           image = new Blob([image], { type: image.type });
           image.lastModifiedDate = null;
-          console.log(image, "image");
           const fileUrl = url.split("?")[0];
           fetchDigitalOceanUrlForImage().then((res) => {
             try {

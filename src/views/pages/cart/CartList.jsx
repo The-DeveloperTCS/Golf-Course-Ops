@@ -132,9 +132,9 @@ const CartsList = (props) => {
               <span className="pull-right">
                 {useCartPermission && (
                   <button
-                  className="c-btn ma-5 add-new-btn-color"
-                  onClick={() => props.history.push("/cart/new")}
-                >
+                    className="c-btn ma-5 add-new-btn-color"
+                    onClick={() => props.history.push("/cart/new")}
+                  >
                     <i className="fas fa-plus" /> New Cart
                   </button>
                 )}
@@ -162,7 +162,6 @@ const CartsList = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state, "state");
   return {
     carts: state.cart.carts,
     pageLimit: state.cart.pageLimit,

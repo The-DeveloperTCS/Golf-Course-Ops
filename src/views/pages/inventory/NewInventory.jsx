@@ -39,7 +39,7 @@ const NewInventory = (props) => {
 
   return (
     <InventoryForm
-      updateEmployee={defaultInventory}
+      updateInventory={defaultInventory}
       onSave={onSave}
     ></InventoryForm>
   );
