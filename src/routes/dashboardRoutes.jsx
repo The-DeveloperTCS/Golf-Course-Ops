@@ -55,26 +55,30 @@ import PermissionList from "views/pages/permission/PermissionList";
 import NewPermission from "views/pages/permission/NewPermission";
 import SinglePermission from "views/pages/permission/SinglePermission";
 
+import TeeSheet from "views/pages/teeSheet/TeeSheet";
+import NewTeeSheet from "views/pages/teeSheet/NewTeeSheet";
+import SingleTeeSheet from "views/pages/teeSheet/SingleTeeSheet";
+
 import AccessManagement from "views/pages/authentication/AccessManagement";
 import NotFound from "views/pages/NotFound";
 import Profile from "views/pages/Profile";
-import AdminTeeSheet from "views/pages/adminTeeSheet/AdminTeeSheet";
-import AdminTeeSheet2 from "views/pages/adminTeeSheet/AdminTeeSheet2";
-import NewTeeSheet from "views/pages/adminTeeSheet/NewTeeSheet";
-import AdminDashboardItems from "views/pages/tee-slot/AdminDashboardItems";
-// import ClockIn from "views/pages/clockInClockOut/ClockIn";
-// import HelpSupport from "views/pages/helpSupport/HelpSupport";
-// import Reports from "views/pages/Reports/Reports";
-// import InventoryForm from "views/pages/inventoryform/InventoryForm";
-// import JesterPark from "views/pages/JesterPark/JesterPark";
+
+import CustomerTeeSheet from "views/pages/teeSheet/CustomerTeeSheet";
+import SaleScreen from "views/pages/tee-slot/SaleScreen";
 import ClockIn from "views/pages/clockInClockOut/ClockIn";
 import HelpSupport from "views/pages/helpSupport/HelpSupport";
 import Reports from "views/pages/Reports/Reports";
 import InventoryForm from "views/pages/inventoryform/InventoryForm";
 import JesterPark from "views/pages/JesterPark/JesterPark";
 
+// import ClockIn from "views/pages/clockInClockOut/ClockIn";
+// import HelpSupport from "views/pages/helpSupport/HelpSupport";
+// import Reports from "views/pages/Reports/Reports";
+// import InventoryForm from "views/pages/inventoryform/InventoryForm";
+// import JesterPark from "views/pages/JesterPark/JesterPark";
+
 const dashboardRoutes = [
-  { path: "/intro", component: Intro, resource: "DASHBOARD" },
+  { path: "/intro", component: Intro, resource: "" },
   {
     path: "/employee/list",
     component: EmployeesList,
@@ -163,13 +167,11 @@ const dashboardRoutes = [
     component: SingleInventory,
     resource: "INVENTORY",
   },
-
   {
     path: "/cart/list",
     component: CartList,
     resource: "CART",
   },
-
   {
     path: "/cart/new",
     component: NewCart,
@@ -180,13 +182,11 @@ const dashboardRoutes = [
     component: SingleCart,
     resource: "CART",
   },
-
   {
     path: "/supplier/list",
     component: SupplierList,
     resource: "SUPPLIER",
   },
-
   {
     path: "/supplier/new",
     component: NewSupplier,
@@ -197,13 +197,11 @@ const dashboardRoutes = [
     component: SingleSupplier,
     resource: "SUPPLIER",
   },
-
   {
     path: "/terminal/list",
     component: TerminalList,
     resource: "TERMINAL",
   },
-
   {
     path: "/terminal/new",
     component: NewTerminal,
@@ -214,13 +212,11 @@ const dashboardRoutes = [
     component: SingleTerminal,
     resource: "TERMINAL",
   },
-
   {
     path: "/department/list",
     component: DepartmentList,
     resource: "DEPARTMENT",
   },
-
   {
     path: "/department/new",
     component: NewDepartment,
@@ -231,13 +227,11 @@ const dashboardRoutes = [
     component: SingleDepartment,
     resource: "DEPARTMENT",
   },
-
   {
     path: "/group/list",
     component: GroupList,
     resource: "GROUP",
   },
-
   {
     path: "/group/new",
     component: NewGroup,
@@ -248,7 +242,6 @@ const dashboardRoutes = [
     component: SingleGroup,
     resource: "GROUP",
   },
-
   {
     path: "/category/list",
     component: CategoryList,
@@ -316,46 +309,42 @@ const dashboardRoutes = [
     component: SinglePermission,
     resource: "PERMISSION",
   },
-
-  { path: "/adminTeeSheet", component: AdminTeeSheet, resource: "TEE_SHEET" },
-  { path: "/adminTeeSheet2", component: AdminTeeSheet2, resource: "TEE_SHEET" },
-  // { path: "/clockIn", component: ClockIn, resource: "" },
-  { path: "/tee-sheet/list", component: AdminTeeSheet, resource: "TEE_SHEET" },
-
+  {
+    path: "/tee-sheet/list",
+    component: TeeSheet,
+    resource: "TEE_SHEET",
+  },
   {
     path: "/tee-sheet-new",
     component: NewTeeSheet,
-    resource: "",
+    resource: "TEE_SHEET",
   },
   {
-    path: "/adminDashboardItems",
-    component: AdminDashboardItems,
+    path: "/tee-sheet/:teeSheetId(\\d+)",
+    component: SingleTeeSheet,
+    resource: "TEE_SHEET",
+  },
+  {
+    path: "/clockIn",
+    component: ClockIn,
+    resource: "CLOCKIN",
+  },
+  {
+    path: "/customer-tee-sheet",
+    component: CustomerTeeSheet,
+    resource: "CUSTOMER_TEE_SHEET",
+  },
+
+  {
+    path: "/sale/:saleId(\\d+)",
+    component: SaleScreen,
     resource: "",
   },
-  // { path: "/inventory", component: Inventory, resource: "" },
-  // { path: "/helpSupport", component: HelpSupport, resource: "" },
-  // { path: "/reports", component: Reports, resource: "" },
-  // { path: "/inventoryForm", component: InventoryForm, resource: "" },
-  // { path: "/jesterPark", component: JesterPark, resource: "" },
 
-  // { path: "/cart", component: Cart, resource: "" },
-  // { path: "/department", component: Department, resource: "" },
-  // { path: "/giftcard", component: GiftCard, resource: "" },
-
-  // {
-  //   path: "/pending-payments",
-  //   component: BulkPayment,
-  //   resource: "PENDING_PAYMENTS",
-  // },
-
-  { path: "/adminTeeSheet2", component: AdminTeeSheet2, resource: "" },
-  { path: "/clockIn", component: ClockIn, resource: "CLOCKIN" },
-
-  { path: "/helpSupport", component: HelpSupport, resource: "" },
   { path: "/reports", component: Reports, resource: "" },
+  { path: "/helpSupport", component: HelpSupport, resource: "" },
   { path: "/inventoryForm", component: InventoryForm, resource: "" },
   { path: "/jesterPark", component: JesterPark, resource: "" },
-
   {
     path: "/access-management",
     component: AccessManagement,

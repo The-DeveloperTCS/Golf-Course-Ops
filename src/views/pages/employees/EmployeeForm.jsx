@@ -319,7 +319,6 @@ const EmployeeForm = (props) => {
     if (updatedEmployee.id) {
       return `Update Employee #${updatedEmployee.id} - ${updatedEmployee.firstName} ${updateEmployee.lastName}`;
     }
-
     return "New Employee";
   };
 
@@ -327,7 +326,6 @@ const EmployeeForm = (props) => {
   //     props.dispatch(NotificationActions.failure(message));
   //     setSaving(false);
   // };
-  console.log(updatedEmployee, "updatedEmployee");
   return (
     <div>
       <div className="row ma-0">

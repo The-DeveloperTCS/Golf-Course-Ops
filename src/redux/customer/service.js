@@ -5,6 +5,7 @@ import {
   deleteCustomerUrl,
   getCustomersListUrl,
   getSpecificCustomerUrl,
+  getCustomersUrl,
 } from "Constants";
 
 export const getCustomersList = async (limit, pageNo) => {
@@ -30,4 +31,8 @@ export const getSpecificCustomer = async (customerId) => {
 
 export const deleteCustomers = async (customerId) => {
   return axiosClient.delete(deleteCustomerUrl(customerId));
+};
+
+export const getCustomers = () => {
+  return axiosClient.get(getCustomersUrl);
 };

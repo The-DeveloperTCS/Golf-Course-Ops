@@ -1,22 +1,28 @@
 import { axiosClient } from "../../redux/store";
-import { getTeeSheetByDateUrl } from "Constants";
+import {
+  getTeeSheetByDateUrl,
+  addTeeSheetUrl,
+  updateTeeSheetUrl,
+  deleteTeeSheetUrl,
+  getSpecificTeeSheetUrl,
+} from "Constants";
 
 export const getTeeSheetByDate = (date) => {
   return axiosClient.get(getTeeSheetByDateUrl(date));
 };
 
-// export const createRoles = (req) => {
-//   return axiosClient.post(createRoleUrl, req);
-// };
+export const addTeeSheet = (req) => {
+  return axiosClient.post(addTeeSheetUrl, req);
+};
 
-// export const updateRoleDetails = (roleId, req) => {
-//   return axiosClient.patch(updateRoleUrl(roleId), req);
-// };
+export const updateTeeSheetDetails = (teeSheetId, req) => {
+  return axiosClient.patch(updateTeeSheetUrl(teeSheetId), req);
+};
 
-// export const getSpecificRole = async (roleId) => {
-//   return axiosClient.get(getSpecificRoleUrl(roleId));
-// };
+export const getSpecificTeeSheet = async (teeSheetId) => {
+  return axiosClient.get(getSpecificTeeSheetUrl(teeSheetId));
+};
 
-// export const deleteRoles = async (roleId) => {
-//   return axiosClient.delete(deleteRoleUrl(roleId));
-// };
+export const deleteTeeSheet = async (teeSheetId) => {
+  return axiosClient.delete(deleteTeeSheetUrl(teeSheetId));
+};

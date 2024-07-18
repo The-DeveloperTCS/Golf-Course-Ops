@@ -1,128 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import "../../style/ClockIn.css";
 import ClockinDropdown from "../clockInClockOut/ClockinDropdown";
-import ClockInTabel from "../clockInClockOut/ClockInTabel";
-import { BsDash } from "react-icons/bs";
+import NotificationActions from "redux/notifications/actions";
+import moment from "moment";
+import { addAttendance } from "redux/timeClock/service";
 
-function ClockIn() {
-  const dataForComponentB = [
-    {
-      id: 1,
-      terminal: "Pro Shop",
-      shiftStart: "10:00 AM",
-      shiftEnd: "07:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 2,
-      terminal: "Food & Beverage",
-      shiftStart: "08:00 AM",
-      shiftEnd: "05:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 3,
-      terminal: "Pro Shop",
-      shiftStart: "10:00 AM",
-      shiftEnd: "07:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 4,
-      terminal: "Food & Beverage",
-      shiftStart: "08:00 AM",
-      shiftEnd: "05:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 5,
-      terminal: "Pro Shop",
-      shiftStart: "10:00 AM",
-      shiftEnd: "07:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 6,
-      terminal: "Food & Beverage",
-      shiftStart: "08:00 AM",
-      shiftEnd: "05:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 7,
-      terminal: "Pro Shop",
-      shiftStart: "10:00 AM",
-      shiftEnd: "07:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 8,
-      terminal: "Food & Beverage",
-      shiftStart: "08:00 AM",
-      shiftEnd: "05:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 9,
-      terminal: "Pro Shop",
-      shiftStart: "10:00 AM",
-      shiftEnd: "07:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 10,
-      terminal: "Food & Beverage",
-      shiftStart: "08:00 AM",
-      shiftEnd: "05:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 11,
-      terminal: "Pro Shop",
-      shiftStart: "10:00 AM",
-      shiftEnd: "07:00 PM",
-      totalTime: "09 Hours",
-    },
-    {
-      id: 12,
-      terminal: "Food & Beverage",
-      shiftStart: "08:00 AM",
-      shiftEnd: "05:00 PM",
-      totalTime: "09 Hours",
-    },
-  ];
+function ClockIn({ user }) {
+  const [checkIn, setCheckIn] = useState({
+    username: user.username,
+    userId: user.id,
+    shiftStart: false,
+    shiftEnd: false,
+    date: moment().format("YYYY-MM-DD"),
+    totalTime: "",
+    checkIn: "",
+    checkOut: "",
+    terminalId: 2,
+  });
 
-  const columnsdata = [
-    {
-      width: 200,
-      label: "Terminal",
-      dataKey: "terminal",
-    },
-    {
-      width: 120,
-      label: "Shift Start",
-      dataKey: "shiftStart",
-      numeric: false,
-    },
-    {
-      width: 120,
-      label: "Shift End",
-      dataKey: "shiftEnd",
-      numeric: false,
-    },
-    {
-      width: 120,
-      label: "Total Time",
-      dataKey: "totalTime",
-      numeric: false,
-    },
-  ];
-  const [clockInClicked, setClockInClicked] = useState(false);
-
-  const handleClockIn = (event) => {
-    event.preventDefault();
-    // handle form submission here
-    setClockInClicked(!clockInClicked); // Toggle clock in/out state
+  const handleClock = (param) => {
+    const time = moment().format("hh:mm:ss");
+    var payload = { ...checkIn };
+    if (param == "clock-in") {
+      payload.shiftStart = true;
+      payload.checkIn = time;
+    }
+    if (param == "clock-out") {
+      payload.shiftEnd = true;
+      payload.checkOut = time;
+    }
+    console.log(payload, "payload");
   };
 
   return (
@@ -133,41 +42,62 @@ function ClockIn() {
         </div>
         <div className="Change-Employee-clockin">
           <div className="Employee-name">
-            <h3>Willie Chieves</h3>
-          </div>
-          <div className="Chanhe-Employee-name">
-            <p>Change Employee</p>
+            <h3>
+              {user.firstName} {user.lastName}
+            </h3>
           </div>
         </div>
         <div className="password-clockin">
           <label htmlFor="password">Password</label>
           <br />
-          <input type="password" id="password" name="password" />
-          <ClockinDropdown />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            onChange={(e) =>
+              setCheckIn({
+                ...checkIn,
+                password: e.target.value,
+              })
+            }
+          />
+          <ClockinDropdown
+            user={user}
+            checkIn={checkIn}
+            setCheckIn={setCheckIn}
+          />
         </div>
         <div className="for-checkin-btn">
           <button
-            onClick={handleClockIn}
-            className={clockInClicked ? "clock-out" : "clock-in"}
+            onClick={() => handleClock("clock-in")}
+            className={"clock-in"}
           >
-            {clockInClicked ? "clock out" : "clock in"}
+            {"Clock-In"}
           </button>
-        </div>
-      </div>
-      {/* ClockIn-right */}
-      <div className="ClockIn-right">
-        <div className="ClockIn-left-top1">
-          <p>Show Time clock history</p>
-          <span>
-            <BsDash />
-          </span>
-        </div>
-        <div className="">
-          <ClockInTabel data={dataForComponentB} columns={columnsdata} />
+
+          <button
+            onClick={() => handleClock("clock-out")}
+            className={"clock-out"}
+          >
+            {"Clock Out"}
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-export default ClockIn;
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch,
+    ...bindActionCreators(NotificationActions, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClockIn);

@@ -27,7 +27,6 @@ const ChattngBoard = (props) => {
   }, [props.scrolldown]);
 
   const openSideList = () => {
-    // console.log("false");
     setMini(false);
   };
 

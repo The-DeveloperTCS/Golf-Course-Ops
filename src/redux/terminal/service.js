@@ -5,10 +5,15 @@ import {
   updateTerminalUrl,
   deleteTerminalUrl,
   getSpecificTerminalUrl,
+  getAllTerminals,
 } from "Constants";
 
 export const getTerminalsList = (pageNo, limit) => {
   return axiosClient.get(getTerminalListUrl(limit, pageNo));
+};
+
+export const getAllTerminalsList = () => {
+  return axiosClient.get(getAllTerminals);
 };
 
 export const createTerminals = (req) => {

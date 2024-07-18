@@ -13,6 +13,7 @@ import { getTeeSheetByDate } from "redux/teeSheet/service";
 function AdminTeeSheet() {
   const [teeBooking, setTeeBooking] = useState([]);
   const [rows, setRows] = useState([]);
+
   const columns = ["Timings", "Names"];
 
   useEffect(() => {
@@ -21,6 +22,7 @@ function AdminTeeSheet() {
   }, []);
 
   const getTeeSheetDataByDate = (selectedDate) => {
+    // setDate(selectedDate)
     const fromatDate = moment(selectedDate).format("YYYY-MM-DD");
     getTeeSheetByDate(fromatDate)
       .then((res) => {
@@ -60,7 +62,6 @@ function AdminTeeSheet() {
         timing: time,
       };
     });
-    console.log(timesSlotsData, "timesSlotsData");
     setRows(timesSlotsData);
   }, [teeBooking]);
 
@@ -132,6 +133,7 @@ function AdminTeeSheet() {
                 style={{ height: "100%", maxWidth: "100%" }}
               >
                 <DatePickerCalendar
+                  // date={date}
                   onDateChange={(e) => getTeeSheetDataByDate(e)}
                   locale={enGB}
                 />

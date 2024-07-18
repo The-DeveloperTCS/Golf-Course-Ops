@@ -85,7 +85,6 @@ const DataTable = (props) => {
     e.stopPropagation();
     history.push("/employee/" + eId);
   };
-  console.log(props.totalPages, "props totalPages");
   return (
     <ReactTableWrapper {...props}>
       <div className="table-container text-center overflow-auto">

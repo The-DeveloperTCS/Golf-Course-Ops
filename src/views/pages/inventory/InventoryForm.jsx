@@ -30,8 +30,13 @@ const InventoryForm = (props) => {
   }, [updateInventory]);
 
   const itemTypes = [
+    { value: "retail", label: "Retail" },
+    { value: "food&Bev", label: "Food & Bev" },
     { value: "giftCard", label: "Gift Card" },
-    { value: "Inventory", label: "Inventory" },
+    { value: "passes", label: "Passes" },
+    { value: "serviceFee", label: "Service Fee" },
+    { value: "itemKits", label: "Item Kits" },
+    { value: "punchCard", label: "Punch Card" },
   ];
 
   const foodTypes = [
@@ -46,7 +51,7 @@ const InventoryForm = (props) => {
   };
 
   const title = () => {
-    if (updatedInventory.id) {
+    if (updatedInventory?.id) {
       return `Update Inventory #${updatedInventory.id}`;
     }
 
@@ -57,7 +62,7 @@ const InventoryForm = (props) => {
   //     props.dispatch(NotificationActions.failure(message));
   //     setSaving(false);
   // };
-
+  console.log(updatedInventory, "updatedInventory");
   return (
     <div>
       <div className="row ma-0">
@@ -126,6 +131,7 @@ const InventoryForm = (props) => {
                     />
                   </div>
                 </div>
+                {/* {updatedInventory.itemType === "food&Bev" &&( */}
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Food Type</label>
                   <div className="col-sm-8">
@@ -148,6 +154,7 @@ const InventoryForm = (props) => {
                     />
                   </div>
                 </div>
+                {/* )} */}
                 {/* <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Department</label>
                   <div className="col-sm-8">

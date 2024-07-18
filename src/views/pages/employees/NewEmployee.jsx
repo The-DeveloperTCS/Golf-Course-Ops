@@ -94,7 +94,6 @@ const NewEmployee = (props) => {
               props.successWithTimeout(
                 `Employee #${res.data.employee.id} added successfully!`
               );
-
               props.history.push("/employee/list");
             })
             .catch((err) => {

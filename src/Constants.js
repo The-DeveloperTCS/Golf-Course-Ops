@@ -30,6 +30,7 @@ export const getCustomersListUrl = (limit, pageNo) =>
   BaseUrl + `customer/getAll/?page=${pageNo}&limit=${limit}`;
 export const getSpecificCustomerUrl = (id) =>
   BaseUrl + `customer/specificId/${id}`;
+export const getCustomersUrl = BaseUrl + "customer/getAll/?page=&limit=";
 
 //Gift Cards Endpoints
 export const createGiftCardUrl = BaseUrl + "gift-card/add";
@@ -74,6 +75,7 @@ export const getTerminalListUrl = (pageNo, limit) =>
   BaseUrl + `terminal/getAll?page=${pageNo}&limit=${limit}`;
 export const getSpecificTerminalUrl = (id) =>
   BaseUrl + `terminal/specificId/${id}`;
+export const getAllTerminals = BaseUrl + "allterminal/getAllTerminal";
 
 //Departments Endpoints
 export const createDepartmentUrl = BaseUrl + "department/add";
@@ -136,13 +138,22 @@ export const RolePermissionsUpdateUrl = (id) =>
 export const setPermissionByRole =
   BaseUrl + "permission-by-role/addWithMultipleObject";
 
-//Role Endpoints
+//Tee Sheet Endpoints
 export const getTeeSheetByDateUrl = (date) =>
   BaseUrl + `teesheet/getAllByDate?date=${date}&page=&limit=`;
-// export const createRoleUrl = BaseUrl + "role/add";
-// export const updateRoleUrl = (id) => BaseUrl + `role/update/${id}`;
-// export const deleteRoleUrl = (id) => BaseUrl + `role/delete/${id}`;
-// export const getSpecificRoleUrl = (id) => BaseUrl + `role/specificId/${id}`;
+export const addTeeSheetUrl = BaseUrl + "teesheet/add";
+export const updateTeeSheetUrl = (id) => BaseUrl + `teesheet/update/${id}`;
+export const deleteTeeSheetUrl = (id) => BaseUrl + `teesheet/delete/${id}`;
+export const getSpecificTeeSheetUrl = (id) =>
+  BaseUrl + `teesheet/specificId/${id}`;
+
+// Clock In
+export const addAttendanceUrl = BaseUrl + "time-sheet/add";
+// export const getTeeSheetByDateUrl = (date) =>
+//   BaseUrl + `teesheet/getAllByDate?date=${date}&page=&limit=`;
+// export const updateTeeSheetUrl = (id) => BaseUrl + `teesheet/update/${id}`;
+// export const deleteTeeSheetUrl = (id) => BaseUrl + `teesheet/delete/${id}`;
+// export const getSpecificTeeSheetUrl = (id) => BaseUrl + `teesheet/specificId/${id}`;
 
 export const RefreshTokenUrl = BaseUrl + "refresh-token";
 
