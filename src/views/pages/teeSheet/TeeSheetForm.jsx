@@ -6,7 +6,8 @@ import profileimg3 from "../../../assets/images/Vector.png";
 import profileimg2 from "../../../assets/images/Vector (2).png";
 import "../../style/NewTeeSheet.css";
 import moment from "moment";
-import Autocomplete from "@mui/lab/Autocomplete";
+// import Autocomplete from "@mui/lab/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { getCustomers } from "redux/customer/service";
 import {

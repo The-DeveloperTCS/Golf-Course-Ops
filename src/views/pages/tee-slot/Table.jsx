@@ -66,7 +66,7 @@ function StandardTable(
                       flexDirection: "colum",
                       width: 250,
                       height: 40,
-                      margin: "auto",
+                      // margin: "auto",
                       borderRadius: 5,
                       backgroundColor: index % 2 !== 0 ? "white" : "#E8EDFF",
                     }}

@@ -72,8 +72,12 @@
   outline: none;
   border: 1px solid #c4c4c4;
   color: #161819;
+  outline: none;
+  width: 100%;
 }
-
+.form-group input :focus-visible {
+  background-color: #f8ad15;
+}
 .form-group ::placeholder {
   color: #c4c4c4;
 }
@@ -167,6 +171,7 @@
   overflow: hidden;
   transition: width 0.3s ease-in-out;
 }
+
 /*  */
 .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
   display: -webkit-inline-box;
@@ -185,4 +190,26 @@
   width: 100;
   width: 100% !important;
   outline: none !important;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 8px 5px !important;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput::placeholder {
+  outline: none !important;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root:focus-visible {
+  outline: none !important;
+}
+
+.custom-date-picker-input {
+  border: 1px solid #cccccc !important; /* change the border color to #ccc */
+  border-radius: 4px;
+}
+
+.custom-date-picker-input:focus {
+  border-color: #08e46f !important; /* change the border color on focus to #aaa */
+  box-shadow: none;
 }
