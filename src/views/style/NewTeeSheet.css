@@ -40,14 +40,14 @@
   align-items: center;
   gap: 10px;
   position: relative;
-  margin-left: 40px;
+  margin-left: 42px;
 }
 .golfer-cart-area-main2 {
   display: flex;
   align-items: center;
   gap: 10px;
   position: relative;
-  margin-left: -21px;
+  margin-left: -40px;
 }
 .golfer-img img {
   position: absolute;
@@ -125,6 +125,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  margin-right: 10px;
 }
 .tee-raido-btn-main img {
   position: absolute;
@@ -143,7 +144,7 @@
 .seeting-input-row1 {
   display: flex;
   align-items: center;
-  padding-top: 5px;
+  padding-top: 10px;
   gap: 10px;
   width: 100%;
   justify-content: space-between;
@@ -155,7 +156,7 @@
 .seeting-input-row1 input {
   width: 300px;
   padding: 10px 10px;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 1px solid #c3c0cb;
   transition: border-color 0.25s;
   outline: none;
@@ -167,8 +168,9 @@
   color: #d0d1d2;
 }
 .seeting-input-row1 input:focus {
-  border-color: #4365cf;
-  box-shadow: 0 0 2px #4365cf;
+  /* border: none; */
+  /* border-color: #4365cf; */
+  /* box-shadow: 0 0 2px #4365cf; */
   /* optional: add a subtle box-shadow for a more pronounced focus effect */
 }
 .seeting-input-row1 p {
@@ -177,7 +179,7 @@
   margin-top: 11px;
   font-size: 14px;
 }
-.seeting-input-row1 button {
+/* .seeting-input-row1 button {
   background-color: #4365cf;
   border: 1px solid #4365cf;
   border-radius: 15px;
@@ -187,7 +189,7 @@
   text-transform: capitalize;
   width: 140px;
   font-family: "Poppins", sans-serif;
-}
+} */
 .tee-sheet-check-button {
   width: 100%;
   display: flex;
@@ -215,6 +217,7 @@
   border: 1px solid #d4d8da;
   font-family: "Poppins", sans-serif;
   outline: none;
+  margin-top: 50px;
 }
 .Tee-sheet-large-input textarea:focus {
   border-color: #4365cf;
@@ -369,4 +372,38 @@
     gap: 5px;
     /* Adjust the gap between items */
   }
+}
+
+label[data-shrink="false"]
+  + .MuiInputBase-formControl
+  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  border: none !important;
+}
+
+label[data-shrink="false"]
+  + .MuiInputBase-formControl
+  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input:focus {
+  border: 1px solid #000 !important; /* You can customize the border color and width as needed */
+}
+.seeting-input-row1 button {
+  background-color: transparent;
+  border: none;
+  border-radius: 15px;
+  padding: 0px 1px;
+  color: white;
+  text-align: center;
+  text-transform: capitalize;
+  width: 40px;
+  font-family: "Poppins", sans-serif;
+  color: #4365cf;
+}
+
+.css-1oz3td-MuiAutocomplete-root
+  .MuiOutlinedInput-root
+  .MuiAutocomplete-endAdornment {
+  right: 0px !important;
+}
+
+.css-1oz3td-MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 4px !important;
 }

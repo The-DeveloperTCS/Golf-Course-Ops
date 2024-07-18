@@ -197,7 +197,8 @@ const SidebarWrapper = styled.div`
         position: relative;
         z-index: 4;
         padding: 8px 0rem;
-        // border-bottom: 1px solid rgba(0,0,0,0.06);
+        display: flex;
+        align-items: baseline;        // border-bottom: 1px solid rgba(0,0,0,0.06);
         background-color: ${(props) =>
           props.themeSetting.sidebarTransParentValue !== "on" &&
           props.sidebarTheme.header &&
@@ -220,12 +221,12 @@ const SidebarWrapper = styled.div`
             margin-right: 12px;
             padding: 6px 0px 8px;
             img {
-              width: 80px;
-              height: 80px;
+              width: 60px;
+              height: 60px;
               border-radius: 50%;
               padding: 0;
-              margin-top: -16px;
-              margin-left: -10px;
+              margin-top: -5px;
+          }
             }
         }
         .logo-text {

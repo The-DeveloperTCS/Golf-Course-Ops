@@ -35,7 +35,7 @@ const LocationForm = (props) => {
       return `Update Location #${updatedLocation.id} - ${updatedLocation.name}`;
     }
 
-    return "New Location";
+    return "New Location123";
   };
 
   // const showError = (message) => {
@@ -56,7 +56,7 @@ const LocationForm = (props) => {
               <form>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Name</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -73,7 +73,7 @@ const LocationForm = (props) => {
                 </div>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Destination</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -91,7 +91,7 @@ const LocationForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Time</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <TimePicker
                         label="Controlled picker"
@@ -109,7 +109,7 @@ const LocationForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Weather</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -127,7 +127,7 @@ const LocationForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Status</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <div className="pretty p-default p-curve p-toggle">
                       <input
                         type="checkbox"

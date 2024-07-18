@@ -59,7 +59,7 @@ const GiftCardForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Gift Card Number
                   </label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <input
                       type="number"
                       className="form-control react-form-input"
@@ -76,7 +76,7 @@ const GiftCardForm = (props) => {
                 </div>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Value</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <input
                       type="number"
                       className="form-control react-form-input"
@@ -95,7 +95,7 @@ const GiftCardForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Customer Name
                   </label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <input
                       type="email"
                       className="form-control react-form-input"
@@ -113,7 +113,7 @@ const GiftCardForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Date Issued</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DesktopDatePicker
                         disabled={!useGiftCardPermission}
@@ -136,7 +136,7 @@ const GiftCardForm = (props) => {
                   <label className="col-sm-4 col-form-label">
                     Expiration Date
                   </label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DesktopDatePicker
                         disabled={!useGiftCardPermission}
@@ -193,7 +193,7 @@ const GiftCardForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">notes</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <input
                       type="text"
                       className="form-control react-form-input"
@@ -211,7 +211,7 @@ const GiftCardForm = (props) => {
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Status</label>
-                  <div className="col-sm-12">
+                  <div className="col-sm-8">
                     <div className="pretty p-default p-curve p-toggle">
                       <input
                         type="checkbox"

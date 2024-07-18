@@ -23,9 +23,9 @@
   cursor: pointer;
 }
 
-.border-table {
+/* .border-table {
   border: 10px solid red;
-}
+} */
 
 .table-container {
   overflow-x: auto;
