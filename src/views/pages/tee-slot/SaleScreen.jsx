@@ -90,12 +90,22 @@ const SalesScreen = ({ saleId }) => {
     }
   };
 
+  const [activeButton, setActiveButton] = useState("");
+
+  const handleSaleClick = () => {
+    setActiveButton("sale");
+  };
+
+  const handleReturnClick = () => {
+    setActiveButton("return");
+  };
+
   return (
     <div
       className="adminDashboardItems"
       style={{
         width: "100%",
-        padding: "20px",
+        // padding: "20px",
         backgroundColor: "#EEF0F6",
       }}
     >
@@ -105,8 +115,22 @@ const SalesScreen = ({ saleId }) => {
             <div className="item-sale-return-btn">
               <p>Items</p>
               <div className="for-sale-item-btn">
-                <button>sale</button>
-                <button>return</button>
+                <button
+                  style={{
+                    backgroundColor: activeButton === "sale" ? "#0cd374" : "",
+                  }}
+                  onClick={handleSaleClick}
+                >
+                  sale
+                </button>
+                <button
+                  style={{
+                    backgroundColor: activeButton === "return" ? "red" : "",
+                  }}
+                  onClick={handleReturnClick}
+                >
+                  return
+                </button>
               </div>
             </div>
             <div className="item-table">
@@ -118,7 +142,7 @@ const SalesScreen = ({ saleId }) => {
                       {/* <input type="checkbox" id="chk" /> */}
                       {/* <label htmlFor="chk"></label> */}
                     </th>
-                    <th>#Items</th>
+                    <th className="item-name">#Items</th>
                     <th>Price</th>
                     <th>QTY</th>
                     <th>DISC%</th>
@@ -127,13 +151,13 @@ const SalesScreen = ({ saleId }) => {
                 </thead>
                 <tbody>
                   {salesItems.map((item, index) => (
-                    <tr key={index}>
+                    <tr key={index} className="sale-screen-inputs">
                       <td className="th-cross-btn">
                         <MdCancel onClick={() => handleDelete(index)} />
                         {/* <input type="checkbox" id="chk" /> */}
                         {/* <label htmlFor="chk"></label> */}
                       </td>
-                      <td>{item.itemName}</td>
+                      <td className="item-name">{item.itemName}</td>
                       <td>
                         <input
                           type="number"
@@ -156,6 +180,7 @@ const SalesScreen = ({ saleId }) => {
                           name="qty"
                         />
                       </td>
+
                       <td>
                         {" "}
                         <input

@@ -132,8 +132,8 @@ const ReactTableWrapper = styled.div`
     background-color: #FFFFF;
     color: black !important;
     width: 45px;
-    height: 47px;
-    border: 1px solid #4365cf;
+    height: 49px;
+    border: 2px solid #4365cf;
   }
 
   .tabl-search {
