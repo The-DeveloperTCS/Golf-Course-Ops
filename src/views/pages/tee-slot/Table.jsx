@@ -19,7 +19,7 @@ function StandardTable(
       history.push("/tee-sheet/" + item.id);
     }
   };
-
+  // console.log(rows, 'rows')
   return (
     <Table responsive>
       <thead>
@@ -32,6 +32,7 @@ function StandardTable(
       </thead>
       <tbody>
         {rows.map((item, index) => {
+          console.log(item, "item");
           return (
             <tr
               key={index}
@@ -39,25 +40,10 @@ function StandardTable(
                 background: index % 2 !== 0 ? "white" : "#E8EDFF",
                 cursor: "pointer",
               }}
-              onClick={() =>
-                //  (isClickable ? handleClick(item) : null)
-                handleOnChangeLinks(item)
-              }
+              onClick={() => handleOnChangeLinks(item)}
             >
               <td>{index + 1}</td>
               <td key={index}>{item.timing}</td>
-              {/* <Link
-                to={{
-                  pathname: "/tee-sheet-new",
-                  state: {
-                    item,
-                  },
-                }}
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
-              > */}
               <td>
                 {item.customer_name !== undefined ? (
                   <div
@@ -66,9 +52,8 @@ function StandardTable(
                       flexDirection: "colum",
                       width: 250,
                       height: 40,
-                      // margin: "auto",
                       borderRadius: 5,
-                      backgroundColor: index % 2 !== 0 ? "white" : "#E8EDFF",
+                      backgroundColor: "#E8EDFF",
                     }}
                   >
                     <div
@@ -124,7 +109,6 @@ function StandardTable(
                   </div>
                 )}
               </td>
-              {/* </Link> */}
             </tr>
           );
         })}
