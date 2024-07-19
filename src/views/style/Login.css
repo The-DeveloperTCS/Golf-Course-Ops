@@ -213,3 +213,6 @@
   border-color: #08e46f !important; /* change the border color on focus to #aaa */
   box-shadow: none;
 }
+.form-group input:focus {
+  background-color: transparent;
+}
