@@ -185,7 +185,7 @@
   outline: none;
   font-size: 14px;
   font-family: "Poppins", sans-serif;
-  color: #d0d1d2;
+  /* color: #d0d1d2; */
 }
 
 .seeting-input-row1 input ::placeholder {
@@ -462,6 +462,7 @@ label[data-shrink="false"]
   width: 40px;
   font-family: "Poppins", sans-serif;
   color: #4365cf;
+  margin-right: 5px;
 }
 
 .css-1oz3td-MuiAutocomplete-root

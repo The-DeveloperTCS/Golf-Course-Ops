@@ -1,7 +1,7 @@
 .Dashboard-Items-main {
   display: flex;
   /* flex-direction: column; */
-  gap: 20px;
+  gap: 10px;
 }
 
 .Dashboard-Items-left {
@@ -547,6 +547,12 @@ button.close-btn {
   font-size: 20px;
   font-weight: 600;
 }
+.sale-screen-inputs input {
+  padding: 8px;
+  border-radius: 5px;
+  width: 60%;
+}
+
 @media (max-width: 480px) {
   .cash-btn button {
     width: 100%;

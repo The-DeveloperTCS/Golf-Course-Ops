@@ -443,12 +443,17 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             getOptionLabel={(option) =>
               option.firstName.toString() + " " + option.lastName.toString()
             }
-            renderInput={(params) => <TextField {...params} label="Name" />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                placeholder="Select Name" // Placeholder text
+              />
+            )}
           />
           <div className="for-edit-icons"></div>
           <input
             type="text"
-            placeholder="email"
+            placeholder="Email"
             onChange={(event) => {
               handleInputChange(0, event.target.value, "email");
             }}
@@ -495,7 +500,9 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             getOptionLabel={(option) =>
               option.firstName.toString() + " " + option.lastName.toString()
             }
-            renderInput={(params) => <TextField {...params} label="Name" />}
+            renderInput={(params) => (
+              <TextField {...params} placeholder="Select Name" />
+            )}
           />
           <div className="for-edit-icons"></div>
           <input
@@ -547,7 +554,9 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             getOptionLabel={(option) =>
               option.firstName.toString() + " " + option.lastName.toString()
             }
-            renderInput={(params) => <TextField {...params} label="Name" />}
+            renderInput={(params) => (
+              <TextField {...params} placeholder="Select Name" />
+            )}
           />
           <div className="for-edit-icons"></div>
           <input
@@ -599,7 +608,9 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             getOptionLabel={(option) =>
               option.firstName.toString() + " " + option.lastName.toString()
             }
-            renderInput={(params) => <TextField {...params} label="Name" />}
+            renderInput={(params) => (
+              <TextField {...params} placeholder="Select Name" />
+            )}
           />
           <div className="for-edit-icons"></div>
           <input
