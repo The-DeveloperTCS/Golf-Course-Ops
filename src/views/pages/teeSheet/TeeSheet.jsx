@@ -10,7 +10,7 @@ import Weather from "./Weather";
 import moment from "moment";
 import { getTeeSheetByDate } from "redux/teeSheet/service";
 
-function AdminTeeSheet() {
+function TeeSheet() {
   const [teeBooking, setTeeBooking] = useState([]);
   const [rows, setRows] = useState([]);
 
@@ -22,7 +22,6 @@ function AdminTeeSheet() {
   }, []);
 
   const getTeeSheetDataByDate = (selectedDate) => {
-    // setDate(selectedDate)
     const fromatDate = moment(selectedDate).format("YYYY-MM-DD");
     getTeeSheetByDate(fromatDate)
       .then((res) => {
@@ -175,4 +174,4 @@ const styles = {
   },
 };
 
-export default AdminTeeSheet;
+export default TeeSheet;
