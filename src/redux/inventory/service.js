@@ -5,6 +5,7 @@ import {
   deleteInventoryUrl,
   getInventorysListUrl,
   getSpecificInventoryUrl,
+  getTeeSheetInventorysListUrl,
 } from "Constants";
 
 export const getIntevoriesList = async (limit, pageNo) => {
@@ -30,4 +31,8 @@ export const getSpecificInventory = async (inventoryId) => {
 
 export const deleteInventorys = async (inventoryId) => {
   return axiosClient.delete(deleteInventoryUrl(inventoryId));
+};
+
+export const getTeeSheetInventorysList = async (inventoryId) => {
+  return axiosClient.get(getTeeSheetInventorysListUrl(inventoryId));
 };

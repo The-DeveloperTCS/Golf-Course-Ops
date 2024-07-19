@@ -5,20 +5,48 @@ import "../../style/ClockIn.css";
 import ClockinDropdown from "../clockInClockOut/ClockinDropdown";
 import NotificationActions from "redux/notifications/actions";
 import moment from "moment";
-import { addAttendance } from "redux/timeClock/service";
+import {
+  checkInnClock,
+  checkOutClock,
+  getLastCheckIn,
+} from "redux/timeClock/service";
 
-function ClockIn({ user }) {
+const { successWithTimeout, failureWithTimeout } = NotificationActions;
+
+function ClockIn({ user }, props) {
   const [checkIn, setCheckIn] = useState({
     username: user.username,
     userId: user.id,
-    shiftStart: false,
-    shiftEnd: false,
     date: moment().format("YYYY-MM-DD"),
-    totalTime: "",
-    checkIn: "",
-    checkOut: "",
-    terminalId: 2,
+    terminalId: null,
   });
+  const [date, setdate] = useState(moment().format("YYYY-MM-DD"));
+  const [timeIn, setTimeIn] = useState(false);
+
+  useEffect(() => {
+    fetchToCheckIn();
+  }, [user]);
+
+  const fetchToCheckIn = () => {
+    getLastCheckIn(date, user?.id)
+      .then((res) => {
+        const data = res.data?.timeSheet;
+        if (data) {
+          setTimeIn(true);
+          setCheckIn({
+            ...checkIn,
+            terminalId: data.terminalId,
+          });
+        } else {
+          setTimeIn(false);
+        }
+      })
+      .catch((err) => {
+        NotificationActions.failureWithTimeout(
+          "Failed to fetch, " + err.response.data.message
+        );
+      });
+  };
 
   const handleClock = (param) => {
     const time = moment().format("hh:mm:ss");
@@ -26,12 +54,31 @@ function ClockIn({ user }) {
     if (param == "clock-in") {
       payload.shiftStart = true;
       payload.checkIn = time;
+      checkInnClock(payload)
+        .then((res) => {
+          successWithTimeout("Clock In time!");
+          fetchToCheckIn();
+        })
+        .catch((err) => {
+          failureWithTimeout(
+            "Failed to clock In, " + err.response.data.message
+          );
+        });
     }
     if (param == "clock-out") {
       payload.shiftEnd = true;
       payload.checkOut = time;
+      checkOutClock(payload)
+        .then((res) => {
+          successWithTimeout("Clock Out time!");
+          fetchToCheckIn();
+        })
+        .catch((err) => {
+          failureWithTimeout(
+            "Failed to clock Out, " + err.response.data.message
+          );
+        });
     }
-    console.log(payload, "payload");
   };
 
   return (
@@ -68,19 +115,21 @@ function ClockIn({ user }) {
           />
         </div>
         <div className="for-checkin-btn">
-          <button
-            onClick={() => handleClock("clock-in")}
-            className={"clock-in"}
-          >
-            {"Clock-In"}
-          </button>
-
-          <button
-            onClick={() => handleClock("clock-out")}
-            className={"clock-out"}
-          >
-            {"Clock Out"}
-          </button>
+          {!timeIn ? (
+            <button
+              onClick={() => handleClock("clock-in")}
+              className={"clock-in"}
+            >
+              {"Clock-In"}
+            </button>
+          ) : (
+            <button
+              onClick={() => handleClock("clock-out")}
+              className={"clock-out"}
+            >
+              {"Clock Out"}
+            </button>
+          )}
         </div>
       </div>
     </div>
