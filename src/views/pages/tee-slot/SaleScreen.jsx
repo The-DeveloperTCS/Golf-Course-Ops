@@ -142,7 +142,7 @@ const SalesScreen = ({ saleId }) => {
                       {/* <input type="checkbox" id="chk" /> */}
                       {/* <label htmlFor="chk"></label> */}
                     </th>
-                    <th>#Items</th>
+                    <th className="item-name">#Items</th>
                     <th>Price</th>
                     <th>QTY</th>
                     <th>DISC%</th>
@@ -157,7 +157,7 @@ const SalesScreen = ({ saleId }) => {
                         {/* <input type="checkbox" id="chk" /> */}
                         {/* <label htmlFor="chk"></label> */}
                       </td>
-                      <td>{item.itemName}</td>
+                      <td className="item-name">{item.itemName}</td>
                       <td>
                         <input
                           type="number"
