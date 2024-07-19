@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../../style/AdminSidebar1.css";
 import { IoIosArrowForward } from "react-icons/io";
-import PaymentPopup from "../Popups/PaymentPopup";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import NotificationActions from "redux/notifications/actions";
 
-function AdminSidebar1() {
+function ItemsSidebar({ inventories }) {
   const [selectedItem, setSelectedItem] = useState(0); // Initialize with 0 for Page 1
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);
 
@@ -55,29 +57,30 @@ function AdminSidebar1() {
   //   setShowPaymentPopup(false);
   // };
 
+  // console.log(inventories, 'inventories')
   return (
     <div className="adminSidebar1">
       <div className="page-selector">
-        {items.map((item, index) => (
+        {inventories.map((item, index) => (
           <div key={index}>
             <button
               onClick={() => handleItemClick(index)}
               className={selectedItem === index ? "active" : ""}
             >
-              {item.label}
-              {item.subPages && (
+              {item.name}
+              {/* {item.subPages && (
                 <span className="sub-label-icon">
                   <IoIosArrowForward />
                 </span>
-              )}
+              )} */}
             </button>
-            {item.subPages && selectedItem === index && (
+            {/* {item.subPages && selectedItem === index && (
               <div className="sub-menu">
                 {item.subPages.map((subPage, subIndex) => (
                   <button key={subIndex}>{subPage.label}</button>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
         ))}
       </div>
@@ -87,4 +90,13 @@ function AdminSidebar1() {
   );
 }
 
-export default AdminSidebar1;
+const mapStateToProps = (state, ownProps) => {};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch,
+    ...bindActionCreators(NotificationActions, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsSidebar);

@@ -336,7 +336,7 @@ const dashboardRoutes = [
   },
 
   {
-    path: "/sale/:saleId(\\d+)",
+    path: "/sale/:saleId",
     component: SaleScreen,
     resource: "",
   },

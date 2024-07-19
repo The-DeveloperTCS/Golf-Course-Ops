@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../style/AdminDashboardItems.css";
 import { IoIosSearch } from "react-icons/io";
-import AdminSidebar1 from "./AdminSidebar1";
+import ItemsSidebar from "./ItemsSidebar";
 import { MdCancel } from "react-icons/md";
 import PaymentPopup from "../Popups/PaymentPopup";
 import CreditPopup from "../Popups/CreditPopup";
 import CardPaymentPopup from "../Popups/CardPaymentPopup"; // Import CardPaymentPopup
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import NotificationActions from "redux/notifications/actions";
+import { salesInfoGetById } from "redux/sale/service";
+import { getTeeSheetInventorysList } from "redux/inventory/service";
 
 const dummyData = [
   { name: "Green Fees", price: "$34", qty: 2, discount: "-" },
@@ -13,17 +18,45 @@ const dummyData = [
   { name: "tees / h2", price: "$34", qty: 2, discount: "-" },
 ];
 
-const AdminDashboardItems = () => {
+const SalesScreen = ({ saleId }) => {
+  const [salesData, setSalesData] = useState();
+  const [salesItems, setSalesItems] = useState([]);
+  const [inventories, setInventories] = useState([]);
+
   const [data, setData] = useState(dummyData);
   const [buttonColors, setButtonColors] = useState([
     "rgb(67, 101, 207)",
     "rgb(67, 101, 207)",
     "rgb(67, 101, 207)",
   ]);
-
   const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
   const [isCreditPopupOpen, setCreditPopupOpen] = useState(false);
   const [isCardPaymentPopupOpen, setCardPaymentPopupOpen] = useState(false); // State for CardPaymentPopup
+
+  // console.log(salesData, 'salesData')
+  // console.log(salesItems, 'salesItems')
+  // console.log(inventories, 'inventories in sales')
+
+  useEffect(() => {
+    salesInfoGetById(saleId)
+      .then((res) => {
+        const data = res.data.sale;
+        setSalesData(data);
+        setSalesItems(data.item_list);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+
+    getTeeSheetInventorysList("retail")
+      .then((res) => {
+        const data = res.data.inventories;
+        setInventories(data);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  }, [saleId]);
 
   const togglePaymentPopup = () => {
     setPaymentPopupOpen(!isPaymentPopupOpen);
@@ -82,44 +115,81 @@ const AdminDashboardItems = () => {
                   <tr>
                     <th className="th-cross-btn">
                       <MdCancel onClick={() => handleDelete(0)} />
-                      <input type="checkbox" id="chk" />
-                      <label htmlFor="chk"></label>
+                      {/* <input type="checkbox" id="chk" /> */}
+                      {/* <label htmlFor="chk"></label> */}
                     </th>
                     <th>#Items</th>
                     <th>Price</th>
                     <th>QTY</th>
                     <th>DISC%</th>
+                    <th>Total</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item, index) => (
+                  {salesItems.map((item, index) => (
                     <tr key={index}>
                       <td className="th-cross-btn">
                         <MdCancel onClick={() => handleDelete(index)} />
-                        <input type="checkbox" id="chk" />
-                        <label htmlFor="chk"></label>
+                        {/* <input type="checkbox" id="chk" /> */}
+                        {/* <label htmlFor="chk"></label> */}
                       </td>
-                      <td>{item.name}</td>
-                      <td>{item.price}</td>
-                      <td>{item.qty}</td>
-                      <td>{item.discount}</td>
+                      <td>{item.itemName}</td>
+                      <td>
+                        <input
+                          type="number"
+                          placeholder="Price"
+                          onChange={(event) => {
+                            // handleInputChange(event.target.value, "price" , index);
+                          }}
+                          value={item.price}
+                          name="price"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          placeholder="Qty"
+                          onChange={(event) => {
+                            // handleInputChange(event.target.value, "qty" , index);
+                          }}
+                          value={item.quantity}
+                          name="qty"
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <input
+                          type="number"
+                          placeholder="disc%"
+                          onChange={(event) => {
+                            // handleInputChange(event.target.value, "disc" , index);
+                          }}
+                          value={item.quantity}
+                          name="disc"
+                        />
+                      </td>
+                      <td>{item.total}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
               <div className="item-total">
-                <p>03 items</p>
+                <p>{salesItems.length} items</p>
                 <div className="sub-total-item">
                   <span>sub total</span>
-                  <h1>$56.89</h1>
+                  <h1>${salesData?.subTotal}</h1>
                 </div>
               </div>
             </div>
           </div>
           <div className="admin-down-btns">
-            <div className="for-search">
+            {/* <div className="for-search">
               <input type="text" placeholder="Search customers" />
               <p>Add customers to sale</p>
+            </div> */}
+            <div className="cash-in-nbr">
+              <h4>Total Due:</h4>
+              <h3>${salesData?.total}</h3>
             </div>
             <div className="cash-btn">
               <button
@@ -141,14 +211,10 @@ const AdminDashboardItems = () => {
                 Credit Card
               </button>
             </div>
-            <div className="cash-in-nbr">
-              <h4>Total Due:</h4>
-              <h3>$99.6</h3>
-            </div>
           </div>
         </div>
         <div className="Dashboard-Items-right">
-          <AdminSidebar1 />
+          <ItemsSidebar inventories={inventories} />
         </div>
       </div>
 
@@ -179,4 +245,18 @@ const AdminDashboardItems = () => {
   );
 };
 
-export default AdminDashboardItems;
+const mapStateToProps = (state, ownProps) => {
+  const saleId = ownProps.match.params.saleId;
+  return {
+    saleId: saleId,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch,
+    ...bindActionCreators(NotificationActions, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SalesScreen);
