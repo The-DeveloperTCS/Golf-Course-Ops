@@ -8,4 +8,7 @@ app.get("/*", function(req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
+app.on('warning', (warning) => {
+  console.log(warning.stack);
+});
 app.listen(8080);

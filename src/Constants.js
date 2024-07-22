@@ -79,6 +79,16 @@ export const getSpecificTerminalUrl = (id) =>
   BaseUrl + `terminal/specificId/${id}`;
 export const getAllTerminals = BaseUrl + "allterminal/getAllTerminal";
 
+//Season Endpoints
+export const createSeasonUrl = BaseUrl + "season/add";
+export const updateSeasonUrl = (id) => BaseUrl + `season/update/${id}`;
+export const deleteSeasonUrl = (id) => BaseUrl + `season/delete/${id}`;
+export const getSeasonListUrl = (pageNo, limit) =>
+  BaseUrl + `season/getAll?page=${pageNo}&limit=${limit}`;
+export const getSpecificSeasonUrl = (id) => BaseUrl + `season/specificId/${id}`;
+export const getDateRangeSeasons = (date) =>
+  BaseUrl + `season/getByDate?date=${date}`;
+
 //Departments Endpoints
 export const createDepartmentUrl = BaseUrl + "department/add";
 export const updateDepartmentUrl = (id) => BaseUrl + `department/update/${id}`;

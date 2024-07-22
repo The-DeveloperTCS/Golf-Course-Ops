@@ -1,11 +1,13 @@
-export const sweetAlertCode = `
-import SweetAlert from 'react-bootstrap-sweetalert'
+// import SweetAlert from 'react-bootstrap-sweetalert'
 
-<SweetAlert 
-    title="Here's a message!" 
-    onConfirm={this.toggleBasicAlert} 
-    show={basicAlert}
-/>`;
+// <SweetAlert
+//     title="Here's a message!"
+//     onConfirm={this.toggleBasicAlert}
+//     show={basicAlert}
+// />
+export const sweetAlertCode = `
+
+`;
 
 export const buttonApiCode = `
 // Import Custom Button Component

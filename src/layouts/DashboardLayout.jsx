@@ -10,7 +10,7 @@ import themeActions from "redux/themeChanger/actions.js";
 import settingactions from "redux/themeSettings/actions";
 import AppLocale from "languageProvider";
 import CustomToast from "components/notifications/CustomToast";
-import SweetAlert from "react-bootstrap-sweetalert";
+// import SweetAlert from "react-bootstrap-sweetalert";
 
 import { isTest } from "Constants";
 
@@ -233,7 +233,7 @@ const DashboardLayout = (props) => {
           {/* Route Layout Start*/}
 
           {/* Error Dialog */}
-          {props.notifications.error && (
+          {/* {props.notifications.error && (
             <SweetAlert
               title={props.notifications.error.title}
               onConfirm={() => props.clearError()}
@@ -241,7 +241,7 @@ const DashboardLayout = (props) => {
             >
               {props.notifications.error.message}
             </SweetAlert>
-          )}
+          )} */}
 
           <div
             className="route-height flex-1 overflow-auto"

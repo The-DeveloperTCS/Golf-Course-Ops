@@ -11,6 +11,9 @@ import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
 import { salesInfoGetById } from "redux/sale/service";
 import { getTeeSheetInventorysList } from "redux/inventory/service";
+import { getDateRangeSeasonsList } from "redux/season/service";
+import moment from "moment";
+import Select from "react-select";
 
 const dummyData = [
   { name: "Green Fees", price: "$34", qty: 2, discount: "-" },
@@ -22,6 +25,8 @@ const SalesScreen = ({ saleId }) => {
   const [salesData, setSalesData] = useState();
   const [salesItems, setSalesItems] = useState([]);
   const [inventories, setInventories] = useState([]);
+  const [seasons, setSeasons] = useState([]);
+  const [seasonList, setSeasonList] = useState([]);
 
   const [data, setData] = useState(dummyData);
   const [buttonColors, setButtonColors] = useState([
@@ -33,11 +38,18 @@ const SalesScreen = ({ saleId }) => {
   const [isCreditPopupOpen, setCreditPopupOpen] = useState(false);
   const [isCardPaymentPopupOpen, setCardPaymentPopupOpen] = useState(false); // State for CardPaymentPopup
 
-  // console.log(salesData, 'salesData')
-  // console.log(salesItems, 'salesItems')
-  // console.log(inventories, 'inventories in sales')
-
   useEffect(() => {
+    const date = moment().format("YYYY-MM-DD");
+
+    getDateRangeSeasonsList(date)
+      .then((res) => {
+        const data = res.data.seasons;
+        setSeasons(data);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+
     salesInfoGetById(saleId)
       .then((res) => {
         const data = res.data.sale;
@@ -57,6 +69,8 @@ const SalesScreen = ({ saleId }) => {
         console.log(err, "err");
       });
   }, [saleId]);
+
+  console.log(seasons, "seasons");
 
   const togglePaymentPopup = () => {
     setPaymentPopupOpen(!isPaymentPopupOpen);
@@ -100,6 +114,7 @@ const SalesScreen = ({ saleId }) => {
     setActiveButton("return");
   };
 
+  console.log(salesItems, "salesItems");
   return (
     <div
       className="adminDashboardItems"
@@ -157,7 +172,22 @@ const SalesScreen = ({ saleId }) => {
                         {/* <input type="checkbox" id="chk" /> */}
                         {/* <label htmlFor="chk"></label> */}
                       </td>
-                      <td className="item-name">{item.itemName}</td>
+                      <td className="item-name">
+                        {/* {item.itemName} */}
+                        <Select
+                          // value={terminals?.find((c) => c.value === checkIn.terminalId)}
+                          // disabled={!useEmployeePermission}
+                          getOptionLabel={(option) => option.name}
+                          getOptionValue={(option) => option.id}
+                          onChange={(e) => {
+                            // setCheckIn({
+                            //   ...checkIn,
+                            //   terminalId: e.value,
+                            // });
+                          }}
+                          options={seasons}
+                        />
+                      </td>
                       <td>
                         <input
                           type="number"

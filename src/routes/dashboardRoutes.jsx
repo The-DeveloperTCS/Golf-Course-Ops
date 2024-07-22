@@ -31,6 +31,10 @@ import TerminalList from "views/pages/terminal/TerminalList";
 import NewTerminal from "views/pages/terminal/NewTerminal";
 import SingleTerminal from "views/pages/terminal/SingleTerminal";
 
+import SeasonList from "views/pages/season/SeasonList";
+import NewSeason from "views/pages/season/NewSeason";
+import SingleSeason from "views/pages/season/SingleSeason";
+
 import DepartmentList from "views/pages/department/DepartmentList";
 import NewDepartment from "views/pages/department/NewDepartment";
 import SingleDepartment from "views/pages/department/SingleDepartment";
@@ -211,6 +215,21 @@ const dashboardRoutes = [
     path: "/terminal/:terminalId(\\d+)",
     component: SingleTerminal,
     resource: "TERMINAL",
+  },
+  {
+    path: "/season/list",
+    component: SeasonList,
+    resource: "",
+  },
+  {
+    path: "/season/new",
+    component: NewSeason,
+    resource: "",
+  },
+  {
+    path: "/season/:seasonId(\\d+)",
+    component: SingleSeason,
+    resource: "",
   },
   {
     path: "/department/list",
