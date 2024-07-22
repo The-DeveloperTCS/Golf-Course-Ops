@@ -334,6 +334,20 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             <button
               className="golferbtn1"
               style={{
+                backgroundColor: teeSheet.cart_count === 0 ? "#4365CF" : "",
+                color: teeSheet.cart_count === 0 ? "white" : "#161819",
+              }}
+              onClick={() =>
+                setTeeSheet({
+                  ...teeSheet,
+                  cart_count: 0,
+                })
+              }
+            >
+              0
+            </button>
+            <button
+              style={{
                 backgroundColor: teeSheet.cart_count === 1 ? "#4365CF" : "",
                 color: teeSheet.cart_count === 1 ? "white" : "#161819",
               }}

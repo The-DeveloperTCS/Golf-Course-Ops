@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../../style/NewTeeSheet.css";
@@ -6,12 +6,12 @@ import moment from "moment";
 import { addTeeSheet } from "redux/teeSheet/service";
 import TeeSheetForm from "./TeeSheetForm";
 import NotificationActions from "redux/notifications/actions";
+import { getDateRangeSeasonsList } from "redux/season/service";
 
 function NewTeeSheet(props) {
   const { timing } = props.location.state;
   const date = moment(timing, "HH:mm").toDate();
-
-  const defaultState = {
+  const [teeSheet, setTeeSheet] = useState({
     date: moment().format("YYYY-MM-DD"),
     group_name: "tee-time",
     groupId: 3,
@@ -21,7 +21,7 @@ function NewTeeSheet(props) {
       .format("HH:mm:ss"),
     holes: 9,
     persons: 1,
-    cart_count: 1,
+    cart_count: 0,
     customer_name: "",
     customerId: null,
     pay_mode: "reserved",
@@ -32,25 +32,23 @@ function NewTeeSheet(props) {
     saleTax: 0,
     subTotal: 0,
     total: 216,
-    item_list: [
-      {
-        item_id: 12,
-        itemName: "Green Fee",
-        quantity: 2,
-        price: 60,
-        discount: 5,
-        total: 115.83,
-      },
-      {
-        item_id: 13,
-        itemName: "Ball Dozen",
-        quantity: 2,
-        total: 86.4,
-        price: 48,
-        discount: 10,
-      },
-    ],
-  };
+    item_list: [],
+  });
+
+  useEffect(() => {
+    const date = moment().format("YYYY-MM-DD");
+    getDateRangeSeasonsList(date)
+      .then((res) => {
+        const data = res.data.seasons;
+        setTeeSheet({
+          ...teeSheet,
+          item_list: data,
+        });
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  }, []);
 
   const onSave = async (updatedTeeSheet) => {
     return addTeeSheet(updatedTeeSheet)
@@ -66,7 +64,7 @@ function NewTeeSheet(props) {
   };
 
   return (
-    <TeeSheetForm updateTeeSheet={defaultState} onSave={onSave}></TeeSheetForm>
+    <TeeSheetForm updateTeeSheet={teeSheet} onSave={onSave}></TeeSheetForm>
   );
 }
 
