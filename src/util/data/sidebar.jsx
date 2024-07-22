@@ -70,6 +70,12 @@ export const sidebarData = [
     resource: "TERMINAL",
   },
   {
+    name: "sidebar.season",
+    routepath: "/season/list",
+    iconClass: "fa fa-terminal",
+    resource: "",
+  },
+  {
     name: "sidebar.department",
     routepath: "/department/list",
     iconClass: "fa fa-address-book",
@@ -105,6 +111,18 @@ export const sidebarData = [
     iconClass: "fa fa-check",
     resource: "PERMISSION",
   },
+  {
+    name: "ClockIn",
+    routepath: "/clockIn",
+    iconClass: "fas fa-chalkboard",
+    resource: "CLOCKIN",
+  },
+  {
+    name: "sidebar.access_management",
+    routepath: "/access-management",
+    iconClass: "fas fa-lock",
+    resource: "ACCESS_MANAGEMENT",
+  },
 
   // {
   //   name: "Tee Sheet",
@@ -132,12 +150,7 @@ export const sidebarData = [
   //   // iconClass: "fas fa-chalkboard",
   //   resource: "",
   // },
-  {
-    name: "ClockIn",
-    routepath: "/clockIn",
-    iconClass: "fas fa-chalkboard",
-    resource: "CLOCKIN",
-  },
+
   // {
   //   name: "Help & Support",
   //   routepath: "/helpSupport",
@@ -238,12 +251,6 @@ export const sidebarData = [
   //     },
   //   ],
   // },
-  {
-    name: "sidebar.access_management",
-    routepath: "/access-management",
-    iconClass: "fas fa-lock",
-    resource: "ACCESS_MANAGEMENT",
-  },
 ];
 
 export const HorizontalSidebarData = [

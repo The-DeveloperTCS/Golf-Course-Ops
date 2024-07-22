@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Badge from "reactstrap/lib/Badge";
 import Button from "components/button/Button";
-import SweetAlert from "react-bootstrap-sweetalert";
+// import SweetAlert from "react-bootstrap-sweetalert";
 
 const paymentStatuses = {
   0: { name: "Pending", displayClass: "c-secondary" },
@@ -40,7 +40,7 @@ export const PaymentStatusButton = ({ order, name, onUpdate }) => {
         {name}
       </Button>
 
-      <SweetAlert
+      {/* <SweetAlert
         input
         custom
         showCancel
@@ -59,7 +59,7 @@ export const PaymentStatusButton = ({ order, name, onUpdate }) => {
         onCancel={() => {
           setShowConfirm(!showConfirm);
         }}
-      ></SweetAlert>
+      ></SweetAlert> */}
     </React.Fragment>
   );
 };

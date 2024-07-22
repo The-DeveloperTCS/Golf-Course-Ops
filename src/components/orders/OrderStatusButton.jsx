@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "components/button/Button";
-import SweetAlert from "react-bootstrap-sweetalert";
+// import SweetAlert from "react-bootstrap-sweetalert";
 
 import { toString, toDisplayClass, toActionString } from "./OrderStatusMap";
 
@@ -33,7 +33,7 @@ const OrderStatusButton = ({
         {toActionString(id)}
       </Button>
 
-      <SweetAlert
+      {/* <SweetAlert
         custom
         showCancel
         show={showConfirm}
@@ -53,7 +53,7 @@ const OrderStatusButton = ({
         }}
       >
         You want to mark order as <b>{toString(id)}</b>
-      </SweetAlert>
+      </SweetAlert> */}
     </React.Fragment>
   );
 };

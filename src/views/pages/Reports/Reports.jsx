@@ -463,10 +463,10 @@ function Reports() {
               className={activeItem === index ? "active" : ""}
               onClick={() => handleClick(index)}
             >
-              <a href="javascript:void(0);">
-                <i className={item.icon}></i>
-                {item.label}
-              </a>
+              {/* <a href="javascript:void(0);"> */}
+              <i className={item.icon}></i>
+              {item.label}
+              {/* </a> */}
             </li>
           ))}
         </ul>

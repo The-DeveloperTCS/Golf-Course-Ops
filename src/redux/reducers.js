@@ -21,6 +21,7 @@ import group from "./group/reducer";
 import categories from "./category/reducer";
 import role from "./role/reducer";
 import permission from "./permission/reducer";
+import seasons from "./season/reducer";
 
 const createReducer = () => rootReducer;
 
@@ -34,6 +35,7 @@ const appReducer = combineReducers({
   cart,
   supplier,
   terminal,
+  seasons,
   department,
   group,
   categories,
