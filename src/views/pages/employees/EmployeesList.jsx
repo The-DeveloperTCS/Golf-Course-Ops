@@ -110,6 +110,11 @@ const EmployeesList = (props) => {
       enableFilters: false,
     },
     {
+      title: "Role",
+      id: "role",
+      enableFilters: false,
+    },
+    {
       title: "Status",
       id: "status",
       enableFilters: true,

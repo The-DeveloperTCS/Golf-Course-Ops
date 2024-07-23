@@ -139,6 +139,7 @@ const DataTable = (props) => {
                   <td>{row.emailAddress}</td>
                   <td>{row.username}</td>
                   <td>{row.defaultTerminal}</td>
+                  <td>{row.role}</td>
                   <td>
                     {row.status ? (
                       <Badge className="c-success p-2">Active</Badge>

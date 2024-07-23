@@ -5,10 +5,15 @@ import {
   deleteRoleUrl,
   getRoleListUrl,
   getSpecificRoleUrl,
+  getActiveRoleUrl,
 } from "Constants";
 
 export const getRolesList = (limit, pageNo) => {
   return axiosClient.get(getRoleListUrl(limit, pageNo));
+};
+
+export const getActiveRolesList = () => {
+  return axiosClient.get(getActiveRoleUrl);
 };
 
 export const createRoles = (req) => {
