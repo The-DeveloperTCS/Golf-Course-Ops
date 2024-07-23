@@ -55,9 +55,20 @@ const Pagination = (props) => {
             changePage(activePage - 1);
           }}
           disabled={activePage === 1}
+          style={{
+            backgroundColor: "#3E5DBF",
+            color: "white",
+            padding: "13px 15px",
+            borderTopLeftRadius: "10px",
+            borderBottomLeftRadius: "10px",
+          }}
         >
           {/* {props.previousText} */}
-          <MdOutlineNavigateBefore />
+          <MdOutlineNavigateBefore
+            style={{
+              color: "white",
+            }}
+          />
         </PageButtonComponent>
       </div>
       <div className="Table__visiblePagesWrapper">

@@ -98,7 +98,8 @@ const ReactTableWrapper = styled.div`
     cursor: pointer;
     color: #757575 !important;
     margin: 0 0px;
-    border-right: 1px solid #4365cf;
+    border: 2px solid #4365cf;
+    border-right: none;
   }
 
   .Table__pageButton1:disabled {
@@ -108,6 +109,7 @@ const ReactTableWrapper = styled.div`
     background-color: #4365cf;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    border: 2px solid #4365cf !important;
   }
   .Table__pageButton:disabled {
     cursor: not-allowed;
@@ -117,7 +119,23 @@ const ReactTableWrapper = styled.div`
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
-
+  // .Table__pageButton:disabled {
+  //   cursor: not-allowed;
+  //   color: white !important;
+  //   padding: 14px 15px;
+  //   background-color: #4365cf;
+  //   border-top-left-radius: 10px;
+  //   border-bottom-left-radius: 10px;
+  // }
+  .Table__pageButton1 {
+    cursor: not-allowed;
+    color: white !important;
+    padding: 11px 15px;
+    background-color: #4365cf;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid #4365cf;
+  }
   .Table__pageButton1:disabled {
     cursor: not-allowed;
     color: white !important;
@@ -131,9 +149,9 @@ const ReactTableWrapper = styled.div`
     font-weight: bold;
     background-color: #FFFFF;
     color: black !important;
-    width: 45px;
-    height: 49px;
-    border: 2px solid #4365cf;
+    // width: 45px;
+    // height: 50px;
+    // border: 2px solid #4365cf;
   }
 
   .tabl-search {

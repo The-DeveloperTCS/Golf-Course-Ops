@@ -402,7 +402,7 @@ const EmployeeForm = (props) => {
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DesktopDatePicker
                         disabled={!useEmployeePermission}
-                        // style={{ width: "50%" }}
+                        style={{ width: "100%" }}
                         // label="Received Date"
                         // inputFormat="dd/MM/yyyy"
                         value={new Date(updatedEmployee?.dateOfBirth)}

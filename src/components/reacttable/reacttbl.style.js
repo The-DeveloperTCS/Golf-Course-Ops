@@ -83,6 +83,8 @@ const ReactTableWrapper = styled.div`
     cursor: pointer;
     // color: #757575 !important;
     margin: 0 0px;
+    width: 45px;
+    height: 51px;
   }
 
   .Table__pageButton:disabled {
