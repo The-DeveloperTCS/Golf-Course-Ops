@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import employeeActions from "redux/employee/action";
 import { bindActionCreators } from "redux";
 import { getSpecificEmployee } from "redux/employee/service";
-import { getRolesList } from "redux/role/service";
-import { getTerminalsList } from "redux/terminal/service";
+import { getActiveRolesList } from "redux/role/service";
+import { getAllTerminalsList } from "redux/terminal/service";
 import NotificationActions from "redux/notifications/actions";
 import Select from "react-select";
 import { pascalCase } from "pascal-case";
@@ -14,7 +14,6 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { TextField } from "@mui/material";
 import cities from "../../data/cities.json";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
-import moment from "moment";
 
 const EmployeeForm = (props) => {
   const { employeeId, updateEmployee } = props;
@@ -31,7 +30,7 @@ const EmployeeForm = (props) => {
         setUpdateEmployee(res.data);
       });
     }
-    getRolesList("", "")
+    getActiveRolesList()
       .then((res) => {
         const roleData = res.data.roles.map((data) => {
           return {
@@ -45,7 +44,7 @@ const EmployeeForm = (props) => {
         console.log(err, "err in employee role screen");
       });
 
-    getTerminalsList("", "")
+    getAllTerminalsList()
       .then((res) => {
         const terminalData = res.data.terminals.map((data) => {
           return {
