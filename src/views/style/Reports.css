@@ -314,7 +314,7 @@ select {
   color: #959ba1;
   font-size: 14px;
 }
-
+/* 
 .form-group input {
   padding: 10px;
   border: 1px solid #ccc;
@@ -322,7 +322,7 @@ select {
   width: 350px;
   outline: none;
   border-radius: 15px;
-}
+} */
 
 .popup-click-btn {
   display: flex;
@@ -361,4 +361,11 @@ select {
   display: flex;
   justify-content: flex-end;
   margin-top: 100px;
+}
+
+.react-form-input:focus,
+.form-control:focus,
+.form-group input:focus {
+  background-color: #fff !important;
+  box-shadow: none; /* Optional: remove box-shadow on focus */
 }
