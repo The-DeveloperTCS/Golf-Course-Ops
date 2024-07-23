@@ -26,10 +26,12 @@ const EmployeesList = (props) => {
   const useEmployeePermission = useRolePermissions("EMPLOYEE");
 
   const handleChangePage = (event) => {
+    startLoader(true);
     fetchEmployeesPagination(pageLimit, event);
   };
 
   const handleChangeRowsPerPage = (event) => {
+    startLoader(true);
     fetchEmployeesPagination(event.target.value, pageNo);
   };
 
@@ -40,7 +42,7 @@ const EmployeesList = (props) => {
 
   const fetchEmployeesByValues = () => {
     setTimeout(() => {
-      fetchEmployeesPagination(25, 1);
+      fetchEmployeesPagination(3, 1);
     }, 2000);
   };
 

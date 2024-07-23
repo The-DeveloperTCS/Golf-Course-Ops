@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import { connect, useDispatch } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import AuthActions from "redux/auth/actions";
@@ -10,27 +10,28 @@ import { bindActionCreators } from "redux";
 import login from "../../../assets/images/login-main-img.png";
 import loginpng from "../../../assets/images/downloadlogin.png";
 import "../../style/Login.css";
+import Loader from "components/loader/Loader";
+import loaderActions from "redux/loader/actions";
+const { startLoader } = loaderActions;
+const { loginRequest } = AuthActions;
+
 const Login = (props) => {
-  const [loading, setLoading] = useState(false);
+  const { loader, startLoader, loginRequest } = props;
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     let { values, handleSubmit } = props;
-
-    setLoading(true);
     try {
+      startLoader(true);
       if (values.username !== "" && values.password !== "") {
-        await props.loginRequest(values.username, values.password); // Pass username and password
+        loginRequest(values.username, values.password); // Pass username and password
       }
     } catch (e) {
       console.log(e);
-      props.dispatch(
-        notificationActions.failure("Failed to login, " + e.message)
-      );
+      dispatch(notificationActions.failure("Failed to login, " + e.message));
     } finally {
-      setLoading(false);
     }
-
     handleSubmit();
   };
 
@@ -56,7 +57,9 @@ const Login = (props) => {
     }
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <div className="login-main-div">
       <form className="login-form" onSubmit={handleLogin}>
         <div className="login-title">
@@ -95,7 +98,7 @@ const Login = (props) => {
           type="submit"
           className="login-btn"
           dataStyle="expand-left"
-          loading={loading}
+          // loading={loading}
         >
           Sign In
         </Button>
@@ -111,6 +114,12 @@ const Login = (props) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    loader: state.loader.loader,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch,
@@ -121,5 +130,8 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   withRouter,
   enhancer,
-  connect(null, mapDispatchToProps)
+  connect(mapStateToProps, {
+    startLoader,
+    loginRequest,
+  })
 )(Login);

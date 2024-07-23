@@ -1,6 +1,7 @@
 import { login, permissions } from "./service";
 import { history } from "../store";
 import notificationActions from "redux/notifications/actions";
+import loaderAction from "../loader/actions";
 
 const authActions = {
   LOGIN_REQUEST: "auth/login-request",
@@ -17,16 +18,25 @@ const authActions = {
     };
   },
 
+  loaderOff: () => {
+    return {
+      type: loaderAction.END,
+      loader: false,
+    };
+  },
+
   loginRequest: (username, password) => {
     return (dispatch) => {
       login(username, password)
         .then((res) => {
-          console.log(res, "response");
+          dispatch(authActions.loaderOff());
+
           dispatch(authActions.login(res));
           history.push("/Intro");
         })
         .catch((err) => {
           console.log(err, "errrrr");
+          dispatch(authActions.loaderOff());
           dispatch({
             type: authActions.LOGIN_FAILURE,
             message: err.response.data.message,
