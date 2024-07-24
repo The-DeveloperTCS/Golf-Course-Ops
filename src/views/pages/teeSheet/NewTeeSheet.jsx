@@ -33,6 +33,8 @@ function NewTeeSheet(props) {
     subTotal: 0,
     total: 216,
     item_list: [],
+    sale: true,
+    return: false,
   });
 
   useEffect(() => {
@@ -40,9 +42,26 @@ function NewTeeSheet(props) {
     getDateRangeSeasonsList(date)
       .then((res) => {
         const data = res.data.seasons;
+        const item_list = [];
+
+        for (var i in data) {
+          var obj = {
+            itemId: null,
+            itemName: "",
+
+            price: 0,
+            quantity: 1,
+            discount: 0,
+            total: 0,
+          };
+          obj.seasonId = data[i].id;
+          obj.seasonName = data[i].name;
+          item_list.push(obj);
+        }
+        console.log(item_list, "item list");
         setTeeSheet({
           ...teeSheet,
-          item_list: data,
+          item_list: item_list,
         });
       })
       .catch((err) => {
@@ -51,16 +70,17 @@ function NewTeeSheet(props) {
   }, []);
 
   const onSave = async (updatedTeeSheet) => {
-    return addTeeSheet(updatedTeeSheet)
-      .then((res) => {
-        props.successWithTimeout(`Tee Sheet add successfully!`);
-        props.history.push("/tee-sheet/list");
-      })
-      .catch((err) =>
-        props.failureWithTimeout(
-          "Failed to add new tee sheet, " + err.response.data.message
-        )
-      );
+    console.log(updatedTeeSheet, "updatedTeeSheet");
+    // return addTeeSheet(updatedTeeSheet)
+    //   .then((res) => {
+    //     props.successWithTimeout(`Tee Sheet add successfully!`);
+    //     props.history.push("/tee-sheet/list");
+    //   })
+    //   .catch((err) =>
+    //     props.failureWithTimeout(
+    //       "Failed to add new tee sheet, " + err.response.data.message
+    //     )
+    //   );
   };
 
   return (

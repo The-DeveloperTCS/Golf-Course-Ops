@@ -69,7 +69,7 @@ const Header = (props) => {
               >
                 My Profile
               </div>
-              <div className="roy-menu-list">Settings</div>
+              {/* <div className="roy-menu-list">Settings</div> */}
               <div className="roy-menu-list" onClick={userSignout}>
                 Logout
               </div>
