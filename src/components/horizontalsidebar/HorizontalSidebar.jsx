@@ -13,7 +13,7 @@ import { withRouter } from "react-router-dom";
 import { UncontrolledPopover, PopoverBody } from "reactstrap";
 const { logout } = AuthActions;
 
-const HorizontalSidebar = props => {
+const HorizontalSidebar = (props) => {
   const userSignout = () => {
     props.logout();
   };
@@ -68,7 +68,7 @@ const HorizontalSidebar = props => {
               >
                 My Profile
               </div>
-              <div className="roy-menu-list">Settings</div>
+              {/* <div className="roy-menu-list">Settings</div> */}
               <div className="roy-menu-list" onClick={userSignout}>
                 Logout
               </div>
@@ -90,8 +90,5 @@ const HorizontalSidebar = props => {
 
 export default compose(
   withRouter,
-  connect(
-    null,
-    { logout }
-  )
+  connect(null, { logout })
 )(HorizontalSidebar);
