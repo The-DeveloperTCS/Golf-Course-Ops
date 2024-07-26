@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Loader from "components/loader/Loader";
 import { DatePickerCalendar } from "react-nice-dates";
 import { enGB } from "date-fns/locale";
 import "react-nice-dates/build/style.css";
@@ -9,19 +11,29 @@ import StandardTable from "../tee-slot/Table";
 import Weather from "./Weather";
 import moment from "moment";
 import { getTeeSheetByDate } from "redux/teeSheet/service";
+import loaderActions from "redux/loader/actions";
+import { FaLessThan } from "react-icons/fa6";
+import { FaGreaterThan } from "react-icons/fa6";
 
-function TeeSheet() {
+const { startLoader, endLoader } = loaderActions;
+
+function TeeSheet(props) {
+  const { startLoader, endLoader, loader } = props;
   const [teeBooking, setTeeBooking] = useState([]);
   const [rows, setRows] = useState([]);
-
+  const [date, setDate] = useState(moment());
   const columns = ["Timings", "Names"];
 
   useEffect(() => {
     const date = moment();
+    console.log(date, "date");
     getTeeSheetDataByDate(date);
   }, []);
 
   const getTeeSheetDataByDate = (selectedDate) => {
+    console.log(selectedDate, "selectedDate");
+    startLoader(true);
+    setDate(selectedDate);
     const fromatDate = moment(selectedDate).format("YYYY-MM-DD");
     getTeeSheetByDate(fromatDate)
       .then((res) => {
@@ -34,7 +46,6 @@ function TeeSheet() {
   };
 
   useEffect(() => {
-    const arr = [];
     var x = {
       nextSlot: 9,
       startTime: "8:00:00",
@@ -62,9 +73,23 @@ function TeeSheet() {
       };
     });
     setRows(timesSlotsData);
+    endLoader(false);
   }, [teeBooking]);
 
-  return (
+  const onChangeNextDate = () => {
+    let tomorrow = moment(date).add(1, "days");
+    setDate(tomorrow);
+    getTeeSheetDataByDate(tomorrow);
+  };
+
+  const onChangePreviousDate = () => {
+    let yesterday = moment(date).subtract(1, "days");
+    setDate(yesterday);
+    getTeeSheetDataByDate(yesterday);
+  };
+  return loader ? (
+    <Loader />
+  ) : (
     <Container fluid>
       <h1></h1>
       <Row style={{ padding: 0 }}>
@@ -96,6 +121,46 @@ function TeeSheet() {
                 }}
               >
                 <h4 style={styles.tableHeaderText}>Bookings</h4>
+                <div
+                  className=""
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <button
+                    style={{
+                      outline: "none",
+                      border: "none",
+                      backgroundColor: "transparent",
+                      color: "#ffff",
+                      fontSize: "20px",
+                    }}
+                    onClick={() => onChangePreviousDate()}
+                  >
+                    <FaLessThan />
+                  </button>
+                  <h4
+                    style={{
+                      color: "#ffff",
+                      fontSize: "16px",
+                      marginTop: "2px",
+                    }}
+                  >
+                    {moment(date).format("dddd") +
+                      " " +
+                      moment(date).format("MMM Do YYYY")}
+                  </h4>
+                  <button
+                    style={{
+                      outline: "none",
+                      border: "none",
+                      backgroundColor: "transparent",
+                      color: "#ffff",
+                      fontSize: "20px",
+                    }}
+                    onClick={() => onChangeNextDate()}
+                  >
+                    <FaGreaterThan />
+                  </button>
+                </div>
               </div>
             </Col>
             <Col
@@ -133,7 +198,7 @@ function TeeSheet() {
                 style={{ height: "100%", maxWidth: "100%" }}
               >
                 <DatePickerCalendar
-                  // date={date}
+                  date={new Date(date)}
                   onDateChange={(e) => getTeeSheetDataByDate(e)}
                   locale={enGB}
                 />
@@ -169,9 +234,18 @@ const styles = {
   tableHeaderText: {
     color: "white",
     font: "Poppins",
-    fontWeight: 400,
+    fontWeight: 500,
     fontSize: 16,
   },
 };
 
-export default TeeSheet;
+const mapStateToProps = (state) => {
+  return {
+    loader: state.loader.loader,
+  };
+};
+
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+})(TeeSheet);

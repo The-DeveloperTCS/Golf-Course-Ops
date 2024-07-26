@@ -37,14 +37,19 @@ const SalesScreen = ({ saleId }) => {
   const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
   const [isCreditPopupOpen, setCreditPopupOpen] = useState(false);
   const [isCardPaymentPopupOpen, setCardPaymentPopupOpen] = useState(false); // State for CardPaymentPopup
-
+  console.log(salesItems, "sales item");
+  console.log(seasons, "season");
+  console.log(seasonList, "season list");
   useEffect(() => {
     const date = moment().format("YYYY-MM-DD");
 
     getDateRangeSeasonsList(date)
       .then((res) => {
-        const data = res.data.seasons;
-        setSeasons(data);
+        const seasonData = res.data.seasons;
+        setSeasons(seasonData);
+        setSalesData({
+          ...salesData,
+        });
       })
       .catch((err) => {
         console.log(err, "err");
@@ -69,8 +74,6 @@ const SalesScreen = ({ saleId }) => {
         console.log(err, "err");
       });
   }, [saleId]);
-
-  console.log(seasons, "seasons");
 
   const togglePaymentPopup = () => {
     setPaymentPopupOpen(!isPaymentPopupOpen);
@@ -104,17 +107,6 @@ const SalesScreen = ({ saleId }) => {
     }
   };
 
-  const [activeButton, setActiveButton] = useState("");
-
-  const handleSaleClick = () => {
-    setActiveButton("sale");
-  };
-
-  const handleReturnClick = () => {
-    setActiveButton("return");
-  };
-
-  console.log(salesItems, "salesItems");
   return (
     <div
       className="adminDashboardItems"
@@ -132,17 +124,29 @@ const SalesScreen = ({ saleId }) => {
               <div className="for-sale-item-btn">
                 <button
                   style={{
-                    backgroundColor: activeButton === "sale" ? "#0cd374" : "",
+                    backgroundColor: salesData?.sale ? "#0cd374" : "",
                   }}
-                  onClick={handleSaleClick}
+                  onClick={() => {
+                    setSalesData({
+                      ...salesData,
+                      sale: true,
+                      return: false,
+                    });
+                  }}
                 >
                   sale
                 </button>
                 <button
                   style={{
-                    backgroundColor: activeButton === "return" ? "red" : "",
+                    backgroundColor: salesData?.return ? "red" : "",
                   }}
-                  onClick={handleReturnClick}
+                  onClick={() => {
+                    setSalesData({
+                      ...salesData,
+                      sale: false,
+                      return: true,
+                    });
+                  }}
                 >
                   return
                 </button>
@@ -172,8 +176,10 @@ const SalesScreen = ({ saleId }) => {
                         {/* <input type="checkbox" id="chk" /> */}
                         {/* <label htmlFor="chk"></label> */}
                       </td>
+
                       <td className="item-name">
                         {/* {item.itemName} */}
+                        <div className=""></div>
                         <Select
                           // value={terminals?.find((c) => c.value === checkIn.terminalId)}
                           // disabled={!useEmployeePermission}
@@ -186,6 +192,19 @@ const SalesScreen = ({ saleId }) => {
                             // });
                           }}
                           options={seasons}
+                        />
+                        <Select
+                          // value={terminals?.find((c) => c.value === checkIn.terminalId)}
+                          // disabled={!useEmployeePermission}
+                          getOptionLabel={(option) => option.name}
+                          getOptionValue={(option) => option.id}
+                          onChange={(e) => {
+                            // setCheckIn({
+                            //   ...checkIn,
+                            //   terminalId: e.value,
+                            // });
+                          }}
+                          options={seasonList}
                         />
                       </td>
                       <td>

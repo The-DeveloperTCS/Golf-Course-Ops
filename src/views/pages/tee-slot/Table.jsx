@@ -32,7 +32,6 @@ function StandardTable(
       </thead>
       <tbody>
         {rows.map((item, index) => {
-          console.log(item, "item");
           return (
             <tr
               key={index}

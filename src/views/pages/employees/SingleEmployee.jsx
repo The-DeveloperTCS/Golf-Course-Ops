@@ -1,43 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
+import loaderActions from "redux/loader/actions";
 import EmployeeForm from "./EmployeeForm";
+import Loader from "components/loader/Loader";
 import {
   updateEmployeeDetails,
   getSpecificEmployee,
 } from "redux/employee/service";
+const { startLoader, endLoader } = loaderActions;
+const { successWithTimeout, failure } = NotificationActions;
 
 const EmployeeSingle = (props) => {
-  const { employeeId } = props;
+  const {
+    employeeId,
+    startLoader,
+    endLoader,
+    loader,
+    successWithTimeout,
+    failure,
+  } = props;
   const [employeeDetail, setEmployeeDetails] = useState({});
 
   useEffect(() => {
-    getCityDetails();
+    getEmployeeDetails();
   }, [employeeId]);
 
-  const getCityDetails = async () => {
+  const getEmployeeDetails = async () => {
+    startLoader(true);
     getSpecificEmployee(employeeId).then((res) => {
       setEmployeeDetails(res.data);
+      endLoader(false);
     });
   };
 
   const onEmployeeSave = async (updatedEmployee) => {
     return updateEmployeeDetails(employeeId, updatedEmployee)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.result.firstName} updated successfully!`
+        successWithTimeout(
+          `Employee #${updatedEmployee.id} updated successfully!`
         );
-        props.history.push("/employee/list");
       })
       .catch((err) =>
-        props.failure(
+        failure(
           `Employee #${updatedEmployee.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <EmployeeForm
       updateEmployee={employeeDetail}
       employeeId={employeeId}
@@ -50,14 +63,13 @@ const mapStateToProps = (state, ownProps) => {
   const employeeId = parseInt(ownProps.match.params.employeeId);
   return {
     employeeId: employeeId,
+    loader: state.loader.loader,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+})(EmployeeSingle);
