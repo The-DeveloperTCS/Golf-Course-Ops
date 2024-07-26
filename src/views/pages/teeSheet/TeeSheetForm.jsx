@@ -5,25 +5,23 @@ import profileimg from "../../../assets/images/Group 1000002530.png";
 import profileimg3 from "../../../assets/images/Vector.png";
 import profileimg2 from "../../../assets/images/Vector (2).png";
 import "../../style/NewTeeSheet.css";
-import moment from "moment";
-// import Autocomplete from "@mui/lab/Autocomplete";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { getCustomers } from "redux/customer/service";
-import {
-  deleteTeeSheet,
-  updateTeeSheetDetails,
-  addTeeSheet,
-} from "redux/teeSheet/service";
-import { history } from "redux/store";
 import NotificationActions from "redux/notifications/actions";
 
-function TeeSheetForm({ updateTeeSheet, onSave }, props) {
+function TeeSheetForm(
+  {
+    updateTeeSheet,
+    onSave,
+    handleChaneDeleteTeeSheet,
+    handleChaneCheckInTeeSheet,
+  },
+  props
+) {
   const [teeSheet, setTeeSheet] = useState({ ...updateTeeSheet });
   const [saving, setSaving] = useState(false);
   const [customersList, setCustomersList] = useState([]);
-  const dispatch = useDispatch();
-
   const [bookedCustomer, setBookedCustomer] = useState([
     {
       customer_name: "",
@@ -71,14 +69,13 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
   }, []);
 
   useEffect(() => {
-    console.log(updateTeeSheet, "updateTeeSheet");
     if (updateTeeSheet.id) {
       setBookedCustomer(updateTeeSheet.customer_list);
       return setTeeSheet({ ...updateTeeSheet });
     }
     setTeeSheet({ ...updateTeeSheet });
   }, [updateTeeSheet]);
-  console.log(teeSheet, "tee sheet");
+
   const handleInputChange = (index, value, field) => {
     var arr = [];
     for (var i in bookedCustomer) {
@@ -138,21 +135,6 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
     onSave({ ...sheet }).then(() => setSaving(false));
   };
 
-  const handleChaneDeleteTeeSheet = () => {
-    deleteTeeSheet(teeSheet.id)
-      .then((res) => {
-        dispatch(
-          NotificationActions.successWithTimeout(
-            `Tee Sheet Delete Successfully!`
-          )
-        );
-        history.push("/tee-sheet/list");
-      })
-      .catch((err) => {
-        console.log(err, "err");
-      });
-  };
-
   const handleChaneUpdateTeeSheet = () => {
     setSaving(true);
     var sheet = {
@@ -160,47 +142,6 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
       customer_list: bookedCustomer,
     };
     onSave({ ...sheet }).then(() => setSaving(false));
-  };
-
-  const handleChaneCheckInTeeSheet = () => {
-    var sheet = {
-      ...teeSheet,
-      customer_list: bookedCustomer,
-    };
-    if (teeSheet.id) {
-      updateTeeSheetDetails(sheet.id, sheet)
-        .then((res) => {
-          const id = res.data.teeSheet.saleId;
-          NotificationActions.successWithTimeout(
-            `Tee Sheet updated successfully!`
-          );
-          history.push(`/sale/${id}`);
-        })
-        .catch((err) =>
-          NotificationActions.failure(
-            `Tee Sheet #${teeSheet.id} failed to update! ${err.response.data.message}`
-          )
-        );
-    }
-    if (!teeSheet.id) {
-      addTeeSheet(sheet)
-        .then((res) => {
-          console.log(res, "response");
-          const id = res.data.teesheet.saleId;
-          dispatch(
-            NotificationActions.successWithTimeout(
-              `Tee Sheet Add Successfully!`
-            )
-          );
-          history.push(`/sale/${id}`);
-        })
-        .catch((err) => {
-          console.log(err.response, "responseƒ");
-          NotificationActions.failure(
-            `Tee Sheet failed to add! ${err.response.data.message}`
-          );
-        });
-    }
   };
 
   //   const initialState = [
@@ -231,6 +172,13 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
   //   et markers = [ ...this.state.markers ];
   // markers[index] = {...markers[index], key: value};
   // this.setState({ markers });
+
+  const getCustomerName = (id) => {
+    if (id !== "") {
+      return customersList.filter((cus) => cus.id === id)[0];
+    }
+    return {};
+  };
 
   return (
     <div className="admin-t-main">
@@ -453,9 +401,9 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 0);
             }}
-            valueƒ={bookedCustomer[0]?.id}
+            // value={getCustomerName(bookedCustomer[0].customerId)}
             getOptionLabel={(option) =>
-              option.firstName.toString() + " " + option.lastName.toString()
+              option?.firstName.toString() + " " + option?.lastName.toString()
             }
             renderInput={(params) => (
               <TextField
@@ -510,9 +458,9 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 1);
             }}
-            // defaultValue={bookedCustomer[0]?}
+            // defaultValue={getCustomerName(bookedCustomer[1].customerId)}
             getOptionLabel={(option) =>
-              option.firstName.toString() + " " + option.lastName.toString()
+              option?.firstName.toString() + " " + option?.lastName.toString()
             }
             renderInput={(params) => (
               <TextField {...params} placeholder="Select Name" />
@@ -564,9 +512,9 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 2);
             }}
-            // defaultValue={bookedCustomer[0]?}
+            // defaultValue={getCustomerName(bookedCustomer[2].customerId)}
             getOptionLabel={(option) =>
-              option.firstName.toString() + " " + option.lastName.toString()
+              option?.firstName.toString() + " " + option?.lastName.toString()
             }
             renderInput={(params) => (
               <TextField {...params} placeholder="Select Name" />
@@ -618,9 +566,9 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 3);
             }}
-            // defaultValue={bookedCustomer[0]?}
+            // defaultValue={getCustomerName(bookedCustomer[3].customerId)}
             getOptionLabel={(option) =>
-              option.firstName.toString() + " " + option.lastName.toString()
+              option?.firstName.toString() + " " + option?.lastName.toString()
             }
             renderInput={(params) => (
               <TextField {...params} placeholder="Select Name" />
@@ -679,7 +627,7 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
           {teeSheet.id && (
             <button
               style={{ backgroundColor: "#E92A2A" }}
-              onClick={handleChaneDeleteTeeSheet}
+              onClick={() => handleChaneDeleteTeeSheet(teeSheet)}
             >
               Delete
             </button>
@@ -705,7 +653,13 @@ function TeeSheetForm({ updateTeeSheet, onSave }, props) {
         <div className="tee-sheet-Check-In">
           <div className="check-in-admint-tee-sheet">
             {/* <Link to="/adminDashboardItems"> */}
-            <button onClick={handleChaneCheckInTeeSheet}>Check in</button>
+            <button
+              onClick={() =>
+                handleChaneCheckInTeeSheet(teeSheet, bookedCustomer)
+              }
+            >
+              Check in
+            </button>
             {/* </Link> */}
           </div>
         </div>

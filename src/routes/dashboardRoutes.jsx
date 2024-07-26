@@ -84,13 +84,13 @@ import JesterPark from "views/pages/JesterPark/JesterPark";
 const dashboardRoutes = [
   { path: "/intro", component: Intro, resource: "" },
   {
-    path: "/employee/list",
-    component: EmployeesList,
+    path: "/Profile",
+    component: Profile,
     resource: "EMPLOYEE",
   },
   {
-    path: "/Profile",
-    component: Profile,
+    path: "/employee/list",
+    component: EmployeesList,
     resource: "EMPLOYEE",
   },
   {
