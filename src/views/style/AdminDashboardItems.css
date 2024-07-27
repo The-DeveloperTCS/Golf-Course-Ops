@@ -202,6 +202,24 @@
   padding: 15px 10px;
 }
 
+.select-container {
+  display: flex;
+  gap: 10px;
+  /* Adjust spacing as needed */
+}
+
+.flex-select {
+  flex: 1;
+  /* Make them share available space equally */
+}
+.css-g1d714-ValueContainer {
+  padding: 4px 8px !important;
+  outline: none !important;
+}
+.css-g1d714-ValueContainer :active {
+  outline: none !important;
+  border: none;
+}
 .item-table th {
   background-color: #ffffff;
 }
@@ -559,7 +577,9 @@ button.close-btn {
 .sale-screen-inputs input {
   padding: 8px;
   border-radius: 5px;
-  width: 90%;
+  width: 100%;
+  outline: none;
+  border: 1px solid #b3b3b3;
 }
 
 @media (max-width: 480px) {
