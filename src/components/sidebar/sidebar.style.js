@@ -196,7 +196,7 @@ const SidebarWrapper = styled.div`
         cursor: pointer;
         position: relative;
         z-index: 4;
-        padding: 8px 0rem;
+        // padding: 8px 0rem;
         display: flex;
         align-items: baseline;        // border-bottom: 1px solid rgba(0,0,0,0.06);
         background-color: ${(props) =>
@@ -211,7 +211,7 @@ const SidebarWrapper = styled.div`
             font-weight: 400;
             line-height: 30px;
             text-decoration: none;
-            overflow: hidden;
+            // overflow: hidden;
         }
         .logo-mini {
             opacity: 1;

@@ -176,37 +176,39 @@ const SalesScreen = ({ saleId }) => {
                         {/* <input type="checkbox" id="chk" /> */}
                         {/* <label htmlFor="chk"></label> */}
                       </td>
-
                       <td className="item-name">
-                        {/* {item.itemName} */}
-                        <div className=""></div>
-                        <Select
-                          // value={terminals?.find((c) => c.value === checkIn.terminalId)}
-                          // disabled={!useEmployeePermission}
-                          getOptionLabel={(option) => option.name}
-                          getOptionValue={(option) => option.id}
-                          onChange={(e) => {
-                            // setCheckIn({
-                            //   ...checkIn,
-                            //   terminalId: e.value,
-                            // });
-                          }}
-                          options={seasons}
-                        />
-                        <Select
-                          // value={terminals?.find((c) => c.value === checkIn.terminalId)}
-                          // disabled={!useEmployeePermission}
-                          getOptionLabel={(option) => option.name}
-                          getOptionValue={(option) => option.id}
-                          onChange={(e) => {
-                            // setCheckIn({
-                            //   ...checkIn,
-                            //   terminalId: e.value,
-                            // });
-                          }}
-                          options={seasonList}
-                        />
+                        <div className="select-container">
+                          <Select
+                            className="flex-select"
+                            // value={terminals?.find((c) => c.value === checkIn.terminalId)}
+                            // disabled={!useEmployeePermission}
+                            getOptionLabel={(option) => option.name}
+                            getOptionValue={(option) => option.id}
+                            onChange={(e) => {
+                              // setCheckIn({
+                              //   ...checkIn,
+                              //   terminalId: e.value,
+                              // });
+                            }}
+                            options={seasons}
+                          />
+                          <Select
+                            className="flex-select"
+                            // value={terminals?.find((c) => c.value === checkIn.terminalId)}
+                            // disabled={!useEmployeePermission}
+                            getOptionLabel={(option) => option.name}
+                            getOptionValue={(option) => option.id}
+                            onChange={(e) => {
+                              // setCheckIn({
+                              //   ...checkIn,
+                              //   terminalId: e.value,
+                              // });
+                            }}
+                            options={seasonList}
+                          />
+                        </div>
                       </td>
+
                       <td>
                         <input
                           type="number"
