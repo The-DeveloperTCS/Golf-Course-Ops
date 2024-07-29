@@ -1,60 +1,64 @@
 import React, { useEffect, useState } from "react";
 import "../../style/AdminDashboardItems.css";
-import { IoIosSearch } from "react-icons/io";
 import ItemsSidebar from "./ItemsSidebar";
-import { MdCancel } from "react-icons/md";
 import PaymentPopup from "../Popups/PaymentPopup";
-import CreditPopup from "../Popups/CreditPopup";
-import CardPaymentPopup from "../Popups/CardPaymentPopup"; // Import CardPaymentPopup
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import NotificationActions from "redux/notifications/actions";
 import { salesInfoGetById } from "redux/sale/service";
 import { getTeeSheetInventorysList } from "redux/inventory/service";
 import { getDateRangeSeasonsList } from "redux/season/service";
 import moment from "moment";
 import Select from "react-select";
+import Loader from "components/loader/Loader";
+import NotificationActions from "redux/notifications/actions";
+import loaderActions from "redux/loader/actions";
+const { startLoader, endLoader } = loaderActions;
+const { successWithTimeout, failure } = NotificationActions;
 
-const dummyData = [
-  { name: "Green Fees", price: "$34", qty: 2, discount: "-" },
-  { name: "Balls - dozen", price: "$34", qty: 2, discount: "-" },
-  { name: "tees / h2", price: "$34", qty: 2, discount: "-" },
-];
+const defaultState = {
+  subTotal: 0,
+  saleTax: 0,
+  stateTax: 0,
+  total: 0,
+  payMethod: "cash",
+  teesheetId: null,
+  date: "",
+  item_list: [
+    {
+      itemId: null,
+      itemName: "",
+      price: 0,
+      quantity: 0,
+      discount: 0,
+      total: 0,
+      seasonId: null,
+      seasonName: "",
+    },
+  ],
+  customerId: null,
+  accountTitle: "",
+  saleId: "",
+  sale: true,
+  isReturn: false,
+  payMode: "paid",
+};
 
-const SalesScreen = ({ saleId }) => {
-  const [salesData, setSalesData] = useState();
+const SalesScreen = ({
+  saleId,
+  startLoader,
+  endLoader,
+  loader,
+  successWithTimeout,
+  failure,
+}) => {
+  const [salesData, setSalesData] = useState({ ...defaultState });
   const [salesItems, setSalesItems] = useState([]);
   const [inventories, setInventories] = useState([]);
   const [seasons, setSeasons] = useState([]);
   const [seasonList, setSeasonList] = useState([]);
-
-  const [data, setData] = useState(dummyData);
-  const [buttonColors, setButtonColors] = useState([
-    "rgb(67, 101, 207)",
-    "rgb(67, 101, 207)",
-    "rgb(67, 101, 207)",
-  ]);
   const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
-  const [isCreditPopupOpen, setCreditPopupOpen] = useState(false);
-  const [isCardPaymentPopupOpen, setCardPaymentPopupOpen] = useState(false); // State for CardPaymentPopup
-  console.log(salesItems, "sales item");
-  console.log(seasons, "season");
-  console.log(seasonList, "season list");
+
   useEffect(() => {
-    const date = moment().format("YYYY-MM-DD");
-
-    getDateRangeSeasonsList(date)
-      .then((res) => {
-        const seasonData = res.data.seasons;
-        setSeasons(seasonData);
-        setSalesData({
-          ...salesData,
-        });
-      })
-      .catch((err) => {
-        console.log(err, "err");
-      });
-
+    startLoader(true);
     salesInfoGetById(saleId)
       .then((res) => {
         const data = res.data.sale;
@@ -64,8 +68,7 @@ const SalesScreen = ({ saleId }) => {
       .catch((err) => {
         console.log(err, "error");
       });
-
-    getTeeSheetInventorysList("retail")
+    getTeeSheetInventorysList("Retail")
       .then((res) => {
         const data = res.data.inventories;
         setInventories(data);
@@ -75,39 +78,128 @@ const SalesScreen = ({ saleId }) => {
       });
   }, [saleId]);
 
-  const togglePaymentPopup = () => {
-    setPaymentPopupOpen(!isPaymentPopupOpen);
-  };
+  useEffect(() => {
+    const date = moment().format("YYYY-MM-DD");
+    getDateRangeSeasonsList(date)
+      .then((res) => {
+        const seasonData = res.data.seasons;
+        const list = [];
+        setSeasons(seasonData);
+        var obj = {
+          seasonId: seasonData[0].id,
+          seasonName: seasonData[0].name,
+          itemId: null,
+          itemName: null,
+          price: seasonData[0].season_list[0].price,
+          seasonlistId: seasonData[0].season_list[0].id,
+          quantity: 1,
+          discount: 0,
+          total: seasonData[0].season_list[0].price * 1,
+        };
+        list.push(obj);
+        const subTotal = seasonData[0].season_list[0].price;
+        const salesTax = Number(Math.round((subTotal / 100) * 7.5).toFixed(2));
+        setSalesData({
+          ...salesData,
+          item_list: list,
+          subTotal: subTotal,
+          saleTax: salesTax,
+          total: Number(subTotal + salesTax),
+          stateTax: salesTax,
+          date: moment().format("YYYY-MM-DD"),
+        });
+        setSeasonList(seasonData[0].season_list);
+        endLoader(false);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        endLoader(false);
+      });
+  }, [salesItems]);
 
-  const toggleCreditPopup = () => {
-    setCreditPopupOpen(!isCreditPopupOpen);
-  };
-
-  const toggleCardPaymentPopup = () => {
-    setCardPaymentPopupOpen(!isCardPaymentPopupOpen);
-  };
-
-  const handleDelete = (index) => {
-    const newData = data.filter((item, i) => i !== index);
-    setData(newData);
-  };
-
-  const handleButtonClick = (index) => {
-    const newColors = buttonColors.map((color, i) =>
-      i === index ? "#0CD374" : "#4365CF"
-    );
-    setButtonColors(newColors);
-
-    if (index === 0) {
-      togglePaymentPopup(); // Open PaymentPopup for Cash button
-    } else if (index === 1) {
-      toggleCreditPopup(); // Open CreditPopup for Credit Card button
-    } else if (index === 2) {
-      toggleCardPaymentPopup(); // Open CardPaymentPopup for Pay Now button
+  const updateData = (value, row, key, index) => {
+    const data = { ...row };
+    if (key === "seasonId") {
+      data.seasonId = value.id;
+      const seasonList = seasons.filter(
+        (seasLis) => seasLis.id === value.id
+      )[0];
+      setSeasonList(seasonList?.season_list);
+      data.seasonlistId = seasonList?.season_list[0]?.id;
     }
+    if (key === "seasonlistId") {
+      const totalDiscount =
+        ((Number(value.price) * Number(data.quantity)) / 100) *
+        Number(data.discount);
+      data.seasonlistId = value.id;
+      data.price = value.price;
+      data.quantity = data.quantity;
+      data.total = Math.round(
+        value.price * data.quantity - totalDiscount
+      ).toFixed(2);
+      data.discount = data.discount;
+    }
+    if (key === "price") {
+      const totalDiscount =
+        ((Number(value) * Number(data.quantity)) / 100) * Number(data.discount);
+      const total = value * Number(data.quantity);
+      data.price = value;
+      data.total = Math.round(total - totalDiscount).toFixed(2);
+    }
+    if (key === "quantity") {
+      const totalDiscount =
+        (Number(data.price * Number(value)) / 100) * Number(data.discount);
+      const total = data.price * Number(value);
+      data.quantity = value;
+      data.total = Math.round(total - totalDiscount).toFixed(2);
+    }
+    if (key === "discount") {
+      const discount = (Number(data.total) / 100) * Number(value);
+      data.discount = value;
+      data.total = Math.round(data.total - discount).toFixed(2);
+    }
+    const newData = [...salesData.item_list];
+    newData[index] = data;
+    const subTotal = newData.reduce((acc, cv) => acc + cv.total, 0);
+    const salesTax = Number(Math.round((subTotal / 100) * 7.5).toFixed(2));
+    setSalesData({
+      ...salesData,
+      item_list: newData,
+      subTotal: subTotal,
+      saleTax: salesTax,
+      total: Math.round(Number(subTotal) + salesTax).toFixed(2),
+    });
   };
 
-  return (
+  const onChangeItemAdd = (item) => {
+    const itemAdd = {
+      itemId: item.id,
+      itemName: item.name,
+      price: item.unitPrice,
+      quantity: 1,
+      discount: 0,
+      total: item.unitPrice,
+      seasonId: null,
+      seasonName: "",
+      seasonlistId: null,
+    };
+    const itemsAll = [...salesData.item_list];
+    itemsAll.push(itemAdd);
+    const subTotal = itemsAll.reduce((acc, cv) => acc + cv.total, 0);
+    const salesTax = Number(Math.round((subTotal / 100) * 7.5).toFixed(2));
+    setSalesData({
+      ...salesData,
+      item_list: itemsAll,
+      subTotal: subTotal,
+      saleTax: salesTax,
+      total: Math.round(Number(subTotal) + salesTax).toFixed(2),
+    });
+  };
+
+  console.log(salesData, "salesData");
+  return loader ? (
+    <Loader />
+  ) : (
     <div
       className="adminDashboardItems"
       style={{
@@ -156,11 +248,11 @@ const SalesScreen = ({ saleId }) => {
               <table>
                 <thead>
                   <tr>
-                    <th className="th-cross-btn">
-                      <MdCancel onClick={() => handleDelete(0)} />
-                      {/* <input type="checkbox" id="chk" /> */}
-                      {/* <label htmlFor="chk"></label> */}
-                    </th>
+                    {/* <th className="th-cross-btn">
+                        <MdCancel onClick={() => handleDelete(0)} />
+                        <input type="checkbox" id="chk" />
+                        <label htmlFor="chk"></label>
+                      </th> */}
                     <th className="item-name">#Items</th>
                     <th>Price</th>
                     <th>QTY</th>
@@ -169,44 +261,47 @@ const SalesScreen = ({ saleId }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {salesItems.map((item, index) => (
+                  {salesData.item_list.map((item, index) => (
                     <tr key={index} className="sale-screen-inputs">
-                      <td className="th-cross-btn">
-                        <MdCancel onClick={() => handleDelete(index)} />
-                        {/* <input type="checkbox" id="chk" /> */}
-                        {/* <label htmlFor="chk"></label> */}
-                      </td>
+                      {/* <td className="th-cross-btn">
+                              <MdCancel onClick={() => handleDelete(index)} />
+                              <input type="checkbox" id="chk" />
+                              <label htmlFor="chk"></label>
+                            </td> */}
                       <td className="item-name">
-                        <div className="select-container">
-                          <Select
-                            className="flex-select"
-                            // value={terminals?.find((c) => c.value === checkIn.terminalId)}
-                            // disabled={!useEmployeePermission}
-                            getOptionLabel={(option) => option.name}
-                            getOptionValue={(option) => option.id}
-                            onChange={(e) => {
-                              // setCheckIn({
-                              //   ...checkIn,
-                              //   terminalId: e.value,
-                              // });
-                            }}
-                            options={seasons}
-                          />
-                          <Select
-                            className="flex-select"
-                            // value={terminals?.find((c) => c.value === checkIn.terminalId)}
-                            // disabled={!useEmployeePermission}
-                            getOptionLabel={(option) => option.name}
-                            getOptionValue={(option) => option.id}
-                            onChange={(e) => {
-                              // setCheckIn({
-                              //   ...checkIn,
-                              //   terminalId: e.value,
-                              // });
-                            }}
-                            options={seasonList}
-                          />
-                        </div>
+                        {item.seasonId !== null ? (
+                          <div className="select-container">
+                            <Select
+                              className="flex-select"
+                              value={seasons?.find(
+                                (c) => c.id === item.seasonId
+                              )}
+                              // disabled={!useEmployeePermission}
+                              getOptionLabel={(option) => option.name}
+                              getOptionValue={(option) => option.id}
+                              onChange={(e) => {
+                                updateData(e, item, "seasonId", index);
+                              }}
+                              options={seasons}
+                            />
+                            <Select
+                              className="flex-select"
+                              value={seasonList?.find(
+                                (c) => c.id === item.seasonlistId
+                              )}
+                              getOptionLabel={(option) => option.name}
+                              getOptionValue={(option) => option.id}
+                              onChange={(e) => {
+                                updateData(e, item, "seasonlistId", index);
+                              }}
+                              options={seasonList}
+                            />
+                          </div>
+                        ) : (
+                          <div className="select-container">
+                            {item.itemName}
+                          </div>
+                        )}
                       </td>
 
                       <td>
@@ -214,7 +309,12 @@ const SalesScreen = ({ saleId }) => {
                           type="number"
                           placeholder="Price"
                           onChange={(event) => {
-                            // handleInputChange(event.target.value, "price" , index);
+                            updateData(
+                              event.target.value,
+                              item,
+                              "price",
+                              index
+                            );
                           }}
                           value={item.price}
                           name="price"
@@ -225,22 +325,30 @@ const SalesScreen = ({ saleId }) => {
                           type="number"
                           placeholder="Qty"
                           onChange={(event) => {
-                            // handleInputChange(event.target.value, "qty" , index);
+                            updateData(
+                              event.target.value,
+                              item,
+                              "quantity",
+                              index
+                            );
                           }}
                           value={item.quantity}
                           name="qty"
                         />
                       </td>
-
                       <td>
-                        {" "}
                         <input
                           type="number"
                           placeholder="disc%"
                           onChange={(event) => {
-                            // handleInputChange(event.target.value, "disc" , index);
+                            updateData(
+                              event.target.value,
+                              item,
+                              "discount",
+                              index
+                            );
                           }}
-                          value={item.quantity}
+                          value={item.discount}
                           name="disc"
                         />
                       </td>
@@ -250,10 +358,16 @@ const SalesScreen = ({ saleId }) => {
                 </tbody>
               </table>
               <div className="item-total">
-                <p>{salesItems.length} items</p>
+                <p>{salesData.item_list.length} items</p>
                 <div className="sub-total-item">
                   <span>sub total</span>
                   <h1>${salesData?.subTotal}</h1>
+                </div>
+              </div>
+              <div className="item-total">
+                <div className="sub-total-item">
+                  <span>Sales Tax - 7.50%</span>
+                  <h1>${salesData?.saleTax}</h1>
                 </div>
               </div>
             </div>
@@ -269,28 +383,31 @@ const SalesScreen = ({ saleId }) => {
             </div>
             <div className="cash-btn">
               <button
-                style={{ backgroundColor: buttonColors[0] }}
-                onClick={() => handleButtonClick(0)}
+                style={{ backgroundColor: "rgb(67, 101, 207)" }}
+                onClick={() => setPaymentPopupOpen(true)}
               >
                 Cash
               </button>
-              <button
-                style={{ backgroundColor: buttonColors[1] }}
-                onClick={() => handleButtonClick(1)}
-              >
-                Pay Now
-              </button>
-              <button
-                style={{ backgroundColor: buttonColors[2] }}
-                onClick={() => handleButtonClick(2)}
-              >
-                Credit Card
-              </button>
+              {/* <button
+                  style={{ backgroundColor: "rgb(67, 101, 207)" }}
+                // onClick={() => handleButtonClick(1)}
+                >
+                  Pay Now
+                </button> */}
+              {/* <button
+                  style={{ backgroundColor: "rgb(67, 101, 207)" }}
+                // onClick={() => handleButtonClick(2)}
+                >
+                  Credit Card
+                </button> */}
             </div>
           </div>
         </div>
         <div className="Dashboard-Items-right">
-          <ItemsSidebar inventories={inventories} />
+          <ItemsSidebar
+            inventories={inventories}
+            onChangeItemAdd={onChangeItemAdd}
+          />
         </div>
       </div>
 
@@ -298,25 +415,27 @@ const SalesScreen = ({ saleId }) => {
       {isPaymentPopupOpen && (
         <PaymentPopup
           isOpen={isPaymentPopupOpen}
-          togglePopup={togglePaymentPopup}
+          salesData={salesData}
+          setPaymentPopupOpen={setPaymentPopupOpen}
+          // togglePopup={togglePaymentPopup}
         />
       )}
 
       {/* Render CreditPopup if open */}
-      {isCreditPopupOpen && (
-        <CreditPopup
-          isOpen={isCreditPopupOpen}
-          togglePopup={toggleCreditPopup}
-        />
-      )}
+      {/* {isCreditPopupOpen && (
+          <CreditPopup
+            isOpen={isCreditPopupOpen}
+            togglePopup={toggleCreditPopup}
+          />
+        )} */}
 
       {/* Render CardPaymentPopup if open */}
-      {isCardPaymentPopupOpen && (
-        <CardPaymentPopup
-          isOpen={isCardPaymentPopupOpen}
-          onClose={toggleCardPaymentPopup}
-        />
-      )}
+      {/* {isCardPaymentPopupOpen && (
+          <CardPaymentPopup
+            isOpen={isCardPaymentPopupOpen}
+            onClose={toggleCardPaymentPopup}
+          />
+        )} */}
     </div>
   );
 };
@@ -325,14 +444,13 @@ const mapStateToProps = (state, ownProps) => {
   const saleId = ownProps.match.params.saleId;
   return {
     saleId: saleId,
+    loader: state.loader.loader,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SalesScreen);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+})(SalesScreen);

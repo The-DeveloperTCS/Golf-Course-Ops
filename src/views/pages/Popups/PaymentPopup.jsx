@@ -1,9 +1,21 @@
 // PaymentPopup.js
 import React, { useState } from "react";
 import "../../style/PaymentPopup.css";
+import { connect, useDispatch } from "react-redux";
+import { history } from "redux/store";
+import { transationOfTeeSheet } from "redux/transaction/service";
+import Loader from "components/loader/Loader";
+import NotificationActions from "redux/notifications/actions";
+import loaderActions from "redux/loader/actions";
 
-const PaymentPopup = ({ isOpen, togglePopup }) => {
-  const [amount, setAmount] = useState("639.90");
+const { startLoader, endLoader } = loaderActions;
+const { successWithTimeout, failure } = NotificationActions;
+
+const PaymentPopup = ({ isOpen, salesData, setPaymentPopupOpen }, props) => {
+  const { startLoader, endLoader, loader, successWithTimeout, failure } = props;
+  const dispatch = useDispatch();
+  const [amount, setAmount] = useState(Number(salesData.total));
+  const [fixedAmount, setFixedAmount] = useState(Number(salesData.total));
 
   const handleAmountClick = (value) => {
     setAmount(value);
@@ -18,37 +30,68 @@ const PaymentPopup = ({ isOpen, togglePopup }) => {
   };
 
   const handleClear = () => {
-    setAmount("");
+    setAmount(0);
   };
 
-  return (
+  const onTransaction = () => {
+    dispatch(loaderActions.startLoader(true));
+    const payLoad = { ...salesData };
+    payLoad.total = amount;
+    payLoad.payMode = "paid";
+    payLoad.payMethod = "cash";
+    transationOfTeeSheet(payLoad)
+      .then((res) => {
+        console.log(res, "response");
+        dispatch(loaderActions.endLoader(false));
+        dispatch(
+          NotificationActions.successWithTimeout(
+            "Transaction complete successfully"
+          )
+        );
+        history.push("/tee-sheet/list");
+      })
+      .catch((err) => {
+        console.log(err, "error");
+        dispatch(loaderActions.endLoader(false));
+        dispatch(
+          NotificationActions.failureWithTimeout(err.response.data.message)
+        );
+      });
+  };
+
+  return loader ? (
+    <Loader />
+  ) : (
     <div className="popup1">
       <div className="popup-content1">
         <h2>Pay With Cash</h2>
         <div className="popup-main">
           <div className="popup-left">
-            <button className="x-btn" onClick={togglePopup}>
+            <button
+              className="x-btn"
+              onClick={() => setPaymentPopupOpen(false)}
+            >
               &times;
             </button>
             <div className="suggested-amounts">
-              <button onClick={() => handleAmountClick("639.90")}>
-                $639.90
+              <button onClick={() => handleAmountClick(fixedAmount + 3)}>
+                ${fixedAmount + 3}
               </button>
-              <button onClick={() => handleAmountClick("640.00")}>
-                $640.00
+              <button onClick={() => handleAmountClick(fixedAmount + 6)}>
+                ${fixedAmount + 6}
               </button>
-              <button onClick={() => handleAmountClick("650.00")}>
-                $650.00
+              <button onClick={() => handleAmountClick(fixedAmount + 8)}>
+                ${fixedAmount + 8}
               </button>
-              <button onClick={() => handleAmountClick("700.00")}>
-                $700.00
+              <button onClick={() => handleAmountClick(fixedAmount + 9)}>
+                ${fixedAmount + 9}
               </button>
             </div>
           </div>
           <div className="popup-right">
             <div className="manual-entry">
               <input
-                type="text"
+                type="number"
                 value={amount}
                 onChange={handleInputChange}
                 placeholder="Enter Amount"
@@ -56,6 +99,7 @@ const PaymentPopup = ({ isOpen, togglePopup }) => {
               <button
                 className="pay-btn1"
                 style={{ backgroundColor: "#0CD374" }}
+                onClick={() => onTransaction()}
               >
                 Pay
               </button>
@@ -80,14 +124,14 @@ const PaymentPopup = ({ isOpen, togglePopup }) => {
         </div>
         <div className="total-due">
           <h3>Total Due:</h3>
-          <h3> ${amount}</h3>
+          <h3> ${Number(salesData.total)}</h3>
         </div>
         <div className="customer-note">
           <textarea placeholder="Customer Note"></textarea>
         </div>
         <button
           className="close-btn"
-          onClick={togglePopup}
+          onClick={() => setPaymentPopupOpen(false)}
           style={{ backgroundColor: "#E92A2A" }}
         >
           Close
@@ -97,4 +141,16 @@ const PaymentPopup = ({ isOpen, togglePopup }) => {
   );
 };
 
-export default PaymentPopup;
+const mapStateToProps = (state) => {
+  console.log(state, "state");
+  return {
+    loader: state.loader.loader,
+  };
+};
+
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+})(PaymentPopup);

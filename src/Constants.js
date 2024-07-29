@@ -48,7 +48,7 @@ export const deleteInventoryUrl = (id) => BaseUrl + `inventory/delete/${id}`;
 export const getInventorysListUrl = (limit, pageNo) =>
   BaseUrl + `inventory/getAll/?page=${pageNo}&limit=${limit}`;
 export const getTeeSheetInventorysListUrl = (itemType) =>
-  BaseUrl + `allinventory/getByItemType/?page=&limit=&itemType=${itemType}`;
+  BaseUrl + `allinventory/getItemType?page=&limit=&itemType=${itemType}`;
 export const getSpecificInventoryUrl = (id) =>
   BaseUrl + `inventory/specificId/${id}`;
 
@@ -176,6 +176,14 @@ export const getCheckInUrl = (date, userId) =>
 export const saleCreateUrl = BaseUrl + "sale/add";
 export const salesInfoGetByIdUrl = (saleId) =>
   BaseUrl + `sale/get-teesheet-details?page=&limit=&saleId=${saleId}`;
+// export const updateTeeSheetUrl = (id) => BaseUrl + `teesheet/update/${id}`;
+// export const deleteTeeSheetUrl = (id) => BaseUrl + `teesheet/delete/${id}`;
+// export const getSpecificTeeSheetUrl = (id) => BaseUrl + `teesheet/specificId/${id}`;
+
+// Transation
+export const addTransaction = BaseUrl + "transaction/add";
+// export const salesInfoGetByIdUrl = (saleId) =>
+//   BaseUrl + `sale/get-teesheet-details?page=&limit=&saleId=${saleId}`;
 // export const updateTeeSheetUrl = (id) => BaseUrl + `teesheet/update/${id}`;
 // export const deleteTeeSheetUrl = (id) => BaseUrl + `teesheet/delete/${id}`;
 // export const getSpecificTeeSheetUrl = (id) => BaseUrl + `teesheet/specificId/${id}`;
