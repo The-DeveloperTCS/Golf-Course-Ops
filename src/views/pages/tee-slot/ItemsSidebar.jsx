@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
 
-function ItemsSidebar({ inventories }) {
+function ItemsSidebar({ inventories, onChangeItemAdd }) {
   const [selectedItem, setSelectedItem] = useState(0); // Initialize with 0 for Page 1
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);
 
@@ -43,7 +43,7 @@ function ItemsSidebar({ inventories }) {
     },
   ];
 
-  const handleItemClick = (index) => {
+  const handleItemClick = (item, index) => {
     setSelectedItem(selectedItem === index ? null : index);
 
     if (index === 0) {
@@ -51,6 +51,7 @@ function ItemsSidebar({ inventories }) {
     } else {
       setShowPaymentPopup(false);
     }
+    onChangeItemAdd(item);
   };
 
   // const handleClosePaymentPopup = () => {
@@ -64,7 +65,7 @@ function ItemsSidebar({ inventories }) {
         {inventories.map((item, index) => (
           <div key={index}>
             <button
-              onClick={() => handleItemClick(index)}
+              onClick={() => handleItemClick(item, index)}
               className={selectedItem === index ? "active" : ""}
             >
               {item.name}

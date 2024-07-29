@@ -61,6 +61,7 @@ function NewTeeSheet(props) {
       total: 0,
       seasonId: null,
       seasonName: "",
+      seasonlistId: null,
     };
     item_list.push(obj);
     setTeeSheet({
