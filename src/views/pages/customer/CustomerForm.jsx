@@ -445,6 +445,65 @@ const CustomerForm = (props) => {
                 </div>
 
                 <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Account No:</label>
+                  <div className="col-sm-8">
+                    <input
+                      type="number"
+                      className="form-control react-form-input"
+                      value={updatedCustomer.accountNumber}
+                      disabled={!useCustomerPermission}
+                      onChange={(e) =>
+                        setUpdateCustomer({
+                          ...updatedCustomer,
+                          accountNumber: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">
+                    Date Of Joining
+                  </label>
+                  <div className="col-sm-8">
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DesktopDatePicker
+                        disabled={!useCustomerPermission}
+                        // style={{ width: "50%" }}
+                        inputFormat="dd/MM/yyyy"
+                        value={new Date(updatedCustomer.dateJoined)}
+                        onChange={(newValue) =>
+                          setUpdateCustomer({
+                            ...updatedCustomer,
+                            dateJoined: newValue,
+                          })
+                        }
+                        renderInput={(params) => <TextField {...params} />}
+                      />
+                    </LocalizationProvider>
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Job Title</label>
+                  <div className="col-sm-8">
+                    <input
+                      type="text"
+                      className="form-control react-form-input"
+                      value={updatedCustomer.jobTitle}
+                      disabled={!useCustomerPermission}
+                      onChange={(e) =>
+                        setUpdateCustomer({
+                          ...updatedCustomer,
+                          jobTitle: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group row">
                   <label className="col-sm-4 col-form-label">
                     Current Address
                   </label>

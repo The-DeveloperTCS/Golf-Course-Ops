@@ -76,6 +76,17 @@ function TeeSheetForm(
     setTeeSheet({ ...updateTeeSheet });
   }, [updateTeeSheet]);
 
+  // const fetchCustomer = useCallback(() => {
+  //   getCustomers()
+  //     .then((res) => {
+  //       const data = res.data.customers;
+  //       setCustomersList(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, "err");
+  //     });
+  // }, [updateTeeSheet]);
+
   const handleInputChange = (index, value, field) => {
     var arr = [];
     for (var i in bookedCustomer) {
@@ -102,12 +113,12 @@ function TeeSheetForm(
     if (index == 0) {
       setTeeSheet({
         ...teeSheet,
-        customer_name: customer.firstName + " " + customer.lastName,
+        customer_name: customer.name,
         customerId: customer.id,
       });
     }
     var obj = {
-      customer_name: customer.firstName + " " + customer.lastName,
+      customer_name: customer.name,
       customer_email: customer.emailAddress,
       customer_cellphone: customer.cellPhoneNumber,
       customerId: customer.id,
@@ -174,12 +185,47 @@ function TeeSheetForm(
   // this.setState({ markers });
 
   const getCustomerName = (id) => {
-    if (id !== "") {
+    if (
+      id !== "" &&
+      id !== undefined &&
+      id !== null &&
+      customersList.length > 0
+    ) {
       return customersList.filter((cus) => cus.id === id)[0];
     }
-    return {};
+    return {
+      title: null,
+      content: null,
+      imageUrl: null,
+      categoryId: null,
+      userId: null,
+      firstName: "",
+      lastName: "",
+      name: "",
+      gender: "",
+      emailAddress: "",
+      phoneNumber: "",
+      cellPhoneNumber: "",
+      username: "",
+      dateOfBirth: "",
+      address: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      jobTitle: "",
+      pinNumber: null,
+      cardNumber: null,
+      defaultTerminal: null,
+      comments: "",
+      profilePicture: "",
+      role: null,
+      customerDateJoined: null,
+      isEmailVerified: null,
+      lastLoginAt: null,
+      status: true,
+    };
   };
-  console.log(customersList, "customersList");
+
   return (
     <div className="admin-t-main">
       <div className="admin-t-buttons">
@@ -401,7 +447,7 @@ function TeeSheetForm(
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 0);
             }}
-            defaultValue={getCustomerName(bookedCustomer[0].customerId)}
+            value={getCustomerName(bookedCustomer[0]?.customerId)}
             getOptionLabel={(option) => option?.name}
             renderInput={(params) => (
               <TextField
@@ -456,10 +502,8 @@ function TeeSheetForm(
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 1);
             }}
-            // defaultValue={getCustomerName(bookedCustomer[1].customerId)}
-            getOptionLabel={(option) =>
-              option?.firstName.toString() + " " + option?.lastName.toString()
-            }
+            value={getCustomerName(bookedCustomer[1].customerId)}
+            getOptionLabel={(option) => option?.name}
             renderInput={(params) => (
               <TextField {...params} placeholder="Select Name" />
             )}
@@ -510,10 +554,8 @@ function TeeSheetForm(
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 2);
             }}
-            // defaultValue={getCustomerName(bookedCustomer[2].customerId)}
-            getOptionLabel={(option) =>
-              option?.firstName.toString() + " " + option?.lastName.toString()
-            }
+            value={getCustomerName(bookedCustomer[2]?.customerId)}
+            getOptionLabel={(option) => option?.name}
             renderInput={(params) => (
               <TextField {...params} placeholder="Select Name" />
             )}
@@ -564,10 +606,8 @@ function TeeSheetForm(
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 3);
             }}
-            // defaultValue={getCustomerName(bookedCustomer[3].customerId)}
-            getOptionLabel={(option) =>
-              option?.firstName.toString() + " " + option?.lastName.toString()
-            }
+            value={getCustomerName(bookedCustomer[3]?.customerId)}
+            getOptionLabel={(option) => option?.name}
             renderInput={(params) => (
               <TextField {...params} placeholder="Select Name" />
             )}
@@ -648,19 +688,21 @@ function TeeSheetForm(
           )}
         </div>
 
-        <div className="tee-sheet-Check-In">
-          <div className="check-in-admint-tee-sheet">
-            {/* <Link to="/adminDashboardItems"> */}
-            <button
-              onClick={() =>
-                handleChaneCheckInTeeSheet(teeSheet, bookedCustomer)
-              }
-            >
-              Check in
-            </button>
-            {/* </Link> */}
+        {teeSheet.pay_mode !== "paid" ? (
+          <div className="tee-sheet-Check-In">
+            <div className="check-in-admint-tee-sheet">
+              {/* <Link to="/adminDashboardItems"> */}
+              <button
+                onClick={() =>
+                  handleChaneCheckInTeeSheet(teeSheet, bookedCustomer)
+                }
+              >
+                Check in
+              </button>
+              {/* </Link> */}
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );

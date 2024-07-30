@@ -119,10 +119,10 @@ const SubCategoriesList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    subCategories: state.category.subCategories,
-    pageLimit: state.category.pageLimit,
-    pageNo: state.category.pageNo,
-    total: state.category.total,
+    subCategories: state.categories.subCategories,
+    pageLimit: state.categories.pageLimit,
+    pageNo: state.categories.pageNo,
+    total: state.categories.total,
     loader: state.loader.loader,
   };
 };

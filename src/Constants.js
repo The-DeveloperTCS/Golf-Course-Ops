@@ -97,6 +97,7 @@ export const getDepartmentsListUrl = (limit, pageNo) =>
   BaseUrl + `department/getAll/?page=${pageNo}&limit=${limit}`;
 export const getSpecificDepartmentUrl = (id) =>
   BaseUrl + `department/specificId/${id}`;
+export const allDepartmentsUrl = BaseUrl + "alldepartment/getAllDepartment";
 
 //Groups Endpoints
 export const createGroupUrl = BaseUrl + "group/add";
@@ -114,6 +115,7 @@ export const getCategorysListUrl = (limit, pageNo) =>
   BaseUrl + `category/getAll/?page=${pageNo}&limit=${limit}`;
 export const getSpecificCategoryUrl = (id) =>
   BaseUrl + `category/specificId/${id}`;
+export const allCategoriesUrl = BaseUrl + "allcategory/getAllCategory";
 
 //Sub Category Endpoints
 export const createSubCategoryUrl = BaseUrl + "sub-category/add";
@@ -125,6 +127,8 @@ export const getSubCategorysListUrl = (limit, pageNo) =>
   BaseUrl + `sub-category/getAll/?page=${pageNo}&limit=${limit}`;
 export const getSpecificSubCategoryUrl = (id) =>
   BaseUrl + `sub-category/specificId/${id}`;
+export const getparentSubCategoryUrl = (parentId) =>
+  BaseUrl + `allsubcategory/getAllSubCategory?parentId=${parentId}`;
 
 //Role Endpoints
 export const createRoleUrl = BaseUrl + "role/add";

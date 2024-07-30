@@ -5,6 +5,7 @@ import {
   deleteDepartmentUrl,
   getDepartmentsListUrl,
   getSpecificDepartmentUrl,
+  allDepartmentsUrl,
 } from "Constants";
 
 export const getDepartmentsList = async (limit, pageNo) => {
@@ -32,4 +33,8 @@ export const getSpecificDepartment = async (departmentId) => {
 
 export const deleteDepartments = async (departmentId) => {
   return axiosClient.delete(deleteDepartmentUrl(departmentId));
+};
+
+export const allDepartments = async () => {
+  return axiosClient.get(allDepartmentsUrl);
 };

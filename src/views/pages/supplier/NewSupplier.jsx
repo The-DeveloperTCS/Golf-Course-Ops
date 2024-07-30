@@ -27,7 +27,7 @@ const NewSupplier = (props) => {
     return createSuppliers(updatedSupplier)
       .then((res) => {
         props.successWithTimeout(
-          `Supplier #${res.data.post.id} added successfully!`
+          `Supplier #${res.data.supplier.id} added successfully!`
         );
         props.history.push("/supplier/list");
       })

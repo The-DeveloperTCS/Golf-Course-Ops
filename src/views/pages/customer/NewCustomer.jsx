@@ -31,6 +31,9 @@ const defaultCustomer = {
   isEmailVerified: false,
   status: false,
   profile_picture: "",
+  accountNumber: "",
+  dateJoined: "",
+  jobTitle: "",
 };
 
 const NewCustomer = (props) => {

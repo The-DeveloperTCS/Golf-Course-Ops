@@ -8,12 +8,13 @@ import GiftCardForm from "./GiftCardForm";
 const defaultGiftCard = {
   giftCardNumber: "",
   value: "",
-  customerName: "",
+  customName: "",
   expirationDate: null,
   dateIssued: null,
-  department: "",
-  category: "",
+  departmentId: null,
+  categoryId: null,
   notes: "",
+  customerId: null,
   status: false,
 };
 
@@ -22,7 +23,7 @@ const NewGiftCard = (props) => {
     return createGiftCards(updatedGiftCard)
       .then((res) => {
         props.successWithTimeout(
-          `Gift Card #${res.data.id} added successfully!`
+          `Gift Card #${res.data.post?.id} added successfully!`
         );
         props.history.push("/gift-card/list");
       })

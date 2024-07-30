@@ -1,41 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
+import loaderActions from "redux/loader/actions";
+import Loader from "components/loader/Loader";
 import SupplierForm from "./SupplierForm";
 import {
   updateSupplierDetails,
   getSpecificSupplier,
 } from "redux/supplier/service";
+const { successWithTimeout, failure } = NotificationActions;
+const { startLoader, endLoader } = loaderActions;
 
 const SupplierSingle = (props) => {
-  const { supplierId } = props;
+  const {
+    supplierId,
+    startLoader,
+    endLoader,
+    successWithTimeout,
+    failure,
+    loader,
+  } = props;
   const [supplierDetail, setSupplierDetails] = useState({});
 
   useEffect(() => {
+    startLoader(true);
+
     getSupplierDetails();
   }, [supplierId]);
 
   const getSupplierDetails = async () => {
     getSpecificSupplier(supplierId).then((res) => {
       setSupplierDetails(res.data);
+      endLoader(false);
     });
   };
 
   const onSupplierSave = async (updatedSupplier) => {
     return updateSupplierDetails(supplierId, updatedSupplier)
       .then((res) => {
-        props.successWithTimeout(`Supplier updated successfully!`);
+        successWithTimeout(`Supplier updated successfully!`);
         props.history.push("/supplier/list");
       })
       .catch((err) =>
-        props.failure(
+        failure(
           `Supplier #${updatedSupplier.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <SupplierForm
       updateSupplier={supplierDetail}
       supplierId={supplierId}
@@ -48,14 +63,13 @@ const mapStateToProps = (state, ownProps) => {
   const supplierId = parseInt(ownProps.match.params.supplierId);
   return {
     supplierId: supplierId,
+    loader: state.loader.loader,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SupplierSingle);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+})(SupplierSingle);

@@ -26,12 +26,10 @@ function TeeSheet(props) {
 
   useEffect(() => {
     const date = moment();
-    console.log(date, "date");
     getTeeSheetDataByDate(date);
   }, []);
 
   const getTeeSheetDataByDate = (selectedDate) => {
-    console.log(selectedDate, "selectedDate");
     startLoader(true);
     setDate(selectedDate);
     const fromatDate = moment(selectedDate).format("YYYY-MM-DD");
@@ -87,6 +85,7 @@ function TeeSheet(props) {
     setDate(yesterday);
     getTeeSheetDataByDate(yesterday);
   };
+
   return loader ? (
     <Loader />
   ) : (

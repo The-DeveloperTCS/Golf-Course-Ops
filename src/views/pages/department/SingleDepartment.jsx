@@ -1,41 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
+import loaderActions from "redux/loader/actions";
+import Loader from "components/loader/Loader";
 import DepartmentForm from "./DepartmentForm";
 import {
   updateDepartmentDetails,
   getSpecificDepartment,
 } from "redux/department/service";
+const { successWithTimeout, failure } = NotificationActions;
+const { startLoader, endLoader } = loaderActions;
 
 const DepartmentSingle = (props) => {
-  const { departmentId } = props;
+  const {
+    departmentId,
+    startLoader,
+    endLoader,
+    successWithTimeout,
+    failure,
+    loader,
+  } = props;
   const [departmentDetail, setDepartmentDetails] = useState({});
 
   useEffect(() => {
+    startLoader(true);
+
     getDepartmentDetails();
   }, [departmentId]);
 
   const getDepartmentDetails = async () => {
     getSpecificDepartment(departmentId).then((res) => {
       setDepartmentDetails(res.data);
+      endLoader(false);
     });
   };
 
   const onDepartmentSave = async (updatedDepartment) => {
     return updateDepartmentDetails(departmentId, updatedDepartment)
       .then((res) => {
-        props.successWithTimeout(`Department updated successfully!`);
+        successWithTimeout(`Department updated successfully!`);
         props.history.push("/department/list");
       })
       .catch((err) =>
-        props.failure(
+        failure(
           `Department #${updatedDepartment.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <DepartmentForm
       updateDepartment={departmentDetail}
       departmentId={departmentId}
@@ -51,11 +66,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentSingle);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+})(DepartmentSingle);

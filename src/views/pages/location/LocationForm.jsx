@@ -8,7 +8,7 @@ import NotificationActions from "redux/notifications/actions";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import moment from "moment";
 
 const LocationForm = (props) => {
@@ -92,11 +92,12 @@ const LocationForm = (props) => {
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Time</label>
                   <div className="col-sm-8">
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <LocalizationProvider dateAdapter={AdapterMoment}>
                       <TimePicker
                         label="Controlled picker"
-                        value={moment(updatedLocation.time).format("LLL")}
+                        value={moment(updatedLocation.time)}
                         onChange={(newValue) => {
+                          console.log(newValue, "new value");
                           setUpdateLocation({
                             ...updatedLocation,
                             time: newValue,

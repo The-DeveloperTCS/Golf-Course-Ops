@@ -15,7 +15,7 @@ const NewTerminal = (props) => {
     return createTerminals(updatedTerminal)
       .then((res) => {
         props.successWithTimeout(
-          `Terminal #${res.data.post.id} added successfully!`
+          `Terminal #${res.data.terminal.id} added successfully!`
         );
         props.history.push("/terminal/list");
       })

@@ -3,8 +3,11 @@ import { bindActionCreators } from "redux";
 import LOcationActions from "redux/location/action";
 import NotificationActions from "redux/notifications/actions";
 import { createLocation } from "redux/location/service";
+import loaderActions from "redux/loader/actions";
+import Loader from "components/loader/Loader";
 import LocationForm from "./LocationForm";
-
+const { startLoader, endLoader } = loaderActions;
+const { successWithTimeout, failureWithTimeout } = NotificationActions;
 const defaultLocation = {
   name: "",
   destination: "",
@@ -13,22 +16,29 @@ const defaultLocation = {
 };
 
 const NewLocation = (props) => {
+  const {
+    startLoader,
+    endLoader,
+    successWithTimeout,
+    failureWithTimeout,
+    loader,
+  } = props;
   const onSave = async (updatedLocation) => {
     return createLocation(updatedLocation)
       .then((res) => {
-        props.successWithTimeout(
-          `Location #${res.data.post.id} added successfully!`
-        );
+        successWithTimeout(`Location #${res.data.post.id} added successfully!`);
         props.history.push("/location/list");
       })
-      .catch((err) =>
-        props.failureWithTimeout(
+      .catch((err) => {
+        failureWithTimeout(
           "Failed to add new location, " + err.response.data.message
-        )
-      );
+        );
+      });
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <LocationForm
       updateEmployee={defaultLocation}
       onSave={onSave}
@@ -36,12 +46,15 @@ const NewLocation = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    dispatch,
-    ...bindActionCreators(LOcationActions, dispatch),
-    ...bindActionCreators(NotificationActions, dispatch),
+    loader: state.loader.loader,
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewLocation);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failureWithTimeout,
+})(NewLocation);

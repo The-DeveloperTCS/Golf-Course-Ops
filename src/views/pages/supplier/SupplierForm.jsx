@@ -504,12 +504,12 @@ const SupplierForm = (props) => {
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedSupplier.zip_code}
+                      value={updatedSupplier.zipCode}
                       disabled={!useSupplierPermission}
                       onChange={(e) =>
                         setUpdateSupplier({
                           ...updatedSupplier,
-                          zip_code: e.target.value,
+                          zipCode: e.target.value,
                         })
                       }
                     />
@@ -522,7 +522,7 @@ const SupplierForm = (props) => {
                   </label>
                   <div className="col-sm-8">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control react-form-input"
                       value={updatedSupplier.accountNumber}
                       disabled={!useSupplierPermission}

@@ -11,11 +11,18 @@ import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { TextField } from "@mui/material";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { getAllCategories } from "redux/category/service";
+import { allDepartments } from "redux/department/service";
+import { getCustomers } from "redux/customer/service";
 
 const GiftCardForm = (props) => {
   const { giftCardId, updateGiftCard } = props;
   const [updatedGiftCard, setUpdateGiftCard] = useState({ ...updateGiftCard });
   const [saving, setSaving] = useState(false);
+  const [departments, setDepartments] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [customersList, setCustomersList] = useState([]);
+
   const useGiftCardPermission = useRolePermissions("GIFT_CARD");
 
   useEffect(() => {
@@ -24,6 +31,31 @@ const GiftCardForm = (props) => {
         setUpdateGiftCard(res.data);
       });
     }
+    allDepartments()
+      .then((res) => {
+        const data = res.data.departments;
+        setDepartments(data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+
+    getAllCategories()
+      .then((res) => {
+        const data = res.data.categories;
+        setCategories(data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+    getCustomers()
+      .then((res) => {
+        const data = res.data.customers;
+        setCustomersList(data);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
   }, []);
 
   const onSave = () => {
@@ -91,22 +123,81 @@ const GiftCardForm = (props) => {
                     />
                   </div>
                 </div>
+
                 <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">
-                    Customer Name
-                  </label>
+                  <label className="col-sm-4 col-form-label">Customer</label>
+                  <div className="col-sm-8">
+                    <Select
+                      value={customersList?.find(
+                        (c) => c.id === updatedGiftCard.customerId
+                      )}
+                      onChange={(e) => {
+                        setUpdateGiftCard({
+                          ...updatedGiftCard,
+                          customerId: e.id,
+                        });
+                      }}
+                      getOptionLabel={(option) => option.name}
+                      getOptionValue={(option) => option.id}
+                      options={customersList}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Custom Name</label>
                   <div className="col-sm-8">
                     <input
                       type="email"
                       className="form-control react-form-input"
-                      value={updatedGiftCard.customerName}
+                      value={updatedGiftCard.customName}
                       disabled={!useGiftCardPermission}
                       onChange={(e) =>
                         setUpdateGiftCard({
                           ...updatedGiftCard,
-                          customerName: e.target.value,
+                          customName: e.target.value,
                         })
                       }
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Department </label>
+                  <div className="col-sm-8">
+                    <Select
+                      value={departments?.find(
+                        (c) => c.id === updatedGiftCard.departmentId
+                      )}
+                      getOptionLabel={(option) => option.name}
+                      getOptionValue={(option) => option.id}
+                      onChange={(e) => {
+                        setUpdateGiftCard({
+                          ...updatedGiftCard,
+                          departmentId: e.id,
+                        });
+                      }}
+                      options={departments}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Category</label>
+                  <div className="col-sm-8">
+                    <Select
+                      value={categories?.find(
+                        (c) => c.id === updatedGiftCard.categoryId
+                      )}
+                      onChange={(e) => {
+                        setUpdateGiftCard({
+                          ...updatedGiftCard,
+                          categoryId: e.id,
+                        });
+                      }}
+                      getOptionLabel={(option) => option.name}
+                      getOptionValue={(option) => option.id}
+                      options={categories}
                     />
                   </div>
                 </div>
@@ -154,42 +245,6 @@ const GiftCardForm = (props) => {
                     </LocalizationProvider>
                   </div>
                 </div>
-
-                {/* <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Department </label>
-                  <div className="col-sm-8">
-                    <Select
-                      value={terminals?.find(
-                        (c) => c.value === updatedGiftCard.department
-                      )}
-                      onChange={(e) => {
-                        setUpdateGiftCard({
-                          ...updatedGiftCard,
-                          department: e.value,
-                        });
-                      }}
-                      options={terminals}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-4 col-form-label">Category</label>
-                  <div className="col-sm-8">
-                    <Select
-                      value={terminals?.find(
-                        (c) => c.value === updatedGiftCard.department
-                      )}
-                      onChange={(e) => {
-                        setUpdateGiftCard({
-                          ...updatedGiftCard,
-                          department: e.value,
-                        });
-                      }}
-                      options={terminals}
-                    />
-                  </div>
-                </div> */}
 
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">notes</label>

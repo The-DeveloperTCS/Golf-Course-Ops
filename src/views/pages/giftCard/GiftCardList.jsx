@@ -84,6 +84,21 @@ const GiftCardsList = (props) => {
       enableFilters: false,
     },
     {
+      title: "Custom Name",
+      id: "customName",
+      enableFilters: false,
+    },
+    {
+      title: "Department",
+      id: "departmentId",
+      enableFilters: false,
+    },
+    {
+      title: "Category",
+      id: "categoryId",
+      enableFilters: false,
+    },
+    {
       title: "Issue Date",
       id: "dateIssued",
       enableFilters: false,
@@ -93,6 +108,7 @@ const GiftCardsList = (props) => {
       id: "expirationDate",
       enableFilters: false,
     },
+
     {
       title: "Status",
       id: "status",
