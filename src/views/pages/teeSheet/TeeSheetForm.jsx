@@ -179,7 +179,7 @@ function TeeSheetForm(
     }
     return {};
   };
-
+  console.log(customersList, "customersList");
   return (
     <div className="admin-t-main">
       <div className="admin-t-buttons">
@@ -401,10 +401,8 @@ function TeeSheetForm(
             onChange={(event, newValue) => {
               onChangeCustomerList(newValue, 0);
             }}
-            // value={getCustomerName(bookedCustomer[0].customerId)}
-            getOptionLabel={(option) =>
-              option?.firstName.toString() + " " + option?.lastName.toString()
-            }
+            defaultValue={getCustomerName(bookedCustomer[0].customerId)}
+            getOptionLabel={(option) => option?.name}
             renderInput={(params) => (
               <TextField
                 {...params}
