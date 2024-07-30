@@ -201,20 +201,33 @@
 .item-table td {
   padding: 15px 10px;
 }
-
+/* .css-1pahdxg-control{
+  width: 80% !important;
+} */
 .select-container {
   display: flex;
   gap: 10px;
+  font-size: 14px;
   /* Adjust spacing as needed */
 }
 
 .flex-select {
-  flex: 1;
+  flex: 1.5;
   /* Make them share available space equally */
 }
 .css-g1d714-ValueContainer {
   padding: 4px 8px !important;
   outline: none !important;
+}
+
+.new-row {
+  background-color: #e8edff !important; /* or whatever color you want */
+}
+tbody tr:nth-child(even) {
+  background-color: #fff !important; /* or whatever color you want */
+}
+tr.sale-screen-inputs {
+  background-color: #e8edff;
 }
 .css-g1d714-ValueContainer :active {
   outline: none !important;
@@ -223,7 +236,10 @@
 .item-table th {
   background-color: #ffffff;
 }
-
+.flex-select2 {
+  flex: 1;
+  /* Make them share available space equally */
+}
 .item-total {
   display: flex;
   justify-content: space-between;
@@ -234,6 +250,7 @@
   padding: 15px 20px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  align-items: center;
 }
 
 .item-table tr:nth-child(1) {
@@ -252,8 +269,8 @@
 }
 
 .sub-total-item h1 {
-  font-weight: 600;
-  font-size: 30px;
+  font-weight: 500;
+  font-size: 25px;
 }
 
 .sub-total-item span {
@@ -538,6 +555,9 @@ th.item-name {
   margin-top: 20px;
   padding: 10px 10px;
 }
+.css-4ljt47-MenuList {
+  font-size: 14px !important;
+}
 
 .cash-btn button {
   padding: 10px 20px;
@@ -565,8 +585,8 @@ button.close-btn {
 }
 
 .cash-in-nbr h3 {
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 25px;
+  font-weight: 500;
 }
 
 .cash-in-nbr h4 {
@@ -577,7 +597,7 @@ button.close-btn {
 .sale-screen-inputs input {
   padding: 8px;
   border-radius: 5px;
-  width: 100%;
+  width: 70%;
   outline: none;
   border: 1px solid #b3b3b3;
 }

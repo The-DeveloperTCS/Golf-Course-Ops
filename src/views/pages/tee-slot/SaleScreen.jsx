@@ -285,7 +285,7 @@ const SalesScreen = ({
                               options={seasons}
                             />
                             <Select
-                              className="flex-select"
+                              className="flex-select2"
                               value={seasonList?.find(
                                 (c) => c.id === item.seasonlistId
                               )}
@@ -306,6 +306,7 @@ const SalesScreen = ({
 
                       <td>
                         <input
+                          style={{ width: "100%" }}
                           type="number"
                           placeholder="Price"
                           onChange={(event) => {
@@ -360,16 +361,17 @@ const SalesScreen = ({
               <div className="item-total">
                 <p>{salesData.item_list.length} items</p>
                 <div className="sub-total-item">
+                  <span>Sales Tax - 7.50%</span>
+                  <h1>${salesData?.saleTax}</h1>
+                </div>
+                <div className="sub-total-item">
                   <span>sub total</span>
                   <h1>${salesData?.subTotal}</h1>
                 </div>
               </div>
-              <div className="item-total">
-                <div className="sub-total-item">
-                  <span>Sales Tax - 7.50%</span>
-                  <h1>${salesData?.saleTax}</h1>
-                </div>
-              </div>
+              {/* <div className="item-total">
+
+              </div> */}
             </div>
           </div>
           <div className="admin-down-btns">
