@@ -28,7 +28,6 @@ const Login = (props) => {
         loginRequest(values.username, values.password); // Pass username and password
       }
     } catch (e) {
-      console.log(e);
       dispatch(notificationActions.failure("Failed to login, " + e.message));
     } finally {
     }

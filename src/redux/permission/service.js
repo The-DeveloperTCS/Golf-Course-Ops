@@ -8,6 +8,7 @@ import {
   getRolePermissionUrl,
   RolePermissionsUpdateUrl,
   setPermissionByRole,
+  getAllPermissionUrl,
 } from "Constants";
 
 export const getPermissionsList = async (limit, pageNo) => {
@@ -19,6 +20,10 @@ export const getPermissionsList = async (limit, pageNo) => {
   } catch (error) {
     throw error;
   }
+};
+
+export const getAllPermissions = () => {
+  return axiosClient.get(getAllPermissionUrl);
 };
 
 export const createPermissions = (req) => {

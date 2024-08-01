@@ -97,7 +97,6 @@ const LocationForm = (props) => {
                         label="Controlled picker"
                         value={moment(updatedLocation.time)}
                         onChange={(newValue) => {
-                          console.log(newValue, "new value");
                           setUpdateLocation({
                             ...updatedLocation,
                             time: newValue,

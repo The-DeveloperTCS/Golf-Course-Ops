@@ -54,11 +54,6 @@ function ItemsSidebar({ inventories, onChangeItemAdd }) {
     onChangeItemAdd(item);
   };
 
-  // const handleClosePaymentPopup = () => {
-  //   setShowPaymentPopup(false);
-  // };
-
-  // console.log(inventories, 'inventories')
   return (
     <div className="adminSidebar1">
       <div className="page-selector">

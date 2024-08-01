@@ -19,7 +19,7 @@ const defaultState = {
   saleTax: 0,
   stateTax: 0,
   total: 0,
-  payMethod: "cash",
+  pay_method: "cash",
   teesheetId: null,
   date: "",
   item_list: [
@@ -39,7 +39,7 @@ const defaultState = {
   saleId: "",
   sale: true,
   isReturn: false,
-  payMode: "paid",
+  pay_mode: "paid",
 };
 
 const SalesScreen = ({
@@ -90,15 +90,16 @@ const SalesScreen = ({
           seasonName: seasonData[0].name,
           itemId: null,
           itemName: null,
-          price: seasonData[0].season_list[0].price,
+          price: Number(seasonData[0].season_list[0].price),
           seasonlistId: seasonData[0].season_list[0].id,
           quantity: 1,
           discount: 0,
-          total: seasonData[0].season_list[0].price * 1,
+          total: Number(seasonData[0].season_list[0].price) * 1,
         };
         list.push(obj);
-        const subTotal = seasonData[0].season_list[0].price;
+        const subTotal = Number(seasonData[0].season_list[0].price);
         const salesTax = Number(Math.round((subTotal / 100) * 7.5).toFixed(2));
+
         setSalesData({
           ...salesData,
           item_list: list,
@@ -127,36 +128,38 @@ const SalesScreen = ({
       setSeasonList(seasonList?.season_list);
       data.seasonlistId = seasonList?.season_list[0]?.id;
     }
+
     if (key === "seasonlistId") {
       const totalDiscount =
-        ((Number(value.price) * Number(data.quantity)) / 100) *
-        Number(data.discount);
+        ((Number(value.price) * data.quantity) / 100) * data.discount;
       data.seasonlistId = value.id;
-      data.price = value.price;
-      data.quantity = data.quantity;
-      data.total = Math.round(
-        value.price * data.quantity - totalDiscount
-      ).toFixed(2);
-      data.discount = data.discount;
+      data.price = Number(value.price);
+      data.quantity = Number(data.quantity);
+      data.total = Number(
+        Math.round(Number(value.price) * data.quantity - totalDiscount).toFixed(
+          2
+        )
+      );
+      data.discount = Number(data.discount);
     }
     if (key === "price") {
       const totalDiscount =
-        ((Number(value) * Number(data.quantity)) / 100) * Number(data.discount);
-      const total = value * Number(data.quantity);
-      data.price = value;
-      data.total = Math.round(total - totalDiscount).toFixed(2);
+        ((Number(value) * data.quantity) / 100) * data.discount;
+      const total = Number(value) * data.quantity;
+      data.price = Number(value);
+      data.total = Number(Math.round(total - totalDiscount).toFixed(2));
     }
     if (key === "quantity") {
       const totalDiscount =
-        (Number(data.price * Number(value)) / 100) * Number(data.discount);
+        ((data.price * Number(value)) / 100) * data.discount;
       const total = data.price * Number(value);
-      data.quantity = value;
-      data.total = Math.round(total - totalDiscount).toFixed(2);
+      data.quantity = Number(value);
+      data.total = Number(Math.round(total - totalDiscount).toFixed(2));
     }
     if (key === "discount") {
-      const discount = (Number(data.total) / 100) * Number(value);
-      data.discount = value;
-      data.total = Math.round(data.total - discount).toFixed(2);
+      const discount = (data.total / 100) * Number(value);
+      data.discount = Number(value);
+      data.total = Number(Math.round(data.total - discount).toFixed(2));
     }
     const newData = [...salesData.item_list];
     newData[index] = data;
@@ -165,9 +168,9 @@ const SalesScreen = ({
     setSalesData({
       ...salesData,
       item_list: newData,
-      subTotal: subTotal,
+      subTotal: Number(subTotal),
       saleTax: salesTax,
-      total: Math.round(Number(subTotal) + salesTax).toFixed(2),
+      total: Number(Math.round(subTotal + salesTax).toFixed(2)),
     });
   };
 
@@ -190,13 +193,14 @@ const SalesScreen = ({
     setSalesData({
       ...salesData,
       item_list: itemsAll,
-      subTotal: subTotal,
-      saleTax: salesTax,
-      total: Math.round(Number(subTotal) + salesTax).toFixed(2),
+      subTotal: Number(subTotal),
+      saleTax: Number(salesTax),
+      total: Number(Math.round(subTotal + salesTax).toFixed(2)),
     });
   };
 
-  console.log(salesData, "salesData");
+  console.log(salesData, "sales data");
+
   return loader ? (
     <Loader />
   ) : (

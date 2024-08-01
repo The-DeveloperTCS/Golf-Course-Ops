@@ -76,17 +76,6 @@ function TeeSheetForm(
     setTeeSheet({ ...updateTeeSheet });
   }, [updateTeeSheet]);
 
-  // const fetchCustomer = useCallback(() => {
-  //   getCustomers()
-  //     .then((res) => {
-  //       const data = res.data.customers;
-  //       setCustomersList(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err, "err");
-  //     });
-  // }, [updateTeeSheet]);
-
   const handleInputChange = (index, value, field) => {
     var arr = [];
     for (var i in bookedCustomer) {
@@ -110,31 +99,33 @@ function TeeSheetForm(
   };
 
   const onChangeCustomerList = (customer, index) => {
-    if (index == 0) {
-      setTeeSheet({
-        ...teeSheet,
-        customer_name: customer.name,
-        customerId: customer.id,
-      });
-    }
-    var obj = {
-      customer_name: customer.name,
-      customer_email: customer.emailAddress,
-      customer_cellphone: customer.cellPhoneNumber,
-      customerId: customer.id,
-      no_show: false,
-      zip: customer.zipCode,
-    };
-
-    var arr = [];
-    for (var i = 0; i <= 3; i++) {
-      if (i == index) {
-        arr.push(obj);
-      } else {
-        arr.push(bookedCustomer[i]);
+    if (customer !== null) {
+      if (index == 0) {
+        setTeeSheet({
+          ...teeSheet,
+          customer_name: customer.name,
+          customerId: customer.id,
+        });
       }
+      var obj = {
+        customer_name: customer.name,
+        customer_email: customer.emailAddress,
+        customer_cellphone: customer.cellPhoneNumber,
+        customerId: customer.id,
+        no_show: false,
+        zip: customer.zipCode,
+      };
+
+      var arr = [];
+      for (var i = 0; i <= 3; i++) {
+        if (i == index) {
+          arr.push(obj);
+        } else {
+          arr.push(bookedCustomer[i]);
+        }
+      }
+      setBookedCustomer(arr.filter((e) => e !== undefined));
     }
-    setBookedCustomer(arr.filter((e) => e !== undefined));
   };
 
   const handleChaneAddTeeSheet = () => {

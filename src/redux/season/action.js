@@ -14,11 +14,9 @@ const seasonActions = {
   },
 
   seasonsFetchedPagination: (data) => {
-    // console.log(data, 'data')
     return {
       type: seasonActions.SEASONS_FETCHED_PAGINATION,
       seasons: data.seasons,
-      // seasonList: data.seasons.season_list,
       total: data.pagination.totalSeasons,
       pageLimit: data.pagination.limit,
       pageNo: data.pagination.currentPage,

@@ -14,7 +14,6 @@ const initialState = {
 export default function permissionReducer(state = initialState, action) {
   switch (action.type) {
     case seasonActions.SEASONS_FETCHED_PAGINATION:
-      // console.log(action, 'action')
       return {
         ...state,
         seasons: [...action.seasons],

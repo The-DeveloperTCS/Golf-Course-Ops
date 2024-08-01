@@ -121,7 +121,7 @@ const DataTable = (props) => {
       .catch((err) => {
         console.log(err, "err");
       });
-  });
+  }, []);
 
   const getCustomerName = (id) => {
     if (

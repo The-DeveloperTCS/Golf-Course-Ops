@@ -37,11 +37,11 @@ const PaymentPopup = ({ isOpen, salesData, setPaymentPopupOpen }, props) => {
     dispatch(loaderActions.startLoader(true));
     const payLoad = { ...salesData };
     payLoad.total = amount;
-    payLoad.payMode = "paid";
+    payLoad.pay_mode = "paid";
     payLoad.payMethod = "cash";
+    payLoad.pay_method = "cash";
     transationOfTeeSheet(payLoad)
       .then((res) => {
-        console.log(res, "response");
         dispatch(loaderActions.endLoader(false));
         dispatch(
           NotificationActions.successWithTimeout(
@@ -142,7 +142,6 @@ const PaymentPopup = ({ isOpen, salesData, setPaymentPopupOpen }, props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state, "state");
   return {
     loader: state.loader.loader,
   };

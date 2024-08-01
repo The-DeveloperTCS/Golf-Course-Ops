@@ -15,7 +15,7 @@ const NewPermission = (props) => {
     return createPermissions(updatedPermission)
       .then((res) => {
         props.successWithTimeout(
-          `Permission #${res.data.post.id} added successfully!`
+          `Permission #${res.data.permission.id} added successfully!`
         );
         props.history.push("/permission/list");
       })

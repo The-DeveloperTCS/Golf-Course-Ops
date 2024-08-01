@@ -15,7 +15,6 @@ const categoryActions = {
   },
 
   categoriesFetchedPagination: (data) => {
-    console.log(data);
     return {
       type: categoryActions.CATEGORIES_FETCHED_PAGINATION,
       categories: data.categories,
@@ -47,9 +46,9 @@ const categoryActions = {
     return {
       type: categoryActions.SUB_CATEGORIES_FETCHED_PAGINATION,
       subCategories: data.subCategories,
-      total: data.pagination.totalCategories,
-      pageLimit: data.pagination.limit,
-      pageNo: data.pagination.currentPage,
+      totalSubCategories: data.pagination.totalSubCategories,
+      pageLimitSubCategories: data.pagination.limit,
+      pageNoSubCategories: data.pagination.currentPage,
     };
   },
 

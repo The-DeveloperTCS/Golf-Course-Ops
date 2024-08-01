@@ -2,40 +2,55 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
+import loaderActions from "redux/loader/actions";
+import Loader from "components/loader/Loader";
 import PermissionForm from "./PermissionForm";
 import {
   updatePermissionDetails,
   getSpecificPermission,
 } from "redux/permission/service";
+const { successWithTimeout, failure } = NotificationActions;
+const { startLoader, endLoader } = loaderActions;
 
 const PermissionSingle = (props) => {
-  const { permissionId } = props;
+  const {
+    permissionId,
+    startLoader,
+    endLoader,
+    successWithTimeout,
+    failure,
+    loader,
+  } = props;
   const [permissionDetail, setPermissionDetails] = useState({});
 
   useEffect(() => {
-    getCityDetails();
+    startLoader(true);
+    getPermissionDetails();
   }, [permissionId]);
 
-  const getCityDetails = async () => {
+  const getPermissionDetails = async () => {
     getSpecificPermission(permissionId).then((res) => {
       setPermissionDetails(res.data);
+      endLoader(false);
     });
   };
 
-  const onPermissionSave = async (updatedSupplier) => {
-    return updatePermissionDetails(permissionId, updatedSupplier)
+  const onPermissionSave = async (updatedPermission) => {
+    return updatePermissionDetails(permissionId, updatedPermission)
       .then((res) => {
-        props.successWithTimeout(`Permission updated successfully!`);
+        successWithTimeout(`Permission updated successfully!`);
         props.history.push("/permission/list");
       })
       .catch((err) =>
-        props.failure(
-          `Permission #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+        failure(
+          `Permission #${updatedPermission.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <PermissionForm
       updatePermission={permissionDetail}
       permissionId={permissionId}
@@ -48,14 +63,13 @@ const mapStateToProps = (state, ownProps) => {
   const permissionId = parseInt(ownProps.match.params.permissionId);
   return {
     permissionId: permissionId,
+    loader: state.loader.loader,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PermissionSingle);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+})(PermissionSingle);

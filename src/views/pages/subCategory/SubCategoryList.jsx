@@ -90,7 +90,7 @@ const SubCategoriesList = (props) => {
                 {/* {useSupplierPermission && ( */}
                 <button
                   className="c-btn ma-5 add-new-btn-color"
-                  onClick={() => props.history.push("/category/new")}
+                  onClick={() => props.history.push("/sub-category/new")}
                 >
                   <i className="fas fa-plus" /> New Sub Category
                 </button>
@@ -120,9 +120,9 @@ const SubCategoriesList = (props) => {
 const mapStateToProps = (state) => {
   return {
     subCategories: state.categories.subCategories,
-    pageLimit: state.categories.pageLimit,
-    pageNo: state.categories.pageNo,
-    total: state.categories.total,
+    pageLimit: state.categories.pageLimitSubCategories,
+    pageNo: state.categories.pageNoSubCategories,
+    total: state.categories.totalSubCategories,
     loader: state.loader.loader,
   };
 };

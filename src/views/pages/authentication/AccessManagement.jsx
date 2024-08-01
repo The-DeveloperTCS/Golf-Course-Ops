@@ -1,41 +1,31 @@
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import usePermission from "hooks/usePermission";
-import React from "react";
 import { connect } from "react-redux";
 import Select from "react-select";
-import { Redirect } from "react-router-dom";
-import { useEffect, useState, useCallback, useMemo } from "react";
 import { Table } from "reactstrap";
-
 import {
-  getPermissionsList,
+  getAllPermissions,
   getPermissionsForRole,
   updatePermissionsOfRoles,
 } from "redux/permission/service";
-import { getRolesList } from "redux/role/service";
-
-const humanize = (s) => {
-  return s
-    .toLowerCase()
-    .replace("_", " ")
-    .replace(/\b\w/g, (l) => l.toUpperCase());
-};
+import { getActiveRolesList } from "redux/role/service";
 
 const RoleAccessType = ({ type, onChange }) => {
-  const accesss = useMemo(
+  const access = useMemo(
     () => ["NONE", "READ", "RESTRICTED_READ", "WRITE", "RESTRICTED_WRITE"],
     []
   );
 
-  const accessOptions = useMemo(() => {
-    return accesss.map((a) => {
-      return { label: humanize(a), value: a };
+  const accessTypeOptions = useMemo(() => {
+    return access.map((a) => {
+      return { label: a, value: a };
     });
-  }, [accesss]);
+  }, [access]);
 
   return (
     <Select
-      options={accessOptions}
-      value={accessOptions.find((a) => a.value === type)}
+      options={accessTypeOptions}
+      value={accessTypeOptions.find((a) => a.value === type)}
       onChange={(v) => onChange(v.value)}
     />
   );
@@ -46,11 +36,13 @@ const PermissionsList = ({ role }) => {
 
   const fetchData = useCallback(async () => {
     if (!role) return null;
-    const permsRes = await getPermissionsList("", "");
+    const permsRes = await getAllPermissions("", "");
     const rolePermsRes = await getPermissionsForRole(role);
-    setData([]);
-    const updatedData = permsRes.permissions.map((perm) => {
-      const rolePerm = rolePermsRes.data.find((p) => p.name === perm.name);
+    console.log(permsRes, "permsRes");
+    console.log(rolePermsRes, "rolePermsRes");
+
+    const updatedData = permsRes.data.permissions.map((perm) => {
+      const rolePerm = rolePermsRes.data.find((p) => p.name === perm);
       return {
         name: perm.name,
         ...rolePerm,
@@ -61,16 +53,15 @@ const PermissionsList = ({ role }) => {
   }, [role]);
 
   const handleAccessTypeUpdate = async (perm, type, ind) => {
-    await updatePermissionsOfRoles({
-      ...perm,
-      access: type,
-      role: role,
-      description: "Updated from portal",
-    });
-
-    const newData = [...data];
-    newData[ind].access = type;
-    setData(newData);
+    // await updatePermission({
+    //   ...perm,
+    //   access: type,
+    //   role: role,
+    //   description: "Updated from portal",
+    // });
+    // const newData = [...data];
+    // newData[ind].access = type;
+    // setData(newData);
   };
 
   useEffect(() => {
@@ -94,7 +85,7 @@ const PermissionsList = ({ role }) => {
           <tbody>
             {data.map((p, i) => (
               <tr key={i}>
-                <td>{humanize(p.name)}</td>
+                <td>{p.name}</td>
                 <td>
                   <RoleAccessType
                     type={p.access}
@@ -114,11 +105,11 @@ const RoleSelect = ({ role, onRoleSelect }) => {
   const [roles, setRoles] = useState([]);
 
   useEffect(() => {
-    getRolesList("", "").then((res) => {
+    getActiveRolesList().then((res) => {
       setRoles(
         res.data.roles.map((role) => ({
           value: role.name,
-          label: humanize(role.name.replace("ROLE_", "")),
+          label: role.name.replace("ROLE_", ""),
         }))
       );
     });
@@ -142,9 +133,9 @@ const AccessManagement = () => {
   const [can] = usePermission();
   const [selectedRole, setSelectedRole] = useState(null);
 
-  if (!can("ACCESS_MANAGEMENT", ["WRITE"])) {
-    return <Redirect to="/" />;
-  }
+  // if (!can("ACCESS_MANAGEMENT", ["WRITE"])) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <div className="row ma-0">

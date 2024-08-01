@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useTable, useSortBy, useFilters, usePagination } from "react-table";
 import classnames from "classnames";
-import Pagination from "components/common/Pagination";
+import Pagination from "components/common/PaginationWitAPI";
 import ReactTableWrapper from "./reacttbl.style";
 import { history } from "redux/store";
 import { Link } from "react-router-dom";
@@ -161,7 +161,11 @@ const DataTable = (props) => {
           </tbody>
         </table>
       </div>
-      <Pagination onPageChange={gotoPage} pages={pageCount} page={pageIndex} />
+      <Pagination
+        handleChangePage={props.handleChangePage}
+        totalPages={props.totalPages}
+        pageNo={props.pageNo - 1}
+      />
     </ReactTableWrapper>
   );
 };

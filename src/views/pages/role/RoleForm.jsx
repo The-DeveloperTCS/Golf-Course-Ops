@@ -3,9 +3,17 @@ import Button from "components/button/Button";
 import { connect } from "react-redux";
 import roleActions from "redux/role/action";
 import { bindActionCreators } from "redux";
+import Select from "react-select";
 import { getSpecificRole } from "redux/role/service";
 import NotificationActions from "redux/notifications/actions";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { pascalCase } from "pascal-case";
+
+const basedRoles = [
+  { value: "admin", label: "Admin" },
+  { value: "manager", label: "Manager" },
+  { value: "employee", label: "Employee" },
+];
 
 const RoleForm = (props) => {
   const { roleId, updateRole } = props;
@@ -64,20 +72,25 @@ const RoleForm = (props) => {
                   </div>
                 </div>
 
-                <div className="form-Dgroup row">
-                  <label className="col-sm-4 col-form-label">Base Role</label>
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Based Role</label>
                   <div className="col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control react-form-input"
-                      value={updatedRole.basedRole}
-                      disabled={!useRolePermission}
-                      onChange={(e) =>
+                    <Select
+                      value={
+                        updatedRole.basedRole
+                          ? {
+                              value: updatedRole.basedRole,
+                              label: pascalCase(updatedRole.basedRole),
+                            }
+                          : null
+                      }
+                      onChange={(e) => {
                         setUpdateRole({
                           ...updatedRole,
-                          basedRole: e.target.value,
-                        })
-                      }
+                          basedRole: e.value,
+                        });
+                      }}
+                      options={basedRoles}
                     />
                   </div>
                 </div>

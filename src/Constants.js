@@ -152,9 +152,9 @@ export const getRolePermissionUrl = (id) =>
   BaseUrl + `permission-by-role/byRoleName/${id}`;
 export const RolePermissionsUpdateUrl = (id) =>
   BaseUrl + `permission-by-role/update/${id}`;
-
 export const setPermissionByRole =
   BaseUrl + "permission-by-role/addWithMultipleObject";
+export const getAllPermissionUrl = BaseUrl + "allpermission/getAllPermission";
 
 //Tee Sheet Endpoints
 export const getTeeSheetByDateUrl = (date) =>

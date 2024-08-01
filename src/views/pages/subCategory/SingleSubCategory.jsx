@@ -2,62 +2,76 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./SubCategoryForm";
+import loaderActions from "redux/loader/actions";
+import Loader from "components/loader/Loader";
+import SubCategoryForm from "./SubCategoryForm";
 import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+  updateSubCategoryDetails,
+  getSpecificSubCategory,
+} from "redux/category/service";
+const { successWithTimeout, failure } = NotificationActions;
+const { startLoader, endLoader } = loaderActions;
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const SubCategorySingle = (props) => {
+  const {
+    subCategoryId,
+    startLoader,
+    endLoader,
+    successWithTimeout,
+    failure,
+    loader,
+  } = props;
+  const [subCategoryDetail, setSubCategoryDetails] = useState({});
 
   useEffect(() => {
-    getCityDetails();
-  }, [employeeId]);
+    startLoader(true);
+    getSubCategoryDetails();
+  }, [subCategoryId]);
 
-  const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+  const getSubCategoryDetails = async () => {
+    getSpecificSubCategory(subCategoryId).then((res) => {
+      setSubCategoryDetails(res.data);
+      endLoader(false);
     });
   };
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
+  const onSubCategorySave = async (updatedSubCategory) => {
+    return updateSubCategoryDetails(subCategoryId, updatedSubCategory)
       .then((res) => {
-        props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
+        successWithTimeout(
+          `Sub Category #${updatedSubCategory.id} updated successfully!`
         );
-        props.history.push("/employee/list");
+        props.history.push("/sub-category/list");
       })
       .catch((err) =>
-        props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+        failure(
+          `Sub Category #${updatedSubCategory.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
-  return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+  return loader ? (
+    <Loader />
+  ) : (
+    <SubCategoryForm
+      updateSubCategory={subCategoryDetail}
+      subCategoryId={subCategoryId}
+      onSave={onSubCategorySave}
     />
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
+  const subCategoryId = parseInt(ownProps.match.params.subCategoryId);
   return {
-    employeeId: employeeId,
+    subCategoryId: subCategoryId,
+    loader: state.loader.loader,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+})(SubCategorySingle);

@@ -72,11 +72,9 @@ export function VideoUploadUrl() {
     return new Promise(async (resolve, reject) => {
       const resp = await fetch(url);
       const blob = await resp.blob();
-      // console.log(blob, "blob");
       if (blob.type === "text/html") {
         return reject("Invalid vide url");
       }
-      // console.log(blob, "blob");
       const { uploadVideo } = VideoUploader({
         onUploadStart: () => {
           console.log("Uploading video ...");

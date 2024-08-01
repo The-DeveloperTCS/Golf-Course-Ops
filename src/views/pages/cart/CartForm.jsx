@@ -11,10 +11,17 @@ import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { TextField } from "@mui/material";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import { getAllCategories } from "redux/category/service";
+import { allDepartments } from "redux/department/service";
+import { getCustomers } from "redux/customer/service";
 
 const CartForm = (props) => {
   const { cartId, updateCart } = props;
   const [updatedCart, setUpdateCart] = useState({ ...updateCart });
+  const [departments, setDepartments] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [customersList, setCustomersList] = useState([]);
+
   const [saving, setSaving] = useState(false);
   const useCartPermission = useRolePermissions("CART");
 
@@ -24,6 +31,30 @@ const CartForm = (props) => {
         setUpdateCart(res.data);
       });
     }
+    allDepartments()
+      .then((res) => {
+        const data = res.data.departments;
+        setDepartments(data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+    getAllCategories()
+      .then((res) => {
+        const data = res.data.categories;
+        setCategories(data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+    getCustomers()
+      .then((res) => {
+        const data = res.data.customers;
+        setCustomersList(data);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
   }, []);
 
   const onSave = () => {
@@ -109,7 +140,7 @@ const CartForm = (props) => {
                   </div>
                 </div>
 
-                <div className="form-group row">
+                {/* <div className="form-group row">
                   <label className="col-sm-4 col-form-label">
                     Customer Name
                   </label>
@@ -125,6 +156,83 @@ const CartForm = (props) => {
                           customerName: e.target.value,
                         })
                       }
+                    />
+                  </div>
+                </div> */}
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Customer</label>
+                  <div className="col-sm-8">
+                    <Select
+                      value={customersList?.find(
+                        (c) => c.id === updatedCart.customerId
+                      )}
+                      onChange={(e) => {
+                        setUpdateCart({
+                          ...updatedCart,
+                          customerId: e.id,
+                        });
+                      }}
+                      getOptionLabel={(option) => option.name}
+                      getOptionValue={(option) => option.id}
+                      options={customersList}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Custom Name</label>
+                  <div className="col-sm-8">
+                    <input
+                      type="email"
+                      className="form-control react-form-input"
+                      value={updatedCart.customName}
+                      onChange={(e) =>
+                        setUpdateCart({
+                          ...updatedCart,
+                          customName: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Department </label>
+                  <div className="col-sm-8">
+                    <Select
+                      value={departments?.find(
+                        (c) => c.id === updatedCart.departmentId
+                      )}
+                      getOptionLabel={(option) => option.name}
+                      getOptionValue={(option) => option.id}
+                      onChange={(e) => {
+                        setUpdateCart({
+                          ...updatedCart,
+                          departmentId: e.id,
+                        });
+                      }}
+                      options={departments}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Category</label>
+                  <div className="col-sm-8">
+                    <Select
+                      value={categories?.find(
+                        (c) => c.id === updatedCart.categoryId
+                      )}
+                      onChange={(e) => {
+                        setUpdateCart({
+                          ...updatedCart,
+                          categoryId: e.id,
+                        });
+                      }}
+                      getOptionLabel={(option) => option.name}
+                      getOptionValue={(option) => option.id}
+                      options={categories}
                     />
                   </div>
                 </div>

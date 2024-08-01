@@ -9,6 +9,10 @@ const initialState = {
   pageLimit: null,
   pageNo: null,
   subCategories: [],
+  specificSubCategory: null,
+  totalSubCategories: null,
+  pageLimitSubCategories: null,
+  pageNoSubCategories: null,
 };
 
 export default function categoryReducer(state = initialState, action) {
@@ -25,9 +29,9 @@ export default function categoryReducer(state = initialState, action) {
       return {
         ...state,
         subCategories: [...action.subCategories],
-        total: action.total,
-        pageLimit: action.pageLimit,
-        pageNo: action.pageNo,
+        totalSubCategories: action.totalSubCategories,
+        pageLimitSubCategories: action.pageLimitSubCategories,
+        pageNoSubCategories: action.pageNoSubCategories,
       };
     default:
       return state;

@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "../../style/ClockIn.css";
 import ClockinDropdown from "../clockInClockOut/ClockinDropdown";
 import NotificationActions from "redux/notifications/actions";
+import Loader from "components/loader/Loader";
 import moment from "moment";
 import {
   checkInnClock,
   checkOutClock,
   getLastCheckIn,
 } from "redux/timeClock/service";
+import loaderActions from "redux/loader/actions";
+const { startLoader, endLoader } = loaderActions;
+const { successWithTimeout, failureWithTimeout, failure } = NotificationActions;
 
-const { successWithTimeout, failureWithTimeout } = NotificationActions;
-
-function ClockIn({ user }, props) {
+function ClockIn(
+  {
+    user,
+    startLoader,
+    endLoader,
+    loader,
+    successWithTimeout,
+    failureWithTimeout,
+    failure,
+  },
+  props
+) {
   const [checkIn, setCheckIn] = useState({
     username: user.username,
     userId: user.id,
@@ -24,6 +36,7 @@ function ClockIn({ user }, props) {
   const [timeIn, setTimeIn] = useState(false);
 
   useEffect(() => {
+    startLoader(true);
     fetchToCheckIn();
   }, [user]);
 
@@ -40,15 +53,17 @@ function ClockIn({ user }, props) {
         } else {
           setTimeIn(false);
         }
+        endLoader(false);
       })
       .catch((err) => {
-        NotificationActions.failureWithTimeout(
-          "Failed to fetch, " + err.response.data.message
-        );
+        endLoader(false);
+        failureWithTimeout("Failed to fetch, " + err.response.data.message);
       });
   };
 
   const handleClock = (param) => {
+    startLoader(true);
+
     const time = moment().format("hh:mm:ss");
     var payload = { ...checkIn };
     if (param == "clock-in") {
@@ -60,11 +75,13 @@ function ClockIn({ user }, props) {
           fetchToCheckIn();
         })
         .catch((err) => {
+          endLoader(false);
           failureWithTimeout(
             "Failed to clock In, " + err.response.data.message
           );
         });
     }
+
     if (param == "clock-out") {
       payload.shiftEnd = true;
       payload.checkOut = time;
@@ -74,6 +91,7 @@ function ClockIn({ user }, props) {
           fetchToCheckIn();
         })
         .catch((err) => {
+          endLoader(false);
           failureWithTimeout(
             "Failed to clock Out, " + err.response.data.message
           );
@@ -81,7 +99,9 @@ function ClockIn({ user }, props) {
     }
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <div className="ClockIn-main">
       <div className="ClockIn-left">
         <div className="ClockIn-left-top">
@@ -139,14 +159,14 @@ function ClockIn({ user }, props) {
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
+    loader: state.loader.loader,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ClockIn);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+  failureWithTimeout,
+})(ClockIn);

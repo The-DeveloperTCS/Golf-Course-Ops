@@ -15,7 +15,7 @@ const NewRole = (props) => {
     return createRoles(updatedRole)
       .then((res) => {
         props.successWithTimeout(
-          `Role #${res.data.post.id} added successfully!`
+          `Role #${res.data.role.id} added successfully!`
         );
         props.history.push("/role/list");
       })

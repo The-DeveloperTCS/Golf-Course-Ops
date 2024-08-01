@@ -11,10 +11,10 @@ const defaultCart = {
   value: 0,
   customerName: "",
   customerId: null,
-  department: null,
+  departmentId: null,
   expirationDate: "",
   dateIssued: "",
-  category: "",
+  categoryId: "",
   notes: "",
   status: false,
 };

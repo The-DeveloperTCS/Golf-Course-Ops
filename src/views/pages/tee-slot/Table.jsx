@@ -19,7 +19,7 @@ function StandardTable(
       history.push("/tee-sheet/" + item.id);
     }
   };
-  // console.log(rows, 'rows')
+
   return (
     <Table responsive>
       <thead>

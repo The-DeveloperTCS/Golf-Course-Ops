@@ -14,7 +14,6 @@ const roleActions = {
   },
 
   rolesFetchedPagination: (data) => {
-    console.log(data, "data");
     return {
       type: roleActions.ROLES_FETCHED_PAGINATION,
       roles: data.roles,

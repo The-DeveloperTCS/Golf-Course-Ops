@@ -1,12 +1,14 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTable, useSortBy, useFilters, usePagination } from "react-table";
 import classnames from "classnames";
-import Pagination from "components/common/Pagination";
+import Pagination from "components/common/PaginationWitAPI";
 import ReactTableWrapper from "./reacttbl.style";
 import { history } from "redux/store";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import loaderActions from "redux/loader/actions";
+import { getAllCategories } from "redux/category/service";
+
 const { startLoader, endLoader } = loaderActions;
 
 const HeaderComponent = (props) => {
@@ -20,6 +22,8 @@ const HeaderComponent = (props) => {
 };
 
 const DataTable = (props) => {
+  const [categories, setCategories] = useState([]);
+
   const sortBy = useMemo(() => {
     return props.sortBy || [];
   }, [props.sortBy]);
@@ -78,6 +82,24 @@ const DataTable = (props) => {
     usePagination
   );
 
+  useEffect(() => {
+    getAllCategories()
+      .then((res) => {
+        const data = res.data.categories;
+        setCategories(data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+  }, []);
+
+  const getCategoryName = (id) => {
+    if (id !== "" && id !== undefined && id !== null && categories.length > 0) {
+      return categories.filter((cus) => cus.id === id)[0]?.name;
+    }
+    return "";
+  };
+
   const onEdit = (eId, e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -130,7 +152,7 @@ const DataTable = (props) => {
                   >
                     <td style={{ border: 0 }}>{row.id}</td>
                   </Link>
-                  <td>{row.parentId}</td>
+                  <td>{getCategoryName(row.parentId)}</td>
                   <td>{row.name}</td>
                   <td>{row.status}</td>
                   <td>
@@ -153,7 +175,11 @@ const DataTable = (props) => {
           </tbody>
         </table>
       </div>
-      <Pagination onPageChange={gotoPage} pages={pageCount} page={pageIndex} />
+      <Pagination
+        handleChangePage={props.handleChangePage}
+        totalPages={props.totalPages}
+        pageNo={props.pageNo - 1}
+      />
     </ReactTableWrapper>
   );
 };

@@ -1,38 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
+import loaderActions from "redux/loader/actions";
+import Loader from "components/loader/Loader";
 import RoleForm from "./RoleForm";
 import { updateRoleDetails, getSpecificRole } from "redux/role/service";
+const { successWithTimeout, failure } = NotificationActions;
+const { startLoader, endLoader } = loaderActions;
 
 const RoleSingle = (props) => {
-  const { roleId } = props;
+  const {
+    roleId,
+    startLoader,
+    endLoader,
+    successWithTimeout,
+    failure,
+    loader,
+  } = props;
   const [roleDetail, setRoleDetails] = useState({});
 
   useEffect(() => {
-    getCityDetails();
+    startLoader(true);
+    getRoleDetails();
   }, [roleId]);
 
-  const getCityDetails = async () => {
+  const getRoleDetails = async () => {
     getSpecificRole(roleId).then((res) => {
       setRoleDetails(res.data);
+      endLoader(false);
     });
   };
 
-  const onRoleSave = async (updatedSupplier) => {
-    return updateRoleDetails(roleId, updatedSupplier)
+  const onRoleSave = async (updatedRole) => {
+    return updateRoleDetails(roleId, updatedRole)
       .then((res) => {
-        props.successWithTimeout(`Role updated successfully!`);
+        successWithTimeout(`Role updated successfully!`);
         props.history.push("/role/list");
       })
       .catch((err) =>
-        props.failure(
-          `Role #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+        failure(
+          `Role #${updatedRole.id} failed to update! ${err.response.data.message}`
         )
       );
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <RoleForm updateRole={roleDetail} roleId={roleId} onSave={onRoleSave} />
   );
 };
@@ -41,14 +55,13 @@ const mapStateToProps = (state, ownProps) => {
   const roleId = parseInt(ownProps.match.params.roleId);
   return {
     roleId: roleId,
+    loader: state.loader.loader,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(RoleSingle);
+export default connect(mapStateToProps, {
+  startLoader,
+  endLoader,
+  successWithTimeout,
+  failure,
+})(RoleSingle);

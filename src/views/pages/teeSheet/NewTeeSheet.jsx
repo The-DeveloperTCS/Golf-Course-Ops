@@ -114,7 +114,6 @@ function NewTeeSheet(props) {
     if (!updatedTeeSheet.id) {
       addTeeSheet(sheet)
         .then((res) => {
-          console.log(res, "response");
           const id = res.data.teesheet.saleId;
           successWithTimeout(`Tee Sheet Add Successfully!`);
           endLoader(false);

@@ -30,7 +30,6 @@ const authActions = {
       login(username, password)
         .then((res) => {
           dispatch(authActions.loaderOff());
-
           dispatch(authActions.login(res));
           history.push("/Intro");
         })
@@ -51,6 +50,7 @@ const authActions = {
   },
 
   login: (data) => {
+    console.log(data, "data");
     return {
       type: authActions.LOGIN_SUCCESS,
       isLogin: true,

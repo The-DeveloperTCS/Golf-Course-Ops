@@ -88,21 +88,21 @@ const InventoriesList = (props) => {
       id: "glCode",
       enableFilters: true,
     },
-    // {
-    //   title: "Department",
-    //   id: "department",
-    //   enableFilters: false,
-    // },
-    // {
-    //   title: "Category",
-    //   id: "category",
-    //   enableFilters: false,
-    // },
-    // {
-    //   title: "Sub Category",
-    //   id: "subCategory",
-    //   enableFilters: false,
-    // },
+    {
+      title: "Department",
+      id: "department",
+      enableFilters: false,
+    },
+    {
+      title: "Category",
+      id: "category",
+      enableFilters: false,
+    },
+    {
+      title: "Sub Category",
+      id: "subCategory",
+      enableFilters: false,
+    },
     {
       title: "Unit Cost",
       id: "unitCost",
@@ -151,10 +151,10 @@ const InventoriesList = (props) => {
               Intentory List{" "}
               <span className="pull-right">
                 {useInventoryPermission && (
-                <button
-                  className="c-btn ma-5 add-new-btn-color"
-                  onClick={() => props.history.push("/inventory/new")}
-                >
+                  <button
+                    className="c-btn ma-5 add-new-btn-color"
+                    onClick={() => props.history.push("/inventory/new")}
+                  >
                     <i className="fas fa-plus" /> New Inventory
                   </button>
                 )}

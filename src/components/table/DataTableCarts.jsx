@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useTable, useSortBy, useFilters, usePagination } from "react-table";
 import classnames from "classnames";
 import Pagination from "components/common/PaginationWitAPI";
@@ -9,6 +9,9 @@ import { connect } from "react-redux";
 import moment from "moment";
 import loaderActions from "redux/loader/actions";
 import { Badge } from "reactstrap";
+import { getAllCategories } from "redux/category/service";
+import { allDepartments } from "redux/department/service";
+import { getCustomers } from "redux/customer/service";
 const { startLoader, endLoader } = loaderActions;
 
 const HeaderComponent = (props) => {
@@ -22,6 +25,10 @@ const HeaderComponent = (props) => {
 };
 
 const DataTable = (props) => {
+  const [departments, setDepartments] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [customersList, setCustomersList] = useState([]);
+
   const sortBy = useMemo(() => {
     return props.sortBy || [];
   }, [props.sortBy]);
@@ -80,6 +87,64 @@ const DataTable = (props) => {
     usePagination
   );
 
+  useEffect(() => {
+    allDepartments()
+      .then((res) => {
+        const data = res.data.departments;
+        setDepartments(data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+    getAllCategories()
+      .then((res) => {
+        const data = res.data.categories;
+        setCategories(data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+    getCustomers()
+      .then((res) => {
+        const data = res.data.customers;
+        setCustomersList(data);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  }, []);
+
+  const getCustomerName = (id) => {
+    if (
+      id !== "" &&
+      id !== undefined &&
+      id !== null &&
+      customersList.length > 0
+    ) {
+      return customersList.filter((cus) => cus.id == id)[0]?.name;
+    }
+    return "";
+  };
+
+  const getDepartmentName = (id) => {
+    if (
+      id !== "" &&
+      id !== undefined &&
+      id !== null &&
+      departments.length > 0
+    ) {
+      return departments.filter((cus) => cus.id == id)[0]?.name;
+    }
+    return "";
+  };
+
+  const getCategoryName = (id) => {
+    if (id !== "" && id !== undefined && id !== null && categories.length > 0) {
+      return categories.filter((cus) => cus.id == id)[0]?.name;
+    }
+    return "";
+  };
+
   const onEdit = (eId, e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -134,11 +199,11 @@ const DataTable = (props) => {
                   </Link>
                   <td>{row.itemName}</td>
                   <td>{row.value}</td>
-                  <td>{row.customerName}</td>
+                  <td>{getCustomerName(row.customerId)}</td>
+                  <td>{getDepartmentName(row.departmentId)}</td>
+                  <td>{getCategoryName(row.categoryId)}</td>
                   <td>{moment(row.dateIssued).format("LL")}</td>
                   <td>{moment(row.expirationDate).format("LL")}</td>
-                  {/* <td>{row.department}</td>
-                  <td>{row.department}</td> */}
                   <td>
                     {" "}
                     {row.status ? (

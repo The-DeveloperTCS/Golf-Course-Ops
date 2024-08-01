@@ -86,7 +86,7 @@ const dashboardRoutes = [
   {
     path: "/Profile",
     component: Profile,
-    resource: "EMPLOYEE",
+    resource: "",
   },
   {
     path: "/employee/list",
@@ -364,6 +364,7 @@ const dashboardRoutes = [
   { path: "/helpSupport", component: HelpSupport, resource: "" },
   { path: "/inventoryForm", component: InventoryForm, resource: "" },
   { path: "/jesterPark", component: JesterPark, resource: "" },
+
   {
     path: "/access-management",
     component: AccessManagement,

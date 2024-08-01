@@ -89,6 +89,16 @@ const CartsList = (props) => {
       enableFilters: false,
     },
     {
+      title: "Department",
+      id: "departmentId",
+      enableFilters: false,
+    },
+    {
+      title: "Category",
+      id: "categoryId",
+      enableFilters: false,
+    },
+    {
       title: "Issue Date",
       id: "dateIssued",
       enableFilters: false,
@@ -98,16 +108,6 @@ const CartsList = (props) => {
       id: "expirationDate",
       enableFilters: false,
     },
-    // {
-    //   title: "Department",
-    //   id: "department",
-    //   enableFilters: false,
-    // },
-    // {
-    //   title: "Category",
-    //   id: "category",
-    //   enableFilters: false,
-    // },
     {
       title: "Status",
       id: "status",

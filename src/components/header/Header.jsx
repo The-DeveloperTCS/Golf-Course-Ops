@@ -6,18 +6,20 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import AuthActions from "redux/auth/actions";
 import { withRouter } from "react-router-dom";
-import { FaRegBell, FaCaretDown, FaSearch } from "react-icons/fa";
+import { FaRegBell, FaCaretDown } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const { logout } = AuthActions;
 
 const Header = (props) => {
+  const auth = useSelector((state) => state.auth.user);
+
   const { drawerMiniMethod, mini, pageName } = props;
   const topbarTheme = { backgroundColor: "#FFFFF" };
 
   const userSignout = () => {
     props.logout();
   };
-
   return (
     <HeaderWrapper {...props} topbarTheme={topbarTheme}>
       <div className="headerBack">
@@ -42,7 +44,9 @@ const Header = (props) => {
           </div>
 
           <div className="pl-10 flex-x align-center cursor-pointer">
-            <p style={{ padding: "0px 5px", fontWeight: "500" }}>Admin</p>
+            <p style={{ padding: "0px 5px", fontWeight: "500" }}>
+              {auth?.firstName}
+            </p>
             <div id="profile" className="mr-10">
               <img
                 className="top-header-profile-class"
@@ -69,7 +73,6 @@ const Header = (props) => {
               >
                 My Profile
               </div>
-              {/* <div className="roy-menu-list">Settings</div> */}
               <div className="roy-menu-list" onClick={userSignout}>
                 Logout
               </div>

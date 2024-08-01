@@ -9,8 +9,11 @@ import {
   MDBCardBody,
   MDBCardImage,
 } from "mdb-react-ui-kit";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
+  const auth = useSelector((state) => state.auth.user);
+
   return (
     <section style={{ backgroundColor: "#eee" }}>
       <MDBContainer className="py-5">
@@ -19,7 +22,9 @@ export default function Profile() {
             <MDBCard className="mb-4">
               <MDBCardBody className="text-center">
                 <MDBCardImage
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                  src={
+                    "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                  }
                   alt="avatar"
                   className="rounded-circle"
                   style={{ width: "150px" }}
@@ -41,7 +46,7 @@ export default function Profile() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      Johnatan Smith
+                      {auth.firstName} {auth.lastName}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -52,7 +57,7 @@ export default function Profile() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      example@example.com
+                      {auth.emailAddress}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -63,7 +68,7 @@ export default function Profile() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      (097) 234-5678
+                      {auth.phoneNumber}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
@@ -74,18 +79,29 @@ export default function Profile() {
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      (098) 765-4321
+                      {auth.cellPhoneNumber}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Address</MDBCardText>
+                    <MDBCardText>User Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      Bay Area, San Francisco, CA
+                      {auth.username}
+                    </MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Role</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">
+                      {auth.role}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
