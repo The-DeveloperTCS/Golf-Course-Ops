@@ -223,12 +223,12 @@
 .new-row {
   background-color: #e8edff !important; /* or whatever color you want */
 }
-tbody tr:nth-child(even) {
+/* tbody tr:nth-child(even) {
   background-color: #fff !important; /* or whatever color you want */
-}
-tr.sale-screen-inputs {
+ */
+/* tr.sale-screen-inputs {
   background-color: #e8edff;
-}
+} */
 .css-g1d714-ValueContainer :active {
   outline: none !important;
   border: none;

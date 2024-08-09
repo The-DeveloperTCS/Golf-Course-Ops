@@ -261,102 +261,93 @@ const SalesScreen = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {salesData.item_list.map((item, index) => (
-                    <tr key={index} className="sale-screen-inputs">
-                      {/* <td className="th-cross-btn">
-                              <MdCancel onClick={() => handleDelete(index)} />
-                              <input type="checkbox" id="chk" />
-                              <label htmlFor="chk"></label>
-                            </td> */}
-                      <td className="item-name">
-                        {item.seasonId !== null ? (
-                          <div className="select-container">
-                            <Select
-                              className="flex-select"
-                              value={seasons?.find(
-                                (c) => c.id === item.seasonId
-                              )}
-                              // disabled={!useEmployeePermission}
-                              getOptionLabel={(option) => option.name}
-                              getOptionValue={(option) => option.id}
-                              onChange={(e) => {
-                                updateData(e, item, "seasonId", index);
-                              }}
-                              options={seasons}
-                            />
-                            <Select
-                              className="flex-select2"
-                              value={seasonList?.find(
-                                (c) => c.id === item.seasonlistId
-                              )}
-                              getOptionLabel={(option) => option.name}
-                              getOptionValue={(option) => option.id}
-                              onChange={(e) => {
-                                updateData(e, item, "seasonlistId", index);
-                              }}
-                              options={seasonList}
-                            />
-                          </div>
-                        ) : (
-                          <div className="select-container">
-                            {item.itemName}
-                          </div>
-                        )}
-                      </td>
+                  {salesData.item_list.map((item, index) => {
+                    // Determine the background color based on the index
+                    const backgroundColor = index % 2 === 0 ? '#e8edff' : '#fff';
 
-                      <td>
-                        <input
-                          style={{ width: "100%" }}
-                          type="number"
-                          placeholder="Price"
-                          onChange={(event) => {
-                            updateData(
-                              event.target.value,
-                              item,
-                              "price",
-                              index
-                            );
-                          }}
-                          value={item.price}
-                          name="price"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          placeholder="Qty"
-                          onChange={(event) => {
-                            updateData(
-                              event.target.value,
-                              item,
-                              "quantity",
-                              index
-                            );
-                          }}
-                          value={item.quantity}
-                          name="qty"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          placeholder="disc%"
-                          onChange={(event) => {
-                            updateData(
-                              event.target.value,
-                              item,
-                              "discount",
-                              index
-                            );
-                          }}
-                          value={item.discount}
-                          name="disc"
-                        />
-                      </td>
-                      <td>{item.total}</td>
-                    </tr>
-                  ))}
+                    return (
+                      <tr
+                        key={index}
+                        className="sale-screen-inputs"
+                        style={{ backgroundColor }}
+                      >
+                        {/* <td className="th-cross-btn">
+                <MdCancel onClick={() => handleDelete(index)} />
+                <input type="checkbox" id="chk" />
+                <label htmlFor="chk"></label>
+              </td> */}
+                        <td className="item-name">
+                          {item.seasonId !== null ? (
+                            <div className="select-container">
+                              <Select
+                                className="flex-select"
+                                value={seasons?.find((c) => c.id === item.seasonId)}
+                                // disabled={!useEmployeePermission}
+                                getOptionLabel={(option) => option.name}
+                                getOptionValue={(option) => option.id}
+                                onChange={(e) => {
+                                  updateData(e, item, 'seasonId', index);
+                                }}
+                                options={seasons}
+                              />
+                              <Select
+                                className="flex-select2"
+                                value={seasonList?.find((c) => c.id === item.seasonlistId)}
+                                getOptionLabel={(option) => option.name}
+                                getOptionValue={(option) => option.id}
+                                onChange={(e) => {
+                                  updateData(e, item, 'seasonlistId', index);
+                                }}
+                                options={seasonList}
+                              />
+                            </div>
+                          ) : (
+                            <div className="select-container">
+                              {item.itemName}
+                            </div>
+                          )}
+                        </td>
+
+                        <td>
+                          <input
+                            style={{ width: '100%' }}
+                            type="number"
+                            placeholder="Price"
+                            onChange={(event) => {
+                              updateData(event.target.value, item, 'price', index);
+                            }}
+                            value={item.price}
+                            name="price"
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            placeholder="Qty"
+                            onChange={(event) => {
+                              updateData(event.target.value, item, 'quantity', index);
+                            }}
+                            value={item.quantity}
+                            name="qty"
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            placeholder="disc%"
+                            onChange={(event) => {
+                              updateData(event.target.value, item, 'discount', index);
+                            }}
+                            value={item.discount}
+                            name="disc"
+                          />
+                        </td>
+                        <td>{item.total}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
+
               </table>
               <div className="item-total">
                 <p>{salesData.item_list.length} items</p>
@@ -419,7 +410,7 @@ const SalesScreen = ({
           isOpen={isPaymentPopupOpen}
           salesData={salesData}
           setPaymentPopupOpen={setPaymentPopupOpen}
-          // togglePopup={togglePaymentPopup}
+        // togglePopup={togglePaymentPopup}
         />
       )}
 
