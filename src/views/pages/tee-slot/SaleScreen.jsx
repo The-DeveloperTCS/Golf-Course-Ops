@@ -351,13 +351,38 @@ const SalesScreen = ({
               </table>
               <div className="item-total">
                 <p>{salesData.item_list.length} items</p>
+
+                <div className="sub-total-item">
+                  <span>sub total</span>
+                  <h1>${salesData?.subTotal}</h1>
+                </div>
                 <div className="sub-total-item">
                   <span>Sales Tax - 7.50%</span>
                   <h1>${salesData?.saleTax}</h1>
                 </div>
                 <div className="sub-total-item">
-                  <span>sub total</span>
-                  <h1>${salesData?.subTotal}</h1>
+                  <h4>Total Due:</h4>
+                  <h3>${salesData?.total}</h3>
+                </div>
+                <div className="cash-btn">
+                  <button
+                    style={{ backgroundColor: "rgb(67, 101, 207)" }}
+                    onClick={() => setPaymentPopupOpen(true)}
+                  >
+                    Cash
+                  </button>
+                  {/* <button
+                  style={{ backgroundColor: "rgb(67, 101, 207)" }}
+                // onClick={() => handleButtonClick(1)}
+                >
+                  Pay Now
+                </button> */}
+                  {/* <button
+                  style={{ backgroundColor: "rgb(67, 101, 207)" }}
+                // onClick={() => handleButtonClick(2)}
+                >
+                  Credit Card
+                </button> */}
                 </div>
               </div>
               {/* <div className="item-total">
@@ -370,17 +395,17 @@ const SalesScreen = ({
               <input type="text" placeholder="Search customers" />
               <p>Add customers to sale</p>
             </div> */}
-            <div className="cash-in-nbr">
+            {/* <div className="cash-in-nbr">
               <h4>Total Due:</h4>
               <h3>${salesData?.total}</h3>
-            </div>
-            <div className="cash-btn">
-              <button
+            </div> */}
+            <div className="cash-btn1">
+              {/* <button
                 style={{ backgroundColor: "rgb(67, 101, 207)" }}
                 onClick={() => setPaymentPopupOpen(true)}
               >
                 Cash
-              </button>
+              </button> */}
               {/* <button
                   style={{ backgroundColor: "rgb(67, 101, 207)" }}
                 // onClick={() => handleButtonClick(1)}
