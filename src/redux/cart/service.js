@@ -1,33 +1,14 @@
-import { axiosClient } from "../store";
-import {
-  createCartUrl,
-  updateCartUrl,
-  deleteCartUrl,
-  getCartsListUrl,
-  getSpecificCartUrl,
-} from "Constants";
+import { createCrudService } from "mock/crudFactory";
 
-export const getCartsList = async (limit, pageNo) => {
-  try {
-    const response = await axiosClient.get(getCartsListUrl(limit, pageNo));
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+const crud = createCrudService({
+  collection: "carts",
+  pluralKey: "carts",
+  totalKey: "totalCarts",
+  createKey: "post",
+});
 
-export const createCarts = (req) => {
-  return axiosClient.post(createCartUrl, req);
-};
-
-export const updateCartDetails = (cartId, req) => {
-  return axiosClient.patch(updateCartUrl(cartId), req);
-};
-
-export const getSpecificCart = async (cartId) => {
-  return axiosClient.get(getSpecificCartUrl(cartId));
-};
-
-export const deleteCarts = async (cartId) => {
-  return axiosClient.delete(deleteCartUrl(cartId));
-};
+export const getCartsList = crud.getList;
+export const createCarts = crud.create;
+export const updateCartDetails = crud.update;
+export const getSpecificCart = crud.getSpecific;
+export const deleteCarts = crud.remove;

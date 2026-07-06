@@ -39,9 +39,7 @@ const SeasonsList = (props) => {
   }, []);
 
   const fetchSeasonsByValues = () => {
-    setTimeout(() => {
-      fetchSeasonsPagination(25, 1);
-    }, 2000);
+    fetchSeasonsPagination(25, 1);
   };
 
   const deleteSeason = (id, e) => {

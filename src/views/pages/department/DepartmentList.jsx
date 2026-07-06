@@ -40,9 +40,7 @@ const DepartmentsList = (props) => {
   }, []);
 
   const fetchDepartmentsByValues = () => {
-    setTimeout(() => {
-      fetchDepartmentsPagination(25, 1);
-    }, 2000);
+    fetchDepartmentsPagination(25, 1);
   };
 
   const deleteDepartment = (id, e) => {

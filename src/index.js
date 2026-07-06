@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { getMockDatabase } from "./mock/mockDb";
+
+getMockDatabase();
 // import * as Sentry from "@sentry/react";
 // import { SENTRY_DSN } from "./Constants";
 // import { useLocation } from "react-router-dom";

@@ -13,6 +13,7 @@ import CustomToast from "components/notifications/CustomToast";
 // import SweetAlert from "react-bootstrap-sweetalert";
 
 import { isTest } from "Constants";
+import { canAccessResource } from "util/permissionAccess";
 
 import {
   drawerWidth,
@@ -60,9 +61,7 @@ const DashboardLayout = (props) => {
     }
   }, []);
 
-  const allowedPermissions = useMemo(() => {
-    return props.authData.permissions.map((p) => p.name);
-  }, [props.authData.permissions]);
+  const permissions = props.authData.permissions || [];
 
   useMemo(() => {
     setMini(props.themeSetting.sidebarMiniValue === "on");
@@ -260,12 +259,7 @@ const DashboardLayout = (props) => {
               <ProtectedRoute {...props}>
                 <Switch>
                   {dashboardRoutes
-                    .filter((l) => {
-                      return (
-                        allowedPermissions.includes(l.resource) ||
-                        l.resource === ""
-                      );
-                    })
+                    .filter((l) => canAccessResource(permissions, l.resource))
                     .map((prop, key) => {
                       return (
                         <Route

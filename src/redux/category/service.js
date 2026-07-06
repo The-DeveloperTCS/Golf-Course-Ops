@@ -1,33 +1,57 @@
-import { axiosClient } from "../store";
+import { createCrudService } from "mock/crudFactory";
+import { delay, axiosResponse } from "mock/mockHelpers";
 import {
-  createCategoryUrl,
-  updateCategoryUrl,
-  deleteCategoryUrl,
-  getCategorysListUrl,
-  getSpecificCategoryUrl,
-} from "Constants";
+  createRecord,
+  deleteRecord,
+  findById,
+  paginateCollection,
+  updateRecord,
+} from "mock/mockDb";
 
-export const getCategoriesList = async (limit, pageNo) => {
-  try {
-    const response = await axiosClient.get(getCategorysListUrl(limit, pageNo));
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+const crud = createCrudService({
+  collection: "categories",
+  pluralKey: "categories",
+  totalKey: "totalCategories",
+  createKey: "post",
+});
+
+export const getCategoriesList = crud.getList;
+export const createCategories = crud.create;
+export const updateCategoryDetails = crud.update;
+export const getSpecificCategory = crud.getSpecific;
+export const deleteCategories = crud.remove;
+
+export const getSubCategoriesList = async (limit, pageNo) => {
+  await delay();
+  return paginateCollection(
+    "subCategories",
+    limit,
+    pageNo,
+    "subCategories",
+    "totalSubCategories"
+  );
 };
 
-export const createCategories = (req) => {
-  return axiosClient.post(createCategoryUrl, req);
+export const createSubCategories = async (req) => {
+  await delay();
+  const record = createRecord("subCategories", req);
+  return axiosResponse({ id: record.id, ...record });
 };
 
-export const updateCategoryDetails = (categoryId, req) => {
-  return axiosClient.patch(updateCategoryUrl(categoryId), req);
+export const updateSubCategoryDetails = async (id, req) => {
+  await delay();
+  const record = updateRecord("subCategories", id, req);
+  return axiosResponse(record);
 };
 
-export const getSpecificCategory = async (categoryId) => {
-  return axiosClient.get(getSpecificCategoryUrl(categoryId));
+export const getSpecificSubCategory = async (id) => {
+  await delay();
+  const record = findById("subCategories", id);
+  return axiosResponse(record);
 };
 
-export const deleteCategories = async (categoryId) => {
-  return axiosClient.delete(deleteCategoryUrl(categoryId));
+export const deleteSubCategories = async (id) => {
+  await delay();
+  deleteRecord("subCategories", id);
+  return axiosResponse({ success: true });
 };

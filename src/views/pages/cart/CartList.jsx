@@ -40,9 +40,7 @@ const CartsList = (props) => {
   }, []);
 
   const fetchCartsByValues = () => {
-    setTimeout(() => {
-      fetchCartsPagination(25, 1);
-    }, 2000);
+    fetchCartsPagination(25, 1);
   };
 
   const deleteCart = (id, e) => {

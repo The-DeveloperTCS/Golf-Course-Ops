@@ -1,38 +1,21 @@
-import { axiosClient } from "../store";
-import {
-  createCustomerUrl,
-  updateCustomerUrl,
-  deleteCustomerUrl,
-  getCustomersListUrl,
-  getSpecificCustomerUrl,
-  getCustomersUrl,
-} from "Constants";
+import { createCrudService } from "mock/crudFactory";
+import { delay, axiosResponse } from "mock/mockHelpers";
+import { getCollection } from "mock/mockDb";
 
-export const getCustomersList = async (limit, pageNo) => {
-  try {
-    const response = await axiosClient.get(getCustomersListUrl(limit, pageNo));
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+const crud = createCrudService({
+  collection: "customers",
+  pluralKey: "customers",
+  totalKey: "totalCustomers",
+  createKey: "customer",
+});
 
-export const createCustomers = (req) => {
-  return axiosClient.post(createCustomerUrl, req);
-};
+export const getCustomersList = crud.getList;
+export const createCustomers = crud.create;
+export const updateCustomerDetails = crud.update;
+export const getSpecificCustomer = crud.getSpecific;
+export const deleteCustomers = crud.remove;
 
-export const updateCustomerDetails = (customerId, req) => {
-  return axiosClient.patch(updateCustomerUrl(customerId), req);
-};
-
-export const getSpecificCustomer = async (customerId) => {
-  return axiosClient.get(getSpecificCustomerUrl(customerId));
-};
-
-export const deleteCustomers = async (customerId) => {
-  return axiosClient.delete(deleteCustomerUrl(customerId));
-};
-
-export const getCustomers = () => {
-  return axiosClient.get(getCustomersUrl);
+export const getCustomers = async () => {
+  await delay();
+  return axiosResponse({ customers: getCollection("customers") });
 };

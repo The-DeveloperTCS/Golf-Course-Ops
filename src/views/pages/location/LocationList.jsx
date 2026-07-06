@@ -40,9 +40,7 @@ const LocationsList = (props) => {
   }, []);
 
   const fetchLocationsByValues = () => {
-    setTimeout(() => {
-      fetchLocationsPagination(25, 1);
-    }, 2000);
+    fetchLocationsPagination(25, 1);
   };
 
   const deleteLocation = (id, e) => {

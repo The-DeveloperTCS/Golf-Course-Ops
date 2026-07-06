@@ -36,9 +36,7 @@ const SubCategoriesList = (props) => {
   }, []);
 
   const fetchSubCategoriesByValues = () => {
-    setTimeout(() => {
-      fetchSubCategoriesPagination(25, 1);
-    }, 2000);
+    fetchSubCategoriesPagination(25, 1);
   };
 
   useMemo(() => {
@@ -90,7 +88,7 @@ const SubCategoriesList = (props) => {
                 {/* {useSupplierPermission && ( */}
                 <button
                   className="c-btn ma-5 add-new-btn-color"
-                  onClick={() => props.history.push("/category/new")}
+                  onClick={() => props.history.push("/sub-category/new")}
                 >
                   <i className="fas fa-plus" /> New Sub Category
                 </button>
@@ -119,10 +117,10 @@ const SubCategoriesList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    subCategories: state.category.subCategories,
-    pageLimit: state.category.pageLimit,
-    pageNo: state.category.pageNo,
-    total: state.category.total,
+    subCategories: state.categories.subCategories,
+    pageLimit: state.categories.pageLimit,
+    pageNo: state.categories.pageNo,
+    total: state.categories.total,
     loader: state.loader.loader,
   };
 };

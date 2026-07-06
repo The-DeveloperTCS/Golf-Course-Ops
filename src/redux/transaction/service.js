@@ -1,6 +1,10 @@
-import { axiosClient } from "../../redux/store";
-import { addTransaction } from "Constants";
+import { delay, axiosResponse } from "mock/mockHelpers";
+import { createRecord } from "mock/mockDb";
 
-export const transationOfTeeSheet = (req) => {
-  return axiosClient.post(addTransaction, req);
+export const addTransaction = async (req) => {
+  await delay();
+  const record = createRecord("sales", req);
+  return axiosResponse({ transaction: record, success: true });
 };
+
+export const transationOfTeeSheet = addTransaction;

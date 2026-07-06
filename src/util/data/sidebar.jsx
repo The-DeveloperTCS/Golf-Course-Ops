@@ -1,7 +1,7 @@
 export const sidebarData = [
   {
     name: "sidebar.intro",
-    routepath: "/Intro",
+    routepath: "/intro",
     iconClass: "fa fa-desktop",
     resource: "DASHBOARD",
   },
@@ -73,7 +73,7 @@ export const sidebarData = [
     name: "sidebar.season",
     routepath: "/season/list",
     iconClass: "fa fa-terminal",
-    resource: "",
+    resource: "SEASON",
   },
   {
     name: "sidebar.department",
@@ -256,7 +256,7 @@ export const sidebarData = [
 export const HorizontalSidebarData = [
   {
     name: "sidebar.intro",
-    routepath: "/Intro",
+    routepath: "/intro",
     iconClass: "fa fa-bar-chart",
     resource: "DASHBOARD",
   },

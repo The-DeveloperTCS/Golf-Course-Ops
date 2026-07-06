@@ -40,9 +40,7 @@ const InventoriesList = (props) => {
   }, []);
 
   const fetchInventoriesByValues = () => {
-    setTimeout(() => {
-      fetchInventoriesPagination(25, 1);
-    }, 2000);
+    fetchInventoriesPagination(25, 1);
   };
 
   const deleteInventory = (id, e) => {
@@ -151,10 +149,10 @@ const InventoriesList = (props) => {
               Intentory List{" "}
               <span className="pull-right">
                 {useInventoryPermission && (
-                <button
-                  className="c-btn ma-5 add-new-btn-color"
-                  onClick={() => props.history.push("/inventory/new")}
-                >
+                  <button
+                    className="c-btn ma-5 add-new-btn-color"
+                    onClick={() => props.history.push("/inventory/new")}
+                  >
                     <i className="fas fa-plus" /> New Inventory
                   </button>
                 )}

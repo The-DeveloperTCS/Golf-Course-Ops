@@ -12,21 +12,21 @@ function HelpSupport() {
       </p>
       <div className="HelpSupport-main-inner">
         <div className="Get-in-touch">
-          <h5 className="support-h5">device & hardware infor</h5>
+          <h5 className="support-h5">Contact Waveland Golf Course</h5>
           <div className="phone-nbr">
             <img src={phone} alt="" />
-            <p>+44 567 865 000</p>
+            <p>(515) 555-0140</p>
           </div>
           <div className="phone-nbr">
             <img src={email} alt="" />
-            435345-3345-343
+            support@wavelandgolf.com
           </div>
           <div className="phone-nbr">
             <img src={location} alt="" />
             <p>
-              This is a dummy text, your
+              4901 Grand Avenue
               <br />
-              address comes here..
+              Des Moines, IA 50312
             </p>
           </div>
         </div>

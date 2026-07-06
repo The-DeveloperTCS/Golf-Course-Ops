@@ -40,9 +40,7 @@ const PermissionsList = (props) => {
   }, []);
 
   const fetchPermissionsByValues = () => {
-    setTimeout(() => {
-      fetchPermissionsPagination(25, 1);
-    }, 2000);
+    fetchPermissionsPagination(25, 1);
   };
 
   const deletePermission = (id, e) => {
@@ -102,8 +100,8 @@ const PermissionsList = (props) => {
               <span className="pull-right">
                 {usePermissionPermission && (
                   <button
-                  className="c-btn ma-5 add-new-btn-color"
-                  onClick={() => props.history.push("/permission/new")}
+                    className="c-btn ma-5 add-new-btn-color"
+                    onClick={() => props.history.push("/permission/new")}
                   >
                     <i className="fas fa-plus" /> New Permission
                   </button>

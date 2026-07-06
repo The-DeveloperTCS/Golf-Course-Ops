@@ -1,33 +1,14 @@
-import { axiosClient } from "../store";
-import {
-  createGroupUrl,
-  updateGroupUrl,
-  deleteGroupUrl,
-  getGroupsListUrl,
-  getSpecificGroupUrl,
-} from "Constants";
+import { createCrudService } from "mock/crudFactory";
 
-export const getGroupsList = async (limit, pageNo) => {
-  try {
-    const response = await axiosClient.get(getGroupsListUrl(limit, pageNo));
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+const crud = createCrudService({
+  collection: "groups",
+  pluralKey: "groups",
+  totalKey: "totalGroups",
+  createKey: "id",
+});
 
-export const createGroups = (req) => {
-  return axiosClient.post(createGroupUrl, req);
-};
-
-export const updateGroupDetails = (groupId, req) => {
-  return axiosClient.patch(updateGroupUrl(groupId), req);
-};
-
-export const getSpecificGroup = async (groupId) => {
-  return axiosClient.get(getSpecificGroupUrl(groupId));
-};
-
-export const deleteGroups = async (groupId) => {
-  return axiosClient.delete(deleteGroupUrl(groupId));
-};
+export const getGroupsList = crud.getList;
+export const createGroups = crud.create;
+export const updateGroupDetails = crud.update;
+export const getSpecificGroup = crud.getSpecific;
+export const deleteGroups = crud.remove;

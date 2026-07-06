@@ -82,7 +82,7 @@ import JesterPark from "views/pages/JesterPark/JesterPark";
 // import JesterPark from "views/pages/JesterPark/JesterPark";
 
 const dashboardRoutes = [
-  { path: "/intro", component: Intro, resource: "" },
+  { path: "/intro", component: Intro, resource: "DASHBOARD" },
   {
     path: "/Profile",
     component: Profile,
@@ -219,17 +219,17 @@ const dashboardRoutes = [
   {
     path: "/season/list",
     component: SeasonList,
-    resource: "",
+    resource: "SEASON",
   },
   {
     path: "/season/new",
     component: NewSeason,
-    resource: "",
+    resource: "SEASON",
   },
   {
     path: "/season/:seasonId(\\d+)",
     component: SingleSeason,
-    resource: "",
+    resource: "SEASON",
   },
   {
     path: "/department/list",

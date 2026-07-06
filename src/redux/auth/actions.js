@@ -32,20 +32,20 @@ const authActions = {
           dispatch(authActions.loaderOff());
 
           dispatch(authActions.login(res));
-          history.push("/Intro");
+          dispatch(authActions.fetchPermissions());
+          history.push("/intro");
         })
         .catch((err) => {
-          console.log(err, "errrrr");
           dispatch(authActions.loaderOff());
+          const message =
+            err?.response?.data?.message ||
+            err?.message ||
+            "Invalid username or password";
           dispatch({
             type: authActions.LOGIN_FAILURE,
-            message: err.response.data.message,
+            message,
           });
-          dispatch(
-            notificationActions.failure(
-              "Failed to login, " + err.response.data.message
-            )
-          );
+          dispatch(notificationActions.failure("Failed to login, " + message));
         });
     };
   },
@@ -77,8 +77,9 @@ const authActions = {
   },
 
   fetchPermissions: () => {
-    return (dispatch) => {
-      permissions().then((res) => {
+    return (dispatch, getState) => {
+      const role = getState().auth.user?.role;
+      permissions(role).then((res) => {
         dispatch(authActions.permissionsUpdated(res.data));
       });
     };

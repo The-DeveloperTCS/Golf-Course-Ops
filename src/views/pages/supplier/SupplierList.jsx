@@ -40,9 +40,7 @@ const SuppliersList = (props) => {
   }, []);
 
   const fetchSuppliersByValues = () => {
-    setTimeout(() => {
-      fetchSuppliersPagination(25, 1);
-    }, 2000);
+    fetchSuppliersPagination(25, 1);
   };
 
   const deleteSupplier = (id, e) => {
