@@ -9,3 +9,14 @@ export const completeMockUpload = async (file) => {
     thumbnailUrl: objectUrl,
   };
 };
+
+export const uploadToSignedUrl = async (url, file, headers = {}) => {
+  if (isMockUploadUrl(url)) {
+    return completeMockUpload(file);
+  }
+  const response = await fetch(url, { method: "PUT", body: file, headers });
+  if (!response.ok) {
+    throw new Error("Upload failed");
+  }
+  return { url: url.split("?")[0] };
+};

@@ -142,29 +142,24 @@ const SidebarWrapper = styled.div`
 
         .active-arrows {
             color: ${(props) =>
+              props.sidebarTheme.style4VarientActiveTextColor ||
               props.sidebarTheme.activeRouteTextColor} !important;
         }
     
         .active {
             color: ${(props) =>
-              props.themeSetting.activeLinkStyle !== "style1" ||
-              props.themeSetting.activeLinkStyle !== "style3"
-                ? props.themeSetting.sidebarTransParentValue === "on" &&
-                  props.themeSetting.activeLinkStyle === "style4"
-                  ? props.themeSetting.sidebarTransParentActiveColor +
-                    "!important"
-                  : props.sidebarTheme.activeRouteTextColor + "!important"
-                : ""};
+              props.themeSetting.activeLinkStyle === "style4"
+                ? props.sidebarTheme.style4VarientActiveTextColor
+                : props.sidebarTheme.activeRouteTextColor} !important;
             padding-left: ${(props) =>
               (props.themeSetting.activeLinkStyle === "style2" ||
                 props.themeSetting.activeLinkStyle === "style3") &&
               "1.6rem"};
 
-            // style1
-            background:#EEF0F6;
+            background: ${(props) =>
+              props.sidebarTheme.activeRouteBackColor || "#EEF0F6"} !important;
             font-weight: 600;
 
-            //  Style 2
             margin: ${(props) =>
               props.themeSetting.activeLinkStyle === "style2"
                 ? "5px 0px 0 !important"
@@ -176,13 +171,14 @@ const SidebarWrapper = styled.div`
                 ? "0 !important"
                 : props.themeSetting.activeLinkStyle === "style3"
                 ? "0px 30px 30px 0px !important"
-                : "4px"};
+                : "8px"};
 
-            // style4
-            color: ${(props) =>
-              props.themeSetting.activeLinkStyle === "style4"
-                ? props.sidebarTheme.style4VarientActiveTextColor + "!important"
-                : ""};
+            i,
+            p,
+            span {
+              color: inherit !important;
+              opacity: 1;
+            }
 
             .new-update-tag {
                 letter-spacing: 1px;

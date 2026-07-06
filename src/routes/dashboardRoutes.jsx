@@ -89,6 +89,11 @@ const dashboardRoutes = [
     resource: "EMPLOYEE",
   },
   {
+    path: "/profile",
+    component: Profile,
+    resource: "EMPLOYEE",
+  },
+  {
     path: "/employee/list",
     component: EmployeesList,
     resource: "EMPLOYEE",

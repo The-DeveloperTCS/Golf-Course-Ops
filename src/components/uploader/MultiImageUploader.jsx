@@ -3,6 +3,7 @@ import React from "react";
 import { fetchDigitalOceanUrlForImage } from "redux/fileUpload/service";
 import Resizer from "react-image-file-resizer";
 import { resizeImage, resizeThumbnail } from "util/ImageResizer";
+import { isMockUploadUrl, completeMockUpload } from "util/mockUploadHandler";
 
 const ImageUploader = ({ onUploadStart, onUploadReady, onError }) => {
   // Find a better way to do this
@@ -42,6 +43,12 @@ const ImageUploader = ({ onUploadStart, onUploadReady, onError }) => {
   };
 
   const handleSubmission = (url, contentType, selectedFile) => {
+    if (isMockUploadUrl(url)) {
+      completeMockUpload(selectedFile).then((result) => {
+        onUploadReady(result);
+      });
+      return;
+    }
     const reader = new FileReader();
     reader.onload = async (event) => {
       const headers = {
@@ -74,6 +81,15 @@ const ImageUploader = ({ onUploadStart, onUploadReady, onError }) => {
   };
 
   const handleThumnail = (url, contentType, selectedFile, imageUrl) => {
+    if (isMockUploadUrl(url)) {
+      completeMockUpload(selectedFile).then((result) => {
+        onUploadReady({
+          url: imageUrl || result.url,
+          thumbnailUrl: result.thumbnailUrl,
+        });
+      });
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (event) => {
       const headers = {

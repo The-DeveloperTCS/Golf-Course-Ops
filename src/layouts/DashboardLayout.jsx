@@ -30,6 +30,7 @@ import LayoutSettings from "components/layoutsetting/LayoutSettings";
 import notificationActions from "redux/notifications/actions";
 import authActions from "redux/auth/actions";
 import SideRibbon from "components/ribbons/SideRibbon";
+import { initDarkModeFromStore } from "util/toggleDarkMode";
 
 const { changeTheme } = themeActions;
 const { sidebarMini } = settingactions;
@@ -54,6 +55,11 @@ const DashboardLayout = (props) => {
   useEffect(() => {
     fetchPermissions();
   }, [fetchPermissions]);
+
+  useEffect(() => {
+    props.initDarkModeFromStore();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useMemo(() => {
     if (scrollbars && scrollbars.current) {
@@ -318,6 +324,7 @@ const mapStateToProps = (state) => {
         state.themeSetting.sidebarTransParentActiveBack,
       sidebarTransParentActiveColor:
         state.themeSetting.sidebarTransParentActiveColor,
+      darkModeValue: state.themeSetting.darkModeValue,
     },
     notifications: {
       success: state.notifications.success,
@@ -333,6 +340,7 @@ const mapDispatchToProps = (dispatch) => {
     dispatch,
     changeTheme,
     sidebarMini,
+    initDarkModeFromStore: () => dispatch(initDarkModeFromStore()),
     ...bindActionCreators(notificationActions, dispatch),
     ...bindActionCreators(authActions, dispatch),
   };

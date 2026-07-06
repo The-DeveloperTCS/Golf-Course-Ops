@@ -1,0 +1,170 @@
+/* Unified pagination — same design on every list/table page */
+
+.Table__pagination {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 24px;
+}
+
+.table-for-border {
+  display: inline-flex;
+  align-items: stretch;
+  border: 2px solid #4365cf;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.Table__prevPageWrapper,
+.Table__nextPageWrapper,
+.Table__visiblePagesWrapper {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+.Table__pageButton--nav,
+.Table__pageButton--nav-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 12px 15px;
+  background-color: #4365cf !important;
+  color: #ffffff !important;
+  border: none !important;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  outline: none;
+  transition: background-color 0.2s ease;
+
+  svg {
+    color: #ffffff;
+    font-size: 20px;
+    pointer-events: none;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: #3654b8 !important;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.Table__pageButton--nav {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.Table__pageButton--nav-next {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.Table__visiblePagesWrapper .Table__pageButton {
+  min-width: 48px;
+  padding: 12.5px 15px;
+  margin: 0;
+  border: none;
+  border-left: 2px solid #4365cf;
+  background: #ffffff;
+  color: #333333 !important;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: 0;
+  outline: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover:not(.Table__pageButton--active):not(:disabled) {
+    background: #eef0f6;
+  }
+
+  &.Table__pageButton--active {
+    background: #eef0f6 !important;
+    color: #1a1d26 !important;
+    font-weight: 700;
+  }
+}
+
+/* Legacy class alias used in older markup */
+.Table__pageButton1 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 12px 15px;
+  background-color: #4365cf !important;
+  color: #ffffff !important;
+  border: none !important;
+  cursor: pointer;
+  font-size: 18px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  svg {
+    color: #ffffff;
+    font-size: 20px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .Table__pagination {
+    justify-content: center;
+    padding: 12px 8px;
+  }
+
+  .table-for-border {
+    max-width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .Table__visiblePagesWrapper .Table__pageButton,
+  .Table__pageButton--nav,
+  .Table__pageButton--nav-next {
+    min-width: 40px;
+    padding: 10px 12px;
+  }
+}
+
+body.dark-mode {
+  .table-for-border {
+    border-color: var(--gco-pagination-bg);
+    background: var(--gco-surface);
+  }
+
+  .Table__pageButton--nav,
+  .Table__pageButton--nav-next,
+  .Table__pageButton1 {
+    background: var(--gco-pagination-bg) !important;
+
+    &:hover:not(:disabled) {
+      background: var(--gco-primary-hover) !important;
+    }
+  }
+
+  .Table__visiblePagesWrapper .Table__pageButton {
+    background: var(--gco-surface);
+    border-left-color: var(--gco-pagination-bg);
+    color: var(--gco-text) !important;
+
+    &:hover:not(.Table__pageButton--active) {
+      background: rgba(93, 120, 255, 0.12);
+    }
+
+    &.Table__pageButton--active {
+      background: rgba(93, 120, 255, 0.22) !important;
+      color: #e8ecff !important;
+    }
+  }
+}

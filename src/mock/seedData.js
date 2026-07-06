@@ -112,6 +112,7 @@ const genEmployees = () =>
       status: i % 9 !== 0,
       profilePicture: "",
       hourlyRate: 18 + (i % 12),
+      createdAt: new Date(2023, i % 12, (i % 28) + 1).toISOString(),
     };
   });
 

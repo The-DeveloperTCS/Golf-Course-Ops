@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
-import "../../views/style/Pagination.css";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-
-const defaultButton = (props) => <button {...props}>{props.children}</button>;
+import PaginationBar from "components/common/PaginationBar";
 
 const Pagination = (props) => {
   const [visiblePages, setVisiblePages] = useState(null);
   const {
-    PageButtonComponent = defaultButton,
+    PageButtonComponent,
     changeMethodFlag,
     onPageChange,
     page,
@@ -18,21 +14,27 @@ const Pagination = (props) => {
   } = props;
   const activePage = page + 1;
 
-  const getVisiblePages = useCallback((page, total) => {
+  const getVisiblePages = useCallback((currentPage, total) => {
     if (total < 7) {
-      return [1, 2, 3];
-    } else if (page < 3) {
-      return [1, 2, 3, 4];
-    } else if (page > total - 3) {
-      return [total - 3, total - 2, total - 1, total];
-    } else {
-      return [page - 1, page, page + 1, page + 2];
+      return [1, 2, 3].filter((p) => p <= total);
     }
+    if (currentPage < 3) {
+      return [1, 2, 3, 4].filter((p) => p <= total);
+    }
+    if (currentPage > total - 3) {
+      return [total - 3, total - 2, total - 1, total].filter((p) => p >= 1);
+    }
+    return [
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      currentPage + 2,
+    ].filter((p) => p >= 1 && p <= total);
   }, []);
 
   useEffect(() => {
-    setVisiblePages(getVisiblePages(page, pages));
-  }, [getVisiblePages, page, pages]);
+    setVisiblePages(getVisiblePages(activePage, pages));
+  }, [getVisiblePages, activePage, pages]);
 
   useEffect(() => {
     if (changeMethodFlag) {
@@ -46,82 +48,24 @@ const Pagination = (props) => {
     }
   }, [changeMethodFlag, onPageChange, page, resetMethodFlag]);
 
-  const filterPages = (visiblePages, totalPages) => {
-    return visiblePages.filter((page) => page >= 1 && page <= totalPages);
-  };
-
-  const changePage = (page) => {
-    const activePage = page + 1;
-
-    //limit & page no send to status api
-
-    if (page === activePage) {
+  const changePage = (targetPage) => {
+    if (targetPage === activePage) {
       return;
     }
-    const visiblePages = getVisiblePages(page, pages);
-
-    setVisiblePages(filterPages(visiblePages, pages));
-    onPageChange(page - 1);
+    setVisiblePages(
+      getVisiblePages(targetPage, pages).filter((p) => p >= 1 && p <= pages)
+    );
+    onPageChange(targetPage - 1);
   };
 
   return (
-    <div className="Table__pagination">
-      <div className="table-for-border">
-        <div className="Table__prevPageWrapper">
-          <PageButtonComponent
-            className="Table__pageButton"
-            onClick={() => {
-              if (activePage === 1) return;
-              changePage(activePage - 1);
-            }}
-            disabled={activePage === 1}
-          >
-            {/* {props.previousText} */}
-            <i>
-              <IoIosArrowBack />
-            </i>
-          </PageButtonComponent>
-        </div>
-        <div className="Table__visiblePagesWrapper">
-          {visiblePages &&
-            visiblePages.map((page, index) => {
-              return (
-                <PageButtonComponent
-                  key={page}
-                  style={{
-                    backgroundColor: activePage === page ? "#fffff" : "white",
-                  }}
-                  className={
-                    activePage === page
-                    //  ? "Table__pageButton Table__pageButton--active"
-                    //   : "Table__pageButton"
-                  }
-                  onClick={changePage.bind(null, page)}
-                >
-                  {page}
-                </PageButtonComponent>
-              );
-            })}
-        </div>
-        <div className="Table__nextPageWrapper">
-          <PageButtonComponent
-            className="Table__pageButton1"
-            onClick={() => {
-              if (activePage === pages) return;
-              changePage(activePage + 1);
-            }}
-            disabled={activePage === pages}
-          >
-            {props.nextText}
-
-            <i>
-              {" "}
-              <IoIosArrowForward />
-            </i>
-          </PageButtonComponent>
-        </div>
-      </div>
-    </div>
+    <PaginationBar
+      activePage={activePage}
+      totalPages={pages}
+      visiblePages={visiblePages}
+      onPageChange={changePage}
+      PageButtonComponent={PageButtonComponent}
+    />
   );
 };
 

@@ -21,6 +21,7 @@ const themeSettings = {
   sidebarTransParentActiveBack: "hsla(0,0%,100%,.23)", // when you use transparentImage at that time you can put any back color for active link
   sidebarTransParentActiveColor: "#E91E63", // when you use transparentImage at that time you can put any text color for active link,
   layout: "vertical", // vertical or horizontal layout
+  darkModeValue: "off", // off or on
 };
 
 const language = "english"; // You can put chinese, spanish, french, italian as per your need

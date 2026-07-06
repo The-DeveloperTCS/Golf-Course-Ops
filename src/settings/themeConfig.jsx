@@ -8,9 +8,9 @@ const changeThemes = {
     {
       themeName: "themedefault",
       buttonColor: "#ffffff",
-      textColor: "#323332"
-    }
-  ]
+      textColor: "#323332",
+    },
+  ],
 };
 
 const topbarTheme = {
@@ -28,7 +28,7 @@ const topbarTheme = {
       badgeTextColor: "#fff",
       breadCumbActiveColor: "#2196f3",
       horSidebarActiveBackColor: "rgba(33, 150, 243, 0.2)",
-      horSidebarActiveTextColor: "#2196f3"
+      horSidebarActiveTextColor: "#2196f3",
     },
     {
       themeName: "light",
@@ -40,7 +40,7 @@ const topbarTheme = {
       badgeTextColor: "#fff",
       breadCumbActiveColor: "#5C258D",
       horSidebarActiveBackColor: "rgba(0,0,0,.05)",
-      horSidebarActiveTextColor: "#000"
+      horSidebarActiveTextColor: "#000",
     },
     {
       themeName: "sky",
@@ -52,7 +52,7 @@ const topbarTheme = {
       badgeTextColor: "#fff",
       breadCumbActiveColor: "#5C258D",
       horSidebarActiveBackColor: "#fff",
-      horSidebarActiveTextColor: "rgba(0, 0, 0, .65)"
+      horSidebarActiveTextColor: "rgba(0, 0, 0, .65)",
     },
     {
       themeName: "gredient1",
@@ -65,7 +65,7 @@ const topbarTheme = {
       breadCumbActiveColor: "#ff4081",
       horSidebarActiveBackColor: "rgba(0,0,0,.15)",
       horSidebarActiveTextColor: "#fff",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient2",
@@ -80,7 +80,7 @@ const topbarTheme = {
       breadCumbActiveColor: "#fee140",
       horSidebarActiveBackColor: "rgba(0,0,0,.15)",
       horSidebarActiveTextColor: "#fff",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient3",
@@ -95,7 +95,7 @@ const topbarTheme = {
       breadCumbActiveColor: "#ff4081",
       horSidebarActiveBackColor: "rgba(0,0,0,.15)",
       horSidebarActiveTextColor: "#fff",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient4",
@@ -110,7 +110,7 @@ const topbarTheme = {
       breadCumbActiveColor: "#a6c1ee",
       horSidebarActiveBackColor: "rgba(0,0,0,.15)",
       horSidebarActiveTextColor: "#fff",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient5",
@@ -123,7 +123,7 @@ const topbarTheme = {
       breadCumbActiveColor: "#fef9d7",
       horSidebarActiveBackColor: "#fff",
       horSidebarActiveTextColor: "#ff5252",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient6",
@@ -136,7 +136,7 @@ const topbarTheme = {
       breadCumbActiveColor: "#fef9d7",
       horSidebarActiveBackColor: "#fff",
       horSidebarActiveTextColor: "#2a5298",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient7",
@@ -149,7 +149,7 @@ const topbarTheme = {
       breadCumbActiveColor: "rgba(201,221,162,1)",
       horSidebarActiveBackColor: "#fff",
       horSidebarActiveTextColor: "#7b1fa2",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient8",
@@ -162,9 +162,9 @@ const topbarTheme = {
       breadCumbActiveColor: "#FF6B6B",
       horSidebarActiveBackColor: "#fff",
       horSidebarActiveTextColor: "#000",
-      type: "gredient"
-    }
-  ]
+      type: "gredient",
+    },
+  ],
 };
 
 const sidebarTheme = {
@@ -180,17 +180,17 @@ const sidebarTheme = {
       buttonColor: "rgba(0,0,0,.2)",
       activeRouteBackColor: "#FFF",
       style4VarientActiveTextColor: "#F4C95D",
-      sideOpenListBackground: "rgba(0, 0, 0, .05)"
+      sideOpenListBackground: "rgba(0, 0, 0, .05)",
     },
     {
       themeName: "dark",
       backgroundColor: "linear-gradient(to top, #222437, #222437)",
-      textColor: "#fff",
-      activeRouteTextColor: "#fff",
+      textColor: "rgba(255,255,255,0.72)",
+      activeRouteTextColor: "#e8ecff",
       buttonColor: "#1E1E2D",
-      activeRouteBackColor: "#3a3f51",
-      style4VarientActiveTextColor: "#5d78ff",
-      sideOpenListBackground: "linear-gradient(to top, #222437, #222437)"
+      activeRouteBackColor: "rgba(93, 120, 255, 0.22)",
+      style4VarientActiveTextColor: "#7c9bff",
+      sideOpenListBackground: "rgba(255, 255, 255, 0.04)",
     },
     {
       themeName: "light",
@@ -200,7 +200,7 @@ const sidebarTheme = {
       buttonColor: "linear-gradient(45deg,#F5F7FA,#B8C6DB)",
       activeRouteBackColor: "linear-gradient(45deg,#F5F7FA,#B8C6DB)",
       style4VarientActiveTextColor: "#5C258D",
-      sideOpenListBackground: "rgba(0, 0, 0, .035)"
+      sideOpenListBackground: "rgba(0, 0, 0, .035)",
     },
     {
       themeName: "gredient1",
@@ -211,7 +211,7 @@ const sidebarTheme = {
       activeRouteBackColor: "linear-gradient(45deg,#5C258D,#4389A2)",
       style4VarientActiveTextColor: "#583891",
       sideOpenListBackground: "rgba(0, 0, 0, .035)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient2",
@@ -224,7 +224,7 @@ const sidebarTheme = {
         "linear-gradient(45deg,rgba(167,139,252,1),rgba(82,107,248,1))",
       style4VarientActiveTextColor: "rgba(82,107,248,1)",
       sideOpenListBackground: "rgba(0, 0, 0, .035)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient3",
@@ -237,7 +237,7 @@ const sidebarTheme = {
         "linear-gradient(45deg,rgba(255,230,112,1),rgba(255,100,100,0.6))",
       style4VarientActiveTextColor: "rgba(255,100,100,1)",
       sideOpenListBackground: "rgba(0, 0, 0, .035)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient4",
@@ -250,7 +250,7 @@ const sidebarTheme = {
         "linear-gradient(45deg,rgba(76,79,106,1),rgba(118,124,163,1))",
       style4VarientActiveTextColor: "rgba(118,124,163,1)",
       sideOpenListBackground: "rgba(0, 0, 0, .035)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient5",
@@ -261,7 +261,7 @@ const sidebarTheme = {
       activeRouteBackColor: "linear-gradient(45deg, #ff5252, #f48fb1)",
       style4VarientActiveTextColor: "#ff5252",
       sideOpenListBackground: "rgba(0, 0, 0, .035)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient6",
@@ -272,7 +272,7 @@ const sidebarTheme = {
       activeRouteBackColor: "linear-gradient(45deg,#2ed8b6,#2a5298)",
       style4VarientActiveTextColor: "#2a5298",
       sideOpenListBackground: "rgba(0, 0, 0, .035)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient7",
@@ -283,7 +283,7 @@ const sidebarTheme = {
       activeRouteBackColor: "linear-gradient(45deg,#9D50BB,#7b1fa2)",
       style4VarientActiveTextColor: "#9D50BB",
       sideOpenListBackground: "rgba(0, 0, 0, .035)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient8",
@@ -295,9 +295,9 @@ const sidebarTheme = {
         "linear-gradient(45deg,rgba(216,241,230,0.46),#e2ebf0)",
       style4VarientActiveTextColor: "#FF6B6B",
       sideOpenListBackground: "rgba(0, 0, 0, .035)",
-      type: "gredient"
-    }
-  ]
+      type: "gredient",
+    },
+  ],
 };
 
 const layoutTheme = {
@@ -311,7 +311,7 @@ const layoutTheme = {
       backgroundColor: "rgb(249, 249, 249)",
       cardBackground: "#fff",
       headingColor: "#6a727a",
-      textColor: "#000"
+      textColor: "#000",
     },
     {
       themeName: "theme1",
@@ -319,7 +319,7 @@ const layoutTheme = {
       backgroundColor: "#ffffff",
       cardBackground: "#fff",
       headingColor: "#6a727a",
-      textColor: "#000"
+      textColor: "#000",
     },
     {
       themeName: "theme2",
@@ -327,7 +327,7 @@ const layoutTheme = {
       backgroundColor: "#F9F9F9",
       cardBackground: "#fff",
       headingColor: "#6a727a",
-      textColor: "#000"
+      textColor: "#000",
     },
     {
       themeName: "theme3",
@@ -335,7 +335,7 @@ const layoutTheme = {
       backgroundColor: "#ebebeb",
       cardBackground: "#fff",
       headingColor: "#6a727a",
-      textColor: "#000"
+      textColor: "#000",
     },
     {
       themeName: "theme4",
@@ -343,7 +343,7 @@ const layoutTheme = {
       backgroundColor: "#D9D9D9",
       cardBackground: "#fff",
       headingColor: "#6a727a",
-      textColor: "#000"
+      textColor: "#000",
     },
     {
       themeName: "theme5",
@@ -351,7 +351,7 @@ const layoutTheme = {
       backgroundColor: "#eef5f9",
       cardBackground: "#fff",
       headingColor: "#000",
-      textColor: "#000"
+      textColor: "#000",
     },
     {
       themeName: "theme6",
@@ -359,7 +359,7 @@ const layoutTheme = {
       backgroundColor: "#2d3038",
       cardBackground: "rgba(68, 70, 79, 0.5)",
       headingColor: "#fff",
-      textColor: "#949ba2"
+      textColor: "#949ba2",
     },
     {
       themeName: "theme7",
@@ -367,9 +367,9 @@ const layoutTheme = {
       backgroundColor: "#1c1e2f",
       cardBackground: "#222437",
       headingColor: "#fff",
-      textColor: "#949ba2"
-    }
-  ]
+      textColor: "#949ba2",
+    },
+  ],
 };
 
 const footerTheme = {
@@ -382,21 +382,21 @@ const footerTheme = {
       buttonBackColor: "rgba(0, 0, 0, .1)",
       buttonColor: "#222437",
       backgroundColor: "#222437",
-      textColor: "#ffffff"
+      textColor: "#ffffff",
     },
     {
       themeName: "light",
       buttonBackColor: "rgba(0, 0, 0, .1)",
       buttonColor: "linear-gradient(45deg,#F5F7FA,#B8C6DB)",
       backgroundColor: "linear-gradient(45deg,#F5F7FA,#B8C6DB)",
-      textColor: "rgba(0, 0, 0, .65)"
+      textColor: "rgba(0, 0, 0, .65)",
     },
     {
       themeName: "sky",
       buttonBackColor: "rgba(0, 0, 0, .1)",
       buttonColor: "linear-gradient(45deg,#F5F7FA, rgb(10, 191, 188))",
       backgroundColor: "linear-gradient(45deg,#F5F7FA, rgb(10, 191, 188))",
-      textColor: "rgba(0, 0, 0, .65)"
+      textColor: "rgba(0, 0, 0, .65)",
     },
     {
       themeName: "gredient1",
@@ -404,7 +404,7 @@ const footerTheme = {
       buttonColor: "linear-gradient(45deg,#5C258D,#4389A2)",
       backgroundColor: "linear-gradient(45deg,#5C258D,#4389A2)",
       textColor: "#ffffff",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient2",
@@ -414,7 +414,7 @@ const footerTheme = {
       backgroundColor:
         "linear-gradient(45deg,rgba(167,139,252,1),rgba(82,107,248,1))",
       textColor: "#ffffff",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient3",
@@ -424,7 +424,7 @@ const footerTheme = {
       backgroundColor:
         "linear-gradient(45deg,rgba(255,230,112,1),rgba(255,100,100,0.6))",
       textColor: "rgba(0,0,0,0.8)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient4",
@@ -434,7 +434,7 @@ const footerTheme = {
       backgroundColor:
         "linear-gradient(45deg,rgba(76,79,106,1),rgba(118,124,163,1))",
       textColor: "rgba(255,255,255,.85)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient5",
@@ -442,7 +442,7 @@ const footerTheme = {
       buttonColor: "linear-gradient(45deg, #ff5252, #f48fb1)",
       backgroundColor: "linear-gradient(45deg, #ff5252, #f48fb1)",
       textColor: "rgba(255,255,255,.85)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient6",
@@ -450,7 +450,7 @@ const footerTheme = {
       buttonColor: "linear-gradient(45deg,#2ed8b6,#2a5298)",
       backgroundColor: "linear-gradient(45deg,#2ed8b6,#2a5298)",
       textColor: "#ffffff",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient7",
@@ -458,7 +458,7 @@ const footerTheme = {
       buttonColor: "linear-gradient(45deg,#9D50BB,#7b1fa2)",
       backgroundColor: "linear-gradient(45deg,#9D50BB,#7b1fa2)",
       textColor: "rgba(255,255,255,.85)",
-      type: "gredient"
+      type: "gredient",
     },
     {
       themeName: "gredient8",
@@ -466,9 +466,9 @@ const footerTheme = {
       buttonColor: "linear-gradient(45deg,rgba(216,241,230,0.46),#e2ebf0)",
       backgroundColor: "linear-gradient(45deg,rgba(216,241,230,0.46),#e2ebf0)",
       textColor: "rgba(0,0,0,0.8)",
-      type: "gredient"
-    }
-  ]
+      type: "gredient",
+    },
+  ],
 };
 
 const customizedThemes = {
@@ -476,12 +476,12 @@ const customizedThemes = {
   topbarTheme,
   sidebarTheme,
   layoutTheme,
-  footerTheme
+  footerTheme,
 };
 
 export function getCurrentTheme(attribute, selectedThemename) {
   let selecetedTheme = {};
-  customizedThemes[attribute].options.forEach(theme => {
+  customizedThemes[attribute].options.forEach((theme) => {
     if (theme.themeName === selectedThemename) {
       selecetedTheme = theme;
     }
