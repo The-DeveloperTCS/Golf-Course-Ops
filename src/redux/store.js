@@ -6,9 +6,6 @@ import createReducer from "./reducers";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import createMigrate from "redux-persist/es/createMigrate";
-import axios from "axios";
-import applyAppTokenRefreshInterceptor from "./axios_interceptor";
-import { BaseUrl } from "Constants";
 
 const migrations = {
   0: (state) => {
@@ -52,7 +49,4 @@ const store = createStore(
 );
 const persistor = persistStore(store);
 
-const axiosClient = axios.create({ baseUrl: BaseUrl });
-applyAppTokenRefreshInterceptor(axiosClient, store);
-
-export { store, history, persistor, axiosClient };
+export { store, history, persistor };

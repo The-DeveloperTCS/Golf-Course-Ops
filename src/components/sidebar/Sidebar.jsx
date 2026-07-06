@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import IntlMessages from "util/intlMessages";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "redux/auth/actions";
+import { canAccessResource } from "util/permissionAccess";
 import logoimg from "../../assets/images/Untitled-2-01.png";
 
 const Sidebar = (props) => {
@@ -17,7 +18,7 @@ const Sidebar = (props) => {
   let sideScrollStyle;
 
   const dispatch = useDispatch();
-  const permissions = useSelector((state) => state.auth.permissions);
+  const permissions = useSelector((state) => state.auth.permissions || []);
 
   useEffect(() => {
     dispatch(authActions.fetchPermissions());
@@ -177,23 +178,14 @@ const Sidebar = (props) => {
 
             <ul className="nav">
               {sidebarData
-                .filter((l) => {
-                  return (
-                    permissions.map((p) => p.name).includes(l.resource) ||
-                    l.resource === ""
-                  );
-                })
+                .filter((l) => canAccessResource(permissions, l.resource))
                 .map((l, i) => {
                   if (!l.child) return l;
                   return {
                     ...l,
-                    child: l.child.filter((c) => {
-                      return (
-                        permissions.map((p) => p.name).includes(c.resource) ||
-                        c.resource === "" ||
-                        c.resource === undefined
-                      );
-                    }),
+                    child: l.child.filter((c) =>
+                      canAccessResource(permissions, c.resource)
+                    ),
                   };
                 })
                 .map((list, i) => {

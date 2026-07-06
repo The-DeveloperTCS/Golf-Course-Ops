@@ -1,3 +1,10 @@
+.login-page {
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
 .login-main-div {
   display: flex;
   justify-content: center;
@@ -215,4 +222,27 @@
 }
 .form-group input:focus {
   background-color: transparent;
+}
+
+.demo-credentials-panel {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f4f7fb;
+  border: 1px solid #e2e8f0;
+}
+
+.demo-credentials-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.demo-credentials-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.6;
 }

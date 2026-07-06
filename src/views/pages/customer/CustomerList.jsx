@@ -39,9 +39,7 @@ const CustomersList = (props) => {
   }, []);
 
   const fetchCustomersByValues = () => {
-    setTimeout(() => {
-      fetchCustomersPagination(25, 1);
-    }, 2000);
+    fetchCustomersPagination(25, 1);
   };
 
   useMemo(() => {

@@ -1,33 +1,15 @@
-import { axiosClient } from "../store";
-import {
-  createLocationUrl,
-  updateLocationUrl,
-  deleteLocationUrl,
-  getLocationsListUrl,
-  getSpecificLocationUrl,
-} from "Constants";
+import { createCrudService } from "mock/crudFactory";
 
-export const getLocationsList = async (limit, pageNo) => {
-  try {
-    const response = await axiosClient.get(getLocationsListUrl(limit, pageNo));
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+const crud = createCrudService({
+  collection: "locations",
+  pluralKey: "locations",
+  totalKey: "totalLocations",
+  createKey: "post",
+});
 
-export const createLocation = (req) => {
-  return axiosClient.post(createLocationUrl, req);
-};
-
-export const updateLocationDetails = (employeeId, req) => {
-  return axiosClient.patch(updateLocationUrl(employeeId), req);
-};
-
-export const getSpecificLocation = async (employeeId) => {
-  return axiosClient.get(getSpecificLocationUrl(employeeId));
-};
-
-export const deleteLocations = async (employeeId) => {
-  return axiosClient.delete(deleteLocationUrl(employeeId));
-};
+export const getLocationsList = crud.getList;
+export const createLocations = crud.create;
+export const createLocation = crud.create;
+export const updateLocationDetails = crud.update;
+export const getSpecificLocation = crud.getSpecific;
+export const deleteLocations = crud.remove;

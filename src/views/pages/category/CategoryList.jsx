@@ -39,9 +39,7 @@ const CategoriesList = (props) => {
   }, []);
 
   const fetchCategoriesByValues = () => {
-    setTimeout(() => {
-      fetchCategoriesPagination(25, 1);
-    }, 2000);
+    fetchCategoriesPagination(25, 1);
   };
 
   const deleteCategory = (id, e) => {

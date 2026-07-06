@@ -1,10 +1,12 @@
-import { axiosClient } from "redux/store";
-import { RolePermissionsUrl, PermissionsUrl } from "Constants";
+import { delay, axiosResponse } from "mock/mockHelpers";
+import { getPermissionsForRoleName } from "mock/permissions";
 
-export const getPermissionsForRole = (role) => {
-  return axiosClient.get(RolePermissionsUrl(role));
+export const getPermissionsForRole = async (role) => {
+  await delay();
+  return axiosResponse(getPermissionsForRoleName(role));
 };
 
-export const updatePermission = (permission) => {
-  return axiosClient.post(PermissionsUrl, permission);
+export const updatePermission = async (permission) => {
+  await delay();
+  return axiosResponse(permission);
 };

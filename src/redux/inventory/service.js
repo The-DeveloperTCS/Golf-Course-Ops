@@ -1,38 +1,24 @@
-import { axiosClient } from "../store";
-import {
-  createInventoryUrl,
-  updateInventoryUrl,
-  deleteInventoryUrl,
-  getInventorysListUrl,
-  getSpecificInventoryUrl,
-  getTeeSheetInventorysListUrl,
-} from "Constants";
+import { createCrudService } from "mock/crudFactory";
+import { delay, axiosResponse } from "mock/mockHelpers";
+import { getCollection } from "mock/mockDb";
 
-export const getIntevoriesList = async (limit, pageNo) => {
-  try {
-    const response = await axiosClient.get(getInventorysListUrl(limit, pageNo));
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+const crud = createCrudService({
+  collection: "inventories",
+  pluralKey: "inventories",
+  totalKey: "totalInventories",
+  createKey: "inventory",
+});
 
-export const createInventorys = (req) => {
-  return axiosClient.post(createInventoryUrl, req);
-};
+export const getIntevoriesList = crud.getList;
+export const createInventorys = crud.create;
+export const updateInventoryDetails = crud.update;
+export const getSpecificInventory = crud.getSpecific;
+export const deleteInventorys = crud.remove;
 
-export const updateInventoryDetails = (inventoryId, req) => {
-  return axiosClient.patch(updateInventoryUrl(inventoryId), req);
-};
-
-export const getSpecificInventory = async (inventoryId) => {
-  return axiosClient.get(getSpecificInventoryUrl(inventoryId));
-};
-
-export const deleteInventorys = async (inventoryId) => {
-  return axiosClient.delete(deleteInventoryUrl(inventoryId));
-};
-
-export const getTeeSheetInventorysList = async (inventoryId) => {
-  return axiosClient.get(getTeeSheetInventorysListUrl(inventoryId));
+export const getTeeSheetInventorysList = async (itemType) => {
+  await delay();
+  const items = getCollection("inventories").filter(
+    (item) => !itemType || item.itemType === itemType || itemType === ""
+  );
+  return axiosResponse({ inventories: items });
 };

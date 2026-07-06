@@ -41,9 +41,7 @@ const EmployeesList = (props) => {
   }, []);
 
   const fetchEmployeesByValues = () => {
-    setTimeout(() => {
-      fetchEmployeesPagination(25, 1);
-    }, 2000);
+    fetchEmployeesPagination(25, 1);
   };
 
   const deleteEmployee = (id, e) => {

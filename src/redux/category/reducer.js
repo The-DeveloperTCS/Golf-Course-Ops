@@ -2,6 +2,7 @@ import categoryActions from "./action";
 
 const initialState = {
   categories: [],
+  subCategories: [],
   specificCategory: null,
   loading: false,
   error: null,
@@ -16,6 +17,15 @@ export default function categoryReducer(state = initialState, action) {
       return {
         ...state,
         categories: [...action.categories],
+        total: action.total,
+        pageLimit: action.pageLimit,
+        pageNo: action.pageNo,
+      };
+
+    case categoryActions.SUBCATEGORIES_FETCHED_PAGINATION:
+      return {
+        ...state,
+        subCategories: [...action.subCategories],
         total: action.total,
         pageLimit: action.pageLimit,
         pageNo: action.pageNo,

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const usePermission = () => {
   const dispatch = useDispatch();
-  const permissions = useSelector((state) => state.auth.permissions);
+  const permissions = useSelector((state) => state.auth.permissions || []);
 
   useEffect(() => {
     if (permissions.length === 0) {

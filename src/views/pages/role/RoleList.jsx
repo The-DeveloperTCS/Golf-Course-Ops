@@ -40,9 +40,7 @@ const RolesList = (props) => {
   }, []);
 
   const fetchRolesByValues = () => {
-    setTimeout(() => {
-      fetchRolesPagination(25, 1);
-    }, 2000);
+    fetchRolesPagination(25, 1);
   };
 
   const deleteRole = (id, e) => {

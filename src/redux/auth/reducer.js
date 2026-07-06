@@ -26,6 +26,8 @@ export default function rootReducer(state = initState, action) {
         isLogin: action.isLogin,
         accessToken: null,
         refreshToken: null,
+        user: null,
+        permissions: [],
       };
     case authAction.TOKEN_REFRESH:
       return {

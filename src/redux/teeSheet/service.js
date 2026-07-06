@@ -1,28 +1,44 @@
-import { axiosClient } from "../../redux/store";
+import { delay, axiosResponse } from "mock/mockHelpers";
 import {
-  getTeeSheetByDateUrl,
-  addTeeSheetUrl,
-  updateTeeSheetUrl,
-  deleteTeeSheetUrl,
-  getSpecificTeeSheetUrl,
-} from "Constants";
+  createRecord,
+  deleteRecord,
+  findById,
+  getCollection,
+  updateRecord,
+} from "mock/mockDb";
 
-export const getTeeSheetByDate = (date) => {
-  return axiosClient.get(getTeeSheetByDateUrl(date));
+export const getTeeSheetByDate = async (date) => {
+  await delay();
+  const teesheets = getCollection("teesheets").filter(
+    (sheet) => !date || sheet.date === date
+  );
+  return axiosResponse({ teesheets });
 };
 
-export const addTeeSheet = (req) => {
-  return axiosClient.post(addTeeSheetUrl, req);
+export const addTeeSheet = async (req) => {
+  await delay();
+  const record = createRecord("teesheets", {
+    ...req,
+    date: req.date || new Date().toISOString().slice(0, 10),
+    status: "booked",
+  });
+  return axiosResponse({ teesheet: record, updatedTeeSheet: record });
 };
 
-export const updateTeeSheetDetails = (teeSheetId, req) => {
-  return axiosClient.patch(updateTeeSheetUrl(teeSheetId), req);
+export const updateTeeSheetDetails = async (teeSheetId, req) => {
+  await delay();
+  const record = updateRecord("teesheets", teeSheetId, req);
+  return axiosResponse({ updatedTeeSheet: record, teesheet: record });
 };
 
 export const getSpecificTeeSheet = async (teeSheetId) => {
-  return axiosClient.get(getSpecificTeeSheetUrl(teeSheetId));
+  await delay();
+  const record = findById("teesheets", teeSheetId);
+  return axiosResponse(record);
 };
 
 export const deleteTeeSheet = async (teeSheetId) => {
-  return axiosClient.delete(deleteTeeSheetUrl(teeSheetId));
+  await delay();
+  deleteRecord("teesheets", teeSheetId);
+  return axiosResponse({ success: true });
 };

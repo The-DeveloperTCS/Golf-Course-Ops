@@ -39,9 +39,7 @@ const TerminalsList = (props) => {
   }, []);
 
   const fetchTerminalsByValues = () => {
-    setTimeout(() => {
-      fetchTerminalsPagination(25, 1);
-    }, 2000);
+    fetchTerminalsPagination(25, 1);
   };
 
   const deleteTerminal = (id, e) => {

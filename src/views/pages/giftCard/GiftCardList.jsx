@@ -40,9 +40,7 @@ const GiftCardsList = (props) => {
   }, []);
 
   const fetchGiftCardsByValues = () => {
-    setTimeout(() => {
-      fetchGiftCardsPagination(25, 1);
-    }, 2000);
+    fetchGiftCardsPagination(25, 1);
   };
 
   const deleteGiftCard = (id, e) => {

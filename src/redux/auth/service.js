@@ -1,24 +1,23 @@
-import axios from "axios";
-import { axiosClient } from "redux/store";
-import { LoginUrl, PermissionsUrl } from "Constants";
+import { delay, axiosResponse, axiosError } from "mock/mockHelpers";
+import { findDemoUser } from "mock/demoUsers";
+import { getCurrentUserRole } from "mock/mockDb";
+import { getPermissionsForRoleName } from "mock/permissions";
 
 export const login = async (username, password) => {
-  try {
-    const response = await axios.post(
-      "https://whale-app-i9cnx.ondigitalocean.app/user/login",
-      { username: username, password },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Modify this line to include the bearer token
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    throw error;
+  await delay(400);
+  const user = findDemoUser(username, password);
+  if (!user) {
+    return axiosError("Invalid username or password");
   }
+  const { password: _, ...safeUser } = user;
+  return {
+    token: `demo-token-${user.id}`,
+    user: safeUser,
+  };
 };
 
-export const permissions = () => {
-  return axiosClient.get(PermissionsUrl);
+export const permissions = async (roleName) => {
+  await delay(200);
+  const role = roleName || getCurrentUserRole();
+  return axiosResponse(getPermissionsForRoleName(role));
 };

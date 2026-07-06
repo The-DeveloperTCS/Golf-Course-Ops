@@ -39,9 +39,7 @@ const GroupssList = (props) => {
   }, []);
 
   const fetchGroupsByValues = () => {
-    setTimeout(() => {
-      fetchGroupsPagination(25, 1);
-    }, 2000);
+    fetchGroupsPagination(25, 1);
   };
 
   const deleteGroup = (id, e) => {

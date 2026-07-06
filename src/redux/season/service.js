@@ -1,33 +1,24 @@
-import { axiosClient } from "../store";
-import {
-  getSeasonListUrl,
-  createSeasonUrl,
-  updateSeasonUrl,
-  deleteSeasonUrl,
-  getSpecificSeasonUrl,
-  getDateRangeSeasons,
-} from "Constants";
+import { createCrudService } from "mock/crudFactory";
+import { delay, axiosResponse } from "mock/mockHelpers";
+import { getCollection } from "mock/mockDb";
 
-export const getSeasonsList = (pageNo, limit) => {
-  return axiosClient.get(getSeasonListUrl(limit, pageNo));
+const crud = createCrudService({
+  collection: "seasons",
+  pluralKey: "seasons",
+  totalKey: "totalSeasons",
+  listReturnsPlainData: false,
+  createKey: "season",
+});
+
+export const getSeasonsList = crud.getList;
+
+export const getDateRangeSeasonsList = async (date) => {
+  await delay();
+  const seasons = getCollection("seasons");
+  return axiosResponse({ seasons });
 };
 
-export const getDateRangeSeasonsList = (date) => {
-  return axiosClient.get(getDateRangeSeasons(date));
-};
-
-export const createSeasons = (req) => {
-  return axiosClient.post(createSeasonUrl, req);
-};
-
-export const updateSeasonDetails = (seasonId, req) => {
-  return axiosClient.patch(updateSeasonUrl(seasonId), req);
-};
-
-export const getSpecificSeason = async (seasonId) => {
-  return axiosClient.get(getSpecificSeasonUrl(seasonId));
-};
-
-export const deleteSeasons = async (seasonId) => {
-  return axiosClient.delete(deleteSeasonUrl(seasonId));
-};
+export const createSeasons = crud.create;
+export const updateSeasonDetails = crud.update;
+export const getSpecificSeason = crud.getSpecific;
+export const deleteSeasons = crud.remove;

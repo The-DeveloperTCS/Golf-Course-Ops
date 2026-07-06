@@ -1,33 +1,14 @@
-import { axiosClient } from "../../redux/store";
-import {
-  createGiftCardUrl,
-  updateGiftCardUrl,
-  deleteGiftCardUrl,
-  getGiftCardsListUrl,
-  getSpecificGiftCardUrl,
-} from "Constants";
+import { createCrudService } from "mock/crudFactory";
 
-export const getGiftCardsList = async (limit, pageNo) => {
-  try {
-    const response = await axiosClient.get(getGiftCardsListUrl(limit, pageNo));
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+const crud = createCrudService({
+  collection: "giftCards",
+  pluralKey: "giftCards",
+  totalKey: "totalGiftCards",
+  createKey: "id",
+});
 
-export const createGiftCards = (req) => {
-  return axiosClient.post(createGiftCardUrl, req);
-};
-
-export const updateGiftCardDetails = (giftCardId, req) => {
-  return axiosClient.patch(updateGiftCardUrl(giftCardId), req);
-};
-
-export const getSpecificGiftCard = async (giftCardId) => {
-  return axiosClient.get(getSpecificGiftCardUrl(giftCardId));
-};
-
-export const deleteGiftCards = async (giftCardId) => {
-  return axiosClient.delete(deleteGiftCardUrl(giftCardId));
-};
+export const getGiftCardsList = crud.getList;
+export const createGiftCards = crud.create;
+export const updateGiftCardDetails = crud.update;
+export const getSpecificGiftCard = crud.getSpecific;
+export const deleteGiftCards = crud.remove;

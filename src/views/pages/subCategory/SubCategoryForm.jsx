@@ -1,39 +1,47 @@
 import { useEffect, useState } from "react";
 import Button from "components/button/Button";
 import { connect } from "react-redux";
-import groupActions from "redux/group/action";
 import { bindActionCreators } from "redux";
-import { getSpecificGroup } from "redux/group/service";
+import { getSpecificSubCategory } from "redux/category/service";
+import { getCategoriesList } from "redux/category/service";
 import NotificationActions from "redux/notifications/actions";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
+import Select from "react-select";
 
-const GroupForm = (props) => {
-  const { groupId, updateGroup } = props;
-  const [updatedGroup, setUpdateGroup] = useState({ ...updateGroup });
+const SubCategoryForm = (props) => {
+  const { subCategoryId, updateSubCategory } = props;
+  const [updatedSubCategory, setUpdatedSubCategory] = useState({
+    ...updateSubCategory,
+  });
+  const [categories, setCategories] = useState([]);
   const [saving, setSaving] = useState(false);
-  const useGroupPermission = useRolePermissions("CATEGORY");
+  const useCategoryPermission = useRolePermissions("CATEGORY");
 
   useEffect(() => {
-    if (groupId) {
-      getSpecificGroup(groupId).then((res) => {
-        setUpdateGroup(res.data);
+    getCategoriesList(100, 1).then((res) => {
+      setCategories(res.categories || []);
+    });
+    if (subCategoryId) {
+      getSpecificSubCategory(subCategoryId).then((res) => {
+        setUpdatedSubCategory(res.data);
       });
     }
-  }, []);
+  }, [subCategoryId]);
 
   const onSave = () => {
     setSaving(true);
-
-    props.onSave({ ...updatedGroup }).then(() => setSaving(false));
+    props.onSave({ ...updatedSubCategory }).then(() => setSaving(false));
   };
 
-  const title = () => {
-    if (updatedGroup.id) {
-      return `Update Group #${updatedGroup.id} `;
-    }
+  const title = () =>
+    updatedSubCategory.id
+      ? `Update Sub Category #${updatedSubCategory.id}`
+      : "New Sub Category";
 
-    return "New Group";
-  };
+  const categoryOptions = categories.map((category) => ({
+    value: category.id,
+    label: category.name,
+  }));
 
   return (
     <div>
@@ -43,52 +51,66 @@ const GroupForm = (props) => {
             <div className="roe-card-header flex center">
               <div className="flex-1 mr-15 my-title ml-1">{title()}</div>
             </div>
-
             <div className="roe-card-body">
               <form>
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">
+                    Parent Category
+                  </label>
+                  <div className="col-sm-8">
+                    <Select
+                      options={categoryOptions}
+                      value={categoryOptions.find(
+                        (option) =>
+                          option.value === updatedSubCategory.categoryId
+                      )}
+                      isDisabled={!useCategoryPermission}
+                      onChange={(option) =>
+                        setUpdatedSubCategory({
+                          ...updatedSubCategory,
+                          categoryId: option.value,
+                          fName: option.label,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Name</label>
                   <div className="col-sm-8">
                     <input
                       type="text"
                       className="form-control react-form-input"
-                      value={updatedGroup.name}
-                      disabled={!useGroupPermission}
+                      value={updatedSubCategory.name || ""}
+                      disabled={!useCategoryPermission}
                       onChange={(e) =>
-                        setUpdateGroup({
-                          ...updatedGroup,
+                        setUpdatedSubCategory({
+                          ...updatedSubCategory,
                           name: e.target.value,
                         })
                       }
                     />
                   </div>
                 </div>
-
                 <div className="form-group row">
                   <label className="col-sm-4 col-form-label">Status</label>
                   <div className="col-sm-8">
-                    <div className="pretty p-default p-curve p-toggle">
-                      <input
-                        type="checkbox"
-                        // checked={updatedGroup.registered}
-                        onChange={(e) => {
-                          setUpdateGroup({
-                            ...updatedGroup,
-                            status: e.target.checked,
-                          });
-                        }}
-                      />
-                      <div className="state p-success p-on">
-                        <label>Active</label>
-                      </div>
-                      <div className="state p-danger p-off">
-                        <label>In-Active</label>
-                      </div>
-                    </div>
+                    <select
+                      className="form-control react-form-input"
+                      value={updatedSubCategory.status || "Active"}
+                      disabled={!useCategoryPermission}
+                      onChange={(e) =>
+                        setUpdatedSubCategory({
+                          ...updatedSubCategory,
+                          status: e.target.value,
+                        })
+                      }
+                    >
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
                   </div>
                 </div>
-
-                {/* {useGroupPermission && ( */}
                 <Button
                   type="button"
                   className="c-btn ma-5 c-success"
@@ -98,7 +120,6 @@ const GroupForm = (props) => {
                 >
                   Save
                 </Button>
-                {/* )} */}
               </form>
             </div>
           </div>
@@ -108,16 +129,7 @@ const GroupForm = (props) => {
   );
 };
 
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(groupActions, dispatch),
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(GroupForm);
+export default connect(null, (dispatch) => ({
+  dispatch,
+  ...bindActionCreators(NotificationActions, dispatch),
+}))(SubCategoryForm);

@@ -60,54 +60,68 @@ const Login = (props) => {
   return loader ? (
     <Loader />
   ) : (
-    <div className="login-main-div">
-      <form className="login-form" onSubmit={handleLogin}>
-        <div className="login-title">
-          <h1>Hi, Welcome Back!</h1>
-        </div>
-
-        <div className="form-group">
-          <label>User Name</label>
-          <input
-            type="username"
-            className=""
-            id="username"
-            onChange={handleChange}
-            value={values.username}
-            onBlur={handleBlur}
-            placeholder="User Name"
-          />
-          <Error field="username" />
-        </div>
-        <div className="form-group">
-          <div className="lable-forget">
-            <label>Password</label>
+    <div className="login-page">
+      <div className="login-main-div">
+        <form className="login-form" onSubmit={handleLogin}>
+          <div className="login-title">
+            <h1>Hi, Welcome Back!</h1>
           </div>
-          <input
-            type="password"
-            className=""
-            id="password"
-            onChange={handleChange}
-            value={values.password}
-            onBlur={handleBlur}
-            placeholder="Password"
-          />
-          <Error field="password" />
-        </div>
-        <Button
-          type="submit"
-          className="login-btn"
-          dataStyle="expand-left"
-          // loading={loading}
-        >
-          Sign In
-        </Button>
-      </form>
-      <div className="login-right">
-        <img src={login} alt="" />
-        <div className="login-png1">
-          <img src={loginpng} alt="" />
-          <p>Help/Support</p>
+
+          <div className="form-group">
+            <label>User Name</label>
+            <input
+              type="username"
+              className=""
+              id="username"
+              onChange={handleChange}
+              value={values.username}
+              onBlur={handleBlur}
+              placeholder="User Name"
+            />
+            <Error field="username" />
+          </div>
+          <div className="form-group">
+            <div className="lable-forget">
+              <label>Password</label>
+            </div>
+            <input
+              type="password"
+              className=""
+              id="password"
+              onChange={handleChange}
+              value={values.password}
+              onBlur={handleBlur}
+              placeholder="Password"
+            />
+            <Error field="password" />
+          </div>
+          <Button type="submit" className="login-btn" dataStyle="expand-left">
+            Sign In
+          </Button>
+          <div className="demo-credentials-panel">
+            <p className="demo-credentials-title">Demo credentials</p>
+            <ul className="demo-credentials-list">
+              <li>
+                <strong>Administrator</strong> — admin / admin123
+              </li>
+              <li>
+                <strong>Manager</strong> — manager / manager123
+              </li>
+              <li>
+                <strong>Pro Shop Staff</strong> — staff / staff123
+              </li>
+              <li>
+                <strong>Starter</strong> — starter / starter123
+              </li>
+            </ul>
+          </div>
+        </form>
+        <div className="login-right">
+          <img src={login} alt="" />
+          <div className="login-png1">
+            <img src={loginpng} alt="" />
+            <p>Help/Support</p>
+          </div>
         </div>
       </div>
     </div>

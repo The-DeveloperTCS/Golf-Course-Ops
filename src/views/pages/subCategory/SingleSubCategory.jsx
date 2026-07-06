@@ -2,62 +2,51 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NotificationActions from "redux/notifications/actions";
-import EmployeeForm from "./SubCategoryForm";
+import SubCategoryForm from "./SubCategoryForm";
 import {
-  updateEmployeeDetails,
-  getSpecificEmployee,
-} from "redux/employee/service";
+  updateSubCategoryDetails,
+  getSpecificSubCategory,
+} from "redux/category/service";
 
-const EmployeeSingle = (props) => {
-  const { employeeId } = props;
-  const [employeeDetail, setEmployeeDetails] = useState({});
+const SingleSubCategory = (props) => {
+  const { subCategoryId } = props;
+  const [subCategoryDetail, setSubCategoryDetail] = useState({});
 
   useEffect(() => {
-    getCityDetails();
-  }, [employeeId]);
-
-  const getCityDetails = async () => {
-    getSpecificEmployee(employeeId).then((res) => {
-      setEmployeeDetails(res.data);
+    getSpecificSubCategory(subCategoryId).then((res) => {
+      setSubCategoryDetail(res.data);
     });
-  };
+  }, [subCategoryId]);
 
-  const onEmployeeSave = async (updatedSupplier) => {
-    return updateEmployeeDetails(employeeId, updatedSupplier)
-      .then((res) => {
+  const onSubCategorySave = async (updatedSubCategory) => {
+    return updateSubCategoryDetails(subCategoryId, updatedSubCategory)
+      .then(() => {
         props.successWithTimeout(
-          `Employee #${res.data.id} updated successfully!`
+          `Sub Category #${subCategoryId} updated successfully!`
         );
-        props.history.push("/employee/list");
       })
       .catch((err) =>
         props.failure(
-          `Employee #${updatedSupplier.id} failed to update! ${err.response.data.message}`
+          `Sub Category #${subCategoryId} failed to update! ${err?.response
+            ?.data?.message || err.message}`
         )
       );
   };
 
   return (
-    <EmployeeForm
-      updateEmployee={employeeDetail}
-      employeeId={employeeId}
-      onSave={onEmployeeSave}
+    <SubCategoryForm
+      updateSubCategory={subCategoryDetail}
+      subCategoryId={subCategoryId}
+      onSave={onSubCategorySave}
     />
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const employeeId = parseInt(ownProps.match.params.employeeId);
-  return {
-    employeeId: employeeId,
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  subCategoryId: parseInt(ownProps.match.params.subCategoryId, 10),
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(NotificationActions, dispatch),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeSingle);
+export default connect(mapStateToProps, (dispatch) => ({
+  dispatch,
+  ...bindActionCreators(NotificationActions, dispatch),
+}))(SingleSubCategory);

@@ -192,8 +192,7 @@ export const RefreshTokenUrl = BaseUrl + "refresh-token";
 
 export const ImageUploadUrl = BaseUrl + "upload-image";
 
-export const isTest = () =>
-  BaseUrl.indexOf("https://test-api.zarya.app/") === 0;
+export const isTest = () => false;
 
 // Access Management
 export const RolePermissionsUrl = (role) =>
