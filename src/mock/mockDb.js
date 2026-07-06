@@ -1,6 +1,6 @@
 import { buildSeedDatabase } from "./seedData";
 
-const STORAGE_KEY = "golf_course_ops_db_v2";
+const STORAGE_KEY = "golf_course_ops_db_v3";
 
 let cache = null;
 

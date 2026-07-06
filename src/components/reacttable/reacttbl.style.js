@@ -38,20 +38,24 @@ const ReactTableWrapper = styled.div`
   }
   table {
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, .1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
-  tr:nth-child(even) { background: #E8EDFF;}
-  
-  tr:nth-child(odd) {background: rgba(255,255,255)}
-  
+
+  tr:nth-child(even) {
+    background: #e8edff;
+  }
+
+  tr:nth-child(odd) {
+    background: rgba(255, 255, 255);
+  }
+
   .table-container {
-      margin: auto 24px;
-      padding-bottom: 20px;
+    margin: auto 24px;
+    padding-bottom: 20px;
   }
   .custom-react-table-theme-class {
     th {
-      min-width: 200px; 
+      min-width: 200px;
     }
     tbody {
       td {
@@ -59,7 +63,7 @@ const ReactTableWrapper = styled.div`
         font-family: "Poppins, san";
         color: red;
       }
-      td.wide-cell{
+      td.wide-cell {
         width: 150px;
       }
     }
@@ -69,47 +73,11 @@ const ReactTableWrapper = styled.div`
     font-size: 14px;
   }
 
-  .Table__pagination {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 24px;
-  }
-
-  .Table__pageButton {
-    font-size: 18px;
-    outline: none;
-    border: 1px solid;
-    background-color: transparent;
-    cursor: pointer;
-    // color: #757575 !important;
-    margin: 0 0px;
-    width: 45px;
-    height: 51px;
-  }
-
-  .Table__pageButton:disabled {
-    cursor: not-allowed;
-    color: gray;
-  }
-  .Table__pageButton1:disabled {
-    cursor: not-allowed;
-    color: gray;
-  }
-
-  .Table__pageButton--active {
-    font-weight: bold;
-    background: #563c91
-    color: white !important;
-    width: 30px;
-    height: 30px;
-    border-radius: 6px;
-  }
-
   .tabl-search {
     padding: 4px;
-        margin: 10px;
-        border-radius: 3px;
-        border: 1px solid rgba(0, 0, 0, .1);
+    margin: 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     &:focus {
       outline: 0;
     }
@@ -141,7 +109,7 @@ const ReactTableWrapper = styled.div`
       color: #563c91;
     }
   }
-  .react-action-class.wide-cell{
+  .react-action-class.wide-cell {
     width: 150px;
   }
   .react-action-class {
@@ -150,7 +118,7 @@ const ReactTableWrapper = styled.div`
       width: auto !important;
     }
   }
-  .break-word{
+  .break-word {
     word-break: break-word;
   }
 `;

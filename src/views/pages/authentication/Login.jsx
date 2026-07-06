@@ -6,17 +6,25 @@ import AuthActions from "redux/auth/actions";
 import enhancer from "./enhancer/LoginFormEnhancer";
 import Button from "components/button/Button";
 import notificationActions from "redux/notifications/actions";
-import { bindActionCreators } from "redux";
 import login from "../../../assets/images/login-main-img.png";
 import loginpng from "../../../assets/images/downloadlogin.png";
 import "../../style/Login.css";
 import Loader from "components/loader/Loader";
 import loaderActions from "redux/loader/actions";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { toggleDarkMode } from "util/toggleDarkMode";
 const { startLoader } = loaderActions;
 const { loginRequest } = AuthActions;
 
 const Login = (props) => {
-  const { loader, startLoader, loginRequest } = props;
+  const {
+    loader,
+    startLoader,
+    loginRequest,
+    darkModeValue,
+    onToggleDarkMode,
+  } = props;
+  const isDark = darkModeValue === "on";
   const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
@@ -61,6 +69,16 @@ const Login = (props) => {
     <Loader />
   ) : (
     <div className="login-page">
+      <button
+        type="button"
+        className={`dark-mode-toggle login-dark-toggle ${
+          isDark ? "is-dark" : ""
+        }`}
+        onClick={onToggleDarkMode}
+        aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      >
+        {isDark ? <FaSun /> : <FaMoon />}
+      </button>
       <div className="login-main-div">
         <form className="login-form" onSubmit={handleLogin}>
           <div className="login-title">
@@ -131,13 +149,7 @@ const Login = (props) => {
 const mapStateToProps = (state) => {
   return {
     loader: state.loader.loader,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    ...bindActionCreators(AuthActions, dispatch),
+    darkModeValue: state.themeSetting.darkModeValue,
   };
 };
 
@@ -147,5 +159,6 @@ export default compose(
   connect(mapStateToProps, {
     startLoader,
     loginRequest,
+    onToggleDarkMode: toggleDarkMode,
   })
 )(Login);

@@ -2,7 +2,32 @@
   min-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #ffffff;
+  background: var(--gco-surface-2, #ffffff);
+  position: relative;
+}
+
+.login-dark-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+@media (max-width: 767.98px) {
+  .login-form {
+    width: 100%;
+    padding: 20px 24px;
+    margin-top: 0;
+  }
+
+  .login-right {
+    display: none;
+  }
+
+  .login-main-div {
+    flex-direction: column;
+    padding: 60px 0 40px;
+  }
 }
 
 .login-main-div {

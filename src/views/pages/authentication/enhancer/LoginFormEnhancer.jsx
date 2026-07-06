@@ -3,17 +3,15 @@ import * as Yup from "yup";
 
 const formikEnhancer = withFormik({
   validationSchema: Yup.object().shape({
-    phoneNumber: Yup.string().required("Please enter your phone number"),
-    otpCode: Yup.string().required(
-      "Please enter the OTP code received on phone"
-    ),
+    username: Yup.string().required("Please enter your username"),
+    password: Yup.string().required("Please enter your password"),
   }),
-  mapPropsToValues: (props) => ({
-    phoneNumber: "",
-    otpCode: "",
+  mapPropsToValues: () => ({
+    username: "",
+    password: "",
   }),
-  handleSubmit: async (values) => {},
-  displayName: "CustomValidationForm",
+  handleSubmit: async () => {},
+  displayName: "LoginForm",
   enableReinitialize: true,
 });
 

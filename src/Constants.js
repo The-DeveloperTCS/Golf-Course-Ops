@@ -1,4 +1,4 @@
-export const BaseUrl = "https://whale-app-i9cnx.ondigitalocean.app/";
+export const BaseUrl = "/";
 
 export const LoginUrl = BaseUrl + "user/login";
 export const PermissionsUrl = BaseUrl + "permission/byRole";

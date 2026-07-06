@@ -1,107 +1,44 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
-import { MdOutlineNavigateNext } from "react-icons/md";
-import { MdOutlineNavigateBefore } from "react-icons/md";
-
-const defaultButton = (props) => <button {...props}>{props.children}</button>;
+import PaginationBar from "components/common/PaginationBar";
 
 const Pagination = (props) => {
   const [visiblePages, setvisiblePages] = useState(null);
-  const {
-    PageButtonComponent = defaultButton,
-    changeMethodFlag,
-    handleChangePage,
-    pageNo,
-    resetMethodFlag,
-  } = props;
+  const { PageButtonComponent, handleChangePage, pageNo, totalPages } = props;
   const activePage = pageNo + 1;
 
-  const getVisiblePages = useCallback((pageNo, total) => {
+  const filterPages = (pages, max) => pages.filter((p) => p <= max);
+
+  const getVisiblePages = useCallback((currentPage, total) => {
     if (total < 7) {
       return filterPages([1, 2, 3, 4, 5, 6], total);
-    } else {
-      if (pageNo % 5 >= 0 && pageNo > 4 && pageNo + 2 < total) {
-        return [1, pageNo - 1, pageNo, pageNo + 1, total];
-      } else if (pageNo % 5 >= 0 && pageNo > 4 && pageNo + 2 >= total) {
-        return [1, total - 3, total - 2, total - 1, total];
-      } else {
-        return [1, 2, 3, 4, 5, total];
-      }
     }
+    if (currentPage % 5 >= 0 && currentPage > 4 && currentPage + 2 < total) {
+      return [1, currentPage - 1, currentPage, currentPage + 1, total];
+    }
+    if (currentPage % 5 >= 0 && currentPage > 4 && currentPage + 2 >= total) {
+      return [1, total - 3, total - 2, total - 1, total];
+    }
+    return [1, 2, 3, 4, 5, total];
   }, []);
 
   useEffect(() => {
-    setvisiblePages(getVisiblePages(null, props.totalPages));
-  }, [getVisiblePages, props.totalPages]);
+    setvisiblePages(getVisiblePages(activePage, totalPages));
+  }, [getVisiblePages, activePage, totalPages]);
 
-  const filterPages = (visiblePages, totalPages) => {
-    return visiblePages.filter((pageNo) => pageNo <= totalPages);
-  };
-
-  const changePage = (pageNo) => {
-    const visiblePages = getVisiblePages(pageNo, props.totalPages);
-
-    setvisiblePages(filterPages(visiblePages, props.totalPages));
-    handleChangePage(pageNo);
+  const changePage = (page) => {
+    setvisiblePages(filterPages(getVisiblePages(page, totalPages), totalPages));
+    handleChangePage(page);
   };
 
   return (
-    <div className="Table__pagination">
-      <div className="Table__prevPageWrapper">
-        <PageButtonComponent
-          className="Table__pageButton"
-          onClick={() => {
-            if (activePage === 1) return;
-            changePage(activePage - 1);
-          }}
-          disabled={activePage === 1}
-          style={{
-            backgroundColor: "#3E5DBF",
-            color: "white",
-            padding: "13px 15px",
-            borderTopLeftRadius: "10px",
-            borderBottomLeftRadius: "10px",
-          }}
-        >
-          {/* {props.previousText} */}
-          <MdOutlineNavigateBefore
-            style={{
-              color: "white",
-            }}
-          />
-        </PageButtonComponent>
-      </div>
-      <div className="Table__visiblePagesWrapper">
-        {visiblePages &&
-          visiblePages.map((pageNo, index, array) => {
-            return (
-              <PageButtonComponent
-                key={pageNo}
-                className={
-                  activePage === pageNo
-                    ? "Table__pageButton Table__pageButton--active"
-                    : "Table__pageButton"
-                }
-                onClick={changePage.bind(null, pageNo)}
-              >
-                {array[index - 1] + 2 < pageNo ? `...${pageNo}` : pageNo}
-              </PageButtonComponent>
-            );
-          })}
-      </div>
-      <div className="Table__nextPageWrapper">
-        <PageButtonComponent
-          className="Table__pageButton1"
-          onClick={() => {
-            if (activePage === props.totalPages) return;
-            changePage(activePage + 1);
-          }}
-          disabled={activePage === props.totalPages}
-        >
-          <MdOutlineNavigateNext />
-        </PageButtonComponent>
-      </div>
-    </div>
+    <PaginationBar
+      activePage={activePage}
+      totalPages={totalPages}
+      visiblePages={visiblePages}
+      onPageChange={changePage}
+      PageButtonComponent={PageButtonComponent}
+    />
   );
 };
 
@@ -110,8 +47,6 @@ Pagination.propTypes = {
   pageNo: PropTypes.number,
   PageButtonComponent: PropTypes.any,
   handleChangePage: PropTypes.func,
-  previousText: PropTypes.string,
-  nextText: PropTypes.string,
 };
 
 export default Pagination;

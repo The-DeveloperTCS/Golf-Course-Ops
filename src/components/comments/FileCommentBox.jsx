@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import ChattingBoardWrapper from "./chattngboard.style";
 import { fetchDigitalOceanUrl } from "redux/fileUpload/service";
+import { isMockUploadUrl, completeMockUpload } from "util/mockUploadHandler";
 import Button from "components/button/Button";
 import moment from "moment";
 
@@ -54,6 +55,21 @@ const CommentBox = (props) => {
   };
 
   const handleSubmission = (url, contentType, selectedFile) => {
+    const finish = (fileUrl) => {
+      const commentObj = {
+        file: fileUrl,
+        message: "",
+        purchaseOrderId: id,
+      };
+      setSaving(true);
+      props.handleAddComment(commentObj);
+    };
+
+    if (isMockUploadUrl(url)) {
+      completeMockUpload(selectedFile).then((result) => finish(result.url));
+      return;
+    }
+
     const reader = new FileReader();
     reader.onload = (event) => {
       const headers = {

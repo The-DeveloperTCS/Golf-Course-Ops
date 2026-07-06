@@ -5,6 +5,7 @@ import Button from "components/button/Button";
 import { fetchDigitalOceanUrlForImage } from "redux/fileUpload/service";
 import Resizer from "react-image-file-resizer";
 import { resizeThumbnail } from "../../util/ImageResizer";
+import { isMockUploadUrl, completeMockUpload } from "util/mockUploadHandler";
 
 const ImageCropper = ({ isOpen, onClose, onSave, image, onError }) => {
   const EditorRef = useRef(null);
@@ -46,6 +47,14 @@ const ImageCropper = ({ isOpen, onClose, onSave, image, onError }) => {
   };
 
   const handleSubmission = (url, contentType, selectedFile) => {
+    if (isMockUploadUrl(url)) {
+      completeMockUpload(selectedFile).then((result) => {
+        setLoading(false);
+        onSave(result.url);
+        onClose();
+      });
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (event) => {
       const headers = {

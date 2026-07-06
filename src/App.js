@@ -14,6 +14,7 @@ import AppLocale from "./languageProvider";
 import { themeConfig } from "./settings";
 import config, { getCurrentLanguage } from "./settings/languageConfig";
 import { PersistGate } from "redux-persist/integration/react";
+import DarkModeInit from "./components/common/DarkModeInit";
 import "./assets/scss/app.scss";
 import "pretty-checkbox/src/pretty-checkbox.scss";
 
@@ -31,6 +32,7 @@ const App = (props) => {
           <StyleRoot>
             <Provider store={store}>
               <PersistGate loading={null} persistor={persistor}>
+                <DarkModeInit />
                 {/*Start layout routes */}
                 <Router history={history}>
                   <Switch>

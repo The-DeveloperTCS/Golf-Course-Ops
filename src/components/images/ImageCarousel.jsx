@@ -9,6 +9,7 @@ import Resizer from "react-image-file-resizer";
 import { fetchDigitalOceanUrlForImage } from "redux/fileUpload/service";
 import useRolePermissions from "hooks/usePermissionAsPerAssign";
 import { resizeThumbnail } from "../../util/ImageResizer";
+import { isMockUploadUrl, completeMockUpload } from "util/mockUploadHandler";
 
 const ImagesCarousel = ({ images, onIndexChange }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -55,6 +56,10 @@ const ImagesCarousel = ({ images, onIndexChange }) => {
       });
   };
   const handleSubmission = (url, contentType, selectedFile) => {
+    if (isMockUploadUrl(url)) {
+      completeMockUpload(selectedFile);
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (event) => {
       const headers = {

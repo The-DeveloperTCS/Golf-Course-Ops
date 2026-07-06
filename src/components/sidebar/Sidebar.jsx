@@ -3,7 +3,7 @@ import SidebarWrapper from "./sidebar.style";
 import Radium from "radium";
 import NavList from "components/sidebar/NavList";
 import { sidebarData } from "util/data/sidebar";
-import { logo, AppName } from "helper/constant";
+import { AppName } from "helper/constant";
 import { Scrollbars } from "react-custom-scrollbars";
 import { NavLink } from "react-router-dom";
 import IntlMessages from "util/intlMessages";

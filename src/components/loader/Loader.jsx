@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div class="center-body">
       <div class="loader-circle-9">
-        <img src={LogoLoader} />
+        <img src={LogoLoader} alt="Loading" />
       </div>
     </div>
   );
