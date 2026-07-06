@@ -68,9 +68,9 @@ export const RecentTransactions = ({ items }) => (
     <ul className="dash-tx-list">
       {items.map((tx) => (
         <li key={tx.id} className="dash-tx-item">
-          <div>
-            <strong>{tx.customer}</strong>
-            <span>
+          <div className="dash-tx-item__main">
+            <strong className="dash-tx-item__customer">{tx.customer}</strong>
+            <span className="dash-tx-item__meta">
               #{tx.id} · {tx.items} items
             </span>
           </div>

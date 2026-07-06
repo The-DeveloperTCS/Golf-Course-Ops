@@ -342,6 +342,10 @@ body.dark-mode .dash-enterprise {
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-bottom: 24px;
+
+  > * {
+    min-width: 0;
+  }
 }
 
 .dash-widget {
@@ -351,6 +355,8 @@ body.dark-mode .dash-enterprise {
   padding: 20px 22px;
   box-shadow: var(--dash-shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 0;
+  overflow: hidden;
 
   &:hover {
     box-shadow: var(--dash-shadow-hover);
@@ -479,6 +485,30 @@ body.dark-mode .dash-enterprise {
 
 .dash-tx-item {
   justify-content: space-between;
+  gap: 12px;
+
+  &__main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__customer {
+    display: block;
+    color: var(--dash-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    display: block;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
   &__right {
     text-align: right;
@@ -486,12 +516,14 @@ body.dark-mode .dash-enterprise {
     flex-direction: column;
     align-items: flex-end;
     gap: 4px;
+    flex-shrink: 0;
   }
 
   &__amount {
     font-weight: 700;
     color: var(--dash-text);
     font-size: 0.9rem;
+    white-space: nowrap;
   }
 }
 
@@ -821,6 +853,59 @@ body.dark-mode .dash-enterprise {
   .dash-table-search {
     width: 100%;
     min-width: 0;
+  }
+
+  .dash-widget {
+    padding: 16px;
+  }
+
+  .dash-tx-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 14px 0;
+
+    &__customer {
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    &__meta {
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    &__right {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      text-align: left;
+      padding-top: 10px;
+      border-top: 1px dashed var(--dash-border);
+    }
+
+    &__amount {
+      font-size: 1rem;
+    }
+  }
+
+  .dash-res-item {
+    flex-wrap: wrap;
+
+    .dash-res-item__time {
+      min-width: 64px;
+    }
+  }
+
+  .dash-product-item {
+    flex-wrap: wrap;
+    gap: 8px;
+
+    strong {
+      width: 100%;
+      text-align: right;
+    }
   }
 }
 
